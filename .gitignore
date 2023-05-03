@@ -2,3 +2,4 @@
 *.xlsx
 .DS_Store
 private/
+qc_financial/
