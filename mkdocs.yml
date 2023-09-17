@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+
+site_name: Docs para qcfinancial
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Parte 1: Ejemplos_qcfinancial_1.md
+  - Parte 2: Ejemplos_qcfinancial_2.md
+  - Parte 3: Ejemplos_qcfinancial_3.md
