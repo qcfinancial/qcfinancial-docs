@@ -35,9 +35,9 @@ copyright: Copyright &copy; 2017 - 2023 Alvaro Díaz Valenzuela
 
 nav:
   - Home: index.md
-  - Parte 1: Ejemplos_qcfinancial_1.md
-  - Parte 2: Ejemplos_qcfinancial_2.md
-  - Parte 3: Ejemplos_qcfinancial_3.md
+  - Objetos Fundamentales: Ejemplos_qcfinancial_1.md
+  - Construcción de Operaciones: Ejemplos_qcfinancial_2.md
+  - Valorización y Sensibilidad: Ejemplos_qcfinancial_3.md
 
 markdown_extensions:
   toc:
@@ -64,7 +64,7 @@ extra:
     property: G-YNEVN69SC3
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/adiaz-efaa/derivative-valuation-engine
+    link: https://github.com/qcfinancial/qcfinancial
   - icon: fontawesome/brands/twitter
     link: https://twitter.com/efaachile
   - icon: fontawesome/brands/linkedin
@@ -74,5 +74,5 @@ extra:
   - icon: fontawesome/brands/medium
     link: https://medium.com/@efaa-adiazv
   - icon: fontawesome/solid/globe
-    link: https://www.efaa.cl
+    link: https://qcfinancial.github.io/qcfinancial-docs/
 

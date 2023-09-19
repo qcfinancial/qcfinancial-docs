@@ -1,6 +1,6 @@
-# Uso de `qcfinancial` (Parte 1)
+# Objetos Fundamentales
 
-Se importa la librería compilada para Python3.
+Para ejecutar todos los ejemplos se debe importar la librería. Se sugiere utilizar siempre el alias `qcf`. 
 
 
 ```python
@@ -568,7 +568,7 @@ usdclp
 
 
 
-    <qcfinancial.FXRate at 0x10e77e3b0>
+    <qcfinancial.FXRate at 0x109e023f0>
 
 
 
@@ -659,6 +659,17 @@ print(f'Monto en USD: {ccy_converter.convert(800_000, clp, 800, usdclp_obs):,.0f
 
 ```python
 qcf.QCCurrencyEnum.AUD
+```
+
+
+
+
+    <QCCurrencyEnum.AUD: 0>
+
+
+
+
+```python
 qcf.QCCurrencyEnum.USD
 ```
 
@@ -674,6 +685,17 @@ qcf.QCCurrencyEnum.USD
 
 ```python
 qcf.QCFxRateEnum.USDCLP
+```
+
+
+
+
+    <QCFxRateEnum.USDCLP: 14>
+
+
+
+
+```python
 qcf.QCFxRateEnum.EURUSD
 ```
 
@@ -752,7 +774,7 @@ simple_cashflow
 
 
 
-    <qcfinancial.SimpleCashflow at 0x10e78d4f0>
+    <qcfinancial.SimpleCashflow at 0x109da7130>
 
 
 
@@ -1043,7 +1065,7 @@ fixed_rate_mccy_cashflow = qcf.FixedRateMultiCurrencyCashflow(
 print(fixed_rate_mccy_cashflow)
 ```
 
-    <qcfinancial.FixedRateMultiCurrencyCashflow object at 0x10e7dc230>
+    <qcfinancial.FixedRateMultiCurrencyCashflow object at 0x109dee130>
 
 
 **TODO: get_rate.** Este getter no debe ser un getter tradicional, ya que no es necesario que retorne una referencia a todo el objeto ``QCInterestRate``, basta con el valor y la descripción de yf y wf asociado (mejor llamarlo get_rate_info).
@@ -1393,7 +1415,7 @@ libor_usd_3m.get_rate()
 
 
 
-    <qcfinancial.QCInterestRate at 0x10e7dd870>
+    <qcfinancial.QCInterestRate at 0x109e33330>
 
 
 
@@ -1645,7 +1667,7 @@ ibor_mccy_cashflow = qcf.IborMultiCurrencyCashflow(
 print(ibor_mccy_cashflow)
 ```
 
-    <qcfinancial.IborMultiCurrencyCashflow object at 0x10e7b7ef0>
+    <qcfinancial.IborMultiCurrencyCashflow object at 0x109ddfeb0>
 
 
 
@@ -2499,7 +2521,7 @@ cor_cashflow.accrued_fixing(qcf.QCDate(29, 12, 2021))
 
     ValueError                                Traceback (most recent call last)
 
-    Cell In[139], line 1
+    Cell In[141], line 1
     ----> 1 cor_cashflow.accrued_fixing(qcf.QCDate(29, 12, 2021))
 
 
@@ -2550,7 +2572,7 @@ cor_cashflow.accrued_interest(qcf.QCDate(29, 12, 2021))
 
     ValueError                                Traceback (most recent call last)
 
-    Cell In[144], line 1
+    Cell In[146], line 1
     ----> 1 cor_cashflow.accrued_interest(qcf.QCDate(29, 12, 2021))
 
 
@@ -2609,7 +2631,7 @@ cor_cashflow.fixing()
 
     ValueError                                Traceback (most recent call last)
 
-    Cell In[149], line 1
+    Cell In[151], line 1
     ----> 1 cor_cashflow.fixing()
 
 

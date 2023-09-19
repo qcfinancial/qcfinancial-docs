@@ -1,17 +1,19 @@
-# Welcome to MkDocs
+# `qcfinancial`
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Librería para la valorización de derivados de tasa de interés y tipo de cambio.
 
-## Commands
+## Instalación
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+```python
+pip install qcfinancial
+```
 
-## Project layout
+La librería está disponible para Windows 10, MacOS y Linux. Sin embargo, por favor considerar lo siguiente:
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+- Se trata de una librería cuyo core es C++ de la cual sólo se distribuyen *wheels*.
+- Para algunas plataformas y versiones de Python, dichos *wheels* podrían no estar disponibles.
+- Si la instalación presenta algún error, levantar un issue aquí mismo en GitHub, el cual trataremos de resolver lo antes posible.
+
+## Documentación
+
+La documentación está escrita utilizando Jupyter notebooks. Para ejecutar dichos notebooks es posible clonar o descargar el [Repo](https://qcfinancial.github.io/qcfinancial-docs/).
