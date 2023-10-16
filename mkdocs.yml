@@ -1,0 +1,78 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+
+site_name: Docs para qcfinancial
+
+theme:
+  name: material
+  palette:
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
+    primary: blue
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: blue
+    accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to light mode
+  features:
+  - search.suggest
+  - search.highlight
+  - content.tabs.link
+  - navigation.indexes
+  - content.tooltips
+  - navigation.path
+  - content.code.annotate
+  - content.code.copy
+  - content.code.select
+  language: es
+
+copyright: Copyright &copy; 2017 - 2023 Alvaro Díaz Valenzuela
+
+nav:
+  - Home: index.md
+  - Objetos Fundamentales: Ejemplos_qcfinancial_1.md
+  - Construcción de Operaciones: Ejemplos_qcfinancial_2.md
+  - Valorización y Sensibilidad: Ejemplos_qcfinancial_3.md
+
+markdown_extensions:
+  toc:
+    permalink: true
+  markdown.extensions.codehilite:
+    guess_lang: false
+  # mdx_include:
+  #  base_path: docs
+  admonition: null
+  codehilite: null
+  extra: null
+  pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format ''
+  pymdownx.tabbed:
+    alternate_style: true
+  attr_list: null
+  md_in_html: null
+extra:
+  analytics:
+    provider: google
+    property: G-YNEVN69SC3
+  social:
+  - icon: fontawesome/brands/github-alt
+    link: https://github.com/qcfinancial/qcfinancial
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/efaachile
+  - icon: fontawesome/brands/linkedin
+    link: https://www.linkedin.com/in/alvaro-diaz-v-1bb95328/
+  # - icon: fontawesome/brands/dev
+  #  link: https://dev.to/tiangolo
+  - icon: fontawesome/brands/medium
+    link: https://medium.com/@efaa-adiazv
+  - icon: fontawesome/solid/globe
+    link: https://qcfinancial.github.io/qcfinancial-docs/
+
