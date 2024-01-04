@@ -86,6 +86,7 @@ for moneda in monedas:
     Número ISO: 392
     Número de decimales: 2
     Cantidad 100.123456 con el número correcto de decimales: 100.12
+    
 
 
 ## Fechas
@@ -405,6 +406,7 @@ for yf in yfs:
     1.0
     1.0
     30
+    
 
 
 ## Factores de Capitalización
@@ -467,6 +469,7 @@ for tasa in tasas:
     dwf 0.07407227518337182
     wf1 1.12
     dwf1 1.0
+    
 
 
 
@@ -566,7 +569,7 @@ usdclp
 
 
 
-    <qcfinancial.FXRate at 0x1211db5b0>
+    <qcfinancial.FXRate at 0x112bbdef0>
 
 
 
@@ -772,7 +775,7 @@ simple_cashflow
 
 
 
-    <qcfinancial.SimpleCashflow at 0x109429670>
+    <qcfinancial.SimpleCashflow at 0x129f98c30>
 
 
 
@@ -1063,7 +1066,7 @@ fixed_rate_mccy_cashflow = qcf.FixedRateMultiCurrencyCashflow(
 print(fixed_rate_mccy_cashflow)
 ```
 
-    <qcfinancial.FixedRateMultiCurrencyCashflow object at 0x1212e6a30>
+    <qcfinancial.FixedRateMultiCurrencyCashflow object at 0x129fb90b0>
 
 
 **TODO: get_rate.** Este getter no debe ser un getter tradicional, ya que no es necesario que retorne una referencia a todo el objeto ``QCInterestRate``, basta con el valor y la descripción de yf y wf asociado (mejor llamarlo get_rate_info).
@@ -1074,7 +1077,7 @@ print(fixed_rate_mccy_cashflow)
 print("Fecha Inicio:", fixed_rate_mccy_cashflow.get_start_date())
 print("Fecha Final:", fixed_rate_mccy_cashflow.get_end_date())
 print("Fecha Pago:", fixed_rate_mccy_cashflow.get_settlement_date())
-print("Fecha Publicación Índice FX:", fixed_rate_mccy_cashflow.get_fx_publish_date())
+print("Fecha Fijación Índice FX:", fixed_rate_mccy_cashflow.get_fx_fixing_date())
 print("Moneda del Nominal:", fixed_rate_mccy_cashflow.ccy())
 print(f"Nominal: {fixed_rate_mccy_cashflow.get_nominal():,.0f}")
 print(f"Amortización: {fixed_rate_mccy_cashflow.get_amortization():,.0f}")
@@ -1084,22 +1087,11 @@ print("Moneda de Liquidación:", fixed_rate_mccy_cashflow.settlement_currency())
     Fecha Inicio: 2018-09-20
     Fecha Final: 2019-09-20
     Fecha Pago: 2019-09-23
-
-
-
-    ---------------------------------------------------------------------------
-
-    AttributeError                            Traceback (most recent call last)
-
-    Cell In[68], line 5
-          3 print("Fecha Final:", fixed_rate_mccy_cashflow.get_end_date())
-          4 print("Fecha Pago:", fixed_rate_mccy_cashflow.get_settlement_date())
-    ----> 5 print("Fecha Publicación Índice FX:", fixed_rate_mccy_cashflow.get_fx_publish_date())
-          6 print("Moneda del Nominal:", fixed_rate_mccy_cashflow.ccy())
-          7 print(f"Nominal: {fixed_rate_mccy_cashflow.get_nominal():,.0f}")
-
-
-    AttributeError: 'qcfinancial.FixedRateMultiCurrencyCashflow' object has no attribute 'get_fx_publish_date'
+    Fecha Fijación Índice FX: 2019-09-23
+    Moneda del Nominal: USD
+    Nominal: 1,000
+    Amortización: 1,000
+    Moneda de Liquidación: CLP
 
 
 **TODO: set_rate_value.** Debe establecer el valor de la tasa de interés.
@@ -1133,11 +1125,11 @@ print(f"Interés Devengado: {fixed_rate_mccy_cashflow.accrued_interest(fecha_int
 print(f"Check: {fixed_rate_mccy_cashflow.get_nominal() * 0.1 * fecha_inicio.day_diff(fecha_intermedia) / 360.0:,.02f}")
 ```
 
-    Flujo Total: 101.39
-    Check: 2,027.78
+    Flujo Total: 10.14
+    Check: 101.39
     
-    Interés Devengado: 28.89
-    Check: 28.89
+    Interés Devengado: 2.89
+    Check: -7.25
 
 
 
@@ -1172,7 +1164,7 @@ ts[fecha_intermedia] = 15
 print(fixed_rate_mccy_cashflow.accrued_interest(fecha_intermedia, fecha_inicio, ts))
 ```
 
-    288.88888888888965
+    28.888888888888964
 
 
 
@@ -1180,7 +1172,7 @@ print(fixed_rate_mccy_cashflow.accrued_interest(fecha_intermedia, fecha_inicio, 
 print(fixed_rate_mccy_cashflow.accrued_interest(fecha_intermedia, fecha_intermedia, ts))
 ```
 
-    433.33333333333445
+    43.33333333333344
 
 
 
@@ -1189,7 +1181,7 @@ print(fixed_rate_mccy_cashflow.accrued_interest(fecha_intermedia, fecha_intermed
 print(qcf.show(fixed_rate_mccy_cashflow))
 ```
 
-    ('2018-09-20', '2019-09-20', '2019-09-23', 1000.0, 1000.0, 101.38888888888897, False, 101.38888888888897, 'USD', 0.1, 'LinAct360', '2019-09-23', 'CLP', 'USDOBS', 20.0, 20000.0, 2027.7777777777794)
+    ('2018-09-20', '2019-09-20', '2019-09-23', 100.0, 100.0, 10.138888888888896, False, 10.138888888888896, 'USD', 0.1, 'LinAct360', '2019-09-23', 'CLP', 'USDOBS', 20.0, 2000.0, 202.77777777777794)
 
 
 
@@ -1424,7 +1416,7 @@ libor_usd_3m.get_rate()
 
 
 
-    <qcfinancial.QCInterestRate at 0x1217b87b0>
+    <qcfinancial.QCInterestRate at 0x12aa57bf0>
 
 
 
@@ -1676,7 +1668,7 @@ ibor_mccy_cashflow = qcf.IborMultiCurrencyCashflow(
 print(ibor_mccy_cashflow)
 ```
 
-    <qcfinancial.IborMultiCurrencyCashflow object at 0x1217dc2b0>
+    <qcfinancial.IborMultiCurrencyCashflow object at 0x12aa60c70>
 
 
 
@@ -2200,14 +2192,14 @@ print("Moneda:", overnight_index_cashflow.ccy())
     Fecha Inicio Índice: 2023-11-13
     Fecha Final Índice: 2023-11-17
     Fecha Pago: 2023-11-20
-    Índice Fecha Inicio: 10,000.00000000
-    ïndice Fecha Final: 10,010.00000000
+    Índice Fecha Inicio: 1.00000000
+    ïndice Fecha Final: 1.00000000
     
-    Valor Tasa Equivalente Todo el Período: 7.200000%
+    Valor Tasa Equivalente Todo el Período: 0.000000%
     Check: 9.872000%
     
     Nominal: 1,000,000,000
-    Amortización: 100,000
+    Amortización: 100,000,000
     Tipo de Tasa: LinAct360
     Moneda: USD
 
@@ -2221,7 +2213,7 @@ overnight_index_cashflow.set_eq_rate_decimal_places(decimales_para_tasa_eq)
 print(f"Nueva Tasa Eq: {overnight_index_cashflow.get_rate_value():.4%}")
 ```
 
-    Nueva Tasa Eq: 7.2000%
+    Nueva Tasa Eq: 0.0000%
 
 
 
@@ -2284,6 +2276,7 @@ print()
 ```
 
     Flujo: 100,123.46
+    
 
 
 
@@ -2301,6 +2294,7 @@ print()
 
     Tasa Eq. fijada al 16-11-2023: 6.00%
     Check: 6.00%
+    
 
 
 
@@ -2424,7 +2418,7 @@ Un objeto de tipo `OvernightIndexMultiCurrencyCashflow` hereda de `OvernightInde
 - `QCInterestRate`: con este objeto se especifica en qué convención se calcula la tasa equivalente
 - `string`: nombre del índice overnight a utilizar
 - `unsigned int`: número de decimales a utilizar para determinar la tasa equivalente
----
+  
 Hasta acá son los mismos argumentos necesarios para construir un `OvernightIndexCAshflow`. Se añaden los siguientes argumentos:
 - `QCDate`: fecha de fixing del índice de tipo de cambio. Esta fecha se refiere a la fecha de publicación del índice, no a la fecha de fixing en sentido financiero.
 - `QCCurrency`: moneda de pago de los flujos de caja
@@ -2729,7 +2723,7 @@ overnight_index_mccy_cashflow.get_fx_rate_index()
 
 
 
-    <qcfinancial.FXRateIndex at 0x108e613b0>
+    <qcfinancial.FXRateIndex at 0x129f991f0>
 
 
 
@@ -3254,7 +3248,7 @@ cor_cashflow.accrued_fixing(qcf.QCDate(29, 12, 2021))
 
     ValueError                                Traceback (most recent call last)
 
-    Cell In[243], line 1
+    Cell In[255], line 1
     ----> 1 cor_cashflow.accrued_fixing(qcf.QCDate(29, 12, 2021))
 
 
@@ -3305,7 +3299,7 @@ cor_cashflow.accrued_interest(qcf.QCDate(29, 12, 2021))
 
     ValueError                                Traceback (most recent call last)
 
-    Cell In[248], line 1
+    Cell In[260], line 1
     ----> 1 cor_cashflow.accrued_interest(qcf.QCDate(29, 12, 2021))
 
 
@@ -3351,6 +3345,18 @@ cor_cashflow.date().description(False)
 
 
     '2021-12-31'
+
+
+
+
+```python
+cor_cashflow.fixing(ts)
+```
+
+
+
+
+    0.02500243
 
 
 
@@ -3425,12 +3431,726 @@ qcf.show(cor_cashflow)
      100000.0,
      888.9044444448934,
      True,
-     100111.11111111184,
+     102889.15896133445,
      'CLP',
      'OITEST',
-     0.0,
+     0.025002430652003582,
      0.001,
      1.0,
      'LinAct360')
+
+
+
+### Compounded Overnight Rate Cashflow 2
+
+Un objeto de tipo `CompoundedOvernightRateCashflow2` representa un flujo de caja calculado como un cupón de la pata flotante de un OIS sobre cualquier índice overnight (SOFR, FF, EONIA). Para dar de alta uno de estos objetos se requiere:
+
+- `InterestRateIndex`: el índice de tasa de interés prefijado
+- `QCDate`: fecha inicio (para la aplicación de la tasa)
+- `QCDate`: fecha final (para la aplicación de la tasa)
+- `QCDate`: fecha de pago
+- `DateList`: fechas de fixing del índice
+- `float`: nominal (monto al que se le aplica la tasa)
+- `float`: amortización (eventual flujo de caja que corresponde a una porción del nominal)
+- `bool`: indica si la amortización anterior es un flujo de caja o sólo una disminución de nominal
+- `QCCurrency`: moneda del nocional de la operación
+- `float`: spread aditivo a aplicar a la fijación de la TRA
+- `float`: spread multiplicativo o gearing a aplicar a la fijación de la TRA
+- `QCInterestRate`: permite especificar cuál es la convención de cálculo de la tasa equivalente
+- `unsigned int`: número de decimales a usar en el cálculo de la tasa equivalente. Por ejemplo para 0.12345678% este valor debe ser 10.
+- `unsigned int`: número de días de lookback
+- `unsigned int`: número de días de lockout
+
+El efecto de lookback y lockout aún no está implementado.
+
+#### Constructor
+
+Se da de alta un índice overnight ficiticio de test.
+
+
+```python
+codigo = "OITEST"
+lin_act360 = qcf.QCInterestRate(0.0, act360, lin_wf)
+fixing_lag = qcf.Tenor("0d")
+tenor = qcf.Tenor("1d")
+fixing_calendar = scl
+settlement_calendar = scl
+oitest = qcf.InterestRateIndex(
+    codigo, 
+    lin_act360, 
+    fixing_lag, 
+    tenor, 
+    fixing_calendar, 
+    settlement_calendar, 
+    usd
+)
+```
+
+
+```python
+fixing_dates = qcf.DateList()
+```
+
+
+```python
+fixing_dates.append(qcf.QCDate(27, 12, 2021))
+fixing_dates.append(qcf.QCDate(28, 12, 2021))
+fixing_dates.append(qcf.QCDate(29, 12, 2021))
+fixing_dates.append(qcf.QCDate(30, 12, 2021))
+```
+
+
+```python
+cor_cashflow_2 = qcf.CompoundedOvernightRateCashflow2(
+    oitest,
+    qcf.QCDate(27, 12, 2021),
+    qcf.QCDate(31, 12, 2021),
+    qcf.QCDate(31, 12, 2021),
+    fixing_dates,
+    10_000_000.0,
+    100_000.0,
+    True,
+    qcf.QCCLP(),
+    spread:=0.001,
+    1.0,
+    qcf.QCInterestRate(0.0, qcf.QCAct360(), qcf.QCLinearWf()),
+    8,
+    0,
+    0,
+)
+```
+
+#### Getters
+
+
+```python
+cor_cashflow_2.get_start_date().description(False)
+```
+
+
+
+
+    '2021-12-27'
+
+
+
+
+```python
+cor_cashflow_2.get_end_date().description(False)
+```
+
+
+
+
+    '2021-12-31'
+
+
+
+
+```python
+cor_cashflow_2.get_settlement_date().description(False)
+```
+
+
+
+
+    '2021-12-31'
+
+
+
+
+```python
+for d in cor_cashflow_2.get_fixing_dates():
+    print(d)
+```
+
+    2021-12-27
+    2021-12-28
+    2021-12-29
+    2021-12-30
+
+
+
+```python
+print(f"Nocional: {cor_cashflow_2.get_nominal():,.0f}")
+```
+
+    Nocional: 10,000,000
+
+
+
+```python
+print(f"Amortization: {cor_cashflow_2.get_amortization():,.0f}")
+```
+
+    Amortization: 100,000
+
+
+
+```python
+cor_cashflow_2.ccy().get_iso_code()
+```
+
+
+
+
+    'CLP'
+
+
+
+
+```python
+print(f"Spread: {cor_cashflow_2.get_spread():.2%}")
+```
+
+    Spread: 0.10%
+
+
+
+```python
+cor_cashflow_2.get_gearing()
+```
+
+
+
+
+    1.0
+
+
+
+
+```python
+cor_cashflow_2.get_type()
+```
+
+
+
+
+    'CompoundedOvernightRateCashflow2'
+
+
+
+
+```python
+cor_cashflow_2.get_eq_rate_decimal_places()
+```
+
+
+
+
+    8
+
+
+
+
+```python
+derivs = cor_cashflow_2.get_amount_derivatives()
+```
+
+
+```python
+len(derivs)
+```
+
+
+
+
+    2
+
+
+
+
+```python
+for der in derivs:
+    print(der)
+```
+
+    0.0
+    0.0
+
+
+#### Setters
+
+
+```python
+cor_cashflow_2.set_notional(1_000)
+print(f"Nocional: {cor_cashflow_2.get_nominal():,.0f}")
+```
+
+    Nocional: 1,000
+
+
+
+```python
+cor_cashflow_2.set_amortization(0)
+cor_cashflow_2.get_amortization()
+```
+
+
+
+
+    0.0
+
+
+
+Se reversa el ejemplo.
+
+
+```python
+cor_cashflow_2.set_notional(10_000_000.0)
+cor_cashflow_2.set_amortization(100_000.0)
+```
+
+#### Accrued Fixing
+
+Para el cálculo de `accrued_fixing` se requiere un objeto de tipo `TimeSeries` que contenga los datos históricos del índice overnight.
+
+
+```python
+ts = qcf.time_series()
+```
+
+
+```python
+ts[qcf.QCDate(27, 12, 2021)] = 0.01
+ts[qcf.QCDate(28, 12, 2021)] = 0.02
+ts[qcf.QCDate(29, 12, 2021)] = 0.03
+ts[qcf.QCDate(30, 12, 2021)] = 0.04
+```
+
+
+```python
+print(f"Accrued fixing: {cor_cashflow_2.accrued_fixing(qcf.QCDate(29, 12, 2021), ts):.6%}")
+```
+
+    Accrued fixing: 1.500028%
+
+
+
+```python
+check = ((1 + 0.01 / 360) * (1 + 0.02 / 360.0) - 1) * 360 / 2.0
+print(f"Check: {check:.6%}")
+```
+
+    Check: 1.500028%
+
+
+#### Accrued Interest
+
+Para el cálculo de `accrued_interest` se requiere un objeto de tipo `TimeSeries` que contenga los datos históricos del índice overnight.
+
+
+```python
+print(f"Accrued interest: {cor_cashflow_2.accrued_interest(qcf.QCDate(29, 12, 2021), ts):,.2f}")
+```
+
+    Accrued interest: 888.90
+
+
+
+```python
+check = (
+    cor_cashflow_2.get_nominal()
+    * (cor_cashflow_2.accrued_fixing(qcf.QCDate(29, 12, 2021), ts) + spread)
+    * 2
+    / 360.0
+)
+print(f"Check: {check:,.2f}")
+```
+
+    Check: 888.90
+
+
+
+```python
+print(f"Amount: {cor_cashflow_2.amount():,.2f}")
+```
+
+    Amount: 100,111.11
+
+
+
+```python
+cor_cashflow_2.date().description(False)
+```
+
+
+
+
+    '2021-12-31'
+
+
+
+
+```python
+print(f"Interest: {cor_cashflow_2.interest_from_spread():,.2f}")
+```
+
+    Interest: 111.11
+
+
+
+```python
+cor_cashflow_2.is_expired(qcf.QCDate(29, 12, 2021))
+```
+
+
+
+
+    False
+
+
+
+
+```python
+cor_cashflow_2.is_expired(qcf.QCDate(31, 12, 2021))
+```
+
+
+
+
+    False
+
+
+
+
+```python
+cor_cashflow_2.is_expired(qcf.QCDate(1, 1, 2022))
+```
+
+
+
+
+    True
+
+
+
+
+```python
+cor_cashflow_2.get_type()
+```
+
+
+
+
+    'CompoundedOvernightRateCashflow2'
+
+
+
+
+```python
+qcf.show(cor_cashflow)
+```
+
+
+
+
+    ('2021-12-27',
+     '2021-12-31',
+     '2021-12-31',
+     10000000.0,
+     100000.0,
+     888.9044444448934,
+     True,
+     102889.15896133445,
+     'CLP',
+     'OITEST',
+     0.025002430652003582,
+     0.001,
+     1.0,
+     'LinAct360')
+
+
+
+
+```python
+pd.DataFrame([qcf.show(cor_cashflow)], columns=qcf.get_column_names("CompoundedOvernightRateCashflow2", ""))
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fecha_inicial</th>
+      <th>fecha_final</th>
+      <th>fecha_pago</th>
+      <th>nominal</th>
+      <th>amortizacion</th>
+      <th>interes</th>
+      <th>amort_es_flujo</th>
+      <th>flujo</th>
+      <th>moneda</th>
+      <th>codigo_indice_tasa</th>
+      <th>valor_tasa</th>
+      <th>spread</th>
+      <th>gearing</th>
+      <th>tipo_tasa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-12-27</td>
+      <td>2021-12-31</td>
+      <td>2021-12-31</td>
+      <td>10000000.0</td>
+      <td>100000.0</td>
+      <td>888.904444</td>
+      <td>True</td>
+      <td>102889.158961</td>
+      <td>CLP</td>
+      <td>OITEST</td>
+      <td>0.025002</td>
+      <td>0.001</td>
+      <td>1.0</td>
+      <td>LinAct360</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+### Compounded Overnight Rate Multi Currency Cashflow 2
+
+Un objeto de tipo `CompoundedOvernightRateMultiCurrencyCashflow2` representa un flujo de caja calculado como un cupón de la pata flotante de un OIS sobre cualquier índice overnight (SOFR, FF, EONIA) que se liquidará en una moneda distinta de la moneda del nominal utilizando el valor a una cierta fecha de un índice de tipo de cambio prefijado.. Para dar de alta uno de estos objetos se requiere:
+
+- `InterestRateIndex`: el índice de tasa de interés prefijado
+- `QCDate`: fecha inicio (para la aplicación de la tasa)
+- `QCDate`: fecha final (para la aplicación de la tasa)
+- `QCDate`: fecha de pago
+- `DateList`: fechas de fixing del índice
+- `float`: nominal (monto al que se le aplica la tasa)
+- `float`: amortización (eventual flujo de caja que corresponde a una porción del nominal)
+- `bool`: indica si la amortización anterior es un flujo de caja o sólo una disminución de nominal
+- `QCCurrency`: moneda del nocional de la operación
+- `float`: spread aditivo a aplicar a la fijación de la TRA
+- `float`: spread multiplicativo o gearing a aplicar a la fijación de la TRA
+- `QCInterestRate`: permite especificar cuál es la convención de cálculo de la tasa equivalente
+- `unsigned int`: número de decimales a usar en el cálculo de la tasa equivalente. Por ejemplo para 0.12345678% este valor debe ser 10.
+- `unsigned int`: número de días de lookback
+- `unsigned int`: número de días de lockout
+- `QCDate`: fecha de fixing del índice FX
+- `QCCurrency`: moneda de pago o settlement
+- `FXRateIndex`: índice de tipo de cambio a utilizar
+
+El efecto de lookback y lockout aún no está implementado.
+
+#### Constructor
+
+Se da de alta un índice overnight ficiticio de test.
+
+
+```python
+codigo = "OITEST"
+lin_act360 = qcf.QCInterestRate(0.0, act360, lin_wf)
+fixing_lag = qcf.Tenor("0d")
+tenor = qcf.Tenor("1d")
+fixing_calendar = scl
+settlement_calendar = scl
+oitest = qcf.InterestRateIndex(
+    codigo, 
+    lin_act360, 
+    fixing_lag, 
+    tenor, 
+    fixing_calendar, 
+    settlement_calendar, 
+    usd
+)
+```
+
+
+```python
+fixing_dates = qcf.DateList()
+```
+
+
+```python
+fixing_dates.append(qcf.QCDate(27, 12, 2021))
+fixing_dates.append(qcf.QCDate(28, 12, 2021))
+fixing_dates.append(qcf.QCDate(29, 12, 2021))
+fixing_dates.append(qcf.QCDate(30, 12, 2021))
+```
+
+
+```python
+cor_cashflow_mccy_2 = qcf.CompoundedOvernightRateMultiCurrencyCashflow2(
+    oitest,
+    qcf.QCDate(27, 12, 2021),
+    qcf.QCDate(31, 12, 2021),
+    qcf.QCDate(31, 12, 2021),
+    fixing_dates,
+    10_000_000.0,
+    100_000.0,
+    True,
+    qcf.QCCLP(),
+    spread:=0.001,
+    1.0,
+    qcf.QCInterestRate(0.0, qcf.QCAct360(), qcf.QCLinearWf()),
+    8,
+    0,
+    0,
+    qcf.QCDate(31, 12, 2021),
+    qcf.QCUSD(),
+    usdclp_obs,
+)
+```
+
+
+```python
+qcf.show(cor_cashflow_mccy_2)
+```
+
+
+
+
+    ('2021-12-27',
+     '2021-12-31',
+     '2021-12-31',
+     10000000.0,
+     100000.0,
+     111.11111111183902,
+     True,
+     100111.11111111184,
+     'CLP',
+     'OITEST',
+     'LinAct360',
+     0.001,
+     1.0,
+     0.0,
+     'USD',
+     'USDOBS',
+     '2021-12-31',
+     1.0,
+     111.11111111183902,
+     100000.0,
+     100111.11111111184)
+
+
+
+
+```python
+pd.DataFrame([qcf.show(cor_cashflow_mccy_2)], columns=qcf.get_column_names("CompoundedOvernightRateMultiCurrencyCashflow2", ""))
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fecha_inicial</th>
+      <th>fecha_final</th>
+      <th>fecha_pago</th>
+      <th>nominal</th>
+      <th>amortizacion</th>
+      <th>interes</th>
+      <th>amort_es_flujo</th>
+      <th>flujo</th>
+      <th>moneda</th>
+      <th>codigo_indice_tasa</th>
+      <th>...</th>
+      <th>spread</th>
+      <th>gearing</th>
+      <th>tipo_tasa</th>
+      <th>moneda_pago</th>
+      <th>fx_rate_index</th>
+      <th>fecha_fixing_fx</th>
+      <th>valor_indice_fx</th>
+      <th>interes_moneda_pago</th>
+      <th>amortizacion_moneda_pago</th>
+      <th>flujo_moneda_pago</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-12-27</td>
+      <td>2021-12-31</td>
+      <td>2021-12-31</td>
+      <td>10000000.0</td>
+      <td>100000.0</td>
+      <td>111.111111</td>
+      <td>True</td>
+      <td>100111.111111</td>
+      <td>CLP</td>
+      <td>OITEST</td>
+      <td>...</td>
+      <td>0.001</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>USD</td>
+      <td>USDOBS</td>
+      <td>2021-12-31</td>
+      <td>1.0</td>
+      <td>111.111111</td>
+      <td>100000.0</td>
+      <td>100111.111111</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 21 columns</p>
+</div>
+
+
+
+
+```python
+cor_cashflow_mccy_2.set_fx_rate_index_value(2.0)
+```
+
+
+```python
+cor_cashflow_mccy_2.interest(ts)
+```
+
+
+
+
+    2889.158888887966
+
+
+
+
+```python
+cor_cashflow_mccy_2.to_settlement_currency(cor_cashflow_mccy_2.interest(ts))
+```
+
+
+
+
+    1444.579444443983
 
 

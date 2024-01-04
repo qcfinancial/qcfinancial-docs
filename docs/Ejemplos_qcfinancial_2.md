@@ -126,18 +126,6 @@ fixed_rate_leg = qcf.LegFactory.build_bullet_fixed_rate_leg(
 )
 ```
 
-
-```python
-fixed_rate_leg.get_cashflow_at(0).get_type()
-```
-
-
-
-
-    'FixedRateCashflow'
-
-
-
 Se puede lograr una visualización del resultado utilizando un Dataframe de pandas y el método `show`.
 
 
@@ -148,7 +136,8 @@ for i in range(0, fixed_rate_leg.size()):
     tabla.append(qcf.show(fixed_rate_leg.get_cashflow_at(i)))
 
 # Se utiliza tabla para inicializar el Dataframe
-columnas = qcf.get_column_names('FixedRateCashflow')
+columnas = ['fecha_ini', 'fecha_fin', 'fecha_pago', 'nominal', 'amort', 'interes', 'amort_es_flujo', 'flujo', 'moneda',
+            'valor_tasa', 'tipo_tasa']
 df = pd.DataFrame(tabla, columns=columnas)
 
 # Se despliega la data en este formato
@@ -177,11 +166,11 @@ df
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>fecha_inicial</th>
-      <th>fecha_final</th>
+      <th>fecha_ini</th>
+      <th>fecha_fin</th>
       <th>fecha_pago</th>
       <th>nominal</th>
-      <th>amortizacion</th>
+      <th>amort</th>
       <th>interes</th>
       <th>amort_es_flujo</th>
       <th>flujo</th>
@@ -384,11 +373,11 @@ df2
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>fecha_inicial</th>
-      <th>fecha_final</th>
+      <th>fecha_ini</th>
+      <th>fecha_fin</th>
       <th>fecha_pago</th>
       <th>nominal</th>
-      <th>amortizacion</th>
+      <th>amort</th>
       <th>interes</th>
       <th>amort_es_flujo</th>
       <th>flujo</th>
@@ -758,6 +747,237 @@ df3 # .style.format(format_dict)
       <td>1.500000</td>
       <td>False</td>
       <td>1.500000</td>
+      <td>CLF</td>
+      <td>0.03</td>
+      <td>Lin30360</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Veamos un ejemplo de una para R con amortizaciones negativas (disposiciones), esto es, con nocional creciente en el tiempo.
+
+
+```python
+custom_notional_amort.set_notional_amort_at(0, 1000.0, -100.0)
+custom_notional_amort.set_notional_amort_at(1, 1100.0, -100.0)
+custom_notional_amort.set_notional_amort_at(2, 1200.0, -100.0)
+for i in range(3, 10):
+    custom_notional_amort.set_notional_amort_at(i, 1200.0, 0.0)
+```
+
+
+```python
+params = dict(
+    rec_pay=qcf.RecPay.PAY, # rp,
+    start_date=fecha_inicio,
+    end_date=fecha_final,
+    bus_adj_rule=bus_adj_rule,
+    settlement_periodicity=periodicidad,
+    stub_period=periodo_irregular,
+    settlement_calendar=calendario,
+    settlement_lag=lag_pago,
+    notional_and_amort=custom_notional_amort, # custom_notional_amort,
+    amort_is_cashflow=amort_es_flujo,
+    interest_rate=tasa_cupon,
+    notional_currency=moneda
+)
+```
+
+
+```python
+fixed_rate_custom_leg = qcf.LegFactory.build_custom_amort_fixed_rate_leg(**params)
+```
+
+
+```python
+# Se define un list donde almacenar los resultados de la función show
+tabla = []
+for i in range(0, fixed_rate_custom_leg.size()):
+    tabla.append(qcf.show(fixed_rate_custom_leg.get_cashflow_at(i)))
+
+# Se utiliza tabla para inicializar el Dataframe
+columnas = ['fecha_ini', 'fecha_fin', 'fecha_pago', 'nominal', 'amort', 'interes', 'amort_es_flujo', 'flujo', 'moneda',
+            'valor_tasa', 'tipo_tasa']
+df3 = pd.DataFrame(tabla, columns=columnas)
+
+# Se despliega la data en este formato
+df3 # .style.format(format_dict)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fecha_ini</th>
+      <th>fecha_fin</th>
+      <th>fecha_pago</th>
+      <th>nominal</th>
+      <th>amort</th>
+      <th>interes</th>
+      <th>amort_es_flujo</th>
+      <th>flujo</th>
+      <th>moneda</th>
+      <th>valor_tasa</th>
+      <th>tipo_tasa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1969-01-31</td>
+      <td>1969-07-31</td>
+      <td>1969-07-31</td>
+      <td>-1000.0</td>
+      <td>100.0</td>
+      <td>-15.0</td>
+      <td>False</td>
+      <td>-15.0</td>
+      <td>CLF</td>
+      <td>0.03</td>
+      <td>Lin30360</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1969-07-31</td>
+      <td>1970-01-30</td>
+      <td>1970-01-30</td>
+      <td>-1100.0</td>
+      <td>100.0</td>
+      <td>-16.5</td>
+      <td>False</td>
+      <td>-16.5</td>
+      <td>CLF</td>
+      <td>0.03</td>
+      <td>Lin30360</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1970-01-30</td>
+      <td>1970-07-31</td>
+      <td>1970-07-31</td>
+      <td>-1200.0</td>
+      <td>100.0</td>
+      <td>-18.0</td>
+      <td>False</td>
+      <td>-18.0</td>
+      <td>CLF</td>
+      <td>0.03</td>
+      <td>Lin30360</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1970-07-31</td>
+      <td>1971-01-29</td>
+      <td>1971-01-29</td>
+      <td>-1200.0</td>
+      <td>-0.0</td>
+      <td>-17.9</td>
+      <td>False</td>
+      <td>-17.9</td>
+      <td>CLF</td>
+      <td>0.03</td>
+      <td>Lin30360</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1971-01-29</td>
+      <td>1971-07-30</td>
+      <td>1971-07-30</td>
+      <td>-1200.0</td>
+      <td>-0.0</td>
+      <td>-18.1</td>
+      <td>False</td>
+      <td>-18.1</td>
+      <td>CLF</td>
+      <td>0.03</td>
+      <td>Lin30360</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1971-07-30</td>
+      <td>1972-01-31</td>
+      <td>1972-01-31</td>
+      <td>-1200.0</td>
+      <td>-0.0</td>
+      <td>-18.0</td>
+      <td>False</td>
+      <td>-18.0</td>
+      <td>CLF</td>
+      <td>0.03</td>
+      <td>Lin30360</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1972-01-31</td>
+      <td>1972-07-31</td>
+      <td>1972-07-31</td>
+      <td>-1200.0</td>
+      <td>-0.0</td>
+      <td>-18.0</td>
+      <td>False</td>
+      <td>-18.0</td>
+      <td>CLF</td>
+      <td>0.03</td>
+      <td>Lin30360</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1972-07-31</td>
+      <td>1973-01-31</td>
+      <td>1973-01-31</td>
+      <td>-1200.0</td>
+      <td>-0.0</td>
+      <td>-18.0</td>
+      <td>False</td>
+      <td>-18.0</td>
+      <td>CLF</td>
+      <td>0.03</td>
+      <td>Lin30360</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1973-01-31</td>
+      <td>1973-07-31</td>
+      <td>1973-07-31</td>
+      <td>-1200.0</td>
+      <td>-0.0</td>
+      <td>-18.0</td>
+      <td>False</td>
+      <td>-18.0</td>
+      <td>CLF</td>
+      <td>0.03</td>
+      <td>Lin30360</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1973-07-31</td>
+      <td>1974-01-31</td>
+      <td>1974-01-31</td>
+      <td>-1200.0</td>
+      <td>-0.0</td>
+      <td>-18.0</td>
+      <td>False</td>
+      <td>-18.0</td>
       <td>CLF</td>
       <td>0.03</td>
       <td>Lin30360</td>
@@ -2507,513 +2727,513 @@ df6.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_0fe38">
+<table id="T_5f17f">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_0fe38_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_0fe38_level0_col1" class="col_heading level0 col1" >fecha__final</th>
-      <th id="T_0fe38_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
-      <th id="T_0fe38_level0_col3" class="col_heading level0 col3" >fecha__pago</th>
-      <th id="T_0fe38_level0_col4" class="col_heading level0 col4" >nominal</th>
-      <th id="T_0fe38_level0_col5" class="col_heading level0 col5" >amort</th>
-      <th id="T_0fe38_level0_col6" class="col_heading level0 col6" >interes</th>
-      <th id="T_0fe38_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_0fe38_level0_col8" class="col_heading level0 col8" >flujo</th>
-      <th id="T_0fe38_level0_col9" class="col_heading level0 col9" >moneda_nominal</th>
-      <th id="T_0fe38_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
-      <th id="T_0fe38_level0_col11" class="col_heading level0 col11" >spread</th>
-      <th id="T_0fe38_level0_col12" class="col_heading level0 col12" >gearing</th>
-      <th id="T_0fe38_level0_col13" class="col_heading level0 col13" >valor_tasa</th>
-      <th id="T_0fe38_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
-      <th id="T_0fe38_level0_col15" class="col_heading level0 col15" >fecha_fijacion_fx</th>
-      <th id="T_0fe38_level0_col16" class="col_heading level0 col16" >moneda_pago</th>
-      <th id="T_0fe38_level0_col17" class="col_heading level0 col17" >codigo_indice_fx</th>
-      <th id="T_0fe38_level0_col18" class="col_heading level0 col18" >valor_indice_fx</th>
-      <th id="T_0fe38_level0_col19" class="col_heading level0 col19" >amort_moneda_pago</th>
-      <th id="T_0fe38_level0_col20" class="col_heading level0 col20" >interes_moneda_pago</th>
+      <th id="T_5f17f_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_5f17f_level0_col1" class="col_heading level0 col1" >fecha__final</th>
+      <th id="T_5f17f_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
+      <th id="T_5f17f_level0_col3" class="col_heading level0 col3" >fecha__pago</th>
+      <th id="T_5f17f_level0_col4" class="col_heading level0 col4" >nominal</th>
+      <th id="T_5f17f_level0_col5" class="col_heading level0 col5" >amort</th>
+      <th id="T_5f17f_level0_col6" class="col_heading level0 col6" >interes</th>
+      <th id="T_5f17f_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_5f17f_level0_col8" class="col_heading level0 col8" >flujo</th>
+      <th id="T_5f17f_level0_col9" class="col_heading level0 col9" >moneda_nominal</th>
+      <th id="T_5f17f_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
+      <th id="T_5f17f_level0_col11" class="col_heading level0 col11" >spread</th>
+      <th id="T_5f17f_level0_col12" class="col_heading level0 col12" >gearing</th>
+      <th id="T_5f17f_level0_col13" class="col_heading level0 col13" >valor_tasa</th>
+      <th id="T_5f17f_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
+      <th id="T_5f17f_level0_col15" class="col_heading level0 col15" >fecha_fijacion_fx</th>
+      <th id="T_5f17f_level0_col16" class="col_heading level0 col16" >moneda_pago</th>
+      <th id="T_5f17f_level0_col17" class="col_heading level0 col17" >codigo_indice_fx</th>
+      <th id="T_5f17f_level0_col18" class="col_heading level0 col18" >valor_indice_fx</th>
+      <th id="T_5f17f_level0_col19" class="col_heading level0 col19" >amort_moneda_pago</th>
+      <th id="T_5f17f_level0_col20" class="col_heading level0 col20" >interes_moneda_pago</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_0fe38_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_0fe38_row0_col0" class="data row0 col0" >1969-01-31</td>
-      <td id="T_0fe38_row0_col1" class="data row0 col1" >1969-04-30</td>
-      <td id="T_0fe38_row0_col2" class="data row0 col2" >1969-01-29</td>
-      <td id="T_0fe38_row0_col3" class="data row0 col3" >1969-05-01</td>
-      <td id="T_0fe38_row0_col4" class="data row0 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row0_col5" class="data row0 col5" >0.00</td>
-      <td id="T_0fe38_row0_col6" class="data row0 col6" >2,472.22</td>
-      <td id="T_0fe38_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_0fe38_row0_col8" class="data row0 col8" >24,722.22</td>
-      <td id="T_0fe38_row0_col9" class="data row0 col9" >USD</td>
-      <td id="T_0fe38_row0_col10" class="data row0 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row0_col11" class="data row0 col11" >1.0000%</td>
-      <td id="T_0fe38_row0_col12" class="data row0 col12" >1.00</td>
-      <td id="T_0fe38_row0_col13" class="data row0 col13" >0.0000%</td>
-      <td id="T_0fe38_row0_col14" class="data row0 col14" >LinAct360</td>
-      <td id="T_0fe38_row0_col15" class="data row0 col15" >1969-04-30</td>
-      <td id="T_0fe38_row0_col16" class="data row0 col16" >CLP</td>
-      <td id="T_0fe38_row0_col17" class="data row0 col17" >USDOBS</td>
-      <td id="T_0fe38_row0_col18" class="data row0 col18" >10.00</td>
-      <td id="T_0fe38_row0_col19" class="data row0 col19" >0.00</td>
-      <td id="T_0fe38_row0_col20" class="data row0 col20" >24,722.22</td>
+      <th id="T_5f17f_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_5f17f_row0_col0" class="data row0 col0" >1969-01-31</td>
+      <td id="T_5f17f_row0_col1" class="data row0 col1" >1969-04-30</td>
+      <td id="T_5f17f_row0_col2" class="data row0 col2" >1969-01-29</td>
+      <td id="T_5f17f_row0_col3" class="data row0 col3" >1969-05-01</td>
+      <td id="T_5f17f_row0_col4" class="data row0 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row0_col5" class="data row0 col5" >0.00</td>
+      <td id="T_5f17f_row0_col6" class="data row0 col6" >2,472.22</td>
+      <td id="T_5f17f_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_5f17f_row0_col8" class="data row0 col8" >24,722.22</td>
+      <td id="T_5f17f_row0_col9" class="data row0 col9" >USD</td>
+      <td id="T_5f17f_row0_col10" class="data row0 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row0_col11" class="data row0 col11" >1.0000%</td>
+      <td id="T_5f17f_row0_col12" class="data row0 col12" >1.00</td>
+      <td id="T_5f17f_row0_col13" class="data row0 col13" >0.0000%</td>
+      <td id="T_5f17f_row0_col14" class="data row0 col14" >LinAct360</td>
+      <td id="T_5f17f_row0_col15" class="data row0 col15" >1969-04-30</td>
+      <td id="T_5f17f_row0_col16" class="data row0 col16" >CLP</td>
+      <td id="T_5f17f_row0_col17" class="data row0 col17" >USDOBS</td>
+      <td id="T_5f17f_row0_col18" class="data row0 col18" >10.00</td>
+      <td id="T_5f17f_row0_col19" class="data row0 col19" >0.00</td>
+      <td id="T_5f17f_row0_col20" class="data row0 col20" >24,722.22</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_0fe38_row1_col0" class="data row1 col0" >1969-04-30</td>
-      <td id="T_0fe38_row1_col1" class="data row1 col1" >1969-07-31</td>
-      <td id="T_0fe38_row1_col2" class="data row1 col2" >1969-04-28</td>
-      <td id="T_0fe38_row1_col3" class="data row1 col3" >1969-08-01</td>
-      <td id="T_0fe38_row1_col4" class="data row1 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row1_col5" class="data row1 col5" >0.00</td>
-      <td id="T_0fe38_row1_col6" class="data row1 col6" >2,555.56</td>
-      <td id="T_0fe38_row1_col7" class="data row1 col7" >True</td>
-      <td id="T_0fe38_row1_col8" class="data row1 col8" >25,555.56</td>
-      <td id="T_0fe38_row1_col9" class="data row1 col9" >USD</td>
-      <td id="T_0fe38_row1_col10" class="data row1 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row1_col11" class="data row1 col11" >1.0000%</td>
-      <td id="T_0fe38_row1_col12" class="data row1 col12" >1.00</td>
-      <td id="T_0fe38_row1_col13" class="data row1 col13" >0.0000%</td>
-      <td id="T_0fe38_row1_col14" class="data row1 col14" >LinAct360</td>
-      <td id="T_0fe38_row1_col15" class="data row1 col15" >1969-07-31</td>
-      <td id="T_0fe38_row1_col16" class="data row1 col16" >CLP</td>
-      <td id="T_0fe38_row1_col17" class="data row1 col17" >USDOBS</td>
-      <td id="T_0fe38_row1_col18" class="data row1 col18" >10.00</td>
-      <td id="T_0fe38_row1_col19" class="data row1 col19" >0.00</td>
-      <td id="T_0fe38_row1_col20" class="data row1 col20" >25,555.56</td>
+      <th id="T_5f17f_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_5f17f_row1_col0" class="data row1 col0" >1969-04-30</td>
+      <td id="T_5f17f_row1_col1" class="data row1 col1" >1969-07-31</td>
+      <td id="T_5f17f_row1_col2" class="data row1 col2" >1969-04-28</td>
+      <td id="T_5f17f_row1_col3" class="data row1 col3" >1969-08-01</td>
+      <td id="T_5f17f_row1_col4" class="data row1 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row1_col5" class="data row1 col5" >0.00</td>
+      <td id="T_5f17f_row1_col6" class="data row1 col6" >2,555.56</td>
+      <td id="T_5f17f_row1_col7" class="data row1 col7" >True</td>
+      <td id="T_5f17f_row1_col8" class="data row1 col8" >25,555.56</td>
+      <td id="T_5f17f_row1_col9" class="data row1 col9" >USD</td>
+      <td id="T_5f17f_row1_col10" class="data row1 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row1_col11" class="data row1 col11" >1.0000%</td>
+      <td id="T_5f17f_row1_col12" class="data row1 col12" >1.00</td>
+      <td id="T_5f17f_row1_col13" class="data row1 col13" >0.0000%</td>
+      <td id="T_5f17f_row1_col14" class="data row1 col14" >LinAct360</td>
+      <td id="T_5f17f_row1_col15" class="data row1 col15" >1969-07-31</td>
+      <td id="T_5f17f_row1_col16" class="data row1 col16" >CLP</td>
+      <td id="T_5f17f_row1_col17" class="data row1 col17" >USDOBS</td>
+      <td id="T_5f17f_row1_col18" class="data row1 col18" >10.00</td>
+      <td id="T_5f17f_row1_col19" class="data row1 col19" >0.00</td>
+      <td id="T_5f17f_row1_col20" class="data row1 col20" >25,555.56</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_0fe38_row2_col0" class="data row2 col0" >1969-07-31</td>
-      <td id="T_0fe38_row2_col1" class="data row2 col1" >1969-10-31</td>
-      <td id="T_0fe38_row2_col2" class="data row2 col2" >1969-07-29</td>
-      <td id="T_0fe38_row2_col3" class="data row2 col3" >1969-11-03</td>
-      <td id="T_0fe38_row2_col4" class="data row2 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row2_col5" class="data row2 col5" >0.00</td>
-      <td id="T_0fe38_row2_col6" class="data row2 col6" >2,555.56</td>
-      <td id="T_0fe38_row2_col7" class="data row2 col7" >True</td>
-      <td id="T_0fe38_row2_col8" class="data row2 col8" >25,555.56</td>
-      <td id="T_0fe38_row2_col9" class="data row2 col9" >USD</td>
-      <td id="T_0fe38_row2_col10" class="data row2 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row2_col11" class="data row2 col11" >1.0000%</td>
-      <td id="T_0fe38_row2_col12" class="data row2 col12" >1.00</td>
-      <td id="T_0fe38_row2_col13" class="data row2 col13" >0.0000%</td>
-      <td id="T_0fe38_row2_col14" class="data row2 col14" >LinAct360</td>
-      <td id="T_0fe38_row2_col15" class="data row2 col15" >1969-10-31</td>
-      <td id="T_0fe38_row2_col16" class="data row2 col16" >CLP</td>
-      <td id="T_0fe38_row2_col17" class="data row2 col17" >USDOBS</td>
-      <td id="T_0fe38_row2_col18" class="data row2 col18" >10.00</td>
-      <td id="T_0fe38_row2_col19" class="data row2 col19" >0.00</td>
-      <td id="T_0fe38_row2_col20" class="data row2 col20" >25,555.56</td>
+      <th id="T_5f17f_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_5f17f_row2_col0" class="data row2 col0" >1969-07-31</td>
+      <td id="T_5f17f_row2_col1" class="data row2 col1" >1969-10-31</td>
+      <td id="T_5f17f_row2_col2" class="data row2 col2" >1969-07-29</td>
+      <td id="T_5f17f_row2_col3" class="data row2 col3" >1969-11-03</td>
+      <td id="T_5f17f_row2_col4" class="data row2 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row2_col5" class="data row2 col5" >0.00</td>
+      <td id="T_5f17f_row2_col6" class="data row2 col6" >2,555.56</td>
+      <td id="T_5f17f_row2_col7" class="data row2 col7" >True</td>
+      <td id="T_5f17f_row2_col8" class="data row2 col8" >25,555.56</td>
+      <td id="T_5f17f_row2_col9" class="data row2 col9" >USD</td>
+      <td id="T_5f17f_row2_col10" class="data row2 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row2_col11" class="data row2 col11" >1.0000%</td>
+      <td id="T_5f17f_row2_col12" class="data row2 col12" >1.00</td>
+      <td id="T_5f17f_row2_col13" class="data row2 col13" >0.0000%</td>
+      <td id="T_5f17f_row2_col14" class="data row2 col14" >LinAct360</td>
+      <td id="T_5f17f_row2_col15" class="data row2 col15" >1969-10-31</td>
+      <td id="T_5f17f_row2_col16" class="data row2 col16" >CLP</td>
+      <td id="T_5f17f_row2_col17" class="data row2 col17" >USDOBS</td>
+      <td id="T_5f17f_row2_col18" class="data row2 col18" >10.00</td>
+      <td id="T_5f17f_row2_col19" class="data row2 col19" >0.00</td>
+      <td id="T_5f17f_row2_col20" class="data row2 col20" >25,555.56</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_0fe38_row3_col0" class="data row3 col0" >1969-10-31</td>
-      <td id="T_0fe38_row3_col1" class="data row3 col1" >1970-01-30</td>
-      <td id="T_0fe38_row3_col2" class="data row3 col2" >1969-10-29</td>
-      <td id="T_0fe38_row3_col3" class="data row3 col3" >1970-02-02</td>
-      <td id="T_0fe38_row3_col4" class="data row3 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row3_col5" class="data row3 col5" >0.00</td>
-      <td id="T_0fe38_row3_col6" class="data row3 col6" >2,527.78</td>
-      <td id="T_0fe38_row3_col7" class="data row3 col7" >True</td>
-      <td id="T_0fe38_row3_col8" class="data row3 col8" >25,277.78</td>
-      <td id="T_0fe38_row3_col9" class="data row3 col9" >USD</td>
-      <td id="T_0fe38_row3_col10" class="data row3 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row3_col11" class="data row3 col11" >1.0000%</td>
-      <td id="T_0fe38_row3_col12" class="data row3 col12" >1.00</td>
-      <td id="T_0fe38_row3_col13" class="data row3 col13" >0.0000%</td>
-      <td id="T_0fe38_row3_col14" class="data row3 col14" >LinAct360</td>
-      <td id="T_0fe38_row3_col15" class="data row3 col15" >1970-01-30</td>
-      <td id="T_0fe38_row3_col16" class="data row3 col16" >CLP</td>
-      <td id="T_0fe38_row3_col17" class="data row3 col17" >USDOBS</td>
-      <td id="T_0fe38_row3_col18" class="data row3 col18" >10.00</td>
-      <td id="T_0fe38_row3_col19" class="data row3 col19" >0.00</td>
-      <td id="T_0fe38_row3_col20" class="data row3 col20" >25,277.78</td>
+      <th id="T_5f17f_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_5f17f_row3_col0" class="data row3 col0" >1969-10-31</td>
+      <td id="T_5f17f_row3_col1" class="data row3 col1" >1970-01-30</td>
+      <td id="T_5f17f_row3_col2" class="data row3 col2" >1969-10-29</td>
+      <td id="T_5f17f_row3_col3" class="data row3 col3" >1970-02-02</td>
+      <td id="T_5f17f_row3_col4" class="data row3 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row3_col5" class="data row3 col5" >0.00</td>
+      <td id="T_5f17f_row3_col6" class="data row3 col6" >2,527.78</td>
+      <td id="T_5f17f_row3_col7" class="data row3 col7" >True</td>
+      <td id="T_5f17f_row3_col8" class="data row3 col8" >25,277.78</td>
+      <td id="T_5f17f_row3_col9" class="data row3 col9" >USD</td>
+      <td id="T_5f17f_row3_col10" class="data row3 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row3_col11" class="data row3 col11" >1.0000%</td>
+      <td id="T_5f17f_row3_col12" class="data row3 col12" >1.00</td>
+      <td id="T_5f17f_row3_col13" class="data row3 col13" >0.0000%</td>
+      <td id="T_5f17f_row3_col14" class="data row3 col14" >LinAct360</td>
+      <td id="T_5f17f_row3_col15" class="data row3 col15" >1970-01-30</td>
+      <td id="T_5f17f_row3_col16" class="data row3 col16" >CLP</td>
+      <td id="T_5f17f_row3_col17" class="data row3 col17" >USDOBS</td>
+      <td id="T_5f17f_row3_col18" class="data row3 col18" >10.00</td>
+      <td id="T_5f17f_row3_col19" class="data row3 col19" >0.00</td>
+      <td id="T_5f17f_row3_col20" class="data row3 col20" >25,277.78</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_0fe38_row4_col0" class="data row4 col0" >1970-01-30</td>
-      <td id="T_0fe38_row4_col1" class="data row4 col1" >1970-04-30</td>
-      <td id="T_0fe38_row4_col2" class="data row4 col2" >1970-01-28</td>
-      <td id="T_0fe38_row4_col3" class="data row4 col3" >1970-05-01</td>
-      <td id="T_0fe38_row4_col4" class="data row4 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row4_col5" class="data row4 col5" >0.00</td>
-      <td id="T_0fe38_row4_col6" class="data row4 col6" >2,500.00</td>
-      <td id="T_0fe38_row4_col7" class="data row4 col7" >True</td>
-      <td id="T_0fe38_row4_col8" class="data row4 col8" >25,000.00</td>
-      <td id="T_0fe38_row4_col9" class="data row4 col9" >USD</td>
-      <td id="T_0fe38_row4_col10" class="data row4 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row4_col11" class="data row4 col11" >1.0000%</td>
-      <td id="T_0fe38_row4_col12" class="data row4 col12" >1.00</td>
-      <td id="T_0fe38_row4_col13" class="data row4 col13" >0.0000%</td>
-      <td id="T_0fe38_row4_col14" class="data row4 col14" >LinAct360</td>
-      <td id="T_0fe38_row4_col15" class="data row4 col15" >1970-04-30</td>
-      <td id="T_0fe38_row4_col16" class="data row4 col16" >CLP</td>
-      <td id="T_0fe38_row4_col17" class="data row4 col17" >USDOBS</td>
-      <td id="T_0fe38_row4_col18" class="data row4 col18" >10.00</td>
-      <td id="T_0fe38_row4_col19" class="data row4 col19" >0.00</td>
-      <td id="T_0fe38_row4_col20" class="data row4 col20" >25,000.00</td>
+      <th id="T_5f17f_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_5f17f_row4_col0" class="data row4 col0" >1970-01-30</td>
+      <td id="T_5f17f_row4_col1" class="data row4 col1" >1970-04-30</td>
+      <td id="T_5f17f_row4_col2" class="data row4 col2" >1970-01-28</td>
+      <td id="T_5f17f_row4_col3" class="data row4 col3" >1970-05-01</td>
+      <td id="T_5f17f_row4_col4" class="data row4 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row4_col5" class="data row4 col5" >0.00</td>
+      <td id="T_5f17f_row4_col6" class="data row4 col6" >2,500.00</td>
+      <td id="T_5f17f_row4_col7" class="data row4 col7" >True</td>
+      <td id="T_5f17f_row4_col8" class="data row4 col8" >25,000.00</td>
+      <td id="T_5f17f_row4_col9" class="data row4 col9" >USD</td>
+      <td id="T_5f17f_row4_col10" class="data row4 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row4_col11" class="data row4 col11" >1.0000%</td>
+      <td id="T_5f17f_row4_col12" class="data row4 col12" >1.00</td>
+      <td id="T_5f17f_row4_col13" class="data row4 col13" >0.0000%</td>
+      <td id="T_5f17f_row4_col14" class="data row4 col14" >LinAct360</td>
+      <td id="T_5f17f_row4_col15" class="data row4 col15" >1970-04-30</td>
+      <td id="T_5f17f_row4_col16" class="data row4 col16" >CLP</td>
+      <td id="T_5f17f_row4_col17" class="data row4 col17" >USDOBS</td>
+      <td id="T_5f17f_row4_col18" class="data row4 col18" >10.00</td>
+      <td id="T_5f17f_row4_col19" class="data row4 col19" >0.00</td>
+      <td id="T_5f17f_row4_col20" class="data row4 col20" >25,000.00</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_0fe38_row5_col0" class="data row5 col0" >1970-04-30</td>
-      <td id="T_0fe38_row5_col1" class="data row5 col1" >1970-07-31</td>
-      <td id="T_0fe38_row5_col2" class="data row5 col2" >1970-04-28</td>
-      <td id="T_0fe38_row5_col3" class="data row5 col3" >1970-08-03</td>
-      <td id="T_0fe38_row5_col4" class="data row5 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row5_col5" class="data row5 col5" >0.00</td>
-      <td id="T_0fe38_row5_col6" class="data row5 col6" >2,555.56</td>
-      <td id="T_0fe38_row5_col7" class="data row5 col7" >True</td>
-      <td id="T_0fe38_row5_col8" class="data row5 col8" >25,555.56</td>
-      <td id="T_0fe38_row5_col9" class="data row5 col9" >USD</td>
-      <td id="T_0fe38_row5_col10" class="data row5 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row5_col11" class="data row5 col11" >1.0000%</td>
-      <td id="T_0fe38_row5_col12" class="data row5 col12" >1.00</td>
-      <td id="T_0fe38_row5_col13" class="data row5 col13" >0.0000%</td>
-      <td id="T_0fe38_row5_col14" class="data row5 col14" >LinAct360</td>
-      <td id="T_0fe38_row5_col15" class="data row5 col15" >1970-07-31</td>
-      <td id="T_0fe38_row5_col16" class="data row5 col16" >CLP</td>
-      <td id="T_0fe38_row5_col17" class="data row5 col17" >USDOBS</td>
-      <td id="T_0fe38_row5_col18" class="data row5 col18" >10.00</td>
-      <td id="T_0fe38_row5_col19" class="data row5 col19" >0.00</td>
-      <td id="T_0fe38_row5_col20" class="data row5 col20" >25,555.56</td>
+      <th id="T_5f17f_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_5f17f_row5_col0" class="data row5 col0" >1970-04-30</td>
+      <td id="T_5f17f_row5_col1" class="data row5 col1" >1970-07-31</td>
+      <td id="T_5f17f_row5_col2" class="data row5 col2" >1970-04-28</td>
+      <td id="T_5f17f_row5_col3" class="data row5 col3" >1970-08-03</td>
+      <td id="T_5f17f_row5_col4" class="data row5 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row5_col5" class="data row5 col5" >0.00</td>
+      <td id="T_5f17f_row5_col6" class="data row5 col6" >2,555.56</td>
+      <td id="T_5f17f_row5_col7" class="data row5 col7" >True</td>
+      <td id="T_5f17f_row5_col8" class="data row5 col8" >25,555.56</td>
+      <td id="T_5f17f_row5_col9" class="data row5 col9" >USD</td>
+      <td id="T_5f17f_row5_col10" class="data row5 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row5_col11" class="data row5 col11" >1.0000%</td>
+      <td id="T_5f17f_row5_col12" class="data row5 col12" >1.00</td>
+      <td id="T_5f17f_row5_col13" class="data row5 col13" >0.0000%</td>
+      <td id="T_5f17f_row5_col14" class="data row5 col14" >LinAct360</td>
+      <td id="T_5f17f_row5_col15" class="data row5 col15" >1970-07-31</td>
+      <td id="T_5f17f_row5_col16" class="data row5 col16" >CLP</td>
+      <td id="T_5f17f_row5_col17" class="data row5 col17" >USDOBS</td>
+      <td id="T_5f17f_row5_col18" class="data row5 col18" >10.00</td>
+      <td id="T_5f17f_row5_col19" class="data row5 col19" >0.00</td>
+      <td id="T_5f17f_row5_col20" class="data row5 col20" >25,555.56</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_0fe38_row6_col0" class="data row6 col0" >1970-07-31</td>
-      <td id="T_0fe38_row6_col1" class="data row6 col1" >1970-10-30</td>
-      <td id="T_0fe38_row6_col2" class="data row6 col2" >1970-07-29</td>
-      <td id="T_0fe38_row6_col3" class="data row6 col3" >1970-11-02</td>
-      <td id="T_0fe38_row6_col4" class="data row6 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row6_col5" class="data row6 col5" >0.00</td>
-      <td id="T_0fe38_row6_col6" class="data row6 col6" >2,527.78</td>
-      <td id="T_0fe38_row6_col7" class="data row6 col7" >True</td>
-      <td id="T_0fe38_row6_col8" class="data row6 col8" >25,277.78</td>
-      <td id="T_0fe38_row6_col9" class="data row6 col9" >USD</td>
-      <td id="T_0fe38_row6_col10" class="data row6 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row6_col11" class="data row6 col11" >1.0000%</td>
-      <td id="T_0fe38_row6_col12" class="data row6 col12" >1.00</td>
-      <td id="T_0fe38_row6_col13" class="data row6 col13" >0.0000%</td>
-      <td id="T_0fe38_row6_col14" class="data row6 col14" >LinAct360</td>
-      <td id="T_0fe38_row6_col15" class="data row6 col15" >1970-10-30</td>
-      <td id="T_0fe38_row6_col16" class="data row6 col16" >CLP</td>
-      <td id="T_0fe38_row6_col17" class="data row6 col17" >USDOBS</td>
-      <td id="T_0fe38_row6_col18" class="data row6 col18" >10.00</td>
-      <td id="T_0fe38_row6_col19" class="data row6 col19" >0.00</td>
-      <td id="T_0fe38_row6_col20" class="data row6 col20" >25,277.78</td>
+      <th id="T_5f17f_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_5f17f_row6_col0" class="data row6 col0" >1970-07-31</td>
+      <td id="T_5f17f_row6_col1" class="data row6 col1" >1970-10-30</td>
+      <td id="T_5f17f_row6_col2" class="data row6 col2" >1970-07-29</td>
+      <td id="T_5f17f_row6_col3" class="data row6 col3" >1970-11-02</td>
+      <td id="T_5f17f_row6_col4" class="data row6 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row6_col5" class="data row6 col5" >0.00</td>
+      <td id="T_5f17f_row6_col6" class="data row6 col6" >2,527.78</td>
+      <td id="T_5f17f_row6_col7" class="data row6 col7" >True</td>
+      <td id="T_5f17f_row6_col8" class="data row6 col8" >25,277.78</td>
+      <td id="T_5f17f_row6_col9" class="data row6 col9" >USD</td>
+      <td id="T_5f17f_row6_col10" class="data row6 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row6_col11" class="data row6 col11" >1.0000%</td>
+      <td id="T_5f17f_row6_col12" class="data row6 col12" >1.00</td>
+      <td id="T_5f17f_row6_col13" class="data row6 col13" >0.0000%</td>
+      <td id="T_5f17f_row6_col14" class="data row6 col14" >LinAct360</td>
+      <td id="T_5f17f_row6_col15" class="data row6 col15" >1970-10-30</td>
+      <td id="T_5f17f_row6_col16" class="data row6 col16" >CLP</td>
+      <td id="T_5f17f_row6_col17" class="data row6 col17" >USDOBS</td>
+      <td id="T_5f17f_row6_col18" class="data row6 col18" >10.00</td>
+      <td id="T_5f17f_row6_col19" class="data row6 col19" >0.00</td>
+      <td id="T_5f17f_row6_col20" class="data row6 col20" >25,277.78</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_0fe38_row7_col0" class="data row7 col0" >1970-10-30</td>
-      <td id="T_0fe38_row7_col1" class="data row7 col1" >1971-01-29</td>
-      <td id="T_0fe38_row7_col2" class="data row7 col2" >1970-10-28</td>
-      <td id="T_0fe38_row7_col3" class="data row7 col3" >1971-02-01</td>
-      <td id="T_0fe38_row7_col4" class="data row7 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row7_col5" class="data row7 col5" >0.00</td>
-      <td id="T_0fe38_row7_col6" class="data row7 col6" >2,527.78</td>
-      <td id="T_0fe38_row7_col7" class="data row7 col7" >True</td>
-      <td id="T_0fe38_row7_col8" class="data row7 col8" >25,277.78</td>
-      <td id="T_0fe38_row7_col9" class="data row7 col9" >USD</td>
-      <td id="T_0fe38_row7_col10" class="data row7 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row7_col11" class="data row7 col11" >1.0000%</td>
-      <td id="T_0fe38_row7_col12" class="data row7 col12" >1.00</td>
-      <td id="T_0fe38_row7_col13" class="data row7 col13" >0.0000%</td>
-      <td id="T_0fe38_row7_col14" class="data row7 col14" >LinAct360</td>
-      <td id="T_0fe38_row7_col15" class="data row7 col15" >1971-01-29</td>
-      <td id="T_0fe38_row7_col16" class="data row7 col16" >CLP</td>
-      <td id="T_0fe38_row7_col17" class="data row7 col17" >USDOBS</td>
-      <td id="T_0fe38_row7_col18" class="data row7 col18" >10.00</td>
-      <td id="T_0fe38_row7_col19" class="data row7 col19" >0.00</td>
-      <td id="T_0fe38_row7_col20" class="data row7 col20" >25,277.78</td>
+      <th id="T_5f17f_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_5f17f_row7_col0" class="data row7 col0" >1970-10-30</td>
+      <td id="T_5f17f_row7_col1" class="data row7 col1" >1971-01-29</td>
+      <td id="T_5f17f_row7_col2" class="data row7 col2" >1970-10-28</td>
+      <td id="T_5f17f_row7_col3" class="data row7 col3" >1971-02-01</td>
+      <td id="T_5f17f_row7_col4" class="data row7 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row7_col5" class="data row7 col5" >0.00</td>
+      <td id="T_5f17f_row7_col6" class="data row7 col6" >2,527.78</td>
+      <td id="T_5f17f_row7_col7" class="data row7 col7" >True</td>
+      <td id="T_5f17f_row7_col8" class="data row7 col8" >25,277.78</td>
+      <td id="T_5f17f_row7_col9" class="data row7 col9" >USD</td>
+      <td id="T_5f17f_row7_col10" class="data row7 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row7_col11" class="data row7 col11" >1.0000%</td>
+      <td id="T_5f17f_row7_col12" class="data row7 col12" >1.00</td>
+      <td id="T_5f17f_row7_col13" class="data row7 col13" >0.0000%</td>
+      <td id="T_5f17f_row7_col14" class="data row7 col14" >LinAct360</td>
+      <td id="T_5f17f_row7_col15" class="data row7 col15" >1971-01-29</td>
+      <td id="T_5f17f_row7_col16" class="data row7 col16" >CLP</td>
+      <td id="T_5f17f_row7_col17" class="data row7 col17" >USDOBS</td>
+      <td id="T_5f17f_row7_col18" class="data row7 col18" >10.00</td>
+      <td id="T_5f17f_row7_col19" class="data row7 col19" >0.00</td>
+      <td id="T_5f17f_row7_col20" class="data row7 col20" >25,277.78</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_0fe38_row8_col0" class="data row8 col0" >1971-01-29</td>
-      <td id="T_0fe38_row8_col1" class="data row8 col1" >1971-04-30</td>
-      <td id="T_0fe38_row8_col2" class="data row8 col2" >1971-01-27</td>
-      <td id="T_0fe38_row8_col3" class="data row8 col3" >1971-05-03</td>
-      <td id="T_0fe38_row8_col4" class="data row8 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row8_col5" class="data row8 col5" >0.00</td>
-      <td id="T_0fe38_row8_col6" class="data row8 col6" >2,527.78</td>
-      <td id="T_0fe38_row8_col7" class="data row8 col7" >True</td>
-      <td id="T_0fe38_row8_col8" class="data row8 col8" >25,277.78</td>
-      <td id="T_0fe38_row8_col9" class="data row8 col9" >USD</td>
-      <td id="T_0fe38_row8_col10" class="data row8 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row8_col11" class="data row8 col11" >1.0000%</td>
-      <td id="T_0fe38_row8_col12" class="data row8 col12" >1.00</td>
-      <td id="T_0fe38_row8_col13" class="data row8 col13" >0.0000%</td>
-      <td id="T_0fe38_row8_col14" class="data row8 col14" >LinAct360</td>
-      <td id="T_0fe38_row8_col15" class="data row8 col15" >1971-04-30</td>
-      <td id="T_0fe38_row8_col16" class="data row8 col16" >CLP</td>
-      <td id="T_0fe38_row8_col17" class="data row8 col17" >USDOBS</td>
-      <td id="T_0fe38_row8_col18" class="data row8 col18" >10.00</td>
-      <td id="T_0fe38_row8_col19" class="data row8 col19" >0.00</td>
-      <td id="T_0fe38_row8_col20" class="data row8 col20" >25,277.78</td>
+      <th id="T_5f17f_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_5f17f_row8_col0" class="data row8 col0" >1971-01-29</td>
+      <td id="T_5f17f_row8_col1" class="data row8 col1" >1971-04-30</td>
+      <td id="T_5f17f_row8_col2" class="data row8 col2" >1971-01-27</td>
+      <td id="T_5f17f_row8_col3" class="data row8 col3" >1971-05-03</td>
+      <td id="T_5f17f_row8_col4" class="data row8 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row8_col5" class="data row8 col5" >0.00</td>
+      <td id="T_5f17f_row8_col6" class="data row8 col6" >2,527.78</td>
+      <td id="T_5f17f_row8_col7" class="data row8 col7" >True</td>
+      <td id="T_5f17f_row8_col8" class="data row8 col8" >25,277.78</td>
+      <td id="T_5f17f_row8_col9" class="data row8 col9" >USD</td>
+      <td id="T_5f17f_row8_col10" class="data row8 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row8_col11" class="data row8 col11" >1.0000%</td>
+      <td id="T_5f17f_row8_col12" class="data row8 col12" >1.00</td>
+      <td id="T_5f17f_row8_col13" class="data row8 col13" >0.0000%</td>
+      <td id="T_5f17f_row8_col14" class="data row8 col14" >LinAct360</td>
+      <td id="T_5f17f_row8_col15" class="data row8 col15" >1971-04-30</td>
+      <td id="T_5f17f_row8_col16" class="data row8 col16" >CLP</td>
+      <td id="T_5f17f_row8_col17" class="data row8 col17" >USDOBS</td>
+      <td id="T_5f17f_row8_col18" class="data row8 col18" >10.00</td>
+      <td id="T_5f17f_row8_col19" class="data row8 col19" >0.00</td>
+      <td id="T_5f17f_row8_col20" class="data row8 col20" >25,277.78</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_0fe38_row9_col0" class="data row9 col0" >1971-04-30</td>
-      <td id="T_0fe38_row9_col1" class="data row9 col1" >1971-07-30</td>
-      <td id="T_0fe38_row9_col2" class="data row9 col2" >1971-04-28</td>
-      <td id="T_0fe38_row9_col3" class="data row9 col3" >1971-08-02</td>
-      <td id="T_0fe38_row9_col4" class="data row9 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row9_col5" class="data row9 col5" >0.00</td>
-      <td id="T_0fe38_row9_col6" class="data row9 col6" >2,527.78</td>
-      <td id="T_0fe38_row9_col7" class="data row9 col7" >True</td>
-      <td id="T_0fe38_row9_col8" class="data row9 col8" >25,277.78</td>
-      <td id="T_0fe38_row9_col9" class="data row9 col9" >USD</td>
-      <td id="T_0fe38_row9_col10" class="data row9 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row9_col11" class="data row9 col11" >1.0000%</td>
-      <td id="T_0fe38_row9_col12" class="data row9 col12" >1.00</td>
-      <td id="T_0fe38_row9_col13" class="data row9 col13" >0.0000%</td>
-      <td id="T_0fe38_row9_col14" class="data row9 col14" >LinAct360</td>
-      <td id="T_0fe38_row9_col15" class="data row9 col15" >1971-07-30</td>
-      <td id="T_0fe38_row9_col16" class="data row9 col16" >CLP</td>
-      <td id="T_0fe38_row9_col17" class="data row9 col17" >USDOBS</td>
-      <td id="T_0fe38_row9_col18" class="data row9 col18" >10.00</td>
-      <td id="T_0fe38_row9_col19" class="data row9 col19" >0.00</td>
-      <td id="T_0fe38_row9_col20" class="data row9 col20" >25,277.78</td>
+      <th id="T_5f17f_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_5f17f_row9_col0" class="data row9 col0" >1971-04-30</td>
+      <td id="T_5f17f_row9_col1" class="data row9 col1" >1971-07-30</td>
+      <td id="T_5f17f_row9_col2" class="data row9 col2" >1971-04-28</td>
+      <td id="T_5f17f_row9_col3" class="data row9 col3" >1971-08-02</td>
+      <td id="T_5f17f_row9_col4" class="data row9 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row9_col5" class="data row9 col5" >0.00</td>
+      <td id="T_5f17f_row9_col6" class="data row9 col6" >2,527.78</td>
+      <td id="T_5f17f_row9_col7" class="data row9 col7" >True</td>
+      <td id="T_5f17f_row9_col8" class="data row9 col8" >25,277.78</td>
+      <td id="T_5f17f_row9_col9" class="data row9 col9" >USD</td>
+      <td id="T_5f17f_row9_col10" class="data row9 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row9_col11" class="data row9 col11" >1.0000%</td>
+      <td id="T_5f17f_row9_col12" class="data row9 col12" >1.00</td>
+      <td id="T_5f17f_row9_col13" class="data row9 col13" >0.0000%</td>
+      <td id="T_5f17f_row9_col14" class="data row9 col14" >LinAct360</td>
+      <td id="T_5f17f_row9_col15" class="data row9 col15" >1971-07-30</td>
+      <td id="T_5f17f_row9_col16" class="data row9 col16" >CLP</td>
+      <td id="T_5f17f_row9_col17" class="data row9 col17" >USDOBS</td>
+      <td id="T_5f17f_row9_col18" class="data row9 col18" >10.00</td>
+      <td id="T_5f17f_row9_col19" class="data row9 col19" >0.00</td>
+      <td id="T_5f17f_row9_col20" class="data row9 col20" >25,277.78</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_0fe38_row10_col0" class="data row10 col0" >1971-07-30</td>
-      <td id="T_0fe38_row10_col1" class="data row10 col1" >1971-10-29</td>
-      <td id="T_0fe38_row10_col2" class="data row10 col2" >1971-07-28</td>
-      <td id="T_0fe38_row10_col3" class="data row10 col3" >1971-11-01</td>
-      <td id="T_0fe38_row10_col4" class="data row10 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row10_col5" class="data row10 col5" >0.00</td>
-      <td id="T_0fe38_row10_col6" class="data row10 col6" >2,527.78</td>
-      <td id="T_0fe38_row10_col7" class="data row10 col7" >True</td>
-      <td id="T_0fe38_row10_col8" class="data row10 col8" >25,277.78</td>
-      <td id="T_0fe38_row10_col9" class="data row10 col9" >USD</td>
-      <td id="T_0fe38_row10_col10" class="data row10 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row10_col11" class="data row10 col11" >1.0000%</td>
-      <td id="T_0fe38_row10_col12" class="data row10 col12" >1.00</td>
-      <td id="T_0fe38_row10_col13" class="data row10 col13" >0.0000%</td>
-      <td id="T_0fe38_row10_col14" class="data row10 col14" >LinAct360</td>
-      <td id="T_0fe38_row10_col15" class="data row10 col15" >1971-10-29</td>
-      <td id="T_0fe38_row10_col16" class="data row10 col16" >CLP</td>
-      <td id="T_0fe38_row10_col17" class="data row10 col17" >USDOBS</td>
-      <td id="T_0fe38_row10_col18" class="data row10 col18" >10.00</td>
-      <td id="T_0fe38_row10_col19" class="data row10 col19" >0.00</td>
-      <td id="T_0fe38_row10_col20" class="data row10 col20" >25,277.78</td>
+      <th id="T_5f17f_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_5f17f_row10_col0" class="data row10 col0" >1971-07-30</td>
+      <td id="T_5f17f_row10_col1" class="data row10 col1" >1971-10-29</td>
+      <td id="T_5f17f_row10_col2" class="data row10 col2" >1971-07-28</td>
+      <td id="T_5f17f_row10_col3" class="data row10 col3" >1971-11-01</td>
+      <td id="T_5f17f_row10_col4" class="data row10 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row10_col5" class="data row10 col5" >0.00</td>
+      <td id="T_5f17f_row10_col6" class="data row10 col6" >2,527.78</td>
+      <td id="T_5f17f_row10_col7" class="data row10 col7" >True</td>
+      <td id="T_5f17f_row10_col8" class="data row10 col8" >25,277.78</td>
+      <td id="T_5f17f_row10_col9" class="data row10 col9" >USD</td>
+      <td id="T_5f17f_row10_col10" class="data row10 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row10_col11" class="data row10 col11" >1.0000%</td>
+      <td id="T_5f17f_row10_col12" class="data row10 col12" >1.00</td>
+      <td id="T_5f17f_row10_col13" class="data row10 col13" >0.0000%</td>
+      <td id="T_5f17f_row10_col14" class="data row10 col14" >LinAct360</td>
+      <td id="T_5f17f_row10_col15" class="data row10 col15" >1971-10-29</td>
+      <td id="T_5f17f_row10_col16" class="data row10 col16" >CLP</td>
+      <td id="T_5f17f_row10_col17" class="data row10 col17" >USDOBS</td>
+      <td id="T_5f17f_row10_col18" class="data row10 col18" >10.00</td>
+      <td id="T_5f17f_row10_col19" class="data row10 col19" >0.00</td>
+      <td id="T_5f17f_row10_col20" class="data row10 col20" >25,277.78</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_0fe38_row11_col0" class="data row11 col0" >1971-10-29</td>
-      <td id="T_0fe38_row11_col1" class="data row11 col1" >1972-01-31</td>
-      <td id="T_0fe38_row11_col2" class="data row11 col2" >1971-10-27</td>
-      <td id="T_0fe38_row11_col3" class="data row11 col3" >1972-02-01</td>
-      <td id="T_0fe38_row11_col4" class="data row11 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row11_col5" class="data row11 col5" >0.00</td>
-      <td id="T_0fe38_row11_col6" class="data row11 col6" >2,611.11</td>
-      <td id="T_0fe38_row11_col7" class="data row11 col7" >True</td>
-      <td id="T_0fe38_row11_col8" class="data row11 col8" >26,111.11</td>
-      <td id="T_0fe38_row11_col9" class="data row11 col9" >USD</td>
-      <td id="T_0fe38_row11_col10" class="data row11 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row11_col11" class="data row11 col11" >1.0000%</td>
-      <td id="T_0fe38_row11_col12" class="data row11 col12" >1.00</td>
-      <td id="T_0fe38_row11_col13" class="data row11 col13" >0.0000%</td>
-      <td id="T_0fe38_row11_col14" class="data row11 col14" >LinAct360</td>
-      <td id="T_0fe38_row11_col15" class="data row11 col15" >1972-01-31</td>
-      <td id="T_0fe38_row11_col16" class="data row11 col16" >CLP</td>
-      <td id="T_0fe38_row11_col17" class="data row11 col17" >USDOBS</td>
-      <td id="T_0fe38_row11_col18" class="data row11 col18" >10.00</td>
-      <td id="T_0fe38_row11_col19" class="data row11 col19" >0.00</td>
-      <td id="T_0fe38_row11_col20" class="data row11 col20" >26,111.11</td>
+      <th id="T_5f17f_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_5f17f_row11_col0" class="data row11 col0" >1971-10-29</td>
+      <td id="T_5f17f_row11_col1" class="data row11 col1" >1972-01-31</td>
+      <td id="T_5f17f_row11_col2" class="data row11 col2" >1971-10-27</td>
+      <td id="T_5f17f_row11_col3" class="data row11 col3" >1972-02-01</td>
+      <td id="T_5f17f_row11_col4" class="data row11 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row11_col5" class="data row11 col5" >0.00</td>
+      <td id="T_5f17f_row11_col6" class="data row11 col6" >2,611.11</td>
+      <td id="T_5f17f_row11_col7" class="data row11 col7" >True</td>
+      <td id="T_5f17f_row11_col8" class="data row11 col8" >26,111.11</td>
+      <td id="T_5f17f_row11_col9" class="data row11 col9" >USD</td>
+      <td id="T_5f17f_row11_col10" class="data row11 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row11_col11" class="data row11 col11" >1.0000%</td>
+      <td id="T_5f17f_row11_col12" class="data row11 col12" >1.00</td>
+      <td id="T_5f17f_row11_col13" class="data row11 col13" >0.0000%</td>
+      <td id="T_5f17f_row11_col14" class="data row11 col14" >LinAct360</td>
+      <td id="T_5f17f_row11_col15" class="data row11 col15" >1972-01-31</td>
+      <td id="T_5f17f_row11_col16" class="data row11 col16" >CLP</td>
+      <td id="T_5f17f_row11_col17" class="data row11 col17" >USDOBS</td>
+      <td id="T_5f17f_row11_col18" class="data row11 col18" >10.00</td>
+      <td id="T_5f17f_row11_col19" class="data row11 col19" >0.00</td>
+      <td id="T_5f17f_row11_col20" class="data row11 col20" >26,111.11</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row12" class="row_heading level0 row12" >12</th>
-      <td id="T_0fe38_row12_col0" class="data row12 col0" >1972-01-31</td>
-      <td id="T_0fe38_row12_col1" class="data row12 col1" >1972-04-28</td>
-      <td id="T_0fe38_row12_col2" class="data row12 col2" >1972-01-27</td>
-      <td id="T_0fe38_row12_col3" class="data row12 col3" >1972-05-01</td>
-      <td id="T_0fe38_row12_col4" class="data row12 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row12_col5" class="data row12 col5" >0.00</td>
-      <td id="T_0fe38_row12_col6" class="data row12 col6" >2,444.44</td>
-      <td id="T_0fe38_row12_col7" class="data row12 col7" >True</td>
-      <td id="T_0fe38_row12_col8" class="data row12 col8" >24,444.44</td>
-      <td id="T_0fe38_row12_col9" class="data row12 col9" >USD</td>
-      <td id="T_0fe38_row12_col10" class="data row12 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row12_col11" class="data row12 col11" >1.0000%</td>
-      <td id="T_0fe38_row12_col12" class="data row12 col12" >1.00</td>
-      <td id="T_0fe38_row12_col13" class="data row12 col13" >0.0000%</td>
-      <td id="T_0fe38_row12_col14" class="data row12 col14" >LinAct360</td>
-      <td id="T_0fe38_row12_col15" class="data row12 col15" >1972-04-28</td>
-      <td id="T_0fe38_row12_col16" class="data row12 col16" >CLP</td>
-      <td id="T_0fe38_row12_col17" class="data row12 col17" >USDOBS</td>
-      <td id="T_0fe38_row12_col18" class="data row12 col18" >10.00</td>
-      <td id="T_0fe38_row12_col19" class="data row12 col19" >0.00</td>
-      <td id="T_0fe38_row12_col20" class="data row12 col20" >24,444.44</td>
+      <th id="T_5f17f_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_5f17f_row12_col0" class="data row12 col0" >1972-01-31</td>
+      <td id="T_5f17f_row12_col1" class="data row12 col1" >1972-04-28</td>
+      <td id="T_5f17f_row12_col2" class="data row12 col2" >1972-01-27</td>
+      <td id="T_5f17f_row12_col3" class="data row12 col3" >1972-05-01</td>
+      <td id="T_5f17f_row12_col4" class="data row12 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row12_col5" class="data row12 col5" >0.00</td>
+      <td id="T_5f17f_row12_col6" class="data row12 col6" >2,444.44</td>
+      <td id="T_5f17f_row12_col7" class="data row12 col7" >True</td>
+      <td id="T_5f17f_row12_col8" class="data row12 col8" >24,444.44</td>
+      <td id="T_5f17f_row12_col9" class="data row12 col9" >USD</td>
+      <td id="T_5f17f_row12_col10" class="data row12 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row12_col11" class="data row12 col11" >1.0000%</td>
+      <td id="T_5f17f_row12_col12" class="data row12 col12" >1.00</td>
+      <td id="T_5f17f_row12_col13" class="data row12 col13" >0.0000%</td>
+      <td id="T_5f17f_row12_col14" class="data row12 col14" >LinAct360</td>
+      <td id="T_5f17f_row12_col15" class="data row12 col15" >1972-04-28</td>
+      <td id="T_5f17f_row12_col16" class="data row12 col16" >CLP</td>
+      <td id="T_5f17f_row12_col17" class="data row12 col17" >USDOBS</td>
+      <td id="T_5f17f_row12_col18" class="data row12 col18" >10.00</td>
+      <td id="T_5f17f_row12_col19" class="data row12 col19" >0.00</td>
+      <td id="T_5f17f_row12_col20" class="data row12 col20" >24,444.44</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row13" class="row_heading level0 row13" >13</th>
-      <td id="T_0fe38_row13_col0" class="data row13 col0" >1972-04-28</td>
-      <td id="T_0fe38_row13_col1" class="data row13 col1" >1972-07-31</td>
-      <td id="T_0fe38_row13_col2" class="data row13 col2" >1972-04-26</td>
-      <td id="T_0fe38_row13_col3" class="data row13 col3" >1972-08-01</td>
-      <td id="T_0fe38_row13_col4" class="data row13 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row13_col5" class="data row13 col5" >0.00</td>
-      <td id="T_0fe38_row13_col6" class="data row13 col6" >2,611.11</td>
-      <td id="T_0fe38_row13_col7" class="data row13 col7" >True</td>
-      <td id="T_0fe38_row13_col8" class="data row13 col8" >26,111.11</td>
-      <td id="T_0fe38_row13_col9" class="data row13 col9" >USD</td>
-      <td id="T_0fe38_row13_col10" class="data row13 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row13_col11" class="data row13 col11" >1.0000%</td>
-      <td id="T_0fe38_row13_col12" class="data row13 col12" >1.00</td>
-      <td id="T_0fe38_row13_col13" class="data row13 col13" >0.0000%</td>
-      <td id="T_0fe38_row13_col14" class="data row13 col14" >LinAct360</td>
-      <td id="T_0fe38_row13_col15" class="data row13 col15" >1972-07-31</td>
-      <td id="T_0fe38_row13_col16" class="data row13 col16" >CLP</td>
-      <td id="T_0fe38_row13_col17" class="data row13 col17" >USDOBS</td>
-      <td id="T_0fe38_row13_col18" class="data row13 col18" >10.00</td>
-      <td id="T_0fe38_row13_col19" class="data row13 col19" >0.00</td>
-      <td id="T_0fe38_row13_col20" class="data row13 col20" >26,111.11</td>
+      <th id="T_5f17f_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_5f17f_row13_col0" class="data row13 col0" >1972-04-28</td>
+      <td id="T_5f17f_row13_col1" class="data row13 col1" >1972-07-31</td>
+      <td id="T_5f17f_row13_col2" class="data row13 col2" >1972-04-26</td>
+      <td id="T_5f17f_row13_col3" class="data row13 col3" >1972-08-01</td>
+      <td id="T_5f17f_row13_col4" class="data row13 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row13_col5" class="data row13 col5" >0.00</td>
+      <td id="T_5f17f_row13_col6" class="data row13 col6" >2,611.11</td>
+      <td id="T_5f17f_row13_col7" class="data row13 col7" >True</td>
+      <td id="T_5f17f_row13_col8" class="data row13 col8" >26,111.11</td>
+      <td id="T_5f17f_row13_col9" class="data row13 col9" >USD</td>
+      <td id="T_5f17f_row13_col10" class="data row13 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row13_col11" class="data row13 col11" >1.0000%</td>
+      <td id="T_5f17f_row13_col12" class="data row13 col12" >1.00</td>
+      <td id="T_5f17f_row13_col13" class="data row13 col13" >0.0000%</td>
+      <td id="T_5f17f_row13_col14" class="data row13 col14" >LinAct360</td>
+      <td id="T_5f17f_row13_col15" class="data row13 col15" >1972-07-31</td>
+      <td id="T_5f17f_row13_col16" class="data row13 col16" >CLP</td>
+      <td id="T_5f17f_row13_col17" class="data row13 col17" >USDOBS</td>
+      <td id="T_5f17f_row13_col18" class="data row13 col18" >10.00</td>
+      <td id="T_5f17f_row13_col19" class="data row13 col19" >0.00</td>
+      <td id="T_5f17f_row13_col20" class="data row13 col20" >26,111.11</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row14" class="row_heading level0 row14" >14</th>
-      <td id="T_0fe38_row14_col0" class="data row14 col0" >1972-07-31</td>
-      <td id="T_0fe38_row14_col1" class="data row14 col1" >1972-10-31</td>
-      <td id="T_0fe38_row14_col2" class="data row14 col2" >1972-07-27</td>
-      <td id="T_0fe38_row14_col3" class="data row14 col3" >1972-11-01</td>
-      <td id="T_0fe38_row14_col4" class="data row14 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row14_col5" class="data row14 col5" >0.00</td>
-      <td id="T_0fe38_row14_col6" class="data row14 col6" >2,555.56</td>
-      <td id="T_0fe38_row14_col7" class="data row14 col7" >True</td>
-      <td id="T_0fe38_row14_col8" class="data row14 col8" >25,555.56</td>
-      <td id="T_0fe38_row14_col9" class="data row14 col9" >USD</td>
-      <td id="T_0fe38_row14_col10" class="data row14 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row14_col11" class="data row14 col11" >1.0000%</td>
-      <td id="T_0fe38_row14_col12" class="data row14 col12" >1.00</td>
-      <td id="T_0fe38_row14_col13" class="data row14 col13" >0.0000%</td>
-      <td id="T_0fe38_row14_col14" class="data row14 col14" >LinAct360</td>
-      <td id="T_0fe38_row14_col15" class="data row14 col15" >1972-10-31</td>
-      <td id="T_0fe38_row14_col16" class="data row14 col16" >CLP</td>
-      <td id="T_0fe38_row14_col17" class="data row14 col17" >USDOBS</td>
-      <td id="T_0fe38_row14_col18" class="data row14 col18" >10.00</td>
-      <td id="T_0fe38_row14_col19" class="data row14 col19" >0.00</td>
-      <td id="T_0fe38_row14_col20" class="data row14 col20" >25,555.56</td>
+      <th id="T_5f17f_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_5f17f_row14_col0" class="data row14 col0" >1972-07-31</td>
+      <td id="T_5f17f_row14_col1" class="data row14 col1" >1972-10-31</td>
+      <td id="T_5f17f_row14_col2" class="data row14 col2" >1972-07-27</td>
+      <td id="T_5f17f_row14_col3" class="data row14 col3" >1972-11-01</td>
+      <td id="T_5f17f_row14_col4" class="data row14 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row14_col5" class="data row14 col5" >0.00</td>
+      <td id="T_5f17f_row14_col6" class="data row14 col6" >2,555.56</td>
+      <td id="T_5f17f_row14_col7" class="data row14 col7" >True</td>
+      <td id="T_5f17f_row14_col8" class="data row14 col8" >25,555.56</td>
+      <td id="T_5f17f_row14_col9" class="data row14 col9" >USD</td>
+      <td id="T_5f17f_row14_col10" class="data row14 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row14_col11" class="data row14 col11" >1.0000%</td>
+      <td id="T_5f17f_row14_col12" class="data row14 col12" >1.00</td>
+      <td id="T_5f17f_row14_col13" class="data row14 col13" >0.0000%</td>
+      <td id="T_5f17f_row14_col14" class="data row14 col14" >LinAct360</td>
+      <td id="T_5f17f_row14_col15" class="data row14 col15" >1972-10-31</td>
+      <td id="T_5f17f_row14_col16" class="data row14 col16" >CLP</td>
+      <td id="T_5f17f_row14_col17" class="data row14 col17" >USDOBS</td>
+      <td id="T_5f17f_row14_col18" class="data row14 col18" >10.00</td>
+      <td id="T_5f17f_row14_col19" class="data row14 col19" >0.00</td>
+      <td id="T_5f17f_row14_col20" class="data row14 col20" >25,555.56</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row15" class="row_heading level0 row15" >15</th>
-      <td id="T_0fe38_row15_col0" class="data row15 col0" >1972-10-31</td>
-      <td id="T_0fe38_row15_col1" class="data row15 col1" >1973-01-31</td>
-      <td id="T_0fe38_row15_col2" class="data row15 col2" >1972-10-27</td>
-      <td id="T_0fe38_row15_col3" class="data row15 col3" >1973-02-01</td>
-      <td id="T_0fe38_row15_col4" class="data row15 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row15_col5" class="data row15 col5" >0.00</td>
-      <td id="T_0fe38_row15_col6" class="data row15 col6" >2,555.56</td>
-      <td id="T_0fe38_row15_col7" class="data row15 col7" >True</td>
-      <td id="T_0fe38_row15_col8" class="data row15 col8" >25,555.56</td>
-      <td id="T_0fe38_row15_col9" class="data row15 col9" >USD</td>
-      <td id="T_0fe38_row15_col10" class="data row15 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row15_col11" class="data row15 col11" >1.0000%</td>
-      <td id="T_0fe38_row15_col12" class="data row15 col12" >1.00</td>
-      <td id="T_0fe38_row15_col13" class="data row15 col13" >0.0000%</td>
-      <td id="T_0fe38_row15_col14" class="data row15 col14" >LinAct360</td>
-      <td id="T_0fe38_row15_col15" class="data row15 col15" >1973-01-31</td>
-      <td id="T_0fe38_row15_col16" class="data row15 col16" >CLP</td>
-      <td id="T_0fe38_row15_col17" class="data row15 col17" >USDOBS</td>
-      <td id="T_0fe38_row15_col18" class="data row15 col18" >10.00</td>
-      <td id="T_0fe38_row15_col19" class="data row15 col19" >0.00</td>
-      <td id="T_0fe38_row15_col20" class="data row15 col20" >25,555.56</td>
+      <th id="T_5f17f_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_5f17f_row15_col0" class="data row15 col0" >1972-10-31</td>
+      <td id="T_5f17f_row15_col1" class="data row15 col1" >1973-01-31</td>
+      <td id="T_5f17f_row15_col2" class="data row15 col2" >1972-10-27</td>
+      <td id="T_5f17f_row15_col3" class="data row15 col3" >1973-02-01</td>
+      <td id="T_5f17f_row15_col4" class="data row15 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row15_col5" class="data row15 col5" >0.00</td>
+      <td id="T_5f17f_row15_col6" class="data row15 col6" >2,555.56</td>
+      <td id="T_5f17f_row15_col7" class="data row15 col7" >True</td>
+      <td id="T_5f17f_row15_col8" class="data row15 col8" >25,555.56</td>
+      <td id="T_5f17f_row15_col9" class="data row15 col9" >USD</td>
+      <td id="T_5f17f_row15_col10" class="data row15 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row15_col11" class="data row15 col11" >1.0000%</td>
+      <td id="T_5f17f_row15_col12" class="data row15 col12" >1.00</td>
+      <td id="T_5f17f_row15_col13" class="data row15 col13" >0.0000%</td>
+      <td id="T_5f17f_row15_col14" class="data row15 col14" >LinAct360</td>
+      <td id="T_5f17f_row15_col15" class="data row15 col15" >1973-01-31</td>
+      <td id="T_5f17f_row15_col16" class="data row15 col16" >CLP</td>
+      <td id="T_5f17f_row15_col17" class="data row15 col17" >USDOBS</td>
+      <td id="T_5f17f_row15_col18" class="data row15 col18" >10.00</td>
+      <td id="T_5f17f_row15_col19" class="data row15 col19" >0.00</td>
+      <td id="T_5f17f_row15_col20" class="data row15 col20" >25,555.56</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row16" class="row_heading level0 row16" >16</th>
-      <td id="T_0fe38_row16_col0" class="data row16 col0" >1973-01-31</td>
-      <td id="T_0fe38_row16_col1" class="data row16 col1" >1973-04-30</td>
-      <td id="T_0fe38_row16_col2" class="data row16 col2" >1973-01-29</td>
-      <td id="T_0fe38_row16_col3" class="data row16 col3" >1973-05-01</td>
-      <td id="T_0fe38_row16_col4" class="data row16 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row16_col5" class="data row16 col5" >0.00</td>
-      <td id="T_0fe38_row16_col6" class="data row16 col6" >2,472.22</td>
-      <td id="T_0fe38_row16_col7" class="data row16 col7" >True</td>
-      <td id="T_0fe38_row16_col8" class="data row16 col8" >24,722.22</td>
-      <td id="T_0fe38_row16_col9" class="data row16 col9" >USD</td>
-      <td id="T_0fe38_row16_col10" class="data row16 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row16_col11" class="data row16 col11" >1.0000%</td>
-      <td id="T_0fe38_row16_col12" class="data row16 col12" >1.00</td>
-      <td id="T_0fe38_row16_col13" class="data row16 col13" >0.0000%</td>
-      <td id="T_0fe38_row16_col14" class="data row16 col14" >LinAct360</td>
-      <td id="T_0fe38_row16_col15" class="data row16 col15" >1973-04-30</td>
-      <td id="T_0fe38_row16_col16" class="data row16 col16" >CLP</td>
-      <td id="T_0fe38_row16_col17" class="data row16 col17" >USDOBS</td>
-      <td id="T_0fe38_row16_col18" class="data row16 col18" >10.00</td>
-      <td id="T_0fe38_row16_col19" class="data row16 col19" >0.00</td>
-      <td id="T_0fe38_row16_col20" class="data row16 col20" >24,722.22</td>
+      <th id="T_5f17f_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_5f17f_row16_col0" class="data row16 col0" >1973-01-31</td>
+      <td id="T_5f17f_row16_col1" class="data row16 col1" >1973-04-30</td>
+      <td id="T_5f17f_row16_col2" class="data row16 col2" >1973-01-29</td>
+      <td id="T_5f17f_row16_col3" class="data row16 col3" >1973-05-01</td>
+      <td id="T_5f17f_row16_col4" class="data row16 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row16_col5" class="data row16 col5" >0.00</td>
+      <td id="T_5f17f_row16_col6" class="data row16 col6" >2,472.22</td>
+      <td id="T_5f17f_row16_col7" class="data row16 col7" >True</td>
+      <td id="T_5f17f_row16_col8" class="data row16 col8" >24,722.22</td>
+      <td id="T_5f17f_row16_col9" class="data row16 col9" >USD</td>
+      <td id="T_5f17f_row16_col10" class="data row16 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row16_col11" class="data row16 col11" >1.0000%</td>
+      <td id="T_5f17f_row16_col12" class="data row16 col12" >1.00</td>
+      <td id="T_5f17f_row16_col13" class="data row16 col13" >0.0000%</td>
+      <td id="T_5f17f_row16_col14" class="data row16 col14" >LinAct360</td>
+      <td id="T_5f17f_row16_col15" class="data row16 col15" >1973-04-30</td>
+      <td id="T_5f17f_row16_col16" class="data row16 col16" >CLP</td>
+      <td id="T_5f17f_row16_col17" class="data row16 col17" >USDOBS</td>
+      <td id="T_5f17f_row16_col18" class="data row16 col18" >10.00</td>
+      <td id="T_5f17f_row16_col19" class="data row16 col19" >0.00</td>
+      <td id="T_5f17f_row16_col20" class="data row16 col20" >24,722.22</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row17" class="row_heading level0 row17" >17</th>
-      <td id="T_0fe38_row17_col0" class="data row17 col0" >1973-04-30</td>
-      <td id="T_0fe38_row17_col1" class="data row17 col1" >1973-07-31</td>
-      <td id="T_0fe38_row17_col2" class="data row17 col2" >1973-04-26</td>
-      <td id="T_0fe38_row17_col3" class="data row17 col3" >1973-08-01</td>
-      <td id="T_0fe38_row17_col4" class="data row17 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row17_col5" class="data row17 col5" >0.00</td>
-      <td id="T_0fe38_row17_col6" class="data row17 col6" >2,555.56</td>
-      <td id="T_0fe38_row17_col7" class="data row17 col7" >True</td>
-      <td id="T_0fe38_row17_col8" class="data row17 col8" >25,555.56</td>
-      <td id="T_0fe38_row17_col9" class="data row17 col9" >USD</td>
-      <td id="T_0fe38_row17_col10" class="data row17 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row17_col11" class="data row17 col11" >1.0000%</td>
-      <td id="T_0fe38_row17_col12" class="data row17 col12" >1.00</td>
-      <td id="T_0fe38_row17_col13" class="data row17 col13" >0.0000%</td>
-      <td id="T_0fe38_row17_col14" class="data row17 col14" >LinAct360</td>
-      <td id="T_0fe38_row17_col15" class="data row17 col15" >1973-07-31</td>
-      <td id="T_0fe38_row17_col16" class="data row17 col16" >CLP</td>
-      <td id="T_0fe38_row17_col17" class="data row17 col17" >USDOBS</td>
-      <td id="T_0fe38_row17_col18" class="data row17 col18" >10.00</td>
-      <td id="T_0fe38_row17_col19" class="data row17 col19" >0.00</td>
-      <td id="T_0fe38_row17_col20" class="data row17 col20" >25,555.56</td>
+      <th id="T_5f17f_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_5f17f_row17_col0" class="data row17 col0" >1973-04-30</td>
+      <td id="T_5f17f_row17_col1" class="data row17 col1" >1973-07-31</td>
+      <td id="T_5f17f_row17_col2" class="data row17 col2" >1973-04-26</td>
+      <td id="T_5f17f_row17_col3" class="data row17 col3" >1973-08-01</td>
+      <td id="T_5f17f_row17_col4" class="data row17 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row17_col5" class="data row17 col5" >0.00</td>
+      <td id="T_5f17f_row17_col6" class="data row17 col6" >2,555.56</td>
+      <td id="T_5f17f_row17_col7" class="data row17 col7" >True</td>
+      <td id="T_5f17f_row17_col8" class="data row17 col8" >25,555.56</td>
+      <td id="T_5f17f_row17_col9" class="data row17 col9" >USD</td>
+      <td id="T_5f17f_row17_col10" class="data row17 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row17_col11" class="data row17 col11" >1.0000%</td>
+      <td id="T_5f17f_row17_col12" class="data row17 col12" >1.00</td>
+      <td id="T_5f17f_row17_col13" class="data row17 col13" >0.0000%</td>
+      <td id="T_5f17f_row17_col14" class="data row17 col14" >LinAct360</td>
+      <td id="T_5f17f_row17_col15" class="data row17 col15" >1973-07-31</td>
+      <td id="T_5f17f_row17_col16" class="data row17 col16" >CLP</td>
+      <td id="T_5f17f_row17_col17" class="data row17 col17" >USDOBS</td>
+      <td id="T_5f17f_row17_col18" class="data row17 col18" >10.00</td>
+      <td id="T_5f17f_row17_col19" class="data row17 col19" >0.00</td>
+      <td id="T_5f17f_row17_col20" class="data row17 col20" >25,555.56</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row18" class="row_heading level0 row18" >18</th>
-      <td id="T_0fe38_row18_col0" class="data row18 col0" >1973-07-31</td>
-      <td id="T_0fe38_row18_col1" class="data row18 col1" >1973-10-31</td>
-      <td id="T_0fe38_row18_col2" class="data row18 col2" >1973-07-27</td>
-      <td id="T_0fe38_row18_col3" class="data row18 col3" >1973-11-01</td>
-      <td id="T_0fe38_row18_col4" class="data row18 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row18_col5" class="data row18 col5" >0.00</td>
-      <td id="T_0fe38_row18_col6" class="data row18 col6" >2,555.56</td>
-      <td id="T_0fe38_row18_col7" class="data row18 col7" >True</td>
-      <td id="T_0fe38_row18_col8" class="data row18 col8" >25,555.56</td>
-      <td id="T_0fe38_row18_col9" class="data row18 col9" >USD</td>
-      <td id="T_0fe38_row18_col10" class="data row18 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row18_col11" class="data row18 col11" >1.0000%</td>
-      <td id="T_0fe38_row18_col12" class="data row18 col12" >1.00</td>
-      <td id="T_0fe38_row18_col13" class="data row18 col13" >0.0000%</td>
-      <td id="T_0fe38_row18_col14" class="data row18 col14" >LinAct360</td>
-      <td id="T_0fe38_row18_col15" class="data row18 col15" >1973-10-31</td>
-      <td id="T_0fe38_row18_col16" class="data row18 col16" >CLP</td>
-      <td id="T_0fe38_row18_col17" class="data row18 col17" >USDOBS</td>
-      <td id="T_0fe38_row18_col18" class="data row18 col18" >10.00</td>
-      <td id="T_0fe38_row18_col19" class="data row18 col19" >0.00</td>
-      <td id="T_0fe38_row18_col20" class="data row18 col20" >25,555.56</td>
+      <th id="T_5f17f_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_5f17f_row18_col0" class="data row18 col0" >1973-07-31</td>
+      <td id="T_5f17f_row18_col1" class="data row18 col1" >1973-10-31</td>
+      <td id="T_5f17f_row18_col2" class="data row18 col2" >1973-07-27</td>
+      <td id="T_5f17f_row18_col3" class="data row18 col3" >1973-11-01</td>
+      <td id="T_5f17f_row18_col4" class="data row18 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row18_col5" class="data row18 col5" >0.00</td>
+      <td id="T_5f17f_row18_col6" class="data row18 col6" >2,555.56</td>
+      <td id="T_5f17f_row18_col7" class="data row18 col7" >True</td>
+      <td id="T_5f17f_row18_col8" class="data row18 col8" >25,555.56</td>
+      <td id="T_5f17f_row18_col9" class="data row18 col9" >USD</td>
+      <td id="T_5f17f_row18_col10" class="data row18 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row18_col11" class="data row18 col11" >1.0000%</td>
+      <td id="T_5f17f_row18_col12" class="data row18 col12" >1.00</td>
+      <td id="T_5f17f_row18_col13" class="data row18 col13" >0.0000%</td>
+      <td id="T_5f17f_row18_col14" class="data row18 col14" >LinAct360</td>
+      <td id="T_5f17f_row18_col15" class="data row18 col15" >1973-10-31</td>
+      <td id="T_5f17f_row18_col16" class="data row18 col16" >CLP</td>
+      <td id="T_5f17f_row18_col17" class="data row18 col17" >USDOBS</td>
+      <td id="T_5f17f_row18_col18" class="data row18 col18" >10.00</td>
+      <td id="T_5f17f_row18_col19" class="data row18 col19" >0.00</td>
+      <td id="T_5f17f_row18_col20" class="data row18 col20" >25,555.56</td>
     </tr>
     <tr>
-      <th id="T_0fe38_level0_row19" class="row_heading level0 row19" >19</th>
-      <td id="T_0fe38_row19_col0" class="data row19 col0" >1973-10-31</td>
-      <td id="T_0fe38_row19_col1" class="data row19 col1" >1974-01-31</td>
-      <td id="T_0fe38_row19_col2" class="data row19 col2" >1973-10-29</td>
-      <td id="T_0fe38_row19_col3" class="data row19 col3" >1974-02-01</td>
-      <td id="T_0fe38_row19_col4" class="data row19 col4" >1,000,000.00</td>
-      <td id="T_0fe38_row19_col5" class="data row19 col5" >1,000,000.00</td>
-      <td id="T_0fe38_row19_col6" class="data row19 col6" >2,555.56</td>
-      <td id="T_0fe38_row19_col7" class="data row19 col7" >True</td>
-      <td id="T_0fe38_row19_col8" class="data row19 col8" >10,025,555.56</td>
-      <td id="T_0fe38_row19_col9" class="data row19 col9" >USD</td>
-      <td id="T_0fe38_row19_col10" class="data row19 col10" >LIBORUSD3M</td>
-      <td id="T_0fe38_row19_col11" class="data row19 col11" >1.0000%</td>
-      <td id="T_0fe38_row19_col12" class="data row19 col12" >1.00</td>
-      <td id="T_0fe38_row19_col13" class="data row19 col13" >0.0000%</td>
-      <td id="T_0fe38_row19_col14" class="data row19 col14" >LinAct360</td>
-      <td id="T_0fe38_row19_col15" class="data row19 col15" >1974-01-31</td>
-      <td id="T_0fe38_row19_col16" class="data row19 col16" >CLP</td>
-      <td id="T_0fe38_row19_col17" class="data row19 col17" >USDOBS</td>
-      <td id="T_0fe38_row19_col18" class="data row19 col18" >10.00</td>
-      <td id="T_0fe38_row19_col19" class="data row19 col19" >10,000,000.00</td>
-      <td id="T_0fe38_row19_col20" class="data row19 col20" >25,555.56</td>
+      <th id="T_5f17f_level0_row19" class="row_heading level0 row19" >19</th>
+      <td id="T_5f17f_row19_col0" class="data row19 col0" >1973-10-31</td>
+      <td id="T_5f17f_row19_col1" class="data row19 col1" >1974-01-31</td>
+      <td id="T_5f17f_row19_col2" class="data row19 col2" >1973-10-29</td>
+      <td id="T_5f17f_row19_col3" class="data row19 col3" >1974-02-01</td>
+      <td id="T_5f17f_row19_col4" class="data row19 col4" >1,000,000.00</td>
+      <td id="T_5f17f_row19_col5" class="data row19 col5" >1,000,000.00</td>
+      <td id="T_5f17f_row19_col6" class="data row19 col6" >2,555.56</td>
+      <td id="T_5f17f_row19_col7" class="data row19 col7" >True</td>
+      <td id="T_5f17f_row19_col8" class="data row19 col8" >10,025,555.56</td>
+      <td id="T_5f17f_row19_col9" class="data row19 col9" >USD</td>
+      <td id="T_5f17f_row19_col10" class="data row19 col10" >LIBORUSD3M</td>
+      <td id="T_5f17f_row19_col11" class="data row19 col11" >1.0000%</td>
+      <td id="T_5f17f_row19_col12" class="data row19 col12" >1.00</td>
+      <td id="T_5f17f_row19_col13" class="data row19 col13" >0.0000%</td>
+      <td id="T_5f17f_row19_col14" class="data row19 col14" >LinAct360</td>
+      <td id="T_5f17f_row19_col15" class="data row19 col15" >1974-01-31</td>
+      <td id="T_5f17f_row19_col16" class="data row19 col16" >CLP</td>
+      <td id="T_5f17f_row19_col17" class="data row19 col17" >USDOBS</td>
+      <td id="T_5f17f_row19_col18" class="data row19 col18" >10.00</td>
+      <td id="T_5f17f_row19_col19" class="data row19 col19" >10,000,000.00</td>
+      <td id="T_5f17f_row19_col20" class="data row19 col20" >25,555.56</td>
     </tr>
   </tbody>
 </table>
@@ -3075,513 +3295,513 @@ df6.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_4171f">
+<table id="T_0c6aa">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_4171f_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_4171f_level0_col1" class="col_heading level0 col1" >fecha__final</th>
-      <th id="T_4171f_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
-      <th id="T_4171f_level0_col3" class="col_heading level0 col3" >fecha__pago</th>
-      <th id="T_4171f_level0_col4" class="col_heading level0 col4" >nominal</th>
-      <th id="T_4171f_level0_col5" class="col_heading level0 col5" >amort</th>
-      <th id="T_4171f_level0_col6" class="col_heading level0 col6" >interes</th>
-      <th id="T_4171f_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_4171f_level0_col8" class="col_heading level0 col8" >flujo</th>
-      <th id="T_4171f_level0_col9" class="col_heading level0 col9" >moneda_nominal</th>
-      <th id="T_4171f_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
-      <th id="T_4171f_level0_col11" class="col_heading level0 col11" >spread</th>
-      <th id="T_4171f_level0_col12" class="col_heading level0 col12" >gearing</th>
-      <th id="T_4171f_level0_col13" class="col_heading level0 col13" >valor_tasa</th>
-      <th id="T_4171f_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
-      <th id="T_4171f_level0_col15" class="col_heading level0 col15" >fecha_fijacion_fx</th>
-      <th id="T_4171f_level0_col16" class="col_heading level0 col16" >moneda_pago</th>
-      <th id="T_4171f_level0_col17" class="col_heading level0 col17" >codigo_indice_fx</th>
-      <th id="T_4171f_level0_col18" class="col_heading level0 col18" >valor_indice_fx</th>
-      <th id="T_4171f_level0_col19" class="col_heading level0 col19" >amort_moneda_pago</th>
-      <th id="T_4171f_level0_col20" class="col_heading level0 col20" >interes_moneda_pago</th>
+      <th id="T_0c6aa_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_0c6aa_level0_col1" class="col_heading level0 col1" >fecha__final</th>
+      <th id="T_0c6aa_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
+      <th id="T_0c6aa_level0_col3" class="col_heading level0 col3" >fecha__pago</th>
+      <th id="T_0c6aa_level0_col4" class="col_heading level0 col4" >nominal</th>
+      <th id="T_0c6aa_level0_col5" class="col_heading level0 col5" >amort</th>
+      <th id="T_0c6aa_level0_col6" class="col_heading level0 col6" >interes</th>
+      <th id="T_0c6aa_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_0c6aa_level0_col8" class="col_heading level0 col8" >flujo</th>
+      <th id="T_0c6aa_level0_col9" class="col_heading level0 col9" >moneda_nominal</th>
+      <th id="T_0c6aa_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
+      <th id="T_0c6aa_level0_col11" class="col_heading level0 col11" >spread</th>
+      <th id="T_0c6aa_level0_col12" class="col_heading level0 col12" >gearing</th>
+      <th id="T_0c6aa_level0_col13" class="col_heading level0 col13" >valor_tasa</th>
+      <th id="T_0c6aa_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
+      <th id="T_0c6aa_level0_col15" class="col_heading level0 col15" >fecha_fijacion_fx</th>
+      <th id="T_0c6aa_level0_col16" class="col_heading level0 col16" >moneda_pago</th>
+      <th id="T_0c6aa_level0_col17" class="col_heading level0 col17" >codigo_indice_fx</th>
+      <th id="T_0c6aa_level0_col18" class="col_heading level0 col18" >valor_indice_fx</th>
+      <th id="T_0c6aa_level0_col19" class="col_heading level0 col19" >amort_moneda_pago</th>
+      <th id="T_0c6aa_level0_col20" class="col_heading level0 col20" >interes_moneda_pago</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_4171f_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_4171f_row0_col0" class="data row0 col0" >1969-01-31</td>
-      <td id="T_4171f_row0_col1" class="data row0 col1" >1969-04-30</td>
-      <td id="T_4171f_row0_col2" class="data row0 col2" >1969-01-29</td>
-      <td id="T_4171f_row0_col3" class="data row0 col3" >1969-05-01</td>
-      <td id="T_4171f_row0_col4" class="data row0 col4" >2,000.00</td>
-      <td id="T_4171f_row0_col5" class="data row0 col5" >100.00</td>
-      <td id="T_4171f_row0_col6" class="data row0 col6" >0.00</td>
-      <td id="T_4171f_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_4171f_row0_col8" class="data row0 col8" >100.00</td>
-      <td id="T_4171f_row0_col9" class="data row0 col9" >USD</td>
-      <td id="T_4171f_row0_col10" class="data row0 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row0_col11" class="data row0 col11" >1.0000%</td>
-      <td id="T_4171f_row0_col12" class="data row0 col12" >1.00</td>
-      <td id="T_4171f_row0_col13" class="data row0 col13" >0.0000%</td>
-      <td id="T_4171f_row0_col14" class="data row0 col14" >LinAct360</td>
-      <td id="T_4171f_row0_col15" class="data row0 col15" >1969-04-30</td>
-      <td id="T_4171f_row0_col16" class="data row0 col16" >CLP</td>
-      <td id="T_4171f_row0_col17" class="data row0 col17" >USDOBS</td>
-      <td id="T_4171f_row0_col18" class="data row0 col18" >1.00</td>
-      <td id="T_4171f_row0_col19" class="data row0 col19" >100.00</td>
-      <td id="T_4171f_row0_col20" class="data row0 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_0c6aa_row0_col0" class="data row0 col0" >1969-01-31</td>
+      <td id="T_0c6aa_row0_col1" class="data row0 col1" >1969-04-30</td>
+      <td id="T_0c6aa_row0_col2" class="data row0 col2" >1969-01-29</td>
+      <td id="T_0c6aa_row0_col3" class="data row0 col3" >1969-05-01</td>
+      <td id="T_0c6aa_row0_col4" class="data row0 col4" >2,000.00</td>
+      <td id="T_0c6aa_row0_col5" class="data row0 col5" >100.00</td>
+      <td id="T_0c6aa_row0_col6" class="data row0 col6" >0.00</td>
+      <td id="T_0c6aa_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_0c6aa_row0_col8" class="data row0 col8" >100.00</td>
+      <td id="T_0c6aa_row0_col9" class="data row0 col9" >USD</td>
+      <td id="T_0c6aa_row0_col10" class="data row0 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row0_col11" class="data row0 col11" >1.0000%</td>
+      <td id="T_0c6aa_row0_col12" class="data row0 col12" >1.00</td>
+      <td id="T_0c6aa_row0_col13" class="data row0 col13" >0.0000%</td>
+      <td id="T_0c6aa_row0_col14" class="data row0 col14" >LinAct360</td>
+      <td id="T_0c6aa_row0_col15" class="data row0 col15" >1969-04-30</td>
+      <td id="T_0c6aa_row0_col16" class="data row0 col16" >CLP</td>
+      <td id="T_0c6aa_row0_col17" class="data row0 col17" >USDOBS</td>
+      <td id="T_0c6aa_row0_col18" class="data row0 col18" >1.00</td>
+      <td id="T_0c6aa_row0_col19" class="data row0 col19" >100.00</td>
+      <td id="T_0c6aa_row0_col20" class="data row0 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_4171f_row1_col0" class="data row1 col0" >1969-04-30</td>
-      <td id="T_4171f_row1_col1" class="data row1 col1" >1969-07-31</td>
-      <td id="T_4171f_row1_col2" class="data row1 col2" >1969-04-28</td>
-      <td id="T_4171f_row1_col3" class="data row1 col3" >1969-08-01</td>
-      <td id="T_4171f_row1_col4" class="data row1 col4" >1,900.00</td>
-      <td id="T_4171f_row1_col5" class="data row1 col5" >100.00</td>
-      <td id="T_4171f_row1_col6" class="data row1 col6" >0.00</td>
-      <td id="T_4171f_row1_col7" class="data row1 col7" >True</td>
-      <td id="T_4171f_row1_col8" class="data row1 col8" >100.00</td>
-      <td id="T_4171f_row1_col9" class="data row1 col9" >USD</td>
-      <td id="T_4171f_row1_col10" class="data row1 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row1_col11" class="data row1 col11" >1.0000%</td>
-      <td id="T_4171f_row1_col12" class="data row1 col12" >1.00</td>
-      <td id="T_4171f_row1_col13" class="data row1 col13" >0.0000%</td>
-      <td id="T_4171f_row1_col14" class="data row1 col14" >LinAct360</td>
-      <td id="T_4171f_row1_col15" class="data row1 col15" >1969-07-31</td>
-      <td id="T_4171f_row1_col16" class="data row1 col16" >CLP</td>
-      <td id="T_4171f_row1_col17" class="data row1 col17" >USDOBS</td>
-      <td id="T_4171f_row1_col18" class="data row1 col18" >1.00</td>
-      <td id="T_4171f_row1_col19" class="data row1 col19" >100.00</td>
-      <td id="T_4171f_row1_col20" class="data row1 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_0c6aa_row1_col0" class="data row1 col0" >1969-04-30</td>
+      <td id="T_0c6aa_row1_col1" class="data row1 col1" >1969-07-31</td>
+      <td id="T_0c6aa_row1_col2" class="data row1 col2" >1969-04-28</td>
+      <td id="T_0c6aa_row1_col3" class="data row1 col3" >1969-08-01</td>
+      <td id="T_0c6aa_row1_col4" class="data row1 col4" >1,900.00</td>
+      <td id="T_0c6aa_row1_col5" class="data row1 col5" >100.00</td>
+      <td id="T_0c6aa_row1_col6" class="data row1 col6" >0.00</td>
+      <td id="T_0c6aa_row1_col7" class="data row1 col7" >True</td>
+      <td id="T_0c6aa_row1_col8" class="data row1 col8" >100.00</td>
+      <td id="T_0c6aa_row1_col9" class="data row1 col9" >USD</td>
+      <td id="T_0c6aa_row1_col10" class="data row1 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row1_col11" class="data row1 col11" >1.0000%</td>
+      <td id="T_0c6aa_row1_col12" class="data row1 col12" >1.00</td>
+      <td id="T_0c6aa_row1_col13" class="data row1 col13" >0.0000%</td>
+      <td id="T_0c6aa_row1_col14" class="data row1 col14" >LinAct360</td>
+      <td id="T_0c6aa_row1_col15" class="data row1 col15" >1969-07-31</td>
+      <td id="T_0c6aa_row1_col16" class="data row1 col16" >CLP</td>
+      <td id="T_0c6aa_row1_col17" class="data row1 col17" >USDOBS</td>
+      <td id="T_0c6aa_row1_col18" class="data row1 col18" >1.00</td>
+      <td id="T_0c6aa_row1_col19" class="data row1 col19" >100.00</td>
+      <td id="T_0c6aa_row1_col20" class="data row1 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_4171f_row2_col0" class="data row2 col0" >1969-07-31</td>
-      <td id="T_4171f_row2_col1" class="data row2 col1" >1969-10-31</td>
-      <td id="T_4171f_row2_col2" class="data row2 col2" >1969-07-29</td>
-      <td id="T_4171f_row2_col3" class="data row2 col3" >1969-11-03</td>
-      <td id="T_4171f_row2_col4" class="data row2 col4" >1,800.00</td>
-      <td id="T_4171f_row2_col5" class="data row2 col5" >100.00</td>
-      <td id="T_4171f_row2_col6" class="data row2 col6" >0.00</td>
-      <td id="T_4171f_row2_col7" class="data row2 col7" >True</td>
-      <td id="T_4171f_row2_col8" class="data row2 col8" >100.00</td>
-      <td id="T_4171f_row2_col9" class="data row2 col9" >USD</td>
-      <td id="T_4171f_row2_col10" class="data row2 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row2_col11" class="data row2 col11" >1.0000%</td>
-      <td id="T_4171f_row2_col12" class="data row2 col12" >1.00</td>
-      <td id="T_4171f_row2_col13" class="data row2 col13" >0.0000%</td>
-      <td id="T_4171f_row2_col14" class="data row2 col14" >LinAct360</td>
-      <td id="T_4171f_row2_col15" class="data row2 col15" >1969-10-31</td>
-      <td id="T_4171f_row2_col16" class="data row2 col16" >CLP</td>
-      <td id="T_4171f_row2_col17" class="data row2 col17" >USDOBS</td>
-      <td id="T_4171f_row2_col18" class="data row2 col18" >1.00</td>
-      <td id="T_4171f_row2_col19" class="data row2 col19" >100.00</td>
-      <td id="T_4171f_row2_col20" class="data row2 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_0c6aa_row2_col0" class="data row2 col0" >1969-07-31</td>
+      <td id="T_0c6aa_row2_col1" class="data row2 col1" >1969-10-31</td>
+      <td id="T_0c6aa_row2_col2" class="data row2 col2" >1969-07-29</td>
+      <td id="T_0c6aa_row2_col3" class="data row2 col3" >1969-11-03</td>
+      <td id="T_0c6aa_row2_col4" class="data row2 col4" >1,800.00</td>
+      <td id="T_0c6aa_row2_col5" class="data row2 col5" >100.00</td>
+      <td id="T_0c6aa_row2_col6" class="data row2 col6" >0.00</td>
+      <td id="T_0c6aa_row2_col7" class="data row2 col7" >True</td>
+      <td id="T_0c6aa_row2_col8" class="data row2 col8" >100.00</td>
+      <td id="T_0c6aa_row2_col9" class="data row2 col9" >USD</td>
+      <td id="T_0c6aa_row2_col10" class="data row2 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row2_col11" class="data row2 col11" >1.0000%</td>
+      <td id="T_0c6aa_row2_col12" class="data row2 col12" >1.00</td>
+      <td id="T_0c6aa_row2_col13" class="data row2 col13" >0.0000%</td>
+      <td id="T_0c6aa_row2_col14" class="data row2 col14" >LinAct360</td>
+      <td id="T_0c6aa_row2_col15" class="data row2 col15" >1969-10-31</td>
+      <td id="T_0c6aa_row2_col16" class="data row2 col16" >CLP</td>
+      <td id="T_0c6aa_row2_col17" class="data row2 col17" >USDOBS</td>
+      <td id="T_0c6aa_row2_col18" class="data row2 col18" >1.00</td>
+      <td id="T_0c6aa_row2_col19" class="data row2 col19" >100.00</td>
+      <td id="T_0c6aa_row2_col20" class="data row2 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_4171f_row3_col0" class="data row3 col0" >1969-10-31</td>
-      <td id="T_4171f_row3_col1" class="data row3 col1" >1970-01-30</td>
-      <td id="T_4171f_row3_col2" class="data row3 col2" >1969-10-29</td>
-      <td id="T_4171f_row3_col3" class="data row3 col3" >1970-02-02</td>
-      <td id="T_4171f_row3_col4" class="data row3 col4" >1,700.00</td>
-      <td id="T_4171f_row3_col5" class="data row3 col5" >100.00</td>
-      <td id="T_4171f_row3_col6" class="data row3 col6" >0.00</td>
-      <td id="T_4171f_row3_col7" class="data row3 col7" >True</td>
-      <td id="T_4171f_row3_col8" class="data row3 col8" >100.00</td>
-      <td id="T_4171f_row3_col9" class="data row3 col9" >USD</td>
-      <td id="T_4171f_row3_col10" class="data row3 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row3_col11" class="data row3 col11" >1.0000%</td>
-      <td id="T_4171f_row3_col12" class="data row3 col12" >1.00</td>
-      <td id="T_4171f_row3_col13" class="data row3 col13" >0.0000%</td>
-      <td id="T_4171f_row3_col14" class="data row3 col14" >LinAct360</td>
-      <td id="T_4171f_row3_col15" class="data row3 col15" >1970-01-30</td>
-      <td id="T_4171f_row3_col16" class="data row3 col16" >CLP</td>
-      <td id="T_4171f_row3_col17" class="data row3 col17" >USDOBS</td>
-      <td id="T_4171f_row3_col18" class="data row3 col18" >1.00</td>
-      <td id="T_4171f_row3_col19" class="data row3 col19" >100.00</td>
-      <td id="T_4171f_row3_col20" class="data row3 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_0c6aa_row3_col0" class="data row3 col0" >1969-10-31</td>
+      <td id="T_0c6aa_row3_col1" class="data row3 col1" >1970-01-30</td>
+      <td id="T_0c6aa_row3_col2" class="data row3 col2" >1969-10-29</td>
+      <td id="T_0c6aa_row3_col3" class="data row3 col3" >1970-02-02</td>
+      <td id="T_0c6aa_row3_col4" class="data row3 col4" >1,700.00</td>
+      <td id="T_0c6aa_row3_col5" class="data row3 col5" >100.00</td>
+      <td id="T_0c6aa_row3_col6" class="data row3 col6" >0.00</td>
+      <td id="T_0c6aa_row3_col7" class="data row3 col7" >True</td>
+      <td id="T_0c6aa_row3_col8" class="data row3 col8" >100.00</td>
+      <td id="T_0c6aa_row3_col9" class="data row3 col9" >USD</td>
+      <td id="T_0c6aa_row3_col10" class="data row3 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row3_col11" class="data row3 col11" >1.0000%</td>
+      <td id="T_0c6aa_row3_col12" class="data row3 col12" >1.00</td>
+      <td id="T_0c6aa_row3_col13" class="data row3 col13" >0.0000%</td>
+      <td id="T_0c6aa_row3_col14" class="data row3 col14" >LinAct360</td>
+      <td id="T_0c6aa_row3_col15" class="data row3 col15" >1970-01-30</td>
+      <td id="T_0c6aa_row3_col16" class="data row3 col16" >CLP</td>
+      <td id="T_0c6aa_row3_col17" class="data row3 col17" >USDOBS</td>
+      <td id="T_0c6aa_row3_col18" class="data row3 col18" >1.00</td>
+      <td id="T_0c6aa_row3_col19" class="data row3 col19" >100.00</td>
+      <td id="T_0c6aa_row3_col20" class="data row3 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_4171f_row4_col0" class="data row4 col0" >1970-01-30</td>
-      <td id="T_4171f_row4_col1" class="data row4 col1" >1970-04-30</td>
-      <td id="T_4171f_row4_col2" class="data row4 col2" >1970-01-28</td>
-      <td id="T_4171f_row4_col3" class="data row4 col3" >1970-05-01</td>
-      <td id="T_4171f_row4_col4" class="data row4 col4" >1,600.00</td>
-      <td id="T_4171f_row4_col5" class="data row4 col5" >100.00</td>
-      <td id="T_4171f_row4_col6" class="data row4 col6" >0.00</td>
-      <td id="T_4171f_row4_col7" class="data row4 col7" >True</td>
-      <td id="T_4171f_row4_col8" class="data row4 col8" >100.00</td>
-      <td id="T_4171f_row4_col9" class="data row4 col9" >USD</td>
-      <td id="T_4171f_row4_col10" class="data row4 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row4_col11" class="data row4 col11" >1.0000%</td>
-      <td id="T_4171f_row4_col12" class="data row4 col12" >1.00</td>
-      <td id="T_4171f_row4_col13" class="data row4 col13" >0.0000%</td>
-      <td id="T_4171f_row4_col14" class="data row4 col14" >LinAct360</td>
-      <td id="T_4171f_row4_col15" class="data row4 col15" >1970-04-30</td>
-      <td id="T_4171f_row4_col16" class="data row4 col16" >CLP</td>
-      <td id="T_4171f_row4_col17" class="data row4 col17" >USDOBS</td>
-      <td id="T_4171f_row4_col18" class="data row4 col18" >1.00</td>
-      <td id="T_4171f_row4_col19" class="data row4 col19" >100.00</td>
-      <td id="T_4171f_row4_col20" class="data row4 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_0c6aa_row4_col0" class="data row4 col0" >1970-01-30</td>
+      <td id="T_0c6aa_row4_col1" class="data row4 col1" >1970-04-30</td>
+      <td id="T_0c6aa_row4_col2" class="data row4 col2" >1970-01-28</td>
+      <td id="T_0c6aa_row4_col3" class="data row4 col3" >1970-05-01</td>
+      <td id="T_0c6aa_row4_col4" class="data row4 col4" >1,600.00</td>
+      <td id="T_0c6aa_row4_col5" class="data row4 col5" >100.00</td>
+      <td id="T_0c6aa_row4_col6" class="data row4 col6" >0.00</td>
+      <td id="T_0c6aa_row4_col7" class="data row4 col7" >True</td>
+      <td id="T_0c6aa_row4_col8" class="data row4 col8" >100.00</td>
+      <td id="T_0c6aa_row4_col9" class="data row4 col9" >USD</td>
+      <td id="T_0c6aa_row4_col10" class="data row4 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row4_col11" class="data row4 col11" >1.0000%</td>
+      <td id="T_0c6aa_row4_col12" class="data row4 col12" >1.00</td>
+      <td id="T_0c6aa_row4_col13" class="data row4 col13" >0.0000%</td>
+      <td id="T_0c6aa_row4_col14" class="data row4 col14" >LinAct360</td>
+      <td id="T_0c6aa_row4_col15" class="data row4 col15" >1970-04-30</td>
+      <td id="T_0c6aa_row4_col16" class="data row4 col16" >CLP</td>
+      <td id="T_0c6aa_row4_col17" class="data row4 col17" >USDOBS</td>
+      <td id="T_0c6aa_row4_col18" class="data row4 col18" >1.00</td>
+      <td id="T_0c6aa_row4_col19" class="data row4 col19" >100.00</td>
+      <td id="T_0c6aa_row4_col20" class="data row4 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_4171f_row5_col0" class="data row5 col0" >1970-04-30</td>
-      <td id="T_4171f_row5_col1" class="data row5 col1" >1970-07-31</td>
-      <td id="T_4171f_row5_col2" class="data row5 col2" >1970-04-28</td>
-      <td id="T_4171f_row5_col3" class="data row5 col3" >1970-08-03</td>
-      <td id="T_4171f_row5_col4" class="data row5 col4" >1,500.00</td>
-      <td id="T_4171f_row5_col5" class="data row5 col5" >100.00</td>
-      <td id="T_4171f_row5_col6" class="data row5 col6" >0.00</td>
-      <td id="T_4171f_row5_col7" class="data row5 col7" >True</td>
-      <td id="T_4171f_row5_col8" class="data row5 col8" >100.00</td>
-      <td id="T_4171f_row5_col9" class="data row5 col9" >USD</td>
-      <td id="T_4171f_row5_col10" class="data row5 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row5_col11" class="data row5 col11" >1.0000%</td>
-      <td id="T_4171f_row5_col12" class="data row5 col12" >1.00</td>
-      <td id="T_4171f_row5_col13" class="data row5 col13" >0.0000%</td>
-      <td id="T_4171f_row5_col14" class="data row5 col14" >LinAct360</td>
-      <td id="T_4171f_row5_col15" class="data row5 col15" >1970-07-31</td>
-      <td id="T_4171f_row5_col16" class="data row5 col16" >CLP</td>
-      <td id="T_4171f_row5_col17" class="data row5 col17" >USDOBS</td>
-      <td id="T_4171f_row5_col18" class="data row5 col18" >1.00</td>
-      <td id="T_4171f_row5_col19" class="data row5 col19" >100.00</td>
-      <td id="T_4171f_row5_col20" class="data row5 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_0c6aa_row5_col0" class="data row5 col0" >1970-04-30</td>
+      <td id="T_0c6aa_row5_col1" class="data row5 col1" >1970-07-31</td>
+      <td id="T_0c6aa_row5_col2" class="data row5 col2" >1970-04-28</td>
+      <td id="T_0c6aa_row5_col3" class="data row5 col3" >1970-08-03</td>
+      <td id="T_0c6aa_row5_col4" class="data row5 col4" >1,500.00</td>
+      <td id="T_0c6aa_row5_col5" class="data row5 col5" >100.00</td>
+      <td id="T_0c6aa_row5_col6" class="data row5 col6" >0.00</td>
+      <td id="T_0c6aa_row5_col7" class="data row5 col7" >True</td>
+      <td id="T_0c6aa_row5_col8" class="data row5 col8" >100.00</td>
+      <td id="T_0c6aa_row5_col9" class="data row5 col9" >USD</td>
+      <td id="T_0c6aa_row5_col10" class="data row5 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row5_col11" class="data row5 col11" >1.0000%</td>
+      <td id="T_0c6aa_row5_col12" class="data row5 col12" >1.00</td>
+      <td id="T_0c6aa_row5_col13" class="data row5 col13" >0.0000%</td>
+      <td id="T_0c6aa_row5_col14" class="data row5 col14" >LinAct360</td>
+      <td id="T_0c6aa_row5_col15" class="data row5 col15" >1970-07-31</td>
+      <td id="T_0c6aa_row5_col16" class="data row5 col16" >CLP</td>
+      <td id="T_0c6aa_row5_col17" class="data row5 col17" >USDOBS</td>
+      <td id="T_0c6aa_row5_col18" class="data row5 col18" >1.00</td>
+      <td id="T_0c6aa_row5_col19" class="data row5 col19" >100.00</td>
+      <td id="T_0c6aa_row5_col20" class="data row5 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_4171f_row6_col0" class="data row6 col0" >1970-07-31</td>
-      <td id="T_4171f_row6_col1" class="data row6 col1" >1970-10-30</td>
-      <td id="T_4171f_row6_col2" class="data row6 col2" >1970-07-29</td>
-      <td id="T_4171f_row6_col3" class="data row6 col3" >1970-11-02</td>
-      <td id="T_4171f_row6_col4" class="data row6 col4" >1,400.00</td>
-      <td id="T_4171f_row6_col5" class="data row6 col5" >100.00</td>
-      <td id="T_4171f_row6_col6" class="data row6 col6" >0.00</td>
-      <td id="T_4171f_row6_col7" class="data row6 col7" >True</td>
-      <td id="T_4171f_row6_col8" class="data row6 col8" >100.00</td>
-      <td id="T_4171f_row6_col9" class="data row6 col9" >USD</td>
-      <td id="T_4171f_row6_col10" class="data row6 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row6_col11" class="data row6 col11" >1.0000%</td>
-      <td id="T_4171f_row6_col12" class="data row6 col12" >1.00</td>
-      <td id="T_4171f_row6_col13" class="data row6 col13" >0.0000%</td>
-      <td id="T_4171f_row6_col14" class="data row6 col14" >LinAct360</td>
-      <td id="T_4171f_row6_col15" class="data row6 col15" >1970-10-30</td>
-      <td id="T_4171f_row6_col16" class="data row6 col16" >CLP</td>
-      <td id="T_4171f_row6_col17" class="data row6 col17" >USDOBS</td>
-      <td id="T_4171f_row6_col18" class="data row6 col18" >1.00</td>
-      <td id="T_4171f_row6_col19" class="data row6 col19" >100.00</td>
-      <td id="T_4171f_row6_col20" class="data row6 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_0c6aa_row6_col0" class="data row6 col0" >1970-07-31</td>
+      <td id="T_0c6aa_row6_col1" class="data row6 col1" >1970-10-30</td>
+      <td id="T_0c6aa_row6_col2" class="data row6 col2" >1970-07-29</td>
+      <td id="T_0c6aa_row6_col3" class="data row6 col3" >1970-11-02</td>
+      <td id="T_0c6aa_row6_col4" class="data row6 col4" >1,400.00</td>
+      <td id="T_0c6aa_row6_col5" class="data row6 col5" >100.00</td>
+      <td id="T_0c6aa_row6_col6" class="data row6 col6" >0.00</td>
+      <td id="T_0c6aa_row6_col7" class="data row6 col7" >True</td>
+      <td id="T_0c6aa_row6_col8" class="data row6 col8" >100.00</td>
+      <td id="T_0c6aa_row6_col9" class="data row6 col9" >USD</td>
+      <td id="T_0c6aa_row6_col10" class="data row6 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row6_col11" class="data row6 col11" >1.0000%</td>
+      <td id="T_0c6aa_row6_col12" class="data row6 col12" >1.00</td>
+      <td id="T_0c6aa_row6_col13" class="data row6 col13" >0.0000%</td>
+      <td id="T_0c6aa_row6_col14" class="data row6 col14" >LinAct360</td>
+      <td id="T_0c6aa_row6_col15" class="data row6 col15" >1970-10-30</td>
+      <td id="T_0c6aa_row6_col16" class="data row6 col16" >CLP</td>
+      <td id="T_0c6aa_row6_col17" class="data row6 col17" >USDOBS</td>
+      <td id="T_0c6aa_row6_col18" class="data row6 col18" >1.00</td>
+      <td id="T_0c6aa_row6_col19" class="data row6 col19" >100.00</td>
+      <td id="T_0c6aa_row6_col20" class="data row6 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_4171f_row7_col0" class="data row7 col0" >1970-10-30</td>
-      <td id="T_4171f_row7_col1" class="data row7 col1" >1971-01-29</td>
-      <td id="T_4171f_row7_col2" class="data row7 col2" >1970-10-28</td>
-      <td id="T_4171f_row7_col3" class="data row7 col3" >1971-02-01</td>
-      <td id="T_4171f_row7_col4" class="data row7 col4" >1,300.00</td>
-      <td id="T_4171f_row7_col5" class="data row7 col5" >100.00</td>
-      <td id="T_4171f_row7_col6" class="data row7 col6" >0.00</td>
-      <td id="T_4171f_row7_col7" class="data row7 col7" >True</td>
-      <td id="T_4171f_row7_col8" class="data row7 col8" >100.00</td>
-      <td id="T_4171f_row7_col9" class="data row7 col9" >USD</td>
-      <td id="T_4171f_row7_col10" class="data row7 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row7_col11" class="data row7 col11" >1.0000%</td>
-      <td id="T_4171f_row7_col12" class="data row7 col12" >1.00</td>
-      <td id="T_4171f_row7_col13" class="data row7 col13" >0.0000%</td>
-      <td id="T_4171f_row7_col14" class="data row7 col14" >LinAct360</td>
-      <td id="T_4171f_row7_col15" class="data row7 col15" >1971-01-29</td>
-      <td id="T_4171f_row7_col16" class="data row7 col16" >CLP</td>
-      <td id="T_4171f_row7_col17" class="data row7 col17" >USDOBS</td>
-      <td id="T_4171f_row7_col18" class="data row7 col18" >1.00</td>
-      <td id="T_4171f_row7_col19" class="data row7 col19" >100.00</td>
-      <td id="T_4171f_row7_col20" class="data row7 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_0c6aa_row7_col0" class="data row7 col0" >1970-10-30</td>
+      <td id="T_0c6aa_row7_col1" class="data row7 col1" >1971-01-29</td>
+      <td id="T_0c6aa_row7_col2" class="data row7 col2" >1970-10-28</td>
+      <td id="T_0c6aa_row7_col3" class="data row7 col3" >1971-02-01</td>
+      <td id="T_0c6aa_row7_col4" class="data row7 col4" >1,300.00</td>
+      <td id="T_0c6aa_row7_col5" class="data row7 col5" >100.00</td>
+      <td id="T_0c6aa_row7_col6" class="data row7 col6" >0.00</td>
+      <td id="T_0c6aa_row7_col7" class="data row7 col7" >True</td>
+      <td id="T_0c6aa_row7_col8" class="data row7 col8" >100.00</td>
+      <td id="T_0c6aa_row7_col9" class="data row7 col9" >USD</td>
+      <td id="T_0c6aa_row7_col10" class="data row7 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row7_col11" class="data row7 col11" >1.0000%</td>
+      <td id="T_0c6aa_row7_col12" class="data row7 col12" >1.00</td>
+      <td id="T_0c6aa_row7_col13" class="data row7 col13" >0.0000%</td>
+      <td id="T_0c6aa_row7_col14" class="data row7 col14" >LinAct360</td>
+      <td id="T_0c6aa_row7_col15" class="data row7 col15" >1971-01-29</td>
+      <td id="T_0c6aa_row7_col16" class="data row7 col16" >CLP</td>
+      <td id="T_0c6aa_row7_col17" class="data row7 col17" >USDOBS</td>
+      <td id="T_0c6aa_row7_col18" class="data row7 col18" >1.00</td>
+      <td id="T_0c6aa_row7_col19" class="data row7 col19" >100.00</td>
+      <td id="T_0c6aa_row7_col20" class="data row7 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_4171f_row8_col0" class="data row8 col0" >1971-01-29</td>
-      <td id="T_4171f_row8_col1" class="data row8 col1" >1971-04-30</td>
-      <td id="T_4171f_row8_col2" class="data row8 col2" >1971-01-27</td>
-      <td id="T_4171f_row8_col3" class="data row8 col3" >1971-05-03</td>
-      <td id="T_4171f_row8_col4" class="data row8 col4" >1,200.00</td>
-      <td id="T_4171f_row8_col5" class="data row8 col5" >100.00</td>
-      <td id="T_4171f_row8_col6" class="data row8 col6" >0.00</td>
-      <td id="T_4171f_row8_col7" class="data row8 col7" >True</td>
-      <td id="T_4171f_row8_col8" class="data row8 col8" >100.00</td>
-      <td id="T_4171f_row8_col9" class="data row8 col9" >USD</td>
-      <td id="T_4171f_row8_col10" class="data row8 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row8_col11" class="data row8 col11" >1.0000%</td>
-      <td id="T_4171f_row8_col12" class="data row8 col12" >1.00</td>
-      <td id="T_4171f_row8_col13" class="data row8 col13" >0.0000%</td>
-      <td id="T_4171f_row8_col14" class="data row8 col14" >LinAct360</td>
-      <td id="T_4171f_row8_col15" class="data row8 col15" >1971-04-30</td>
-      <td id="T_4171f_row8_col16" class="data row8 col16" >CLP</td>
-      <td id="T_4171f_row8_col17" class="data row8 col17" >USDOBS</td>
-      <td id="T_4171f_row8_col18" class="data row8 col18" >1.00</td>
-      <td id="T_4171f_row8_col19" class="data row8 col19" >100.00</td>
-      <td id="T_4171f_row8_col20" class="data row8 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_0c6aa_row8_col0" class="data row8 col0" >1971-01-29</td>
+      <td id="T_0c6aa_row8_col1" class="data row8 col1" >1971-04-30</td>
+      <td id="T_0c6aa_row8_col2" class="data row8 col2" >1971-01-27</td>
+      <td id="T_0c6aa_row8_col3" class="data row8 col3" >1971-05-03</td>
+      <td id="T_0c6aa_row8_col4" class="data row8 col4" >1,200.00</td>
+      <td id="T_0c6aa_row8_col5" class="data row8 col5" >100.00</td>
+      <td id="T_0c6aa_row8_col6" class="data row8 col6" >0.00</td>
+      <td id="T_0c6aa_row8_col7" class="data row8 col7" >True</td>
+      <td id="T_0c6aa_row8_col8" class="data row8 col8" >100.00</td>
+      <td id="T_0c6aa_row8_col9" class="data row8 col9" >USD</td>
+      <td id="T_0c6aa_row8_col10" class="data row8 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row8_col11" class="data row8 col11" >1.0000%</td>
+      <td id="T_0c6aa_row8_col12" class="data row8 col12" >1.00</td>
+      <td id="T_0c6aa_row8_col13" class="data row8 col13" >0.0000%</td>
+      <td id="T_0c6aa_row8_col14" class="data row8 col14" >LinAct360</td>
+      <td id="T_0c6aa_row8_col15" class="data row8 col15" >1971-04-30</td>
+      <td id="T_0c6aa_row8_col16" class="data row8 col16" >CLP</td>
+      <td id="T_0c6aa_row8_col17" class="data row8 col17" >USDOBS</td>
+      <td id="T_0c6aa_row8_col18" class="data row8 col18" >1.00</td>
+      <td id="T_0c6aa_row8_col19" class="data row8 col19" >100.00</td>
+      <td id="T_0c6aa_row8_col20" class="data row8 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_4171f_row9_col0" class="data row9 col0" >1971-04-30</td>
-      <td id="T_4171f_row9_col1" class="data row9 col1" >1971-07-30</td>
-      <td id="T_4171f_row9_col2" class="data row9 col2" >1971-04-28</td>
-      <td id="T_4171f_row9_col3" class="data row9 col3" >1971-08-02</td>
-      <td id="T_4171f_row9_col4" class="data row9 col4" >1,100.00</td>
-      <td id="T_4171f_row9_col5" class="data row9 col5" >100.00</td>
-      <td id="T_4171f_row9_col6" class="data row9 col6" >0.00</td>
-      <td id="T_4171f_row9_col7" class="data row9 col7" >True</td>
-      <td id="T_4171f_row9_col8" class="data row9 col8" >100.00</td>
-      <td id="T_4171f_row9_col9" class="data row9 col9" >USD</td>
-      <td id="T_4171f_row9_col10" class="data row9 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row9_col11" class="data row9 col11" >1.0000%</td>
-      <td id="T_4171f_row9_col12" class="data row9 col12" >1.00</td>
-      <td id="T_4171f_row9_col13" class="data row9 col13" >0.0000%</td>
-      <td id="T_4171f_row9_col14" class="data row9 col14" >LinAct360</td>
-      <td id="T_4171f_row9_col15" class="data row9 col15" >1971-07-30</td>
-      <td id="T_4171f_row9_col16" class="data row9 col16" >CLP</td>
-      <td id="T_4171f_row9_col17" class="data row9 col17" >USDOBS</td>
-      <td id="T_4171f_row9_col18" class="data row9 col18" >1.00</td>
-      <td id="T_4171f_row9_col19" class="data row9 col19" >100.00</td>
-      <td id="T_4171f_row9_col20" class="data row9 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_0c6aa_row9_col0" class="data row9 col0" >1971-04-30</td>
+      <td id="T_0c6aa_row9_col1" class="data row9 col1" >1971-07-30</td>
+      <td id="T_0c6aa_row9_col2" class="data row9 col2" >1971-04-28</td>
+      <td id="T_0c6aa_row9_col3" class="data row9 col3" >1971-08-02</td>
+      <td id="T_0c6aa_row9_col4" class="data row9 col4" >1,100.00</td>
+      <td id="T_0c6aa_row9_col5" class="data row9 col5" >100.00</td>
+      <td id="T_0c6aa_row9_col6" class="data row9 col6" >0.00</td>
+      <td id="T_0c6aa_row9_col7" class="data row9 col7" >True</td>
+      <td id="T_0c6aa_row9_col8" class="data row9 col8" >100.00</td>
+      <td id="T_0c6aa_row9_col9" class="data row9 col9" >USD</td>
+      <td id="T_0c6aa_row9_col10" class="data row9 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row9_col11" class="data row9 col11" >1.0000%</td>
+      <td id="T_0c6aa_row9_col12" class="data row9 col12" >1.00</td>
+      <td id="T_0c6aa_row9_col13" class="data row9 col13" >0.0000%</td>
+      <td id="T_0c6aa_row9_col14" class="data row9 col14" >LinAct360</td>
+      <td id="T_0c6aa_row9_col15" class="data row9 col15" >1971-07-30</td>
+      <td id="T_0c6aa_row9_col16" class="data row9 col16" >CLP</td>
+      <td id="T_0c6aa_row9_col17" class="data row9 col17" >USDOBS</td>
+      <td id="T_0c6aa_row9_col18" class="data row9 col18" >1.00</td>
+      <td id="T_0c6aa_row9_col19" class="data row9 col19" >100.00</td>
+      <td id="T_0c6aa_row9_col20" class="data row9 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_4171f_row10_col0" class="data row10 col0" >1971-07-30</td>
-      <td id="T_4171f_row10_col1" class="data row10 col1" >1971-10-29</td>
-      <td id="T_4171f_row10_col2" class="data row10 col2" >1971-07-28</td>
-      <td id="T_4171f_row10_col3" class="data row10 col3" >1971-11-01</td>
-      <td id="T_4171f_row10_col4" class="data row10 col4" >1,000.00</td>
-      <td id="T_4171f_row10_col5" class="data row10 col5" >100.00</td>
-      <td id="T_4171f_row10_col6" class="data row10 col6" >0.00</td>
-      <td id="T_4171f_row10_col7" class="data row10 col7" >True</td>
-      <td id="T_4171f_row10_col8" class="data row10 col8" >100.00</td>
-      <td id="T_4171f_row10_col9" class="data row10 col9" >USD</td>
-      <td id="T_4171f_row10_col10" class="data row10 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row10_col11" class="data row10 col11" >1.0000%</td>
-      <td id="T_4171f_row10_col12" class="data row10 col12" >1.00</td>
-      <td id="T_4171f_row10_col13" class="data row10 col13" >0.0000%</td>
-      <td id="T_4171f_row10_col14" class="data row10 col14" >LinAct360</td>
-      <td id="T_4171f_row10_col15" class="data row10 col15" >1971-10-29</td>
-      <td id="T_4171f_row10_col16" class="data row10 col16" >CLP</td>
-      <td id="T_4171f_row10_col17" class="data row10 col17" >USDOBS</td>
-      <td id="T_4171f_row10_col18" class="data row10 col18" >1.00</td>
-      <td id="T_4171f_row10_col19" class="data row10 col19" >100.00</td>
-      <td id="T_4171f_row10_col20" class="data row10 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_0c6aa_row10_col0" class="data row10 col0" >1971-07-30</td>
+      <td id="T_0c6aa_row10_col1" class="data row10 col1" >1971-10-29</td>
+      <td id="T_0c6aa_row10_col2" class="data row10 col2" >1971-07-28</td>
+      <td id="T_0c6aa_row10_col3" class="data row10 col3" >1971-11-01</td>
+      <td id="T_0c6aa_row10_col4" class="data row10 col4" >1,000.00</td>
+      <td id="T_0c6aa_row10_col5" class="data row10 col5" >100.00</td>
+      <td id="T_0c6aa_row10_col6" class="data row10 col6" >0.00</td>
+      <td id="T_0c6aa_row10_col7" class="data row10 col7" >True</td>
+      <td id="T_0c6aa_row10_col8" class="data row10 col8" >100.00</td>
+      <td id="T_0c6aa_row10_col9" class="data row10 col9" >USD</td>
+      <td id="T_0c6aa_row10_col10" class="data row10 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row10_col11" class="data row10 col11" >1.0000%</td>
+      <td id="T_0c6aa_row10_col12" class="data row10 col12" >1.00</td>
+      <td id="T_0c6aa_row10_col13" class="data row10 col13" >0.0000%</td>
+      <td id="T_0c6aa_row10_col14" class="data row10 col14" >LinAct360</td>
+      <td id="T_0c6aa_row10_col15" class="data row10 col15" >1971-10-29</td>
+      <td id="T_0c6aa_row10_col16" class="data row10 col16" >CLP</td>
+      <td id="T_0c6aa_row10_col17" class="data row10 col17" >USDOBS</td>
+      <td id="T_0c6aa_row10_col18" class="data row10 col18" >1.00</td>
+      <td id="T_0c6aa_row10_col19" class="data row10 col19" >100.00</td>
+      <td id="T_0c6aa_row10_col20" class="data row10 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_4171f_row11_col0" class="data row11 col0" >1971-10-29</td>
-      <td id="T_4171f_row11_col1" class="data row11 col1" >1972-01-31</td>
-      <td id="T_4171f_row11_col2" class="data row11 col2" >1971-10-27</td>
-      <td id="T_4171f_row11_col3" class="data row11 col3" >1972-02-01</td>
-      <td id="T_4171f_row11_col4" class="data row11 col4" >900.00</td>
-      <td id="T_4171f_row11_col5" class="data row11 col5" >100.00</td>
-      <td id="T_4171f_row11_col6" class="data row11 col6" >0.00</td>
-      <td id="T_4171f_row11_col7" class="data row11 col7" >True</td>
-      <td id="T_4171f_row11_col8" class="data row11 col8" >100.00</td>
-      <td id="T_4171f_row11_col9" class="data row11 col9" >USD</td>
-      <td id="T_4171f_row11_col10" class="data row11 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row11_col11" class="data row11 col11" >1.0000%</td>
-      <td id="T_4171f_row11_col12" class="data row11 col12" >1.00</td>
-      <td id="T_4171f_row11_col13" class="data row11 col13" >0.0000%</td>
-      <td id="T_4171f_row11_col14" class="data row11 col14" >LinAct360</td>
-      <td id="T_4171f_row11_col15" class="data row11 col15" >1972-01-31</td>
-      <td id="T_4171f_row11_col16" class="data row11 col16" >CLP</td>
-      <td id="T_4171f_row11_col17" class="data row11 col17" >USDOBS</td>
-      <td id="T_4171f_row11_col18" class="data row11 col18" >1.00</td>
-      <td id="T_4171f_row11_col19" class="data row11 col19" >100.00</td>
-      <td id="T_4171f_row11_col20" class="data row11 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_0c6aa_row11_col0" class="data row11 col0" >1971-10-29</td>
+      <td id="T_0c6aa_row11_col1" class="data row11 col1" >1972-01-31</td>
+      <td id="T_0c6aa_row11_col2" class="data row11 col2" >1971-10-27</td>
+      <td id="T_0c6aa_row11_col3" class="data row11 col3" >1972-02-01</td>
+      <td id="T_0c6aa_row11_col4" class="data row11 col4" >900.00</td>
+      <td id="T_0c6aa_row11_col5" class="data row11 col5" >100.00</td>
+      <td id="T_0c6aa_row11_col6" class="data row11 col6" >0.00</td>
+      <td id="T_0c6aa_row11_col7" class="data row11 col7" >True</td>
+      <td id="T_0c6aa_row11_col8" class="data row11 col8" >100.00</td>
+      <td id="T_0c6aa_row11_col9" class="data row11 col9" >USD</td>
+      <td id="T_0c6aa_row11_col10" class="data row11 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row11_col11" class="data row11 col11" >1.0000%</td>
+      <td id="T_0c6aa_row11_col12" class="data row11 col12" >1.00</td>
+      <td id="T_0c6aa_row11_col13" class="data row11 col13" >0.0000%</td>
+      <td id="T_0c6aa_row11_col14" class="data row11 col14" >LinAct360</td>
+      <td id="T_0c6aa_row11_col15" class="data row11 col15" >1972-01-31</td>
+      <td id="T_0c6aa_row11_col16" class="data row11 col16" >CLP</td>
+      <td id="T_0c6aa_row11_col17" class="data row11 col17" >USDOBS</td>
+      <td id="T_0c6aa_row11_col18" class="data row11 col18" >1.00</td>
+      <td id="T_0c6aa_row11_col19" class="data row11 col19" >100.00</td>
+      <td id="T_0c6aa_row11_col20" class="data row11 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row12" class="row_heading level0 row12" >12</th>
-      <td id="T_4171f_row12_col0" class="data row12 col0" >1972-01-31</td>
-      <td id="T_4171f_row12_col1" class="data row12 col1" >1972-04-28</td>
-      <td id="T_4171f_row12_col2" class="data row12 col2" >1972-01-27</td>
-      <td id="T_4171f_row12_col3" class="data row12 col3" >1972-05-01</td>
-      <td id="T_4171f_row12_col4" class="data row12 col4" >800.00</td>
-      <td id="T_4171f_row12_col5" class="data row12 col5" >100.00</td>
-      <td id="T_4171f_row12_col6" class="data row12 col6" >0.00</td>
-      <td id="T_4171f_row12_col7" class="data row12 col7" >True</td>
-      <td id="T_4171f_row12_col8" class="data row12 col8" >100.00</td>
-      <td id="T_4171f_row12_col9" class="data row12 col9" >USD</td>
-      <td id="T_4171f_row12_col10" class="data row12 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row12_col11" class="data row12 col11" >1.0000%</td>
-      <td id="T_4171f_row12_col12" class="data row12 col12" >1.00</td>
-      <td id="T_4171f_row12_col13" class="data row12 col13" >0.0000%</td>
-      <td id="T_4171f_row12_col14" class="data row12 col14" >LinAct360</td>
-      <td id="T_4171f_row12_col15" class="data row12 col15" >1972-04-28</td>
-      <td id="T_4171f_row12_col16" class="data row12 col16" >CLP</td>
-      <td id="T_4171f_row12_col17" class="data row12 col17" >USDOBS</td>
-      <td id="T_4171f_row12_col18" class="data row12 col18" >1.00</td>
-      <td id="T_4171f_row12_col19" class="data row12 col19" >100.00</td>
-      <td id="T_4171f_row12_col20" class="data row12 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_0c6aa_row12_col0" class="data row12 col0" >1972-01-31</td>
+      <td id="T_0c6aa_row12_col1" class="data row12 col1" >1972-04-28</td>
+      <td id="T_0c6aa_row12_col2" class="data row12 col2" >1972-01-27</td>
+      <td id="T_0c6aa_row12_col3" class="data row12 col3" >1972-05-01</td>
+      <td id="T_0c6aa_row12_col4" class="data row12 col4" >800.00</td>
+      <td id="T_0c6aa_row12_col5" class="data row12 col5" >100.00</td>
+      <td id="T_0c6aa_row12_col6" class="data row12 col6" >0.00</td>
+      <td id="T_0c6aa_row12_col7" class="data row12 col7" >True</td>
+      <td id="T_0c6aa_row12_col8" class="data row12 col8" >100.00</td>
+      <td id="T_0c6aa_row12_col9" class="data row12 col9" >USD</td>
+      <td id="T_0c6aa_row12_col10" class="data row12 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row12_col11" class="data row12 col11" >1.0000%</td>
+      <td id="T_0c6aa_row12_col12" class="data row12 col12" >1.00</td>
+      <td id="T_0c6aa_row12_col13" class="data row12 col13" >0.0000%</td>
+      <td id="T_0c6aa_row12_col14" class="data row12 col14" >LinAct360</td>
+      <td id="T_0c6aa_row12_col15" class="data row12 col15" >1972-04-28</td>
+      <td id="T_0c6aa_row12_col16" class="data row12 col16" >CLP</td>
+      <td id="T_0c6aa_row12_col17" class="data row12 col17" >USDOBS</td>
+      <td id="T_0c6aa_row12_col18" class="data row12 col18" >1.00</td>
+      <td id="T_0c6aa_row12_col19" class="data row12 col19" >100.00</td>
+      <td id="T_0c6aa_row12_col20" class="data row12 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row13" class="row_heading level0 row13" >13</th>
-      <td id="T_4171f_row13_col0" class="data row13 col0" >1972-04-28</td>
-      <td id="T_4171f_row13_col1" class="data row13 col1" >1972-07-31</td>
-      <td id="T_4171f_row13_col2" class="data row13 col2" >1972-04-26</td>
-      <td id="T_4171f_row13_col3" class="data row13 col3" >1972-08-01</td>
-      <td id="T_4171f_row13_col4" class="data row13 col4" >700.00</td>
-      <td id="T_4171f_row13_col5" class="data row13 col5" >100.00</td>
-      <td id="T_4171f_row13_col6" class="data row13 col6" >0.00</td>
-      <td id="T_4171f_row13_col7" class="data row13 col7" >True</td>
-      <td id="T_4171f_row13_col8" class="data row13 col8" >100.00</td>
-      <td id="T_4171f_row13_col9" class="data row13 col9" >USD</td>
-      <td id="T_4171f_row13_col10" class="data row13 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row13_col11" class="data row13 col11" >1.0000%</td>
-      <td id="T_4171f_row13_col12" class="data row13 col12" >1.00</td>
-      <td id="T_4171f_row13_col13" class="data row13 col13" >0.0000%</td>
-      <td id="T_4171f_row13_col14" class="data row13 col14" >LinAct360</td>
-      <td id="T_4171f_row13_col15" class="data row13 col15" >1972-07-31</td>
-      <td id="T_4171f_row13_col16" class="data row13 col16" >CLP</td>
-      <td id="T_4171f_row13_col17" class="data row13 col17" >USDOBS</td>
-      <td id="T_4171f_row13_col18" class="data row13 col18" >1.00</td>
-      <td id="T_4171f_row13_col19" class="data row13 col19" >100.00</td>
-      <td id="T_4171f_row13_col20" class="data row13 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_0c6aa_row13_col0" class="data row13 col0" >1972-04-28</td>
+      <td id="T_0c6aa_row13_col1" class="data row13 col1" >1972-07-31</td>
+      <td id="T_0c6aa_row13_col2" class="data row13 col2" >1972-04-26</td>
+      <td id="T_0c6aa_row13_col3" class="data row13 col3" >1972-08-01</td>
+      <td id="T_0c6aa_row13_col4" class="data row13 col4" >700.00</td>
+      <td id="T_0c6aa_row13_col5" class="data row13 col5" >100.00</td>
+      <td id="T_0c6aa_row13_col6" class="data row13 col6" >0.00</td>
+      <td id="T_0c6aa_row13_col7" class="data row13 col7" >True</td>
+      <td id="T_0c6aa_row13_col8" class="data row13 col8" >100.00</td>
+      <td id="T_0c6aa_row13_col9" class="data row13 col9" >USD</td>
+      <td id="T_0c6aa_row13_col10" class="data row13 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row13_col11" class="data row13 col11" >1.0000%</td>
+      <td id="T_0c6aa_row13_col12" class="data row13 col12" >1.00</td>
+      <td id="T_0c6aa_row13_col13" class="data row13 col13" >0.0000%</td>
+      <td id="T_0c6aa_row13_col14" class="data row13 col14" >LinAct360</td>
+      <td id="T_0c6aa_row13_col15" class="data row13 col15" >1972-07-31</td>
+      <td id="T_0c6aa_row13_col16" class="data row13 col16" >CLP</td>
+      <td id="T_0c6aa_row13_col17" class="data row13 col17" >USDOBS</td>
+      <td id="T_0c6aa_row13_col18" class="data row13 col18" >1.00</td>
+      <td id="T_0c6aa_row13_col19" class="data row13 col19" >100.00</td>
+      <td id="T_0c6aa_row13_col20" class="data row13 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row14" class="row_heading level0 row14" >14</th>
-      <td id="T_4171f_row14_col0" class="data row14 col0" >1972-07-31</td>
-      <td id="T_4171f_row14_col1" class="data row14 col1" >1972-10-31</td>
-      <td id="T_4171f_row14_col2" class="data row14 col2" >1972-07-27</td>
-      <td id="T_4171f_row14_col3" class="data row14 col3" >1972-11-01</td>
-      <td id="T_4171f_row14_col4" class="data row14 col4" >600.00</td>
-      <td id="T_4171f_row14_col5" class="data row14 col5" >100.00</td>
-      <td id="T_4171f_row14_col6" class="data row14 col6" >0.00</td>
-      <td id="T_4171f_row14_col7" class="data row14 col7" >True</td>
-      <td id="T_4171f_row14_col8" class="data row14 col8" >100.00</td>
-      <td id="T_4171f_row14_col9" class="data row14 col9" >USD</td>
-      <td id="T_4171f_row14_col10" class="data row14 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row14_col11" class="data row14 col11" >1.0000%</td>
-      <td id="T_4171f_row14_col12" class="data row14 col12" >1.00</td>
-      <td id="T_4171f_row14_col13" class="data row14 col13" >0.0000%</td>
-      <td id="T_4171f_row14_col14" class="data row14 col14" >LinAct360</td>
-      <td id="T_4171f_row14_col15" class="data row14 col15" >1972-10-31</td>
-      <td id="T_4171f_row14_col16" class="data row14 col16" >CLP</td>
-      <td id="T_4171f_row14_col17" class="data row14 col17" >USDOBS</td>
-      <td id="T_4171f_row14_col18" class="data row14 col18" >1.00</td>
-      <td id="T_4171f_row14_col19" class="data row14 col19" >100.00</td>
-      <td id="T_4171f_row14_col20" class="data row14 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_0c6aa_row14_col0" class="data row14 col0" >1972-07-31</td>
+      <td id="T_0c6aa_row14_col1" class="data row14 col1" >1972-10-31</td>
+      <td id="T_0c6aa_row14_col2" class="data row14 col2" >1972-07-27</td>
+      <td id="T_0c6aa_row14_col3" class="data row14 col3" >1972-11-01</td>
+      <td id="T_0c6aa_row14_col4" class="data row14 col4" >600.00</td>
+      <td id="T_0c6aa_row14_col5" class="data row14 col5" >100.00</td>
+      <td id="T_0c6aa_row14_col6" class="data row14 col6" >0.00</td>
+      <td id="T_0c6aa_row14_col7" class="data row14 col7" >True</td>
+      <td id="T_0c6aa_row14_col8" class="data row14 col8" >100.00</td>
+      <td id="T_0c6aa_row14_col9" class="data row14 col9" >USD</td>
+      <td id="T_0c6aa_row14_col10" class="data row14 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row14_col11" class="data row14 col11" >1.0000%</td>
+      <td id="T_0c6aa_row14_col12" class="data row14 col12" >1.00</td>
+      <td id="T_0c6aa_row14_col13" class="data row14 col13" >0.0000%</td>
+      <td id="T_0c6aa_row14_col14" class="data row14 col14" >LinAct360</td>
+      <td id="T_0c6aa_row14_col15" class="data row14 col15" >1972-10-31</td>
+      <td id="T_0c6aa_row14_col16" class="data row14 col16" >CLP</td>
+      <td id="T_0c6aa_row14_col17" class="data row14 col17" >USDOBS</td>
+      <td id="T_0c6aa_row14_col18" class="data row14 col18" >1.00</td>
+      <td id="T_0c6aa_row14_col19" class="data row14 col19" >100.00</td>
+      <td id="T_0c6aa_row14_col20" class="data row14 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row15" class="row_heading level0 row15" >15</th>
-      <td id="T_4171f_row15_col0" class="data row15 col0" >1972-10-31</td>
-      <td id="T_4171f_row15_col1" class="data row15 col1" >1973-01-31</td>
-      <td id="T_4171f_row15_col2" class="data row15 col2" >1972-10-27</td>
-      <td id="T_4171f_row15_col3" class="data row15 col3" >1973-02-01</td>
-      <td id="T_4171f_row15_col4" class="data row15 col4" >500.00</td>
-      <td id="T_4171f_row15_col5" class="data row15 col5" >100.00</td>
-      <td id="T_4171f_row15_col6" class="data row15 col6" >0.00</td>
-      <td id="T_4171f_row15_col7" class="data row15 col7" >True</td>
-      <td id="T_4171f_row15_col8" class="data row15 col8" >100.00</td>
-      <td id="T_4171f_row15_col9" class="data row15 col9" >USD</td>
-      <td id="T_4171f_row15_col10" class="data row15 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row15_col11" class="data row15 col11" >1.0000%</td>
-      <td id="T_4171f_row15_col12" class="data row15 col12" >1.00</td>
-      <td id="T_4171f_row15_col13" class="data row15 col13" >0.0000%</td>
-      <td id="T_4171f_row15_col14" class="data row15 col14" >LinAct360</td>
-      <td id="T_4171f_row15_col15" class="data row15 col15" >1973-01-31</td>
-      <td id="T_4171f_row15_col16" class="data row15 col16" >CLP</td>
-      <td id="T_4171f_row15_col17" class="data row15 col17" >USDOBS</td>
-      <td id="T_4171f_row15_col18" class="data row15 col18" >1.00</td>
-      <td id="T_4171f_row15_col19" class="data row15 col19" >100.00</td>
-      <td id="T_4171f_row15_col20" class="data row15 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_0c6aa_row15_col0" class="data row15 col0" >1972-10-31</td>
+      <td id="T_0c6aa_row15_col1" class="data row15 col1" >1973-01-31</td>
+      <td id="T_0c6aa_row15_col2" class="data row15 col2" >1972-10-27</td>
+      <td id="T_0c6aa_row15_col3" class="data row15 col3" >1973-02-01</td>
+      <td id="T_0c6aa_row15_col4" class="data row15 col4" >500.00</td>
+      <td id="T_0c6aa_row15_col5" class="data row15 col5" >100.00</td>
+      <td id="T_0c6aa_row15_col6" class="data row15 col6" >0.00</td>
+      <td id="T_0c6aa_row15_col7" class="data row15 col7" >True</td>
+      <td id="T_0c6aa_row15_col8" class="data row15 col8" >100.00</td>
+      <td id="T_0c6aa_row15_col9" class="data row15 col9" >USD</td>
+      <td id="T_0c6aa_row15_col10" class="data row15 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row15_col11" class="data row15 col11" >1.0000%</td>
+      <td id="T_0c6aa_row15_col12" class="data row15 col12" >1.00</td>
+      <td id="T_0c6aa_row15_col13" class="data row15 col13" >0.0000%</td>
+      <td id="T_0c6aa_row15_col14" class="data row15 col14" >LinAct360</td>
+      <td id="T_0c6aa_row15_col15" class="data row15 col15" >1973-01-31</td>
+      <td id="T_0c6aa_row15_col16" class="data row15 col16" >CLP</td>
+      <td id="T_0c6aa_row15_col17" class="data row15 col17" >USDOBS</td>
+      <td id="T_0c6aa_row15_col18" class="data row15 col18" >1.00</td>
+      <td id="T_0c6aa_row15_col19" class="data row15 col19" >100.00</td>
+      <td id="T_0c6aa_row15_col20" class="data row15 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row16" class="row_heading level0 row16" >16</th>
-      <td id="T_4171f_row16_col0" class="data row16 col0" >1973-01-31</td>
-      <td id="T_4171f_row16_col1" class="data row16 col1" >1973-04-30</td>
-      <td id="T_4171f_row16_col2" class="data row16 col2" >1973-01-29</td>
-      <td id="T_4171f_row16_col3" class="data row16 col3" >1973-05-01</td>
-      <td id="T_4171f_row16_col4" class="data row16 col4" >400.00</td>
-      <td id="T_4171f_row16_col5" class="data row16 col5" >100.00</td>
-      <td id="T_4171f_row16_col6" class="data row16 col6" >0.00</td>
-      <td id="T_4171f_row16_col7" class="data row16 col7" >True</td>
-      <td id="T_4171f_row16_col8" class="data row16 col8" >100.00</td>
-      <td id="T_4171f_row16_col9" class="data row16 col9" >USD</td>
-      <td id="T_4171f_row16_col10" class="data row16 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row16_col11" class="data row16 col11" >1.0000%</td>
-      <td id="T_4171f_row16_col12" class="data row16 col12" >1.00</td>
-      <td id="T_4171f_row16_col13" class="data row16 col13" >0.0000%</td>
-      <td id="T_4171f_row16_col14" class="data row16 col14" >LinAct360</td>
-      <td id="T_4171f_row16_col15" class="data row16 col15" >1973-04-30</td>
-      <td id="T_4171f_row16_col16" class="data row16 col16" >CLP</td>
-      <td id="T_4171f_row16_col17" class="data row16 col17" >USDOBS</td>
-      <td id="T_4171f_row16_col18" class="data row16 col18" >1.00</td>
-      <td id="T_4171f_row16_col19" class="data row16 col19" >100.00</td>
-      <td id="T_4171f_row16_col20" class="data row16 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_0c6aa_row16_col0" class="data row16 col0" >1973-01-31</td>
+      <td id="T_0c6aa_row16_col1" class="data row16 col1" >1973-04-30</td>
+      <td id="T_0c6aa_row16_col2" class="data row16 col2" >1973-01-29</td>
+      <td id="T_0c6aa_row16_col3" class="data row16 col3" >1973-05-01</td>
+      <td id="T_0c6aa_row16_col4" class="data row16 col4" >400.00</td>
+      <td id="T_0c6aa_row16_col5" class="data row16 col5" >100.00</td>
+      <td id="T_0c6aa_row16_col6" class="data row16 col6" >0.00</td>
+      <td id="T_0c6aa_row16_col7" class="data row16 col7" >True</td>
+      <td id="T_0c6aa_row16_col8" class="data row16 col8" >100.00</td>
+      <td id="T_0c6aa_row16_col9" class="data row16 col9" >USD</td>
+      <td id="T_0c6aa_row16_col10" class="data row16 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row16_col11" class="data row16 col11" >1.0000%</td>
+      <td id="T_0c6aa_row16_col12" class="data row16 col12" >1.00</td>
+      <td id="T_0c6aa_row16_col13" class="data row16 col13" >0.0000%</td>
+      <td id="T_0c6aa_row16_col14" class="data row16 col14" >LinAct360</td>
+      <td id="T_0c6aa_row16_col15" class="data row16 col15" >1973-04-30</td>
+      <td id="T_0c6aa_row16_col16" class="data row16 col16" >CLP</td>
+      <td id="T_0c6aa_row16_col17" class="data row16 col17" >USDOBS</td>
+      <td id="T_0c6aa_row16_col18" class="data row16 col18" >1.00</td>
+      <td id="T_0c6aa_row16_col19" class="data row16 col19" >100.00</td>
+      <td id="T_0c6aa_row16_col20" class="data row16 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row17" class="row_heading level0 row17" >17</th>
-      <td id="T_4171f_row17_col0" class="data row17 col0" >1973-04-30</td>
-      <td id="T_4171f_row17_col1" class="data row17 col1" >1973-07-31</td>
-      <td id="T_4171f_row17_col2" class="data row17 col2" >1973-04-26</td>
-      <td id="T_4171f_row17_col3" class="data row17 col3" >1973-08-01</td>
-      <td id="T_4171f_row17_col4" class="data row17 col4" >300.00</td>
-      <td id="T_4171f_row17_col5" class="data row17 col5" >100.00</td>
-      <td id="T_4171f_row17_col6" class="data row17 col6" >0.00</td>
-      <td id="T_4171f_row17_col7" class="data row17 col7" >True</td>
-      <td id="T_4171f_row17_col8" class="data row17 col8" >100.00</td>
-      <td id="T_4171f_row17_col9" class="data row17 col9" >USD</td>
-      <td id="T_4171f_row17_col10" class="data row17 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row17_col11" class="data row17 col11" >1.0000%</td>
-      <td id="T_4171f_row17_col12" class="data row17 col12" >1.00</td>
-      <td id="T_4171f_row17_col13" class="data row17 col13" >0.0000%</td>
-      <td id="T_4171f_row17_col14" class="data row17 col14" >LinAct360</td>
-      <td id="T_4171f_row17_col15" class="data row17 col15" >1973-07-31</td>
-      <td id="T_4171f_row17_col16" class="data row17 col16" >CLP</td>
-      <td id="T_4171f_row17_col17" class="data row17 col17" >USDOBS</td>
-      <td id="T_4171f_row17_col18" class="data row17 col18" >1.00</td>
-      <td id="T_4171f_row17_col19" class="data row17 col19" >100.00</td>
-      <td id="T_4171f_row17_col20" class="data row17 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_0c6aa_row17_col0" class="data row17 col0" >1973-04-30</td>
+      <td id="T_0c6aa_row17_col1" class="data row17 col1" >1973-07-31</td>
+      <td id="T_0c6aa_row17_col2" class="data row17 col2" >1973-04-26</td>
+      <td id="T_0c6aa_row17_col3" class="data row17 col3" >1973-08-01</td>
+      <td id="T_0c6aa_row17_col4" class="data row17 col4" >300.00</td>
+      <td id="T_0c6aa_row17_col5" class="data row17 col5" >100.00</td>
+      <td id="T_0c6aa_row17_col6" class="data row17 col6" >0.00</td>
+      <td id="T_0c6aa_row17_col7" class="data row17 col7" >True</td>
+      <td id="T_0c6aa_row17_col8" class="data row17 col8" >100.00</td>
+      <td id="T_0c6aa_row17_col9" class="data row17 col9" >USD</td>
+      <td id="T_0c6aa_row17_col10" class="data row17 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row17_col11" class="data row17 col11" >1.0000%</td>
+      <td id="T_0c6aa_row17_col12" class="data row17 col12" >1.00</td>
+      <td id="T_0c6aa_row17_col13" class="data row17 col13" >0.0000%</td>
+      <td id="T_0c6aa_row17_col14" class="data row17 col14" >LinAct360</td>
+      <td id="T_0c6aa_row17_col15" class="data row17 col15" >1973-07-31</td>
+      <td id="T_0c6aa_row17_col16" class="data row17 col16" >CLP</td>
+      <td id="T_0c6aa_row17_col17" class="data row17 col17" >USDOBS</td>
+      <td id="T_0c6aa_row17_col18" class="data row17 col18" >1.00</td>
+      <td id="T_0c6aa_row17_col19" class="data row17 col19" >100.00</td>
+      <td id="T_0c6aa_row17_col20" class="data row17 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row18" class="row_heading level0 row18" >18</th>
-      <td id="T_4171f_row18_col0" class="data row18 col0" >1973-07-31</td>
-      <td id="T_4171f_row18_col1" class="data row18 col1" >1973-10-31</td>
-      <td id="T_4171f_row18_col2" class="data row18 col2" >1973-07-27</td>
-      <td id="T_4171f_row18_col3" class="data row18 col3" >1973-11-01</td>
-      <td id="T_4171f_row18_col4" class="data row18 col4" >200.00</td>
-      <td id="T_4171f_row18_col5" class="data row18 col5" >100.00</td>
-      <td id="T_4171f_row18_col6" class="data row18 col6" >0.00</td>
-      <td id="T_4171f_row18_col7" class="data row18 col7" >True</td>
-      <td id="T_4171f_row18_col8" class="data row18 col8" >100.00</td>
-      <td id="T_4171f_row18_col9" class="data row18 col9" >USD</td>
-      <td id="T_4171f_row18_col10" class="data row18 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row18_col11" class="data row18 col11" >1.0000%</td>
-      <td id="T_4171f_row18_col12" class="data row18 col12" >1.00</td>
-      <td id="T_4171f_row18_col13" class="data row18 col13" >0.0000%</td>
-      <td id="T_4171f_row18_col14" class="data row18 col14" >LinAct360</td>
-      <td id="T_4171f_row18_col15" class="data row18 col15" >1973-10-31</td>
-      <td id="T_4171f_row18_col16" class="data row18 col16" >CLP</td>
-      <td id="T_4171f_row18_col17" class="data row18 col17" >USDOBS</td>
-      <td id="T_4171f_row18_col18" class="data row18 col18" >1.00</td>
-      <td id="T_4171f_row18_col19" class="data row18 col19" >100.00</td>
-      <td id="T_4171f_row18_col20" class="data row18 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_0c6aa_row18_col0" class="data row18 col0" >1973-07-31</td>
+      <td id="T_0c6aa_row18_col1" class="data row18 col1" >1973-10-31</td>
+      <td id="T_0c6aa_row18_col2" class="data row18 col2" >1973-07-27</td>
+      <td id="T_0c6aa_row18_col3" class="data row18 col3" >1973-11-01</td>
+      <td id="T_0c6aa_row18_col4" class="data row18 col4" >200.00</td>
+      <td id="T_0c6aa_row18_col5" class="data row18 col5" >100.00</td>
+      <td id="T_0c6aa_row18_col6" class="data row18 col6" >0.00</td>
+      <td id="T_0c6aa_row18_col7" class="data row18 col7" >True</td>
+      <td id="T_0c6aa_row18_col8" class="data row18 col8" >100.00</td>
+      <td id="T_0c6aa_row18_col9" class="data row18 col9" >USD</td>
+      <td id="T_0c6aa_row18_col10" class="data row18 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row18_col11" class="data row18 col11" >1.0000%</td>
+      <td id="T_0c6aa_row18_col12" class="data row18 col12" >1.00</td>
+      <td id="T_0c6aa_row18_col13" class="data row18 col13" >0.0000%</td>
+      <td id="T_0c6aa_row18_col14" class="data row18 col14" >LinAct360</td>
+      <td id="T_0c6aa_row18_col15" class="data row18 col15" >1973-10-31</td>
+      <td id="T_0c6aa_row18_col16" class="data row18 col16" >CLP</td>
+      <td id="T_0c6aa_row18_col17" class="data row18 col17" >USDOBS</td>
+      <td id="T_0c6aa_row18_col18" class="data row18 col18" >1.00</td>
+      <td id="T_0c6aa_row18_col19" class="data row18 col19" >100.00</td>
+      <td id="T_0c6aa_row18_col20" class="data row18 col20" >0.00</td>
     </tr>
     <tr>
-      <th id="T_4171f_level0_row19" class="row_heading level0 row19" >19</th>
-      <td id="T_4171f_row19_col0" class="data row19 col0" >1973-10-31</td>
-      <td id="T_4171f_row19_col1" class="data row19 col1" >1974-01-31</td>
-      <td id="T_4171f_row19_col2" class="data row19 col2" >1973-10-29</td>
-      <td id="T_4171f_row19_col3" class="data row19 col3" >1974-02-01</td>
-      <td id="T_4171f_row19_col4" class="data row19 col4" >100.00</td>
-      <td id="T_4171f_row19_col5" class="data row19 col5" >100.00</td>
-      <td id="T_4171f_row19_col6" class="data row19 col6" >0.00</td>
-      <td id="T_4171f_row19_col7" class="data row19 col7" >True</td>
-      <td id="T_4171f_row19_col8" class="data row19 col8" >100.00</td>
-      <td id="T_4171f_row19_col9" class="data row19 col9" >USD</td>
-      <td id="T_4171f_row19_col10" class="data row19 col10" >LIBORUSD3M</td>
-      <td id="T_4171f_row19_col11" class="data row19 col11" >1.0000%</td>
-      <td id="T_4171f_row19_col12" class="data row19 col12" >1.00</td>
-      <td id="T_4171f_row19_col13" class="data row19 col13" >0.0000%</td>
-      <td id="T_4171f_row19_col14" class="data row19 col14" >LinAct360</td>
-      <td id="T_4171f_row19_col15" class="data row19 col15" >1974-01-31</td>
-      <td id="T_4171f_row19_col16" class="data row19 col16" >CLP</td>
-      <td id="T_4171f_row19_col17" class="data row19 col17" >USDOBS</td>
-      <td id="T_4171f_row19_col18" class="data row19 col18" >1.00</td>
-      <td id="T_4171f_row19_col19" class="data row19 col19" >100.00</td>
-      <td id="T_4171f_row19_col20" class="data row19 col20" >0.00</td>
+      <th id="T_0c6aa_level0_row19" class="row_heading level0 row19" >19</th>
+      <td id="T_0c6aa_row19_col0" class="data row19 col0" >1973-10-31</td>
+      <td id="T_0c6aa_row19_col1" class="data row19 col1" >1974-01-31</td>
+      <td id="T_0c6aa_row19_col2" class="data row19 col2" >1973-10-29</td>
+      <td id="T_0c6aa_row19_col3" class="data row19 col3" >1974-02-01</td>
+      <td id="T_0c6aa_row19_col4" class="data row19 col4" >100.00</td>
+      <td id="T_0c6aa_row19_col5" class="data row19 col5" >100.00</td>
+      <td id="T_0c6aa_row19_col6" class="data row19 col6" >0.00</td>
+      <td id="T_0c6aa_row19_col7" class="data row19 col7" >True</td>
+      <td id="T_0c6aa_row19_col8" class="data row19 col8" >100.00</td>
+      <td id="T_0c6aa_row19_col9" class="data row19 col9" >USD</td>
+      <td id="T_0c6aa_row19_col10" class="data row19 col10" >LIBORUSD3M</td>
+      <td id="T_0c6aa_row19_col11" class="data row19 col11" >1.0000%</td>
+      <td id="T_0c6aa_row19_col12" class="data row19 col12" >1.00</td>
+      <td id="T_0c6aa_row19_col13" class="data row19 col13" >0.0000%</td>
+      <td id="T_0c6aa_row19_col14" class="data row19 col14" >LinAct360</td>
+      <td id="T_0c6aa_row19_col15" class="data row19 col15" >1974-01-31</td>
+      <td id="T_0c6aa_row19_col16" class="data row19 col16" >CLP</td>
+      <td id="T_0c6aa_row19_col17" class="data row19 col17" >USDOBS</td>
+      <td id="T_0c6aa_row19_col18" class="data row19 col18" >1.00</td>
+      <td id="T_0c6aa_row19_col19" class="data row19 col19" >100.00</td>
+      <td id="T_0c6aa_row19_col20" class="data row19 col20" >0.00</td>
     </tr>
   </tbody>
 </table>
@@ -3687,156 +3907,156 @@ df7.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_08129">
+<table id="T_cb0d8">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_08129_level0_col0" class="col_heading level0 col0" >fecha_inicial_devengo</th>
-      <th id="T_08129_level0_col1" class="col_heading level0 col1" >fecha_final_devengo</th>
-      <th id="T_08129_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
-      <th id="T_08129_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
-      <th id="T_08129_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
-      <th id="T_08129_level0_col5" class="col_heading level0 col5" >nocional</th>
-      <th id="T_08129_level0_col6" class="col_heading level0 col6" >amortizacion</th>
-      <th id="T_08129_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_08129_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_08129_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
-      <th id="T_08129_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
-      <th id="T_08129_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
-      <th id="T_08129_level0_col12" class="col_heading level0 col12" >valor_tasa_equivalente</th>
-      <th id="T_08129_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
-      <th id="T_08129_level0_col14" class="col_heading level0 col14" >interes</th>
-      <th id="T_08129_level0_col15" class="col_heading level0 col15" >flujo</th>
-      <th id="T_08129_level0_col16" class="col_heading level0 col16" >spread</th>
-      <th id="T_08129_level0_col17" class="col_heading level0 col17" >gearing</th>
+      <th id="T_cb0d8_level0_col0" class="col_heading level0 col0" >fecha_inicial_devengo</th>
+      <th id="T_cb0d8_level0_col1" class="col_heading level0 col1" >fecha_final_devengo</th>
+      <th id="T_cb0d8_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
+      <th id="T_cb0d8_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
+      <th id="T_cb0d8_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
+      <th id="T_cb0d8_level0_col5" class="col_heading level0 col5" >nocional</th>
+      <th id="T_cb0d8_level0_col6" class="col_heading level0 col6" >amortizacion</th>
+      <th id="T_cb0d8_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_cb0d8_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_cb0d8_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
+      <th id="T_cb0d8_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
+      <th id="T_cb0d8_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
+      <th id="T_cb0d8_level0_col12" class="col_heading level0 col12" >valor_tasa_equivalente</th>
+      <th id="T_cb0d8_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
+      <th id="T_cb0d8_level0_col14" class="col_heading level0 col14" >interes</th>
+      <th id="T_cb0d8_level0_col15" class="col_heading level0 col15" >flujo</th>
+      <th id="T_cb0d8_level0_col16" class="col_heading level0 col16" >spread</th>
+      <th id="T_cb0d8_level0_col17" class="col_heading level0 col17" >gearing</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_08129_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_08129_row0_col0" class="data row0 col0" >1968-01-12</td>
-      <td id="T_08129_row0_col1" class="data row0 col1" >1968-07-12</td>
-      <td id="T_08129_row0_col2" class="data row0 col2" >1968-01-12</td>
-      <td id="T_08129_row0_col3" class="data row0 col3" >1968-07-12</td>
-      <td id="T_08129_row0_col4" class="data row0 col4" >1968-07-12</td>
-      <td id="T_08129_row0_col5" class="data row0 col5" >1,000,000.00</td>
-      <td id="T_08129_row0_col6" class="data row0 col6" >0.00</td>
-      <td id="T_08129_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_08129_row0_col8" class="data row0 col8" >USD</td>
-      <td id="T_08129_row0_col9" class="data row0 col9" >INDICE</td>
-      <td id="T_08129_row0_col10" class="data row0 col10" >1.000000</td>
-      <td id="T_08129_row0_col11" class="data row0 col11" >1.100000</td>
-      <td id="T_08129_row0_col12" class="data row0 col12" >19.780220%</td>
-      <td id="T_08129_row0_col13" class="data row0 col13" >LinAct360</td>
-      <td id="T_08129_row0_col14" class="data row0 col14" >105,055.56</td>
-      <td id="T_08129_row0_col15" class="data row0 col15" >105,055.56</td>
-      <td id="T_08129_row0_col16" class="data row0 col16" >1.0000%</td>
-      <td id="T_08129_row0_col17" class="data row0 col17" >1.00</td>
+      <th id="T_cb0d8_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_cb0d8_row0_col0" class="data row0 col0" >1968-01-12</td>
+      <td id="T_cb0d8_row0_col1" class="data row0 col1" >1968-07-12</td>
+      <td id="T_cb0d8_row0_col2" class="data row0 col2" >1968-01-12</td>
+      <td id="T_cb0d8_row0_col3" class="data row0 col3" >1968-07-12</td>
+      <td id="T_cb0d8_row0_col4" class="data row0 col4" >1968-07-12</td>
+      <td id="T_cb0d8_row0_col5" class="data row0 col5" >1,000,000.00</td>
+      <td id="T_cb0d8_row0_col6" class="data row0 col6" >0.00</td>
+      <td id="T_cb0d8_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_cb0d8_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_cb0d8_row0_col9" class="data row0 col9" >INDICE</td>
+      <td id="T_cb0d8_row0_col10" class="data row0 col10" >1.000000</td>
+      <td id="T_cb0d8_row0_col11" class="data row0 col11" >1.100000</td>
+      <td id="T_cb0d8_row0_col12" class="data row0 col12" >19.780220%</td>
+      <td id="T_cb0d8_row0_col13" class="data row0 col13" >LinAct360</td>
+      <td id="T_cb0d8_row0_col14" class="data row0 col14" >105,055.56</td>
+      <td id="T_cb0d8_row0_col15" class="data row0 col15" >105,055.56</td>
+      <td id="T_cb0d8_row0_col16" class="data row0 col16" >1.0000%</td>
+      <td id="T_cb0d8_row0_col17" class="data row0 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_08129_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_08129_row1_col0" class="data row1 col0" >1968-07-12</td>
-      <td id="T_08129_row1_col1" class="data row1 col1" >1969-01-12</td>
-      <td id="T_08129_row1_col2" class="data row1 col2" >1968-07-12</td>
-      <td id="T_08129_row1_col3" class="data row1 col3" >1969-01-10</td>
-      <td id="T_08129_row1_col4" class="data row1 col4" >1969-01-13</td>
-      <td id="T_08129_row1_col5" class="data row1 col5" >1,000,000.00</td>
-      <td id="T_08129_row1_col6" class="data row1 col6" >0.00</td>
-      <td id="T_08129_row1_col7" class="data row1 col7" >True</td>
-      <td id="T_08129_row1_col8" class="data row1 col8" >USD</td>
-      <td id="T_08129_row1_col9" class="data row1 col9" >INDICE</td>
-      <td id="T_08129_row1_col10" class="data row1 col10" >1.000000</td>
-      <td id="T_08129_row1_col11" class="data row1 col11" >1.000000</td>
-      <td id="T_08129_row1_col12" class="data row1 col12" >0.000000%</td>
-      <td id="T_08129_row1_col13" class="data row1 col13" >LinAct360</td>
-      <td id="T_08129_row1_col14" class="data row1 col14" >5,111.11</td>
-      <td id="T_08129_row1_col15" class="data row1 col15" >5,111.11</td>
-      <td id="T_08129_row1_col16" class="data row1 col16" >1.0000%</td>
-      <td id="T_08129_row1_col17" class="data row1 col17" >1.00</td>
+      <th id="T_cb0d8_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_cb0d8_row1_col0" class="data row1 col0" >1968-07-12</td>
+      <td id="T_cb0d8_row1_col1" class="data row1 col1" >1969-01-12</td>
+      <td id="T_cb0d8_row1_col2" class="data row1 col2" >1968-07-12</td>
+      <td id="T_cb0d8_row1_col3" class="data row1 col3" >1969-01-10</td>
+      <td id="T_cb0d8_row1_col4" class="data row1 col4" >1969-01-13</td>
+      <td id="T_cb0d8_row1_col5" class="data row1 col5" >1,000,000.00</td>
+      <td id="T_cb0d8_row1_col6" class="data row1 col6" >0.00</td>
+      <td id="T_cb0d8_row1_col7" class="data row1 col7" >True</td>
+      <td id="T_cb0d8_row1_col8" class="data row1 col8" >USD</td>
+      <td id="T_cb0d8_row1_col9" class="data row1 col9" >INDICE</td>
+      <td id="T_cb0d8_row1_col10" class="data row1 col10" >1.000000</td>
+      <td id="T_cb0d8_row1_col11" class="data row1 col11" >1.000000</td>
+      <td id="T_cb0d8_row1_col12" class="data row1 col12" >0.000000%</td>
+      <td id="T_cb0d8_row1_col13" class="data row1 col13" >LinAct360</td>
+      <td id="T_cb0d8_row1_col14" class="data row1 col14" >5,111.11</td>
+      <td id="T_cb0d8_row1_col15" class="data row1 col15" >5,111.11</td>
+      <td id="T_cb0d8_row1_col16" class="data row1 col16" >1.0000%</td>
+      <td id="T_cb0d8_row1_col17" class="data row1 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_08129_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_08129_row2_col0" class="data row2 col0" >1969-01-12</td>
-      <td id="T_08129_row2_col1" class="data row2 col1" >1969-07-12</td>
-      <td id="T_08129_row2_col2" class="data row2 col2" >1969-01-10</td>
-      <td id="T_08129_row2_col3" class="data row2 col3" >1969-07-11</td>
-      <td id="T_08129_row2_col4" class="data row2 col4" >1969-07-14</td>
-      <td id="T_08129_row2_col5" class="data row2 col5" >1,000,000.00</td>
-      <td id="T_08129_row2_col6" class="data row2 col6" >0.00</td>
-      <td id="T_08129_row2_col7" class="data row2 col7" >True</td>
-      <td id="T_08129_row2_col8" class="data row2 col8" >USD</td>
-      <td id="T_08129_row2_col9" class="data row2 col9" >INDICE</td>
-      <td id="T_08129_row2_col10" class="data row2 col10" >1.000000</td>
-      <td id="T_08129_row2_col11" class="data row2 col11" >1.000000</td>
-      <td id="T_08129_row2_col12" class="data row2 col12" >0.000000%</td>
-      <td id="T_08129_row2_col13" class="data row2 col13" >LinAct360</td>
-      <td id="T_08129_row2_col14" class="data row2 col14" >5,027.78</td>
-      <td id="T_08129_row2_col15" class="data row2 col15" >5,027.78</td>
-      <td id="T_08129_row2_col16" class="data row2 col16" >1.0000%</td>
-      <td id="T_08129_row2_col17" class="data row2 col17" >1.00</td>
+      <th id="T_cb0d8_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_cb0d8_row2_col0" class="data row2 col0" >1969-01-12</td>
+      <td id="T_cb0d8_row2_col1" class="data row2 col1" >1969-07-12</td>
+      <td id="T_cb0d8_row2_col2" class="data row2 col2" >1969-01-10</td>
+      <td id="T_cb0d8_row2_col3" class="data row2 col3" >1969-07-11</td>
+      <td id="T_cb0d8_row2_col4" class="data row2 col4" >1969-07-14</td>
+      <td id="T_cb0d8_row2_col5" class="data row2 col5" >1,000,000.00</td>
+      <td id="T_cb0d8_row2_col6" class="data row2 col6" >0.00</td>
+      <td id="T_cb0d8_row2_col7" class="data row2 col7" >True</td>
+      <td id="T_cb0d8_row2_col8" class="data row2 col8" >USD</td>
+      <td id="T_cb0d8_row2_col9" class="data row2 col9" >INDICE</td>
+      <td id="T_cb0d8_row2_col10" class="data row2 col10" >1.000000</td>
+      <td id="T_cb0d8_row2_col11" class="data row2 col11" >1.000000</td>
+      <td id="T_cb0d8_row2_col12" class="data row2 col12" >0.000000%</td>
+      <td id="T_cb0d8_row2_col13" class="data row2 col13" >LinAct360</td>
+      <td id="T_cb0d8_row2_col14" class="data row2 col14" >5,027.78</td>
+      <td id="T_cb0d8_row2_col15" class="data row2 col15" >5,027.78</td>
+      <td id="T_cb0d8_row2_col16" class="data row2 col16" >1.0000%</td>
+      <td id="T_cb0d8_row2_col17" class="data row2 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_08129_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_08129_row3_col0" class="data row3 col0" >1969-07-12</td>
-      <td id="T_08129_row3_col1" class="data row3 col1" >1970-01-12</td>
-      <td id="T_08129_row3_col2" class="data row3 col2" >1969-07-11</td>
-      <td id="T_08129_row3_col3" class="data row3 col3" >1970-01-12</td>
-      <td id="T_08129_row3_col4" class="data row3 col4" >1970-01-12</td>
-      <td id="T_08129_row3_col5" class="data row3 col5" >1,000,000.00</td>
-      <td id="T_08129_row3_col6" class="data row3 col6" >0.00</td>
-      <td id="T_08129_row3_col7" class="data row3 col7" >True</td>
-      <td id="T_08129_row3_col8" class="data row3 col8" >USD</td>
-      <td id="T_08129_row3_col9" class="data row3 col9" >INDICE</td>
-      <td id="T_08129_row3_col10" class="data row3 col10" >1.000000</td>
-      <td id="T_08129_row3_col11" class="data row3 col11" >1.000000</td>
-      <td id="T_08129_row3_col12" class="data row3 col12" >0.000000%</td>
-      <td id="T_08129_row3_col13" class="data row3 col13" >LinAct360</td>
-      <td id="T_08129_row3_col14" class="data row3 col14" >5,111.11</td>
-      <td id="T_08129_row3_col15" class="data row3 col15" >5,111.11</td>
-      <td id="T_08129_row3_col16" class="data row3 col16" >1.0000%</td>
-      <td id="T_08129_row3_col17" class="data row3 col17" >1.00</td>
+      <th id="T_cb0d8_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_cb0d8_row3_col0" class="data row3 col0" >1969-07-12</td>
+      <td id="T_cb0d8_row3_col1" class="data row3 col1" >1970-01-12</td>
+      <td id="T_cb0d8_row3_col2" class="data row3 col2" >1969-07-11</td>
+      <td id="T_cb0d8_row3_col3" class="data row3 col3" >1970-01-12</td>
+      <td id="T_cb0d8_row3_col4" class="data row3 col4" >1970-01-12</td>
+      <td id="T_cb0d8_row3_col5" class="data row3 col5" >1,000,000.00</td>
+      <td id="T_cb0d8_row3_col6" class="data row3 col6" >0.00</td>
+      <td id="T_cb0d8_row3_col7" class="data row3 col7" >True</td>
+      <td id="T_cb0d8_row3_col8" class="data row3 col8" >USD</td>
+      <td id="T_cb0d8_row3_col9" class="data row3 col9" >INDICE</td>
+      <td id="T_cb0d8_row3_col10" class="data row3 col10" >1.000000</td>
+      <td id="T_cb0d8_row3_col11" class="data row3 col11" >1.000000</td>
+      <td id="T_cb0d8_row3_col12" class="data row3 col12" >0.000000%</td>
+      <td id="T_cb0d8_row3_col13" class="data row3 col13" >LinAct360</td>
+      <td id="T_cb0d8_row3_col14" class="data row3 col14" >5,111.11</td>
+      <td id="T_cb0d8_row3_col15" class="data row3 col15" >5,111.11</td>
+      <td id="T_cb0d8_row3_col16" class="data row3 col16" >1.0000%</td>
+      <td id="T_cb0d8_row3_col17" class="data row3 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_08129_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_08129_row4_col0" class="data row4 col0" >1970-01-12</td>
-      <td id="T_08129_row4_col1" class="data row4 col1" >1970-07-12</td>
-      <td id="T_08129_row4_col2" class="data row4 col2" >1970-01-12</td>
-      <td id="T_08129_row4_col3" class="data row4 col3" >1970-07-10</td>
-      <td id="T_08129_row4_col4" class="data row4 col4" >1970-07-13</td>
-      <td id="T_08129_row4_col5" class="data row4 col5" >1,000,000.00</td>
-      <td id="T_08129_row4_col6" class="data row4 col6" >0.00</td>
-      <td id="T_08129_row4_col7" class="data row4 col7" >True</td>
-      <td id="T_08129_row4_col8" class="data row4 col8" >USD</td>
-      <td id="T_08129_row4_col9" class="data row4 col9" >INDICE</td>
-      <td id="T_08129_row4_col10" class="data row4 col10" >1.000000</td>
-      <td id="T_08129_row4_col11" class="data row4 col11" >1.000000</td>
-      <td id="T_08129_row4_col12" class="data row4 col12" >0.000000%</td>
-      <td id="T_08129_row4_col13" class="data row4 col13" >LinAct360</td>
-      <td id="T_08129_row4_col14" class="data row4 col14" >5,027.78</td>
-      <td id="T_08129_row4_col15" class="data row4 col15" >5,027.78</td>
-      <td id="T_08129_row4_col16" class="data row4 col16" >1.0000%</td>
-      <td id="T_08129_row4_col17" class="data row4 col17" >1.00</td>
+      <th id="T_cb0d8_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_cb0d8_row4_col0" class="data row4 col0" >1970-01-12</td>
+      <td id="T_cb0d8_row4_col1" class="data row4 col1" >1970-07-12</td>
+      <td id="T_cb0d8_row4_col2" class="data row4 col2" >1970-01-12</td>
+      <td id="T_cb0d8_row4_col3" class="data row4 col3" >1970-07-10</td>
+      <td id="T_cb0d8_row4_col4" class="data row4 col4" >1970-07-13</td>
+      <td id="T_cb0d8_row4_col5" class="data row4 col5" >1,000,000.00</td>
+      <td id="T_cb0d8_row4_col6" class="data row4 col6" >0.00</td>
+      <td id="T_cb0d8_row4_col7" class="data row4 col7" >True</td>
+      <td id="T_cb0d8_row4_col8" class="data row4 col8" >USD</td>
+      <td id="T_cb0d8_row4_col9" class="data row4 col9" >INDICE</td>
+      <td id="T_cb0d8_row4_col10" class="data row4 col10" >1.000000</td>
+      <td id="T_cb0d8_row4_col11" class="data row4 col11" >1.000000</td>
+      <td id="T_cb0d8_row4_col12" class="data row4 col12" >0.000000%</td>
+      <td id="T_cb0d8_row4_col13" class="data row4 col13" >LinAct360</td>
+      <td id="T_cb0d8_row4_col14" class="data row4 col14" >5,027.78</td>
+      <td id="T_cb0d8_row4_col15" class="data row4 col15" >5,027.78</td>
+      <td id="T_cb0d8_row4_col16" class="data row4 col16" >1.0000%</td>
+      <td id="T_cb0d8_row4_col17" class="data row4 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_08129_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_08129_row5_col0" class="data row5 col0" >1970-07-12</td>
-      <td id="T_08129_row5_col1" class="data row5 col1" >1971-01-12</td>
-      <td id="T_08129_row5_col2" class="data row5 col2" >1970-07-10</td>
-      <td id="T_08129_row5_col3" class="data row5 col3" >1971-01-12</td>
-      <td id="T_08129_row5_col4" class="data row5 col4" >1971-01-12</td>
-      <td id="T_08129_row5_col5" class="data row5 col5" >1,000,000.00</td>
-      <td id="T_08129_row5_col6" class="data row5 col6" >1,000,000.00</td>
-      <td id="T_08129_row5_col7" class="data row5 col7" >True</td>
-      <td id="T_08129_row5_col8" class="data row5 col8" >USD</td>
-      <td id="T_08129_row5_col9" class="data row5 col9" >INDICE</td>
-      <td id="T_08129_row5_col10" class="data row5 col10" >1.000000</td>
-      <td id="T_08129_row5_col11" class="data row5 col11" >1.000000</td>
-      <td id="T_08129_row5_col12" class="data row5 col12" >0.000000%</td>
-      <td id="T_08129_row5_col13" class="data row5 col13" >LinAct360</td>
-      <td id="T_08129_row5_col14" class="data row5 col14" >5,111.11</td>
-      <td id="T_08129_row5_col15" class="data row5 col15" >1,005,111.11</td>
-      <td id="T_08129_row5_col16" class="data row5 col16" >1.0000%</td>
-      <td id="T_08129_row5_col17" class="data row5 col17" >1.00</td>
+      <th id="T_cb0d8_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_cb0d8_row5_col0" class="data row5 col0" >1970-07-12</td>
+      <td id="T_cb0d8_row5_col1" class="data row5 col1" >1971-01-12</td>
+      <td id="T_cb0d8_row5_col2" class="data row5 col2" >1970-07-10</td>
+      <td id="T_cb0d8_row5_col3" class="data row5 col3" >1971-01-12</td>
+      <td id="T_cb0d8_row5_col4" class="data row5 col4" >1971-01-12</td>
+      <td id="T_cb0d8_row5_col5" class="data row5 col5" >1,000,000.00</td>
+      <td id="T_cb0d8_row5_col6" class="data row5 col6" >1,000,000.00</td>
+      <td id="T_cb0d8_row5_col7" class="data row5 col7" >True</td>
+      <td id="T_cb0d8_row5_col8" class="data row5 col8" >USD</td>
+      <td id="T_cb0d8_row5_col9" class="data row5 col9" >INDICE</td>
+      <td id="T_cb0d8_row5_col10" class="data row5 col10" >1.000000</td>
+      <td id="T_cb0d8_row5_col11" class="data row5 col11" >1.000000</td>
+      <td id="T_cb0d8_row5_col12" class="data row5 col12" >0.000000%</td>
+      <td id="T_cb0d8_row5_col13" class="data row5 col13" >LinAct360</td>
+      <td id="T_cb0d8_row5_col14" class="data row5 col14" >5,111.11</td>
+      <td id="T_cb0d8_row5_col15" class="data row5 col15" >1,005,111.11</td>
+      <td id="T_cb0d8_row5_col16" class="data row5 col16" >1.0000%</td>
+      <td id="T_cb0d8_row5_col17" class="data row5 col17" >1.00</td>
     </tr>
   </tbody>
 </table>
@@ -3897,156 +4117,156 @@ df7.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_a3eb3">
+<table id="T_c87f5">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_a3eb3_level0_col0" class="col_heading level0 col0" >fecha_inicial_devengo</th>
-      <th id="T_a3eb3_level0_col1" class="col_heading level0 col1" >fecha_final_devengo</th>
-      <th id="T_a3eb3_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
-      <th id="T_a3eb3_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
-      <th id="T_a3eb3_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
-      <th id="T_a3eb3_level0_col5" class="col_heading level0 col5" >nocional</th>
-      <th id="T_a3eb3_level0_col6" class="col_heading level0 col6" >amortizacion</th>
-      <th id="T_a3eb3_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_a3eb3_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_a3eb3_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
-      <th id="T_a3eb3_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
-      <th id="T_a3eb3_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
-      <th id="T_a3eb3_level0_col12" class="col_heading level0 col12" >valor_tasa_equivalente</th>
-      <th id="T_a3eb3_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
-      <th id="T_a3eb3_level0_col14" class="col_heading level0 col14" >interes</th>
-      <th id="T_a3eb3_level0_col15" class="col_heading level0 col15" >flujo</th>
-      <th id="T_a3eb3_level0_col16" class="col_heading level0 col16" >spread</th>
-      <th id="T_a3eb3_level0_col17" class="col_heading level0 col17" >gearing</th>
+      <th id="T_c87f5_level0_col0" class="col_heading level0 col0" >fecha_inicial_devengo</th>
+      <th id="T_c87f5_level0_col1" class="col_heading level0 col1" >fecha_final_devengo</th>
+      <th id="T_c87f5_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
+      <th id="T_c87f5_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
+      <th id="T_c87f5_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
+      <th id="T_c87f5_level0_col5" class="col_heading level0 col5" >nocional</th>
+      <th id="T_c87f5_level0_col6" class="col_heading level0 col6" >amortizacion</th>
+      <th id="T_c87f5_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_c87f5_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_c87f5_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
+      <th id="T_c87f5_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
+      <th id="T_c87f5_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
+      <th id="T_c87f5_level0_col12" class="col_heading level0 col12" >valor_tasa_equivalente</th>
+      <th id="T_c87f5_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
+      <th id="T_c87f5_level0_col14" class="col_heading level0 col14" >interes</th>
+      <th id="T_c87f5_level0_col15" class="col_heading level0 col15" >flujo</th>
+      <th id="T_c87f5_level0_col16" class="col_heading level0 col16" >spread</th>
+      <th id="T_c87f5_level0_col17" class="col_heading level0 col17" >gearing</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_a3eb3_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_a3eb3_row0_col0" class="data row0 col0" >1968-01-12</td>
-      <td id="T_a3eb3_row0_col1" class="data row0 col1" >1968-07-12</td>
-      <td id="T_a3eb3_row0_col2" class="data row0 col2" >1968-01-12</td>
-      <td id="T_a3eb3_row0_col3" class="data row0 col3" >1968-07-12</td>
-      <td id="T_a3eb3_row0_col4" class="data row0 col4" >1968-07-12</td>
-      <td id="T_a3eb3_row0_col5" class="data row0 col5" >600.00</td>
-      <td id="T_a3eb3_row0_col6" class="data row0 col6" >100.00</td>
-      <td id="T_a3eb3_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_a3eb3_row0_col8" class="data row0 col8" >USD</td>
-      <td id="T_a3eb3_row0_col9" class="data row0 col9" >INDICE</td>
-      <td id="T_a3eb3_row0_col10" class="data row0 col10" >1.000000</td>
-      <td id="T_a3eb3_row0_col11" class="data row0 col11" >1.000000</td>
-      <td id="T_a3eb3_row0_col12" class="data row0 col12" >0.000000%</td>
-      <td id="T_a3eb3_row0_col13" class="data row0 col13" >LinAct360</td>
-      <td id="T_a3eb3_row0_col14" class="data row0 col14" >3.03</td>
-      <td id="T_a3eb3_row0_col15" class="data row0 col15" >103.03</td>
-      <td id="T_a3eb3_row0_col16" class="data row0 col16" >1.0000%</td>
-      <td id="T_a3eb3_row0_col17" class="data row0 col17" >1.00</td>
+      <th id="T_c87f5_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_c87f5_row0_col0" class="data row0 col0" >1968-01-12</td>
+      <td id="T_c87f5_row0_col1" class="data row0 col1" >1968-07-12</td>
+      <td id="T_c87f5_row0_col2" class="data row0 col2" >1968-01-12</td>
+      <td id="T_c87f5_row0_col3" class="data row0 col3" >1968-07-12</td>
+      <td id="T_c87f5_row0_col4" class="data row0 col4" >1968-07-12</td>
+      <td id="T_c87f5_row0_col5" class="data row0 col5" >600.00</td>
+      <td id="T_c87f5_row0_col6" class="data row0 col6" >100.00</td>
+      <td id="T_c87f5_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_c87f5_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_c87f5_row0_col9" class="data row0 col9" >INDICE</td>
+      <td id="T_c87f5_row0_col10" class="data row0 col10" >1.000000</td>
+      <td id="T_c87f5_row0_col11" class="data row0 col11" >1.000000</td>
+      <td id="T_c87f5_row0_col12" class="data row0 col12" >0.000000%</td>
+      <td id="T_c87f5_row0_col13" class="data row0 col13" >LinAct360</td>
+      <td id="T_c87f5_row0_col14" class="data row0 col14" >3.03</td>
+      <td id="T_c87f5_row0_col15" class="data row0 col15" >103.03</td>
+      <td id="T_c87f5_row0_col16" class="data row0 col16" >1.0000%</td>
+      <td id="T_c87f5_row0_col17" class="data row0 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_a3eb3_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_a3eb3_row1_col0" class="data row1 col0" >1968-07-12</td>
-      <td id="T_a3eb3_row1_col1" class="data row1 col1" >1969-01-12</td>
-      <td id="T_a3eb3_row1_col2" class="data row1 col2" >1968-07-12</td>
-      <td id="T_a3eb3_row1_col3" class="data row1 col3" >1969-01-10</td>
-      <td id="T_a3eb3_row1_col4" class="data row1 col4" >1969-01-13</td>
-      <td id="T_a3eb3_row1_col5" class="data row1 col5" >500.00</td>
-      <td id="T_a3eb3_row1_col6" class="data row1 col6" >100.00</td>
-      <td id="T_a3eb3_row1_col7" class="data row1 col7" >True</td>
-      <td id="T_a3eb3_row1_col8" class="data row1 col8" >USD</td>
-      <td id="T_a3eb3_row1_col9" class="data row1 col9" >INDICE</td>
-      <td id="T_a3eb3_row1_col10" class="data row1 col10" >1.000000</td>
-      <td id="T_a3eb3_row1_col11" class="data row1 col11" >1.000000</td>
-      <td id="T_a3eb3_row1_col12" class="data row1 col12" >0.000000%</td>
-      <td id="T_a3eb3_row1_col13" class="data row1 col13" >LinAct360</td>
-      <td id="T_a3eb3_row1_col14" class="data row1 col14" >2.56</td>
-      <td id="T_a3eb3_row1_col15" class="data row1 col15" >102.56</td>
-      <td id="T_a3eb3_row1_col16" class="data row1 col16" >1.0000%</td>
-      <td id="T_a3eb3_row1_col17" class="data row1 col17" >1.00</td>
+      <th id="T_c87f5_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_c87f5_row1_col0" class="data row1 col0" >1968-07-12</td>
+      <td id="T_c87f5_row1_col1" class="data row1 col1" >1969-01-12</td>
+      <td id="T_c87f5_row1_col2" class="data row1 col2" >1968-07-12</td>
+      <td id="T_c87f5_row1_col3" class="data row1 col3" >1969-01-10</td>
+      <td id="T_c87f5_row1_col4" class="data row1 col4" >1969-01-13</td>
+      <td id="T_c87f5_row1_col5" class="data row1 col5" >500.00</td>
+      <td id="T_c87f5_row1_col6" class="data row1 col6" >100.00</td>
+      <td id="T_c87f5_row1_col7" class="data row1 col7" >True</td>
+      <td id="T_c87f5_row1_col8" class="data row1 col8" >USD</td>
+      <td id="T_c87f5_row1_col9" class="data row1 col9" >INDICE</td>
+      <td id="T_c87f5_row1_col10" class="data row1 col10" >1.000000</td>
+      <td id="T_c87f5_row1_col11" class="data row1 col11" >1.000000</td>
+      <td id="T_c87f5_row1_col12" class="data row1 col12" >0.000000%</td>
+      <td id="T_c87f5_row1_col13" class="data row1 col13" >LinAct360</td>
+      <td id="T_c87f5_row1_col14" class="data row1 col14" >2.56</td>
+      <td id="T_c87f5_row1_col15" class="data row1 col15" >102.56</td>
+      <td id="T_c87f5_row1_col16" class="data row1 col16" >1.0000%</td>
+      <td id="T_c87f5_row1_col17" class="data row1 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_a3eb3_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_a3eb3_row2_col0" class="data row2 col0" >1969-01-12</td>
-      <td id="T_a3eb3_row2_col1" class="data row2 col1" >1969-07-12</td>
-      <td id="T_a3eb3_row2_col2" class="data row2 col2" >1969-01-10</td>
-      <td id="T_a3eb3_row2_col3" class="data row2 col3" >1969-07-11</td>
-      <td id="T_a3eb3_row2_col4" class="data row2 col4" >1969-07-14</td>
-      <td id="T_a3eb3_row2_col5" class="data row2 col5" >400.00</td>
-      <td id="T_a3eb3_row2_col6" class="data row2 col6" >100.00</td>
-      <td id="T_a3eb3_row2_col7" class="data row2 col7" >True</td>
-      <td id="T_a3eb3_row2_col8" class="data row2 col8" >USD</td>
-      <td id="T_a3eb3_row2_col9" class="data row2 col9" >INDICE</td>
-      <td id="T_a3eb3_row2_col10" class="data row2 col10" >1.000000</td>
-      <td id="T_a3eb3_row2_col11" class="data row2 col11" >1.000000</td>
-      <td id="T_a3eb3_row2_col12" class="data row2 col12" >0.000000%</td>
-      <td id="T_a3eb3_row2_col13" class="data row2 col13" >LinAct360</td>
-      <td id="T_a3eb3_row2_col14" class="data row2 col14" >2.01</td>
-      <td id="T_a3eb3_row2_col15" class="data row2 col15" >102.01</td>
-      <td id="T_a3eb3_row2_col16" class="data row2 col16" >1.0000%</td>
-      <td id="T_a3eb3_row2_col17" class="data row2 col17" >1.00</td>
+      <th id="T_c87f5_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_c87f5_row2_col0" class="data row2 col0" >1969-01-12</td>
+      <td id="T_c87f5_row2_col1" class="data row2 col1" >1969-07-12</td>
+      <td id="T_c87f5_row2_col2" class="data row2 col2" >1969-01-10</td>
+      <td id="T_c87f5_row2_col3" class="data row2 col3" >1969-07-11</td>
+      <td id="T_c87f5_row2_col4" class="data row2 col4" >1969-07-14</td>
+      <td id="T_c87f5_row2_col5" class="data row2 col5" >400.00</td>
+      <td id="T_c87f5_row2_col6" class="data row2 col6" >100.00</td>
+      <td id="T_c87f5_row2_col7" class="data row2 col7" >True</td>
+      <td id="T_c87f5_row2_col8" class="data row2 col8" >USD</td>
+      <td id="T_c87f5_row2_col9" class="data row2 col9" >INDICE</td>
+      <td id="T_c87f5_row2_col10" class="data row2 col10" >1.000000</td>
+      <td id="T_c87f5_row2_col11" class="data row2 col11" >1.000000</td>
+      <td id="T_c87f5_row2_col12" class="data row2 col12" >0.000000%</td>
+      <td id="T_c87f5_row2_col13" class="data row2 col13" >LinAct360</td>
+      <td id="T_c87f5_row2_col14" class="data row2 col14" >2.01</td>
+      <td id="T_c87f5_row2_col15" class="data row2 col15" >102.01</td>
+      <td id="T_c87f5_row2_col16" class="data row2 col16" >1.0000%</td>
+      <td id="T_c87f5_row2_col17" class="data row2 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_a3eb3_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_a3eb3_row3_col0" class="data row3 col0" >1969-07-12</td>
-      <td id="T_a3eb3_row3_col1" class="data row3 col1" >1970-01-12</td>
-      <td id="T_a3eb3_row3_col2" class="data row3 col2" >1969-07-11</td>
-      <td id="T_a3eb3_row3_col3" class="data row3 col3" >1970-01-12</td>
-      <td id="T_a3eb3_row3_col4" class="data row3 col4" >1970-01-12</td>
-      <td id="T_a3eb3_row3_col5" class="data row3 col5" >300.00</td>
-      <td id="T_a3eb3_row3_col6" class="data row3 col6" >100.00</td>
-      <td id="T_a3eb3_row3_col7" class="data row3 col7" >True</td>
-      <td id="T_a3eb3_row3_col8" class="data row3 col8" >USD</td>
-      <td id="T_a3eb3_row3_col9" class="data row3 col9" >INDICE</td>
-      <td id="T_a3eb3_row3_col10" class="data row3 col10" >1.000000</td>
-      <td id="T_a3eb3_row3_col11" class="data row3 col11" >1.000000</td>
-      <td id="T_a3eb3_row3_col12" class="data row3 col12" >0.000000%</td>
-      <td id="T_a3eb3_row3_col13" class="data row3 col13" >LinAct360</td>
-      <td id="T_a3eb3_row3_col14" class="data row3 col14" >1.53</td>
-      <td id="T_a3eb3_row3_col15" class="data row3 col15" >101.53</td>
-      <td id="T_a3eb3_row3_col16" class="data row3 col16" >1.0000%</td>
-      <td id="T_a3eb3_row3_col17" class="data row3 col17" >1.00</td>
+      <th id="T_c87f5_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_c87f5_row3_col0" class="data row3 col0" >1969-07-12</td>
+      <td id="T_c87f5_row3_col1" class="data row3 col1" >1970-01-12</td>
+      <td id="T_c87f5_row3_col2" class="data row3 col2" >1969-07-11</td>
+      <td id="T_c87f5_row3_col3" class="data row3 col3" >1970-01-12</td>
+      <td id="T_c87f5_row3_col4" class="data row3 col4" >1970-01-12</td>
+      <td id="T_c87f5_row3_col5" class="data row3 col5" >300.00</td>
+      <td id="T_c87f5_row3_col6" class="data row3 col6" >100.00</td>
+      <td id="T_c87f5_row3_col7" class="data row3 col7" >True</td>
+      <td id="T_c87f5_row3_col8" class="data row3 col8" >USD</td>
+      <td id="T_c87f5_row3_col9" class="data row3 col9" >INDICE</td>
+      <td id="T_c87f5_row3_col10" class="data row3 col10" >1.000000</td>
+      <td id="T_c87f5_row3_col11" class="data row3 col11" >1.000000</td>
+      <td id="T_c87f5_row3_col12" class="data row3 col12" >0.000000%</td>
+      <td id="T_c87f5_row3_col13" class="data row3 col13" >LinAct360</td>
+      <td id="T_c87f5_row3_col14" class="data row3 col14" >1.53</td>
+      <td id="T_c87f5_row3_col15" class="data row3 col15" >101.53</td>
+      <td id="T_c87f5_row3_col16" class="data row3 col16" >1.0000%</td>
+      <td id="T_c87f5_row3_col17" class="data row3 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_a3eb3_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_a3eb3_row4_col0" class="data row4 col0" >1970-01-12</td>
-      <td id="T_a3eb3_row4_col1" class="data row4 col1" >1970-07-12</td>
-      <td id="T_a3eb3_row4_col2" class="data row4 col2" >1970-01-12</td>
-      <td id="T_a3eb3_row4_col3" class="data row4 col3" >1970-07-10</td>
-      <td id="T_a3eb3_row4_col4" class="data row4 col4" >1970-07-13</td>
-      <td id="T_a3eb3_row4_col5" class="data row4 col5" >200.00</td>
-      <td id="T_a3eb3_row4_col6" class="data row4 col6" >100.00</td>
-      <td id="T_a3eb3_row4_col7" class="data row4 col7" >True</td>
-      <td id="T_a3eb3_row4_col8" class="data row4 col8" >USD</td>
-      <td id="T_a3eb3_row4_col9" class="data row4 col9" >INDICE</td>
-      <td id="T_a3eb3_row4_col10" class="data row4 col10" >1.000000</td>
-      <td id="T_a3eb3_row4_col11" class="data row4 col11" >1.000000</td>
-      <td id="T_a3eb3_row4_col12" class="data row4 col12" >0.000000%</td>
-      <td id="T_a3eb3_row4_col13" class="data row4 col13" >LinAct360</td>
-      <td id="T_a3eb3_row4_col14" class="data row4 col14" >1.01</td>
-      <td id="T_a3eb3_row4_col15" class="data row4 col15" >101.01</td>
-      <td id="T_a3eb3_row4_col16" class="data row4 col16" >1.0000%</td>
-      <td id="T_a3eb3_row4_col17" class="data row4 col17" >1.00</td>
+      <th id="T_c87f5_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_c87f5_row4_col0" class="data row4 col0" >1970-01-12</td>
+      <td id="T_c87f5_row4_col1" class="data row4 col1" >1970-07-12</td>
+      <td id="T_c87f5_row4_col2" class="data row4 col2" >1970-01-12</td>
+      <td id="T_c87f5_row4_col3" class="data row4 col3" >1970-07-10</td>
+      <td id="T_c87f5_row4_col4" class="data row4 col4" >1970-07-13</td>
+      <td id="T_c87f5_row4_col5" class="data row4 col5" >200.00</td>
+      <td id="T_c87f5_row4_col6" class="data row4 col6" >100.00</td>
+      <td id="T_c87f5_row4_col7" class="data row4 col7" >True</td>
+      <td id="T_c87f5_row4_col8" class="data row4 col8" >USD</td>
+      <td id="T_c87f5_row4_col9" class="data row4 col9" >INDICE</td>
+      <td id="T_c87f5_row4_col10" class="data row4 col10" >1.000000</td>
+      <td id="T_c87f5_row4_col11" class="data row4 col11" >1.000000</td>
+      <td id="T_c87f5_row4_col12" class="data row4 col12" >0.000000%</td>
+      <td id="T_c87f5_row4_col13" class="data row4 col13" >LinAct360</td>
+      <td id="T_c87f5_row4_col14" class="data row4 col14" >1.01</td>
+      <td id="T_c87f5_row4_col15" class="data row4 col15" >101.01</td>
+      <td id="T_c87f5_row4_col16" class="data row4 col16" >1.0000%</td>
+      <td id="T_c87f5_row4_col17" class="data row4 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_a3eb3_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_a3eb3_row5_col0" class="data row5 col0" >1970-07-12</td>
-      <td id="T_a3eb3_row5_col1" class="data row5 col1" >1971-01-12</td>
-      <td id="T_a3eb3_row5_col2" class="data row5 col2" >1970-07-10</td>
-      <td id="T_a3eb3_row5_col3" class="data row5 col3" >1971-01-12</td>
-      <td id="T_a3eb3_row5_col4" class="data row5 col4" >1971-01-12</td>
-      <td id="T_a3eb3_row5_col5" class="data row5 col5" >100.00</td>
-      <td id="T_a3eb3_row5_col6" class="data row5 col6" >100.00</td>
-      <td id="T_a3eb3_row5_col7" class="data row5 col7" >True</td>
-      <td id="T_a3eb3_row5_col8" class="data row5 col8" >USD</td>
-      <td id="T_a3eb3_row5_col9" class="data row5 col9" >INDICE</td>
-      <td id="T_a3eb3_row5_col10" class="data row5 col10" >1.000000</td>
-      <td id="T_a3eb3_row5_col11" class="data row5 col11" >1.000000</td>
-      <td id="T_a3eb3_row5_col12" class="data row5 col12" >0.000000%</td>
-      <td id="T_a3eb3_row5_col13" class="data row5 col13" >LinAct360</td>
-      <td id="T_a3eb3_row5_col14" class="data row5 col14" >0.51</td>
-      <td id="T_a3eb3_row5_col15" class="data row5 col15" >100.51</td>
-      <td id="T_a3eb3_row5_col16" class="data row5 col16" >1.0000%</td>
-      <td id="T_a3eb3_row5_col17" class="data row5 col17" >1.00</td>
+      <th id="T_c87f5_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_c87f5_row5_col0" class="data row5 col0" >1970-07-12</td>
+      <td id="T_c87f5_row5_col1" class="data row5 col1" >1971-01-12</td>
+      <td id="T_c87f5_row5_col2" class="data row5 col2" >1970-07-10</td>
+      <td id="T_c87f5_row5_col3" class="data row5 col3" >1971-01-12</td>
+      <td id="T_c87f5_row5_col4" class="data row5 col4" >1971-01-12</td>
+      <td id="T_c87f5_row5_col5" class="data row5 col5" >100.00</td>
+      <td id="T_c87f5_row5_col6" class="data row5 col6" >100.00</td>
+      <td id="T_c87f5_row5_col7" class="data row5 col7" >True</td>
+      <td id="T_c87f5_row5_col8" class="data row5 col8" >USD</td>
+      <td id="T_c87f5_row5_col9" class="data row5 col9" >INDICE</td>
+      <td id="T_c87f5_row5_col10" class="data row5 col10" >1.000000</td>
+      <td id="T_c87f5_row5_col11" class="data row5 col11" >1.000000</td>
+      <td id="T_c87f5_row5_col12" class="data row5 col12" >0.000000%</td>
+      <td id="T_c87f5_row5_col13" class="data row5 col13" >LinAct360</td>
+      <td id="T_c87f5_row5_col14" class="data row5 col14" >0.51</td>
+      <td id="T_c87f5_row5_col15" class="data row5 col15" >100.51</td>
+      <td id="T_c87f5_row5_col16" class="data row5 col16" >1.0000%</td>
+      <td id="T_c87f5_row5_col17" class="data row5 col17" >1.00</td>
     </tr>
   </tbody>
 </table>
@@ -4644,387 +4864,387 @@ df7.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_4d9f3">
+<table id="T_bf227">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_4d9f3_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_4d9f3_level0_col1" class="col_heading level0 col1" >fecha__final</th>
-      <th id="T_4d9f3_level0_col2" class="col_heading level0 col2" >fecha__pago</th>
-      <th id="T_4d9f3_level0_col3" class="col_heading level0 col3" >nominal</th>
-      <th id="T_4d9f3_level0_col4" class="col_heading level0 col4" >amort</th>
-      <th id="T_4d9f3_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
-      <th id="T_4d9f3_level0_col6" class="col_heading level0 col6" >flujo</th>
-      <th id="T_4d9f3_level0_col7" class="col_heading level0 col7" >moneda</th>
-      <th id="T_4d9f3_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
-      <th id="T_4d9f3_level0_col9" class="col_heading level0 col9" >icp_final</th>
-      <th id="T_4d9f3_level0_col10" class="col_heading level0 col10" >valor_tasa</th>
-      <th id="T_4d9f3_level0_col11" class="col_heading level0 col11" >interes</th>
-      <th id="T_4d9f3_level0_col12" class="col_heading level0 col12" >spread</th>
-      <th id="T_4d9f3_level0_col13" class="col_heading level0 col13" >gearing</th>
-      <th id="T_4d9f3_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
+      <th id="T_bf227_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_bf227_level0_col1" class="col_heading level0 col1" >fecha__final</th>
+      <th id="T_bf227_level0_col2" class="col_heading level0 col2" >fecha__pago</th>
+      <th id="T_bf227_level0_col3" class="col_heading level0 col3" >nominal</th>
+      <th id="T_bf227_level0_col4" class="col_heading level0 col4" >amort</th>
+      <th id="T_bf227_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
+      <th id="T_bf227_level0_col6" class="col_heading level0 col6" >flujo</th>
+      <th id="T_bf227_level0_col7" class="col_heading level0 col7" >moneda</th>
+      <th id="T_bf227_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
+      <th id="T_bf227_level0_col9" class="col_heading level0 col9" >icp_final</th>
+      <th id="T_bf227_level0_col10" class="col_heading level0 col10" >valor_tasa</th>
+      <th id="T_bf227_level0_col11" class="col_heading level0 col11" >interes</th>
+      <th id="T_bf227_level0_col12" class="col_heading level0 col12" >spread</th>
+      <th id="T_bf227_level0_col13" class="col_heading level0 col13" >gearing</th>
+      <th id="T_bf227_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_4d9f3_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_4d9f3_row0_col0" class="data row0 col0" >1969-01-31</td>
-      <td id="T_4d9f3_row0_col1" class="data row0 col1" >1969-04-30</td>
-      <td id="T_4d9f3_row0_col2" class="data row0 col2" >1969-04-30</td>
-      <td id="T_4d9f3_row0_col3" class="data row0 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row0_col4" class="data row0 col4" >0.00</td>
-      <td id="T_4d9f3_row0_col5" class="data row0 col5" >True</td>
-      <td id="T_4d9f3_row0_col6" class="data row0 col6" >2,472.22</td>
-      <td id="T_4d9f3_row0_col7" class="data row0 col7" >CLP</td>
-      <td id="T_4d9f3_row0_col8" class="data row0 col8" >10,000.00</td>
-      <td id="T_4d9f3_row0_col9" class="data row0 col9" >10,000.00</td>
-      <td id="T_4d9f3_row0_col10" class="data row0 col10" >0.0000%</td>
-      <td id="T_4d9f3_row0_col11" class="data row0 col11" >2,472.22</td>
-      <td id="T_4d9f3_row0_col12" class="data row0 col12" >1.0000%</td>
-      <td id="T_4d9f3_row0_col13" class="data row0 col13" >1.00</td>
-      <td id="T_4d9f3_row0_col14" class="data row0 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_bf227_row0_col0" class="data row0 col0" >1969-01-31</td>
+      <td id="T_bf227_row0_col1" class="data row0 col1" >1969-04-30</td>
+      <td id="T_bf227_row0_col2" class="data row0 col2" >1969-04-30</td>
+      <td id="T_bf227_row0_col3" class="data row0 col3" >1,000,000.00</td>
+      <td id="T_bf227_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_bf227_row0_col5" class="data row0 col5" >True</td>
+      <td id="T_bf227_row0_col6" class="data row0 col6" >2,472.22</td>
+      <td id="T_bf227_row0_col7" class="data row0 col7" >CLP</td>
+      <td id="T_bf227_row0_col8" class="data row0 col8" >10,000.00</td>
+      <td id="T_bf227_row0_col9" class="data row0 col9" >10,000.00</td>
+      <td id="T_bf227_row0_col10" class="data row0 col10" >0.0000%</td>
+      <td id="T_bf227_row0_col11" class="data row0 col11" >2,472.22</td>
+      <td id="T_bf227_row0_col12" class="data row0 col12" >1.0000%</td>
+      <td id="T_bf227_row0_col13" class="data row0 col13" >1.00</td>
+      <td id="T_bf227_row0_col14" class="data row0 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_4d9f3_row1_col0" class="data row1 col0" >1969-04-30</td>
-      <td id="T_4d9f3_row1_col1" class="data row1 col1" >1969-07-31</td>
-      <td id="T_4d9f3_row1_col2" class="data row1 col2" >1969-07-31</td>
-      <td id="T_4d9f3_row1_col3" class="data row1 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row1_col4" class="data row1 col4" >0.00</td>
-      <td id="T_4d9f3_row1_col5" class="data row1 col5" >True</td>
-      <td id="T_4d9f3_row1_col6" class="data row1 col6" >2,555.56</td>
-      <td id="T_4d9f3_row1_col7" class="data row1 col7" >CLP</td>
-      <td id="T_4d9f3_row1_col8" class="data row1 col8" >10,000.00</td>
-      <td id="T_4d9f3_row1_col9" class="data row1 col9" >10,000.00</td>
-      <td id="T_4d9f3_row1_col10" class="data row1 col10" >0.0000%</td>
-      <td id="T_4d9f3_row1_col11" class="data row1 col11" >2,555.56</td>
-      <td id="T_4d9f3_row1_col12" class="data row1 col12" >1.0000%</td>
-      <td id="T_4d9f3_row1_col13" class="data row1 col13" >1.00</td>
-      <td id="T_4d9f3_row1_col14" class="data row1 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_bf227_row1_col0" class="data row1 col0" >1969-04-30</td>
+      <td id="T_bf227_row1_col1" class="data row1 col1" >1969-07-31</td>
+      <td id="T_bf227_row1_col2" class="data row1 col2" >1969-07-31</td>
+      <td id="T_bf227_row1_col3" class="data row1 col3" >1,000,000.00</td>
+      <td id="T_bf227_row1_col4" class="data row1 col4" >0.00</td>
+      <td id="T_bf227_row1_col5" class="data row1 col5" >True</td>
+      <td id="T_bf227_row1_col6" class="data row1 col6" >2,555.56</td>
+      <td id="T_bf227_row1_col7" class="data row1 col7" >CLP</td>
+      <td id="T_bf227_row1_col8" class="data row1 col8" >10,000.00</td>
+      <td id="T_bf227_row1_col9" class="data row1 col9" >10,000.00</td>
+      <td id="T_bf227_row1_col10" class="data row1 col10" >0.0000%</td>
+      <td id="T_bf227_row1_col11" class="data row1 col11" >2,555.56</td>
+      <td id="T_bf227_row1_col12" class="data row1 col12" >1.0000%</td>
+      <td id="T_bf227_row1_col13" class="data row1 col13" >1.00</td>
+      <td id="T_bf227_row1_col14" class="data row1 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_4d9f3_row2_col0" class="data row2 col0" >1969-07-31</td>
-      <td id="T_4d9f3_row2_col1" class="data row2 col1" >1969-10-31</td>
-      <td id="T_4d9f3_row2_col2" class="data row2 col2" >1969-10-31</td>
-      <td id="T_4d9f3_row2_col3" class="data row2 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row2_col4" class="data row2 col4" >0.00</td>
-      <td id="T_4d9f3_row2_col5" class="data row2 col5" >True</td>
-      <td id="T_4d9f3_row2_col6" class="data row2 col6" >2,555.56</td>
-      <td id="T_4d9f3_row2_col7" class="data row2 col7" >CLP</td>
-      <td id="T_4d9f3_row2_col8" class="data row2 col8" >10,000.00</td>
-      <td id="T_4d9f3_row2_col9" class="data row2 col9" >10,000.00</td>
-      <td id="T_4d9f3_row2_col10" class="data row2 col10" >0.0000%</td>
-      <td id="T_4d9f3_row2_col11" class="data row2 col11" >2,555.56</td>
-      <td id="T_4d9f3_row2_col12" class="data row2 col12" >1.0000%</td>
-      <td id="T_4d9f3_row2_col13" class="data row2 col13" >1.00</td>
-      <td id="T_4d9f3_row2_col14" class="data row2 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_bf227_row2_col0" class="data row2 col0" >1969-07-31</td>
+      <td id="T_bf227_row2_col1" class="data row2 col1" >1969-10-31</td>
+      <td id="T_bf227_row2_col2" class="data row2 col2" >1969-10-31</td>
+      <td id="T_bf227_row2_col3" class="data row2 col3" >1,000,000.00</td>
+      <td id="T_bf227_row2_col4" class="data row2 col4" >0.00</td>
+      <td id="T_bf227_row2_col5" class="data row2 col5" >True</td>
+      <td id="T_bf227_row2_col6" class="data row2 col6" >2,555.56</td>
+      <td id="T_bf227_row2_col7" class="data row2 col7" >CLP</td>
+      <td id="T_bf227_row2_col8" class="data row2 col8" >10,000.00</td>
+      <td id="T_bf227_row2_col9" class="data row2 col9" >10,000.00</td>
+      <td id="T_bf227_row2_col10" class="data row2 col10" >0.0000%</td>
+      <td id="T_bf227_row2_col11" class="data row2 col11" >2,555.56</td>
+      <td id="T_bf227_row2_col12" class="data row2 col12" >1.0000%</td>
+      <td id="T_bf227_row2_col13" class="data row2 col13" >1.00</td>
+      <td id="T_bf227_row2_col14" class="data row2 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_4d9f3_row3_col0" class="data row3 col0" >1969-10-31</td>
-      <td id="T_4d9f3_row3_col1" class="data row3 col1" >1970-01-30</td>
-      <td id="T_4d9f3_row3_col2" class="data row3 col2" >1970-01-30</td>
-      <td id="T_4d9f3_row3_col3" class="data row3 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row3_col4" class="data row3 col4" >0.00</td>
-      <td id="T_4d9f3_row3_col5" class="data row3 col5" >True</td>
-      <td id="T_4d9f3_row3_col6" class="data row3 col6" >2,527.78</td>
-      <td id="T_4d9f3_row3_col7" class="data row3 col7" >CLP</td>
-      <td id="T_4d9f3_row3_col8" class="data row3 col8" >10,000.00</td>
-      <td id="T_4d9f3_row3_col9" class="data row3 col9" >10,000.00</td>
-      <td id="T_4d9f3_row3_col10" class="data row3 col10" >0.0000%</td>
-      <td id="T_4d9f3_row3_col11" class="data row3 col11" >2,527.78</td>
-      <td id="T_4d9f3_row3_col12" class="data row3 col12" >1.0000%</td>
-      <td id="T_4d9f3_row3_col13" class="data row3 col13" >1.00</td>
-      <td id="T_4d9f3_row3_col14" class="data row3 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_bf227_row3_col0" class="data row3 col0" >1969-10-31</td>
+      <td id="T_bf227_row3_col1" class="data row3 col1" >1970-01-30</td>
+      <td id="T_bf227_row3_col2" class="data row3 col2" >1970-01-30</td>
+      <td id="T_bf227_row3_col3" class="data row3 col3" >1,000,000.00</td>
+      <td id="T_bf227_row3_col4" class="data row3 col4" >0.00</td>
+      <td id="T_bf227_row3_col5" class="data row3 col5" >True</td>
+      <td id="T_bf227_row3_col6" class="data row3 col6" >2,527.78</td>
+      <td id="T_bf227_row3_col7" class="data row3 col7" >CLP</td>
+      <td id="T_bf227_row3_col8" class="data row3 col8" >10,000.00</td>
+      <td id="T_bf227_row3_col9" class="data row3 col9" >10,000.00</td>
+      <td id="T_bf227_row3_col10" class="data row3 col10" >0.0000%</td>
+      <td id="T_bf227_row3_col11" class="data row3 col11" >2,527.78</td>
+      <td id="T_bf227_row3_col12" class="data row3 col12" >1.0000%</td>
+      <td id="T_bf227_row3_col13" class="data row3 col13" >1.00</td>
+      <td id="T_bf227_row3_col14" class="data row3 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_4d9f3_row4_col0" class="data row4 col0" >1970-01-30</td>
-      <td id="T_4d9f3_row4_col1" class="data row4 col1" >1970-04-30</td>
-      <td id="T_4d9f3_row4_col2" class="data row4 col2" >1970-04-30</td>
-      <td id="T_4d9f3_row4_col3" class="data row4 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row4_col4" class="data row4 col4" >0.00</td>
-      <td id="T_4d9f3_row4_col5" class="data row4 col5" >True</td>
-      <td id="T_4d9f3_row4_col6" class="data row4 col6" >2,500.00</td>
-      <td id="T_4d9f3_row4_col7" class="data row4 col7" >CLP</td>
-      <td id="T_4d9f3_row4_col8" class="data row4 col8" >10,000.00</td>
-      <td id="T_4d9f3_row4_col9" class="data row4 col9" >10,000.00</td>
-      <td id="T_4d9f3_row4_col10" class="data row4 col10" >0.0000%</td>
-      <td id="T_4d9f3_row4_col11" class="data row4 col11" >2,500.00</td>
-      <td id="T_4d9f3_row4_col12" class="data row4 col12" >1.0000%</td>
-      <td id="T_4d9f3_row4_col13" class="data row4 col13" >1.00</td>
-      <td id="T_4d9f3_row4_col14" class="data row4 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_bf227_row4_col0" class="data row4 col0" >1970-01-30</td>
+      <td id="T_bf227_row4_col1" class="data row4 col1" >1970-04-30</td>
+      <td id="T_bf227_row4_col2" class="data row4 col2" >1970-04-30</td>
+      <td id="T_bf227_row4_col3" class="data row4 col3" >1,000,000.00</td>
+      <td id="T_bf227_row4_col4" class="data row4 col4" >0.00</td>
+      <td id="T_bf227_row4_col5" class="data row4 col5" >True</td>
+      <td id="T_bf227_row4_col6" class="data row4 col6" >2,500.00</td>
+      <td id="T_bf227_row4_col7" class="data row4 col7" >CLP</td>
+      <td id="T_bf227_row4_col8" class="data row4 col8" >10,000.00</td>
+      <td id="T_bf227_row4_col9" class="data row4 col9" >10,000.00</td>
+      <td id="T_bf227_row4_col10" class="data row4 col10" >0.0000%</td>
+      <td id="T_bf227_row4_col11" class="data row4 col11" >2,500.00</td>
+      <td id="T_bf227_row4_col12" class="data row4 col12" >1.0000%</td>
+      <td id="T_bf227_row4_col13" class="data row4 col13" >1.00</td>
+      <td id="T_bf227_row4_col14" class="data row4 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_4d9f3_row5_col0" class="data row5 col0" >1970-04-30</td>
-      <td id="T_4d9f3_row5_col1" class="data row5 col1" >1970-07-31</td>
-      <td id="T_4d9f3_row5_col2" class="data row5 col2" >1970-07-31</td>
-      <td id="T_4d9f3_row5_col3" class="data row5 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row5_col4" class="data row5 col4" >0.00</td>
-      <td id="T_4d9f3_row5_col5" class="data row5 col5" >True</td>
-      <td id="T_4d9f3_row5_col6" class="data row5 col6" >2,555.56</td>
-      <td id="T_4d9f3_row5_col7" class="data row5 col7" >CLP</td>
-      <td id="T_4d9f3_row5_col8" class="data row5 col8" >10,000.00</td>
-      <td id="T_4d9f3_row5_col9" class="data row5 col9" >10,000.00</td>
-      <td id="T_4d9f3_row5_col10" class="data row5 col10" >0.0000%</td>
-      <td id="T_4d9f3_row5_col11" class="data row5 col11" >2,555.56</td>
-      <td id="T_4d9f3_row5_col12" class="data row5 col12" >1.0000%</td>
-      <td id="T_4d9f3_row5_col13" class="data row5 col13" >1.00</td>
-      <td id="T_4d9f3_row5_col14" class="data row5 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_bf227_row5_col0" class="data row5 col0" >1970-04-30</td>
+      <td id="T_bf227_row5_col1" class="data row5 col1" >1970-07-31</td>
+      <td id="T_bf227_row5_col2" class="data row5 col2" >1970-07-31</td>
+      <td id="T_bf227_row5_col3" class="data row5 col3" >1,000,000.00</td>
+      <td id="T_bf227_row5_col4" class="data row5 col4" >0.00</td>
+      <td id="T_bf227_row5_col5" class="data row5 col5" >True</td>
+      <td id="T_bf227_row5_col6" class="data row5 col6" >2,555.56</td>
+      <td id="T_bf227_row5_col7" class="data row5 col7" >CLP</td>
+      <td id="T_bf227_row5_col8" class="data row5 col8" >10,000.00</td>
+      <td id="T_bf227_row5_col9" class="data row5 col9" >10,000.00</td>
+      <td id="T_bf227_row5_col10" class="data row5 col10" >0.0000%</td>
+      <td id="T_bf227_row5_col11" class="data row5 col11" >2,555.56</td>
+      <td id="T_bf227_row5_col12" class="data row5 col12" >1.0000%</td>
+      <td id="T_bf227_row5_col13" class="data row5 col13" >1.00</td>
+      <td id="T_bf227_row5_col14" class="data row5 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_4d9f3_row6_col0" class="data row6 col0" >1970-07-31</td>
-      <td id="T_4d9f3_row6_col1" class="data row6 col1" >1970-10-30</td>
-      <td id="T_4d9f3_row6_col2" class="data row6 col2" >1970-10-30</td>
-      <td id="T_4d9f3_row6_col3" class="data row6 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row6_col4" class="data row6 col4" >0.00</td>
-      <td id="T_4d9f3_row6_col5" class="data row6 col5" >True</td>
-      <td id="T_4d9f3_row6_col6" class="data row6 col6" >2,527.78</td>
-      <td id="T_4d9f3_row6_col7" class="data row6 col7" >CLP</td>
-      <td id="T_4d9f3_row6_col8" class="data row6 col8" >10,000.00</td>
-      <td id="T_4d9f3_row6_col9" class="data row6 col9" >10,000.00</td>
-      <td id="T_4d9f3_row6_col10" class="data row6 col10" >0.0000%</td>
-      <td id="T_4d9f3_row6_col11" class="data row6 col11" >2,527.78</td>
-      <td id="T_4d9f3_row6_col12" class="data row6 col12" >1.0000%</td>
-      <td id="T_4d9f3_row6_col13" class="data row6 col13" >1.00</td>
-      <td id="T_4d9f3_row6_col14" class="data row6 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_bf227_row6_col0" class="data row6 col0" >1970-07-31</td>
+      <td id="T_bf227_row6_col1" class="data row6 col1" >1970-10-30</td>
+      <td id="T_bf227_row6_col2" class="data row6 col2" >1970-10-30</td>
+      <td id="T_bf227_row6_col3" class="data row6 col3" >1,000,000.00</td>
+      <td id="T_bf227_row6_col4" class="data row6 col4" >0.00</td>
+      <td id="T_bf227_row6_col5" class="data row6 col5" >True</td>
+      <td id="T_bf227_row6_col6" class="data row6 col6" >2,527.78</td>
+      <td id="T_bf227_row6_col7" class="data row6 col7" >CLP</td>
+      <td id="T_bf227_row6_col8" class="data row6 col8" >10,000.00</td>
+      <td id="T_bf227_row6_col9" class="data row6 col9" >10,000.00</td>
+      <td id="T_bf227_row6_col10" class="data row6 col10" >0.0000%</td>
+      <td id="T_bf227_row6_col11" class="data row6 col11" >2,527.78</td>
+      <td id="T_bf227_row6_col12" class="data row6 col12" >1.0000%</td>
+      <td id="T_bf227_row6_col13" class="data row6 col13" >1.00</td>
+      <td id="T_bf227_row6_col14" class="data row6 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_4d9f3_row7_col0" class="data row7 col0" >1970-10-30</td>
-      <td id="T_4d9f3_row7_col1" class="data row7 col1" >1971-01-29</td>
-      <td id="T_4d9f3_row7_col2" class="data row7 col2" >1971-01-29</td>
-      <td id="T_4d9f3_row7_col3" class="data row7 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row7_col4" class="data row7 col4" >0.00</td>
-      <td id="T_4d9f3_row7_col5" class="data row7 col5" >True</td>
-      <td id="T_4d9f3_row7_col6" class="data row7 col6" >2,527.78</td>
-      <td id="T_4d9f3_row7_col7" class="data row7 col7" >CLP</td>
-      <td id="T_4d9f3_row7_col8" class="data row7 col8" >10,000.00</td>
-      <td id="T_4d9f3_row7_col9" class="data row7 col9" >10,000.00</td>
-      <td id="T_4d9f3_row7_col10" class="data row7 col10" >0.0000%</td>
-      <td id="T_4d9f3_row7_col11" class="data row7 col11" >2,527.78</td>
-      <td id="T_4d9f3_row7_col12" class="data row7 col12" >1.0000%</td>
-      <td id="T_4d9f3_row7_col13" class="data row7 col13" >1.00</td>
-      <td id="T_4d9f3_row7_col14" class="data row7 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_bf227_row7_col0" class="data row7 col0" >1970-10-30</td>
+      <td id="T_bf227_row7_col1" class="data row7 col1" >1971-01-29</td>
+      <td id="T_bf227_row7_col2" class="data row7 col2" >1971-01-29</td>
+      <td id="T_bf227_row7_col3" class="data row7 col3" >1,000,000.00</td>
+      <td id="T_bf227_row7_col4" class="data row7 col4" >0.00</td>
+      <td id="T_bf227_row7_col5" class="data row7 col5" >True</td>
+      <td id="T_bf227_row7_col6" class="data row7 col6" >2,527.78</td>
+      <td id="T_bf227_row7_col7" class="data row7 col7" >CLP</td>
+      <td id="T_bf227_row7_col8" class="data row7 col8" >10,000.00</td>
+      <td id="T_bf227_row7_col9" class="data row7 col9" >10,000.00</td>
+      <td id="T_bf227_row7_col10" class="data row7 col10" >0.0000%</td>
+      <td id="T_bf227_row7_col11" class="data row7 col11" >2,527.78</td>
+      <td id="T_bf227_row7_col12" class="data row7 col12" >1.0000%</td>
+      <td id="T_bf227_row7_col13" class="data row7 col13" >1.00</td>
+      <td id="T_bf227_row7_col14" class="data row7 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_4d9f3_row8_col0" class="data row8 col0" >1971-01-29</td>
-      <td id="T_4d9f3_row8_col1" class="data row8 col1" >1971-04-30</td>
-      <td id="T_4d9f3_row8_col2" class="data row8 col2" >1971-04-30</td>
-      <td id="T_4d9f3_row8_col3" class="data row8 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row8_col4" class="data row8 col4" >0.00</td>
-      <td id="T_4d9f3_row8_col5" class="data row8 col5" >True</td>
-      <td id="T_4d9f3_row8_col6" class="data row8 col6" >2,527.78</td>
-      <td id="T_4d9f3_row8_col7" class="data row8 col7" >CLP</td>
-      <td id="T_4d9f3_row8_col8" class="data row8 col8" >10,000.00</td>
-      <td id="T_4d9f3_row8_col9" class="data row8 col9" >10,000.00</td>
-      <td id="T_4d9f3_row8_col10" class="data row8 col10" >0.0000%</td>
-      <td id="T_4d9f3_row8_col11" class="data row8 col11" >2,527.78</td>
-      <td id="T_4d9f3_row8_col12" class="data row8 col12" >1.0000%</td>
-      <td id="T_4d9f3_row8_col13" class="data row8 col13" >1.00</td>
-      <td id="T_4d9f3_row8_col14" class="data row8 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_bf227_row8_col0" class="data row8 col0" >1971-01-29</td>
+      <td id="T_bf227_row8_col1" class="data row8 col1" >1971-04-30</td>
+      <td id="T_bf227_row8_col2" class="data row8 col2" >1971-04-30</td>
+      <td id="T_bf227_row8_col3" class="data row8 col3" >1,000,000.00</td>
+      <td id="T_bf227_row8_col4" class="data row8 col4" >0.00</td>
+      <td id="T_bf227_row8_col5" class="data row8 col5" >True</td>
+      <td id="T_bf227_row8_col6" class="data row8 col6" >2,527.78</td>
+      <td id="T_bf227_row8_col7" class="data row8 col7" >CLP</td>
+      <td id="T_bf227_row8_col8" class="data row8 col8" >10,000.00</td>
+      <td id="T_bf227_row8_col9" class="data row8 col9" >10,000.00</td>
+      <td id="T_bf227_row8_col10" class="data row8 col10" >0.0000%</td>
+      <td id="T_bf227_row8_col11" class="data row8 col11" >2,527.78</td>
+      <td id="T_bf227_row8_col12" class="data row8 col12" >1.0000%</td>
+      <td id="T_bf227_row8_col13" class="data row8 col13" >1.00</td>
+      <td id="T_bf227_row8_col14" class="data row8 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_4d9f3_row9_col0" class="data row9 col0" >1971-04-30</td>
-      <td id="T_4d9f3_row9_col1" class="data row9 col1" >1971-07-30</td>
-      <td id="T_4d9f3_row9_col2" class="data row9 col2" >1971-07-30</td>
-      <td id="T_4d9f3_row9_col3" class="data row9 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row9_col4" class="data row9 col4" >0.00</td>
-      <td id="T_4d9f3_row9_col5" class="data row9 col5" >True</td>
-      <td id="T_4d9f3_row9_col6" class="data row9 col6" >2,527.78</td>
-      <td id="T_4d9f3_row9_col7" class="data row9 col7" >CLP</td>
-      <td id="T_4d9f3_row9_col8" class="data row9 col8" >10,000.00</td>
-      <td id="T_4d9f3_row9_col9" class="data row9 col9" >10,000.00</td>
-      <td id="T_4d9f3_row9_col10" class="data row9 col10" >0.0000%</td>
-      <td id="T_4d9f3_row9_col11" class="data row9 col11" >2,527.78</td>
-      <td id="T_4d9f3_row9_col12" class="data row9 col12" >1.0000%</td>
-      <td id="T_4d9f3_row9_col13" class="data row9 col13" >1.00</td>
-      <td id="T_4d9f3_row9_col14" class="data row9 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_bf227_row9_col0" class="data row9 col0" >1971-04-30</td>
+      <td id="T_bf227_row9_col1" class="data row9 col1" >1971-07-30</td>
+      <td id="T_bf227_row9_col2" class="data row9 col2" >1971-07-30</td>
+      <td id="T_bf227_row9_col3" class="data row9 col3" >1,000,000.00</td>
+      <td id="T_bf227_row9_col4" class="data row9 col4" >0.00</td>
+      <td id="T_bf227_row9_col5" class="data row9 col5" >True</td>
+      <td id="T_bf227_row9_col6" class="data row9 col6" >2,527.78</td>
+      <td id="T_bf227_row9_col7" class="data row9 col7" >CLP</td>
+      <td id="T_bf227_row9_col8" class="data row9 col8" >10,000.00</td>
+      <td id="T_bf227_row9_col9" class="data row9 col9" >10,000.00</td>
+      <td id="T_bf227_row9_col10" class="data row9 col10" >0.0000%</td>
+      <td id="T_bf227_row9_col11" class="data row9 col11" >2,527.78</td>
+      <td id="T_bf227_row9_col12" class="data row9 col12" >1.0000%</td>
+      <td id="T_bf227_row9_col13" class="data row9 col13" >1.00</td>
+      <td id="T_bf227_row9_col14" class="data row9 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_4d9f3_row10_col0" class="data row10 col0" >1971-07-30</td>
-      <td id="T_4d9f3_row10_col1" class="data row10 col1" >1971-10-29</td>
-      <td id="T_4d9f3_row10_col2" class="data row10 col2" >1971-10-29</td>
-      <td id="T_4d9f3_row10_col3" class="data row10 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row10_col4" class="data row10 col4" >0.00</td>
-      <td id="T_4d9f3_row10_col5" class="data row10 col5" >True</td>
-      <td id="T_4d9f3_row10_col6" class="data row10 col6" >2,527.78</td>
-      <td id="T_4d9f3_row10_col7" class="data row10 col7" >CLP</td>
-      <td id="T_4d9f3_row10_col8" class="data row10 col8" >10,000.00</td>
-      <td id="T_4d9f3_row10_col9" class="data row10 col9" >10,000.00</td>
-      <td id="T_4d9f3_row10_col10" class="data row10 col10" >0.0000%</td>
-      <td id="T_4d9f3_row10_col11" class="data row10 col11" >2,527.78</td>
-      <td id="T_4d9f3_row10_col12" class="data row10 col12" >1.0000%</td>
-      <td id="T_4d9f3_row10_col13" class="data row10 col13" >1.00</td>
-      <td id="T_4d9f3_row10_col14" class="data row10 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_bf227_row10_col0" class="data row10 col0" >1971-07-30</td>
+      <td id="T_bf227_row10_col1" class="data row10 col1" >1971-10-29</td>
+      <td id="T_bf227_row10_col2" class="data row10 col2" >1971-10-29</td>
+      <td id="T_bf227_row10_col3" class="data row10 col3" >1,000,000.00</td>
+      <td id="T_bf227_row10_col4" class="data row10 col4" >0.00</td>
+      <td id="T_bf227_row10_col5" class="data row10 col5" >True</td>
+      <td id="T_bf227_row10_col6" class="data row10 col6" >2,527.78</td>
+      <td id="T_bf227_row10_col7" class="data row10 col7" >CLP</td>
+      <td id="T_bf227_row10_col8" class="data row10 col8" >10,000.00</td>
+      <td id="T_bf227_row10_col9" class="data row10 col9" >10,000.00</td>
+      <td id="T_bf227_row10_col10" class="data row10 col10" >0.0000%</td>
+      <td id="T_bf227_row10_col11" class="data row10 col11" >2,527.78</td>
+      <td id="T_bf227_row10_col12" class="data row10 col12" >1.0000%</td>
+      <td id="T_bf227_row10_col13" class="data row10 col13" >1.00</td>
+      <td id="T_bf227_row10_col14" class="data row10 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_4d9f3_row11_col0" class="data row11 col0" >1971-10-29</td>
-      <td id="T_4d9f3_row11_col1" class="data row11 col1" >1972-01-31</td>
-      <td id="T_4d9f3_row11_col2" class="data row11 col2" >1972-01-31</td>
-      <td id="T_4d9f3_row11_col3" class="data row11 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row11_col4" class="data row11 col4" >0.00</td>
-      <td id="T_4d9f3_row11_col5" class="data row11 col5" >True</td>
-      <td id="T_4d9f3_row11_col6" class="data row11 col6" >2,611.11</td>
-      <td id="T_4d9f3_row11_col7" class="data row11 col7" >CLP</td>
-      <td id="T_4d9f3_row11_col8" class="data row11 col8" >10,000.00</td>
-      <td id="T_4d9f3_row11_col9" class="data row11 col9" >10,000.00</td>
-      <td id="T_4d9f3_row11_col10" class="data row11 col10" >0.0000%</td>
-      <td id="T_4d9f3_row11_col11" class="data row11 col11" >2,611.11</td>
-      <td id="T_4d9f3_row11_col12" class="data row11 col12" >1.0000%</td>
-      <td id="T_4d9f3_row11_col13" class="data row11 col13" >1.00</td>
-      <td id="T_4d9f3_row11_col14" class="data row11 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_bf227_row11_col0" class="data row11 col0" >1971-10-29</td>
+      <td id="T_bf227_row11_col1" class="data row11 col1" >1972-01-31</td>
+      <td id="T_bf227_row11_col2" class="data row11 col2" >1972-01-31</td>
+      <td id="T_bf227_row11_col3" class="data row11 col3" >1,000,000.00</td>
+      <td id="T_bf227_row11_col4" class="data row11 col4" >0.00</td>
+      <td id="T_bf227_row11_col5" class="data row11 col5" >True</td>
+      <td id="T_bf227_row11_col6" class="data row11 col6" >2,611.11</td>
+      <td id="T_bf227_row11_col7" class="data row11 col7" >CLP</td>
+      <td id="T_bf227_row11_col8" class="data row11 col8" >10,000.00</td>
+      <td id="T_bf227_row11_col9" class="data row11 col9" >10,000.00</td>
+      <td id="T_bf227_row11_col10" class="data row11 col10" >0.0000%</td>
+      <td id="T_bf227_row11_col11" class="data row11 col11" >2,611.11</td>
+      <td id="T_bf227_row11_col12" class="data row11 col12" >1.0000%</td>
+      <td id="T_bf227_row11_col13" class="data row11 col13" >1.00</td>
+      <td id="T_bf227_row11_col14" class="data row11 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row12" class="row_heading level0 row12" >12</th>
-      <td id="T_4d9f3_row12_col0" class="data row12 col0" >1972-01-31</td>
-      <td id="T_4d9f3_row12_col1" class="data row12 col1" >1972-04-28</td>
-      <td id="T_4d9f3_row12_col2" class="data row12 col2" >1972-04-28</td>
-      <td id="T_4d9f3_row12_col3" class="data row12 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row12_col4" class="data row12 col4" >0.00</td>
-      <td id="T_4d9f3_row12_col5" class="data row12 col5" >True</td>
-      <td id="T_4d9f3_row12_col6" class="data row12 col6" >2,444.44</td>
-      <td id="T_4d9f3_row12_col7" class="data row12 col7" >CLP</td>
-      <td id="T_4d9f3_row12_col8" class="data row12 col8" >10,000.00</td>
-      <td id="T_4d9f3_row12_col9" class="data row12 col9" >10,000.00</td>
-      <td id="T_4d9f3_row12_col10" class="data row12 col10" >0.0000%</td>
-      <td id="T_4d9f3_row12_col11" class="data row12 col11" >2,444.44</td>
-      <td id="T_4d9f3_row12_col12" class="data row12 col12" >1.0000%</td>
-      <td id="T_4d9f3_row12_col13" class="data row12 col13" >1.00</td>
-      <td id="T_4d9f3_row12_col14" class="data row12 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_bf227_row12_col0" class="data row12 col0" >1972-01-31</td>
+      <td id="T_bf227_row12_col1" class="data row12 col1" >1972-04-28</td>
+      <td id="T_bf227_row12_col2" class="data row12 col2" >1972-04-28</td>
+      <td id="T_bf227_row12_col3" class="data row12 col3" >1,000,000.00</td>
+      <td id="T_bf227_row12_col4" class="data row12 col4" >0.00</td>
+      <td id="T_bf227_row12_col5" class="data row12 col5" >True</td>
+      <td id="T_bf227_row12_col6" class="data row12 col6" >2,444.44</td>
+      <td id="T_bf227_row12_col7" class="data row12 col7" >CLP</td>
+      <td id="T_bf227_row12_col8" class="data row12 col8" >10,000.00</td>
+      <td id="T_bf227_row12_col9" class="data row12 col9" >10,000.00</td>
+      <td id="T_bf227_row12_col10" class="data row12 col10" >0.0000%</td>
+      <td id="T_bf227_row12_col11" class="data row12 col11" >2,444.44</td>
+      <td id="T_bf227_row12_col12" class="data row12 col12" >1.0000%</td>
+      <td id="T_bf227_row12_col13" class="data row12 col13" >1.00</td>
+      <td id="T_bf227_row12_col14" class="data row12 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row13" class="row_heading level0 row13" >13</th>
-      <td id="T_4d9f3_row13_col0" class="data row13 col0" >1972-04-28</td>
-      <td id="T_4d9f3_row13_col1" class="data row13 col1" >1972-07-31</td>
-      <td id="T_4d9f3_row13_col2" class="data row13 col2" >1972-07-31</td>
-      <td id="T_4d9f3_row13_col3" class="data row13 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row13_col4" class="data row13 col4" >0.00</td>
-      <td id="T_4d9f3_row13_col5" class="data row13 col5" >True</td>
-      <td id="T_4d9f3_row13_col6" class="data row13 col6" >2,611.11</td>
-      <td id="T_4d9f3_row13_col7" class="data row13 col7" >CLP</td>
-      <td id="T_4d9f3_row13_col8" class="data row13 col8" >10,000.00</td>
-      <td id="T_4d9f3_row13_col9" class="data row13 col9" >10,000.00</td>
-      <td id="T_4d9f3_row13_col10" class="data row13 col10" >0.0000%</td>
-      <td id="T_4d9f3_row13_col11" class="data row13 col11" >2,611.11</td>
-      <td id="T_4d9f3_row13_col12" class="data row13 col12" >1.0000%</td>
-      <td id="T_4d9f3_row13_col13" class="data row13 col13" >1.00</td>
-      <td id="T_4d9f3_row13_col14" class="data row13 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_bf227_row13_col0" class="data row13 col0" >1972-04-28</td>
+      <td id="T_bf227_row13_col1" class="data row13 col1" >1972-07-31</td>
+      <td id="T_bf227_row13_col2" class="data row13 col2" >1972-07-31</td>
+      <td id="T_bf227_row13_col3" class="data row13 col3" >1,000,000.00</td>
+      <td id="T_bf227_row13_col4" class="data row13 col4" >0.00</td>
+      <td id="T_bf227_row13_col5" class="data row13 col5" >True</td>
+      <td id="T_bf227_row13_col6" class="data row13 col6" >2,611.11</td>
+      <td id="T_bf227_row13_col7" class="data row13 col7" >CLP</td>
+      <td id="T_bf227_row13_col8" class="data row13 col8" >10,000.00</td>
+      <td id="T_bf227_row13_col9" class="data row13 col9" >10,000.00</td>
+      <td id="T_bf227_row13_col10" class="data row13 col10" >0.0000%</td>
+      <td id="T_bf227_row13_col11" class="data row13 col11" >2,611.11</td>
+      <td id="T_bf227_row13_col12" class="data row13 col12" >1.0000%</td>
+      <td id="T_bf227_row13_col13" class="data row13 col13" >1.00</td>
+      <td id="T_bf227_row13_col14" class="data row13 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row14" class="row_heading level0 row14" >14</th>
-      <td id="T_4d9f3_row14_col0" class="data row14 col0" >1972-07-31</td>
-      <td id="T_4d9f3_row14_col1" class="data row14 col1" >1972-10-31</td>
-      <td id="T_4d9f3_row14_col2" class="data row14 col2" >1972-10-31</td>
-      <td id="T_4d9f3_row14_col3" class="data row14 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row14_col4" class="data row14 col4" >0.00</td>
-      <td id="T_4d9f3_row14_col5" class="data row14 col5" >True</td>
-      <td id="T_4d9f3_row14_col6" class="data row14 col6" >2,555.56</td>
-      <td id="T_4d9f3_row14_col7" class="data row14 col7" >CLP</td>
-      <td id="T_4d9f3_row14_col8" class="data row14 col8" >10,000.00</td>
-      <td id="T_4d9f3_row14_col9" class="data row14 col9" >10,000.00</td>
-      <td id="T_4d9f3_row14_col10" class="data row14 col10" >0.0000%</td>
-      <td id="T_4d9f3_row14_col11" class="data row14 col11" >2,555.56</td>
-      <td id="T_4d9f3_row14_col12" class="data row14 col12" >1.0000%</td>
-      <td id="T_4d9f3_row14_col13" class="data row14 col13" >1.00</td>
-      <td id="T_4d9f3_row14_col14" class="data row14 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_bf227_row14_col0" class="data row14 col0" >1972-07-31</td>
+      <td id="T_bf227_row14_col1" class="data row14 col1" >1972-10-31</td>
+      <td id="T_bf227_row14_col2" class="data row14 col2" >1972-10-31</td>
+      <td id="T_bf227_row14_col3" class="data row14 col3" >1,000,000.00</td>
+      <td id="T_bf227_row14_col4" class="data row14 col4" >0.00</td>
+      <td id="T_bf227_row14_col5" class="data row14 col5" >True</td>
+      <td id="T_bf227_row14_col6" class="data row14 col6" >2,555.56</td>
+      <td id="T_bf227_row14_col7" class="data row14 col7" >CLP</td>
+      <td id="T_bf227_row14_col8" class="data row14 col8" >10,000.00</td>
+      <td id="T_bf227_row14_col9" class="data row14 col9" >10,000.00</td>
+      <td id="T_bf227_row14_col10" class="data row14 col10" >0.0000%</td>
+      <td id="T_bf227_row14_col11" class="data row14 col11" >2,555.56</td>
+      <td id="T_bf227_row14_col12" class="data row14 col12" >1.0000%</td>
+      <td id="T_bf227_row14_col13" class="data row14 col13" >1.00</td>
+      <td id="T_bf227_row14_col14" class="data row14 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row15" class="row_heading level0 row15" >15</th>
-      <td id="T_4d9f3_row15_col0" class="data row15 col0" >1972-10-31</td>
-      <td id="T_4d9f3_row15_col1" class="data row15 col1" >1973-01-31</td>
-      <td id="T_4d9f3_row15_col2" class="data row15 col2" >1973-01-31</td>
-      <td id="T_4d9f3_row15_col3" class="data row15 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row15_col4" class="data row15 col4" >0.00</td>
-      <td id="T_4d9f3_row15_col5" class="data row15 col5" >True</td>
-      <td id="T_4d9f3_row15_col6" class="data row15 col6" >2,555.56</td>
-      <td id="T_4d9f3_row15_col7" class="data row15 col7" >CLP</td>
-      <td id="T_4d9f3_row15_col8" class="data row15 col8" >10,000.00</td>
-      <td id="T_4d9f3_row15_col9" class="data row15 col9" >10,000.00</td>
-      <td id="T_4d9f3_row15_col10" class="data row15 col10" >0.0000%</td>
-      <td id="T_4d9f3_row15_col11" class="data row15 col11" >2,555.56</td>
-      <td id="T_4d9f3_row15_col12" class="data row15 col12" >1.0000%</td>
-      <td id="T_4d9f3_row15_col13" class="data row15 col13" >1.00</td>
-      <td id="T_4d9f3_row15_col14" class="data row15 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_bf227_row15_col0" class="data row15 col0" >1972-10-31</td>
+      <td id="T_bf227_row15_col1" class="data row15 col1" >1973-01-31</td>
+      <td id="T_bf227_row15_col2" class="data row15 col2" >1973-01-31</td>
+      <td id="T_bf227_row15_col3" class="data row15 col3" >1,000,000.00</td>
+      <td id="T_bf227_row15_col4" class="data row15 col4" >0.00</td>
+      <td id="T_bf227_row15_col5" class="data row15 col5" >True</td>
+      <td id="T_bf227_row15_col6" class="data row15 col6" >2,555.56</td>
+      <td id="T_bf227_row15_col7" class="data row15 col7" >CLP</td>
+      <td id="T_bf227_row15_col8" class="data row15 col8" >10,000.00</td>
+      <td id="T_bf227_row15_col9" class="data row15 col9" >10,000.00</td>
+      <td id="T_bf227_row15_col10" class="data row15 col10" >0.0000%</td>
+      <td id="T_bf227_row15_col11" class="data row15 col11" >2,555.56</td>
+      <td id="T_bf227_row15_col12" class="data row15 col12" >1.0000%</td>
+      <td id="T_bf227_row15_col13" class="data row15 col13" >1.00</td>
+      <td id="T_bf227_row15_col14" class="data row15 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row16" class="row_heading level0 row16" >16</th>
-      <td id="T_4d9f3_row16_col0" class="data row16 col0" >1973-01-31</td>
-      <td id="T_4d9f3_row16_col1" class="data row16 col1" >1973-04-30</td>
-      <td id="T_4d9f3_row16_col2" class="data row16 col2" >1973-04-30</td>
-      <td id="T_4d9f3_row16_col3" class="data row16 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row16_col4" class="data row16 col4" >0.00</td>
-      <td id="T_4d9f3_row16_col5" class="data row16 col5" >True</td>
-      <td id="T_4d9f3_row16_col6" class="data row16 col6" >2,472.22</td>
-      <td id="T_4d9f3_row16_col7" class="data row16 col7" >CLP</td>
-      <td id="T_4d9f3_row16_col8" class="data row16 col8" >10,000.00</td>
-      <td id="T_4d9f3_row16_col9" class="data row16 col9" >10,000.00</td>
-      <td id="T_4d9f3_row16_col10" class="data row16 col10" >0.0000%</td>
-      <td id="T_4d9f3_row16_col11" class="data row16 col11" >2,472.22</td>
-      <td id="T_4d9f3_row16_col12" class="data row16 col12" >1.0000%</td>
-      <td id="T_4d9f3_row16_col13" class="data row16 col13" >1.00</td>
-      <td id="T_4d9f3_row16_col14" class="data row16 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_bf227_row16_col0" class="data row16 col0" >1973-01-31</td>
+      <td id="T_bf227_row16_col1" class="data row16 col1" >1973-04-30</td>
+      <td id="T_bf227_row16_col2" class="data row16 col2" >1973-04-30</td>
+      <td id="T_bf227_row16_col3" class="data row16 col3" >1,000,000.00</td>
+      <td id="T_bf227_row16_col4" class="data row16 col4" >0.00</td>
+      <td id="T_bf227_row16_col5" class="data row16 col5" >True</td>
+      <td id="T_bf227_row16_col6" class="data row16 col6" >2,472.22</td>
+      <td id="T_bf227_row16_col7" class="data row16 col7" >CLP</td>
+      <td id="T_bf227_row16_col8" class="data row16 col8" >10,000.00</td>
+      <td id="T_bf227_row16_col9" class="data row16 col9" >10,000.00</td>
+      <td id="T_bf227_row16_col10" class="data row16 col10" >0.0000%</td>
+      <td id="T_bf227_row16_col11" class="data row16 col11" >2,472.22</td>
+      <td id="T_bf227_row16_col12" class="data row16 col12" >1.0000%</td>
+      <td id="T_bf227_row16_col13" class="data row16 col13" >1.00</td>
+      <td id="T_bf227_row16_col14" class="data row16 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row17" class="row_heading level0 row17" >17</th>
-      <td id="T_4d9f3_row17_col0" class="data row17 col0" >1973-04-30</td>
-      <td id="T_4d9f3_row17_col1" class="data row17 col1" >1973-07-31</td>
-      <td id="T_4d9f3_row17_col2" class="data row17 col2" >1973-07-31</td>
-      <td id="T_4d9f3_row17_col3" class="data row17 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row17_col4" class="data row17 col4" >0.00</td>
-      <td id="T_4d9f3_row17_col5" class="data row17 col5" >True</td>
-      <td id="T_4d9f3_row17_col6" class="data row17 col6" >2,555.56</td>
-      <td id="T_4d9f3_row17_col7" class="data row17 col7" >CLP</td>
-      <td id="T_4d9f3_row17_col8" class="data row17 col8" >10,000.00</td>
-      <td id="T_4d9f3_row17_col9" class="data row17 col9" >10,000.00</td>
-      <td id="T_4d9f3_row17_col10" class="data row17 col10" >0.0000%</td>
-      <td id="T_4d9f3_row17_col11" class="data row17 col11" >2,555.56</td>
-      <td id="T_4d9f3_row17_col12" class="data row17 col12" >1.0000%</td>
-      <td id="T_4d9f3_row17_col13" class="data row17 col13" >1.00</td>
-      <td id="T_4d9f3_row17_col14" class="data row17 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_bf227_row17_col0" class="data row17 col0" >1973-04-30</td>
+      <td id="T_bf227_row17_col1" class="data row17 col1" >1973-07-31</td>
+      <td id="T_bf227_row17_col2" class="data row17 col2" >1973-07-31</td>
+      <td id="T_bf227_row17_col3" class="data row17 col3" >1,000,000.00</td>
+      <td id="T_bf227_row17_col4" class="data row17 col4" >0.00</td>
+      <td id="T_bf227_row17_col5" class="data row17 col5" >True</td>
+      <td id="T_bf227_row17_col6" class="data row17 col6" >2,555.56</td>
+      <td id="T_bf227_row17_col7" class="data row17 col7" >CLP</td>
+      <td id="T_bf227_row17_col8" class="data row17 col8" >10,000.00</td>
+      <td id="T_bf227_row17_col9" class="data row17 col9" >10,000.00</td>
+      <td id="T_bf227_row17_col10" class="data row17 col10" >0.0000%</td>
+      <td id="T_bf227_row17_col11" class="data row17 col11" >2,555.56</td>
+      <td id="T_bf227_row17_col12" class="data row17 col12" >1.0000%</td>
+      <td id="T_bf227_row17_col13" class="data row17 col13" >1.00</td>
+      <td id="T_bf227_row17_col14" class="data row17 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row18" class="row_heading level0 row18" >18</th>
-      <td id="T_4d9f3_row18_col0" class="data row18 col0" >1973-07-31</td>
-      <td id="T_4d9f3_row18_col1" class="data row18 col1" >1973-10-31</td>
-      <td id="T_4d9f3_row18_col2" class="data row18 col2" >1973-10-31</td>
-      <td id="T_4d9f3_row18_col3" class="data row18 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row18_col4" class="data row18 col4" >0.00</td>
-      <td id="T_4d9f3_row18_col5" class="data row18 col5" >True</td>
-      <td id="T_4d9f3_row18_col6" class="data row18 col6" >2,555.56</td>
-      <td id="T_4d9f3_row18_col7" class="data row18 col7" >CLP</td>
-      <td id="T_4d9f3_row18_col8" class="data row18 col8" >10,000.00</td>
-      <td id="T_4d9f3_row18_col9" class="data row18 col9" >10,000.00</td>
-      <td id="T_4d9f3_row18_col10" class="data row18 col10" >0.0000%</td>
-      <td id="T_4d9f3_row18_col11" class="data row18 col11" >2,555.56</td>
-      <td id="T_4d9f3_row18_col12" class="data row18 col12" >1.0000%</td>
-      <td id="T_4d9f3_row18_col13" class="data row18 col13" >1.00</td>
-      <td id="T_4d9f3_row18_col14" class="data row18 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_bf227_row18_col0" class="data row18 col0" >1973-07-31</td>
+      <td id="T_bf227_row18_col1" class="data row18 col1" >1973-10-31</td>
+      <td id="T_bf227_row18_col2" class="data row18 col2" >1973-10-31</td>
+      <td id="T_bf227_row18_col3" class="data row18 col3" >1,000,000.00</td>
+      <td id="T_bf227_row18_col4" class="data row18 col4" >0.00</td>
+      <td id="T_bf227_row18_col5" class="data row18 col5" >True</td>
+      <td id="T_bf227_row18_col6" class="data row18 col6" >2,555.56</td>
+      <td id="T_bf227_row18_col7" class="data row18 col7" >CLP</td>
+      <td id="T_bf227_row18_col8" class="data row18 col8" >10,000.00</td>
+      <td id="T_bf227_row18_col9" class="data row18 col9" >10,000.00</td>
+      <td id="T_bf227_row18_col10" class="data row18 col10" >0.0000%</td>
+      <td id="T_bf227_row18_col11" class="data row18 col11" >2,555.56</td>
+      <td id="T_bf227_row18_col12" class="data row18 col12" >1.0000%</td>
+      <td id="T_bf227_row18_col13" class="data row18 col13" >1.00</td>
+      <td id="T_bf227_row18_col14" class="data row18 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_4d9f3_level0_row19" class="row_heading level0 row19" >19</th>
-      <td id="T_4d9f3_row19_col0" class="data row19 col0" >1973-10-31</td>
-      <td id="T_4d9f3_row19_col1" class="data row19 col1" >1974-01-31</td>
-      <td id="T_4d9f3_row19_col2" class="data row19 col2" >1974-01-31</td>
-      <td id="T_4d9f3_row19_col3" class="data row19 col3" >1,000,000.00</td>
-      <td id="T_4d9f3_row19_col4" class="data row19 col4" >1,000,000.00</td>
-      <td id="T_4d9f3_row19_col5" class="data row19 col5" >True</td>
-      <td id="T_4d9f3_row19_col6" class="data row19 col6" >1,002,555.56</td>
-      <td id="T_4d9f3_row19_col7" class="data row19 col7" >CLP</td>
-      <td id="T_4d9f3_row19_col8" class="data row19 col8" >10,000.00</td>
-      <td id="T_4d9f3_row19_col9" class="data row19 col9" >10,000.00</td>
-      <td id="T_4d9f3_row19_col10" class="data row19 col10" >0.0000%</td>
-      <td id="T_4d9f3_row19_col11" class="data row19 col11" >2,555.56</td>
-      <td id="T_4d9f3_row19_col12" class="data row19 col12" >1.0000%</td>
-      <td id="T_4d9f3_row19_col13" class="data row19 col13" >1.00</td>
-      <td id="T_4d9f3_row19_col14" class="data row19 col14" >LinAct360</td>
+      <th id="T_bf227_level0_row19" class="row_heading level0 row19" >19</th>
+      <td id="T_bf227_row19_col0" class="data row19 col0" >1973-10-31</td>
+      <td id="T_bf227_row19_col1" class="data row19 col1" >1974-01-31</td>
+      <td id="T_bf227_row19_col2" class="data row19 col2" >1974-01-31</td>
+      <td id="T_bf227_row19_col3" class="data row19 col3" >1,000,000.00</td>
+      <td id="T_bf227_row19_col4" class="data row19 col4" >1,000,000.00</td>
+      <td id="T_bf227_row19_col5" class="data row19 col5" >True</td>
+      <td id="T_bf227_row19_col6" class="data row19 col6" >1,002,555.56</td>
+      <td id="T_bf227_row19_col7" class="data row19 col7" >CLP</td>
+      <td id="T_bf227_row19_col8" class="data row19 col8" >10,000.00</td>
+      <td id="T_bf227_row19_col9" class="data row19 col9" >10,000.00</td>
+      <td id="T_bf227_row19_col10" class="data row19 col10" >0.0000%</td>
+      <td id="T_bf227_row19_col11" class="data row19 col11" >2,555.56</td>
+      <td id="T_bf227_row19_col12" class="data row19 col12" >1.0000%</td>
+      <td id="T_bf227_row19_col13" class="data row19 col13" >1.00</td>
+      <td id="T_bf227_row19_col14" class="data row19 col14" >LinAct360</td>
     </tr>
   </tbody>
 </table>
@@ -5108,243 +5328,243 @@ df9.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_d26a0">
+<table id="T_d1a29">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_d26a0_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_d26a0_level0_col1" class="col_heading level0 col1" >fecha__final</th>
-      <th id="T_d26a0_level0_col2" class="col_heading level0 col2" >fecha__pago</th>
-      <th id="T_d26a0_level0_col3" class="col_heading level0 col3" >nominal</th>
-      <th id="T_d26a0_level0_col4" class="col_heading level0 col4" >amort</th>
-      <th id="T_d26a0_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
-      <th id="T_d26a0_level0_col6" class="col_heading level0 col6" >flujo</th>
-      <th id="T_d26a0_level0_col7" class="col_heading level0 col7" >moneda</th>
-      <th id="T_d26a0_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
-      <th id="T_d26a0_level0_col9" class="col_heading level0 col9" >icp_final</th>
-      <th id="T_d26a0_level0_col10" class="col_heading level0 col10" >valor_tasa</th>
-      <th id="T_d26a0_level0_col11" class="col_heading level0 col11" >interes</th>
-      <th id="T_d26a0_level0_col12" class="col_heading level0 col12" >spread</th>
-      <th id="T_d26a0_level0_col13" class="col_heading level0 col13" >gearing</th>
-      <th id="T_d26a0_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
+      <th id="T_d1a29_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_d1a29_level0_col1" class="col_heading level0 col1" >fecha__final</th>
+      <th id="T_d1a29_level0_col2" class="col_heading level0 col2" >fecha__pago</th>
+      <th id="T_d1a29_level0_col3" class="col_heading level0 col3" >nominal</th>
+      <th id="T_d1a29_level0_col4" class="col_heading level0 col4" >amort</th>
+      <th id="T_d1a29_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
+      <th id="T_d1a29_level0_col6" class="col_heading level0 col6" >flujo</th>
+      <th id="T_d1a29_level0_col7" class="col_heading level0 col7" >moneda</th>
+      <th id="T_d1a29_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
+      <th id="T_d1a29_level0_col9" class="col_heading level0 col9" >icp_final</th>
+      <th id="T_d1a29_level0_col10" class="col_heading level0 col10" >valor_tasa</th>
+      <th id="T_d1a29_level0_col11" class="col_heading level0 col11" >interes</th>
+      <th id="T_d1a29_level0_col12" class="col_heading level0 col12" >spread</th>
+      <th id="T_d1a29_level0_col13" class="col_heading level0 col13" >gearing</th>
+      <th id="T_d1a29_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_d26a0_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_d26a0_row0_col0" class="data row0 col0" >2019-03-26</td>
-      <td id="T_d26a0_row0_col1" class="data row0 col1" >2019-09-26</td>
-      <td id="T_d26a0_row0_col2" class="data row0 col2" >2019-09-26</td>
-      <td id="T_d26a0_row0_col3" class="data row0 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row0_col4" class="data row0 col4" >0.00</td>
-      <td id="T_d26a0_row0_col5" class="data row0 col5" >True</td>
-      <td id="T_d26a0_row0_col6" class="data row0 col6" >0.00</td>
-      <td id="T_d26a0_row0_col7" class="data row0 col7" >CLP</td>
-      <td id="T_d26a0_row0_col8" class="data row0 col8" >10,000.00</td>
-      <td id="T_d26a0_row0_col9" class="data row0 col9" >10,000.00</td>
-      <td id="T_d26a0_row0_col10" class="data row0 col10" >0.0000%</td>
-      <td id="T_d26a0_row0_col11" class="data row0 col11" >0.00</td>
-      <td id="T_d26a0_row0_col12" class="data row0 col12" >0.0000%</td>
-      <td id="T_d26a0_row0_col13" class="data row0 col13" >1.00</td>
-      <td id="T_d26a0_row0_col14" class="data row0 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_d1a29_row0_col0" class="data row0 col0" >2019-03-26</td>
+      <td id="T_d1a29_row0_col1" class="data row0 col1" >2019-09-26</td>
+      <td id="T_d1a29_row0_col2" class="data row0 col2" >2019-09-26</td>
+      <td id="T_d1a29_row0_col3" class="data row0 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_d1a29_row0_col5" class="data row0 col5" >True</td>
+      <td id="T_d1a29_row0_col6" class="data row0 col6" >0.00</td>
+      <td id="T_d1a29_row0_col7" class="data row0 col7" >CLP</td>
+      <td id="T_d1a29_row0_col8" class="data row0 col8" >10,000.00</td>
+      <td id="T_d1a29_row0_col9" class="data row0 col9" >10,000.00</td>
+      <td id="T_d1a29_row0_col10" class="data row0 col10" >0.0000%</td>
+      <td id="T_d1a29_row0_col11" class="data row0 col11" >0.00</td>
+      <td id="T_d1a29_row0_col12" class="data row0 col12" >0.0000%</td>
+      <td id="T_d1a29_row0_col13" class="data row0 col13" >1.00</td>
+      <td id="T_d1a29_row0_col14" class="data row0 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_d26a0_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_d26a0_row1_col0" class="data row1 col0" >2019-09-26</td>
-      <td id="T_d26a0_row1_col1" class="data row1 col1" >2020-03-26</td>
-      <td id="T_d26a0_row1_col2" class="data row1 col2" >2020-03-26</td>
-      <td id="T_d26a0_row1_col3" class="data row1 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row1_col4" class="data row1 col4" >0.00</td>
-      <td id="T_d26a0_row1_col5" class="data row1 col5" >True</td>
-      <td id="T_d26a0_row1_col6" class="data row1 col6" >0.00</td>
-      <td id="T_d26a0_row1_col7" class="data row1 col7" >CLP</td>
-      <td id="T_d26a0_row1_col8" class="data row1 col8" >10,000.00</td>
-      <td id="T_d26a0_row1_col9" class="data row1 col9" >10,000.00</td>
-      <td id="T_d26a0_row1_col10" class="data row1 col10" >0.0000%</td>
-      <td id="T_d26a0_row1_col11" class="data row1 col11" >0.00</td>
-      <td id="T_d26a0_row1_col12" class="data row1 col12" >0.0000%</td>
-      <td id="T_d26a0_row1_col13" class="data row1 col13" >1.00</td>
-      <td id="T_d26a0_row1_col14" class="data row1 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_d1a29_row1_col0" class="data row1 col0" >2019-09-26</td>
+      <td id="T_d1a29_row1_col1" class="data row1 col1" >2020-03-26</td>
+      <td id="T_d1a29_row1_col2" class="data row1 col2" >2020-03-26</td>
+      <td id="T_d1a29_row1_col3" class="data row1 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row1_col4" class="data row1 col4" >0.00</td>
+      <td id="T_d1a29_row1_col5" class="data row1 col5" >True</td>
+      <td id="T_d1a29_row1_col6" class="data row1 col6" >0.00</td>
+      <td id="T_d1a29_row1_col7" class="data row1 col7" >CLP</td>
+      <td id="T_d1a29_row1_col8" class="data row1 col8" >10,000.00</td>
+      <td id="T_d1a29_row1_col9" class="data row1 col9" >10,000.00</td>
+      <td id="T_d1a29_row1_col10" class="data row1 col10" >0.0000%</td>
+      <td id="T_d1a29_row1_col11" class="data row1 col11" >0.00</td>
+      <td id="T_d1a29_row1_col12" class="data row1 col12" >0.0000%</td>
+      <td id="T_d1a29_row1_col13" class="data row1 col13" >1.00</td>
+      <td id="T_d1a29_row1_col14" class="data row1 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_d26a0_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_d26a0_row2_col0" class="data row2 col0" >2020-03-26</td>
-      <td id="T_d26a0_row2_col1" class="data row2 col1" >2020-09-28</td>
-      <td id="T_d26a0_row2_col2" class="data row2 col2" >2020-09-28</td>
-      <td id="T_d26a0_row2_col3" class="data row2 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row2_col4" class="data row2 col4" >0.00</td>
-      <td id="T_d26a0_row2_col5" class="data row2 col5" >True</td>
-      <td id="T_d26a0_row2_col6" class="data row2 col6" >0.00</td>
-      <td id="T_d26a0_row2_col7" class="data row2 col7" >CLP</td>
-      <td id="T_d26a0_row2_col8" class="data row2 col8" >10,000.00</td>
-      <td id="T_d26a0_row2_col9" class="data row2 col9" >10,000.00</td>
-      <td id="T_d26a0_row2_col10" class="data row2 col10" >0.0000%</td>
-      <td id="T_d26a0_row2_col11" class="data row2 col11" >0.00</td>
-      <td id="T_d26a0_row2_col12" class="data row2 col12" >0.0000%</td>
-      <td id="T_d26a0_row2_col13" class="data row2 col13" >1.00</td>
-      <td id="T_d26a0_row2_col14" class="data row2 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_d1a29_row2_col0" class="data row2 col0" >2020-03-26</td>
+      <td id="T_d1a29_row2_col1" class="data row2 col1" >2020-09-28</td>
+      <td id="T_d1a29_row2_col2" class="data row2 col2" >2020-09-28</td>
+      <td id="T_d1a29_row2_col3" class="data row2 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row2_col4" class="data row2 col4" >0.00</td>
+      <td id="T_d1a29_row2_col5" class="data row2 col5" >True</td>
+      <td id="T_d1a29_row2_col6" class="data row2 col6" >0.00</td>
+      <td id="T_d1a29_row2_col7" class="data row2 col7" >CLP</td>
+      <td id="T_d1a29_row2_col8" class="data row2 col8" >10,000.00</td>
+      <td id="T_d1a29_row2_col9" class="data row2 col9" >10,000.00</td>
+      <td id="T_d1a29_row2_col10" class="data row2 col10" >0.0000%</td>
+      <td id="T_d1a29_row2_col11" class="data row2 col11" >0.00</td>
+      <td id="T_d1a29_row2_col12" class="data row2 col12" >0.0000%</td>
+      <td id="T_d1a29_row2_col13" class="data row2 col13" >1.00</td>
+      <td id="T_d1a29_row2_col14" class="data row2 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_d26a0_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_d26a0_row3_col0" class="data row3 col0" >2020-09-28</td>
-      <td id="T_d26a0_row3_col1" class="data row3 col1" >2021-03-26</td>
-      <td id="T_d26a0_row3_col2" class="data row3 col2" >2021-03-26</td>
-      <td id="T_d26a0_row3_col3" class="data row3 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row3_col4" class="data row3 col4" >0.00</td>
-      <td id="T_d26a0_row3_col5" class="data row3 col5" >True</td>
-      <td id="T_d26a0_row3_col6" class="data row3 col6" >0.00</td>
-      <td id="T_d26a0_row3_col7" class="data row3 col7" >CLP</td>
-      <td id="T_d26a0_row3_col8" class="data row3 col8" >10,000.00</td>
-      <td id="T_d26a0_row3_col9" class="data row3 col9" >10,000.00</td>
-      <td id="T_d26a0_row3_col10" class="data row3 col10" >0.0000%</td>
-      <td id="T_d26a0_row3_col11" class="data row3 col11" >0.00</td>
-      <td id="T_d26a0_row3_col12" class="data row3 col12" >0.0000%</td>
-      <td id="T_d26a0_row3_col13" class="data row3 col13" >1.00</td>
-      <td id="T_d26a0_row3_col14" class="data row3 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_d1a29_row3_col0" class="data row3 col0" >2020-09-28</td>
+      <td id="T_d1a29_row3_col1" class="data row3 col1" >2021-03-26</td>
+      <td id="T_d1a29_row3_col2" class="data row3 col2" >2021-03-26</td>
+      <td id="T_d1a29_row3_col3" class="data row3 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row3_col4" class="data row3 col4" >0.00</td>
+      <td id="T_d1a29_row3_col5" class="data row3 col5" >True</td>
+      <td id="T_d1a29_row3_col6" class="data row3 col6" >0.00</td>
+      <td id="T_d1a29_row3_col7" class="data row3 col7" >CLP</td>
+      <td id="T_d1a29_row3_col8" class="data row3 col8" >10,000.00</td>
+      <td id="T_d1a29_row3_col9" class="data row3 col9" >10,000.00</td>
+      <td id="T_d1a29_row3_col10" class="data row3 col10" >0.0000%</td>
+      <td id="T_d1a29_row3_col11" class="data row3 col11" >0.00</td>
+      <td id="T_d1a29_row3_col12" class="data row3 col12" >0.0000%</td>
+      <td id="T_d1a29_row3_col13" class="data row3 col13" >1.00</td>
+      <td id="T_d1a29_row3_col14" class="data row3 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_d26a0_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_d26a0_row4_col0" class="data row4 col0" >2021-03-26</td>
-      <td id="T_d26a0_row4_col1" class="data row4 col1" >2021-09-27</td>
-      <td id="T_d26a0_row4_col2" class="data row4 col2" >2021-09-27</td>
-      <td id="T_d26a0_row4_col3" class="data row4 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row4_col4" class="data row4 col4" >0.00</td>
-      <td id="T_d26a0_row4_col5" class="data row4 col5" >True</td>
-      <td id="T_d26a0_row4_col6" class="data row4 col6" >0.00</td>
-      <td id="T_d26a0_row4_col7" class="data row4 col7" >CLP</td>
-      <td id="T_d26a0_row4_col8" class="data row4 col8" >10,000.00</td>
-      <td id="T_d26a0_row4_col9" class="data row4 col9" >10,000.00</td>
-      <td id="T_d26a0_row4_col10" class="data row4 col10" >0.0000%</td>
-      <td id="T_d26a0_row4_col11" class="data row4 col11" >0.00</td>
-      <td id="T_d26a0_row4_col12" class="data row4 col12" >0.0000%</td>
-      <td id="T_d26a0_row4_col13" class="data row4 col13" >1.00</td>
-      <td id="T_d26a0_row4_col14" class="data row4 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_d1a29_row4_col0" class="data row4 col0" >2021-03-26</td>
+      <td id="T_d1a29_row4_col1" class="data row4 col1" >2021-09-27</td>
+      <td id="T_d1a29_row4_col2" class="data row4 col2" >2021-09-27</td>
+      <td id="T_d1a29_row4_col3" class="data row4 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row4_col4" class="data row4 col4" >0.00</td>
+      <td id="T_d1a29_row4_col5" class="data row4 col5" >True</td>
+      <td id="T_d1a29_row4_col6" class="data row4 col6" >0.00</td>
+      <td id="T_d1a29_row4_col7" class="data row4 col7" >CLP</td>
+      <td id="T_d1a29_row4_col8" class="data row4 col8" >10,000.00</td>
+      <td id="T_d1a29_row4_col9" class="data row4 col9" >10,000.00</td>
+      <td id="T_d1a29_row4_col10" class="data row4 col10" >0.0000%</td>
+      <td id="T_d1a29_row4_col11" class="data row4 col11" >0.00</td>
+      <td id="T_d1a29_row4_col12" class="data row4 col12" >0.0000%</td>
+      <td id="T_d1a29_row4_col13" class="data row4 col13" >1.00</td>
+      <td id="T_d1a29_row4_col14" class="data row4 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_d26a0_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_d26a0_row5_col0" class="data row5 col0" >2021-09-27</td>
-      <td id="T_d26a0_row5_col1" class="data row5 col1" >2022-03-28</td>
-      <td id="T_d26a0_row5_col2" class="data row5 col2" >2022-03-28</td>
-      <td id="T_d26a0_row5_col3" class="data row5 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row5_col4" class="data row5 col4" >0.00</td>
-      <td id="T_d26a0_row5_col5" class="data row5 col5" >True</td>
-      <td id="T_d26a0_row5_col6" class="data row5 col6" >0.00</td>
-      <td id="T_d26a0_row5_col7" class="data row5 col7" >CLP</td>
-      <td id="T_d26a0_row5_col8" class="data row5 col8" >10,000.00</td>
-      <td id="T_d26a0_row5_col9" class="data row5 col9" >10,000.00</td>
-      <td id="T_d26a0_row5_col10" class="data row5 col10" >0.0000%</td>
-      <td id="T_d26a0_row5_col11" class="data row5 col11" >0.00</td>
-      <td id="T_d26a0_row5_col12" class="data row5 col12" >0.0000%</td>
-      <td id="T_d26a0_row5_col13" class="data row5 col13" >1.00</td>
-      <td id="T_d26a0_row5_col14" class="data row5 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_d1a29_row5_col0" class="data row5 col0" >2021-09-27</td>
+      <td id="T_d1a29_row5_col1" class="data row5 col1" >2022-03-28</td>
+      <td id="T_d1a29_row5_col2" class="data row5 col2" >2022-03-28</td>
+      <td id="T_d1a29_row5_col3" class="data row5 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row5_col4" class="data row5 col4" >0.00</td>
+      <td id="T_d1a29_row5_col5" class="data row5 col5" >True</td>
+      <td id="T_d1a29_row5_col6" class="data row5 col6" >0.00</td>
+      <td id="T_d1a29_row5_col7" class="data row5 col7" >CLP</td>
+      <td id="T_d1a29_row5_col8" class="data row5 col8" >10,000.00</td>
+      <td id="T_d1a29_row5_col9" class="data row5 col9" >10,000.00</td>
+      <td id="T_d1a29_row5_col10" class="data row5 col10" >0.0000%</td>
+      <td id="T_d1a29_row5_col11" class="data row5 col11" >0.00</td>
+      <td id="T_d1a29_row5_col12" class="data row5 col12" >0.0000%</td>
+      <td id="T_d1a29_row5_col13" class="data row5 col13" >1.00</td>
+      <td id="T_d1a29_row5_col14" class="data row5 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_d26a0_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_d26a0_row6_col0" class="data row6 col0" >2022-03-28</td>
-      <td id="T_d26a0_row6_col1" class="data row6 col1" >2022-09-26</td>
-      <td id="T_d26a0_row6_col2" class="data row6 col2" >2022-09-26</td>
-      <td id="T_d26a0_row6_col3" class="data row6 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row6_col4" class="data row6 col4" >0.00</td>
-      <td id="T_d26a0_row6_col5" class="data row6 col5" >True</td>
-      <td id="T_d26a0_row6_col6" class="data row6 col6" >0.00</td>
-      <td id="T_d26a0_row6_col7" class="data row6 col7" >CLP</td>
-      <td id="T_d26a0_row6_col8" class="data row6 col8" >10,000.00</td>
-      <td id="T_d26a0_row6_col9" class="data row6 col9" >10,000.00</td>
-      <td id="T_d26a0_row6_col10" class="data row6 col10" >0.0000%</td>
-      <td id="T_d26a0_row6_col11" class="data row6 col11" >0.00</td>
-      <td id="T_d26a0_row6_col12" class="data row6 col12" >0.0000%</td>
-      <td id="T_d26a0_row6_col13" class="data row6 col13" >1.00</td>
-      <td id="T_d26a0_row6_col14" class="data row6 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_d1a29_row6_col0" class="data row6 col0" >2022-03-28</td>
+      <td id="T_d1a29_row6_col1" class="data row6 col1" >2022-09-26</td>
+      <td id="T_d1a29_row6_col2" class="data row6 col2" >2022-09-26</td>
+      <td id="T_d1a29_row6_col3" class="data row6 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row6_col4" class="data row6 col4" >0.00</td>
+      <td id="T_d1a29_row6_col5" class="data row6 col5" >True</td>
+      <td id="T_d1a29_row6_col6" class="data row6 col6" >0.00</td>
+      <td id="T_d1a29_row6_col7" class="data row6 col7" >CLP</td>
+      <td id="T_d1a29_row6_col8" class="data row6 col8" >10,000.00</td>
+      <td id="T_d1a29_row6_col9" class="data row6 col9" >10,000.00</td>
+      <td id="T_d1a29_row6_col10" class="data row6 col10" >0.0000%</td>
+      <td id="T_d1a29_row6_col11" class="data row6 col11" >0.00</td>
+      <td id="T_d1a29_row6_col12" class="data row6 col12" >0.0000%</td>
+      <td id="T_d1a29_row6_col13" class="data row6 col13" >1.00</td>
+      <td id="T_d1a29_row6_col14" class="data row6 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_d26a0_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_d26a0_row7_col0" class="data row7 col0" >2022-09-26</td>
-      <td id="T_d26a0_row7_col1" class="data row7 col1" >2023-03-27</td>
-      <td id="T_d26a0_row7_col2" class="data row7 col2" >2023-03-27</td>
-      <td id="T_d26a0_row7_col3" class="data row7 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row7_col4" class="data row7 col4" >0.00</td>
-      <td id="T_d26a0_row7_col5" class="data row7 col5" >True</td>
-      <td id="T_d26a0_row7_col6" class="data row7 col6" >0.00</td>
-      <td id="T_d26a0_row7_col7" class="data row7 col7" >CLP</td>
-      <td id="T_d26a0_row7_col8" class="data row7 col8" >10,000.00</td>
-      <td id="T_d26a0_row7_col9" class="data row7 col9" >10,000.00</td>
-      <td id="T_d26a0_row7_col10" class="data row7 col10" >0.0000%</td>
-      <td id="T_d26a0_row7_col11" class="data row7 col11" >0.00</td>
-      <td id="T_d26a0_row7_col12" class="data row7 col12" >0.0000%</td>
-      <td id="T_d26a0_row7_col13" class="data row7 col13" >1.00</td>
-      <td id="T_d26a0_row7_col14" class="data row7 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_d1a29_row7_col0" class="data row7 col0" >2022-09-26</td>
+      <td id="T_d1a29_row7_col1" class="data row7 col1" >2023-03-27</td>
+      <td id="T_d1a29_row7_col2" class="data row7 col2" >2023-03-27</td>
+      <td id="T_d1a29_row7_col3" class="data row7 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row7_col4" class="data row7 col4" >0.00</td>
+      <td id="T_d1a29_row7_col5" class="data row7 col5" >True</td>
+      <td id="T_d1a29_row7_col6" class="data row7 col6" >0.00</td>
+      <td id="T_d1a29_row7_col7" class="data row7 col7" >CLP</td>
+      <td id="T_d1a29_row7_col8" class="data row7 col8" >10,000.00</td>
+      <td id="T_d1a29_row7_col9" class="data row7 col9" >10,000.00</td>
+      <td id="T_d1a29_row7_col10" class="data row7 col10" >0.0000%</td>
+      <td id="T_d1a29_row7_col11" class="data row7 col11" >0.00</td>
+      <td id="T_d1a29_row7_col12" class="data row7 col12" >0.0000%</td>
+      <td id="T_d1a29_row7_col13" class="data row7 col13" >1.00</td>
+      <td id="T_d1a29_row7_col14" class="data row7 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_d26a0_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_d26a0_row8_col0" class="data row8 col0" >2023-03-27</td>
-      <td id="T_d26a0_row8_col1" class="data row8 col1" >2023-09-26</td>
-      <td id="T_d26a0_row8_col2" class="data row8 col2" >2023-09-26</td>
-      <td id="T_d26a0_row8_col3" class="data row8 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row8_col4" class="data row8 col4" >0.00</td>
-      <td id="T_d26a0_row8_col5" class="data row8 col5" >True</td>
-      <td id="T_d26a0_row8_col6" class="data row8 col6" >0.00</td>
-      <td id="T_d26a0_row8_col7" class="data row8 col7" >CLP</td>
-      <td id="T_d26a0_row8_col8" class="data row8 col8" >10,000.00</td>
-      <td id="T_d26a0_row8_col9" class="data row8 col9" >10,000.00</td>
-      <td id="T_d26a0_row8_col10" class="data row8 col10" >0.0000%</td>
-      <td id="T_d26a0_row8_col11" class="data row8 col11" >0.00</td>
-      <td id="T_d26a0_row8_col12" class="data row8 col12" >0.0000%</td>
-      <td id="T_d26a0_row8_col13" class="data row8 col13" >1.00</td>
-      <td id="T_d26a0_row8_col14" class="data row8 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_d1a29_row8_col0" class="data row8 col0" >2023-03-27</td>
+      <td id="T_d1a29_row8_col1" class="data row8 col1" >2023-09-26</td>
+      <td id="T_d1a29_row8_col2" class="data row8 col2" >2023-09-26</td>
+      <td id="T_d1a29_row8_col3" class="data row8 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row8_col4" class="data row8 col4" >0.00</td>
+      <td id="T_d1a29_row8_col5" class="data row8 col5" >True</td>
+      <td id="T_d1a29_row8_col6" class="data row8 col6" >0.00</td>
+      <td id="T_d1a29_row8_col7" class="data row8 col7" >CLP</td>
+      <td id="T_d1a29_row8_col8" class="data row8 col8" >10,000.00</td>
+      <td id="T_d1a29_row8_col9" class="data row8 col9" >10,000.00</td>
+      <td id="T_d1a29_row8_col10" class="data row8 col10" >0.0000%</td>
+      <td id="T_d1a29_row8_col11" class="data row8 col11" >0.00</td>
+      <td id="T_d1a29_row8_col12" class="data row8 col12" >0.0000%</td>
+      <td id="T_d1a29_row8_col13" class="data row8 col13" >1.00</td>
+      <td id="T_d1a29_row8_col14" class="data row8 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_d26a0_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_d26a0_row9_col0" class="data row9 col0" >2023-09-26</td>
-      <td id="T_d26a0_row9_col1" class="data row9 col1" >2024-03-26</td>
-      <td id="T_d26a0_row9_col2" class="data row9 col2" >2024-03-26</td>
-      <td id="T_d26a0_row9_col3" class="data row9 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row9_col4" class="data row9 col4" >0.00</td>
-      <td id="T_d26a0_row9_col5" class="data row9 col5" >True</td>
-      <td id="T_d26a0_row9_col6" class="data row9 col6" >0.00</td>
-      <td id="T_d26a0_row9_col7" class="data row9 col7" >CLP</td>
-      <td id="T_d26a0_row9_col8" class="data row9 col8" >10,000.00</td>
-      <td id="T_d26a0_row9_col9" class="data row9 col9" >10,000.00</td>
-      <td id="T_d26a0_row9_col10" class="data row9 col10" >0.0000%</td>
-      <td id="T_d26a0_row9_col11" class="data row9 col11" >0.00</td>
-      <td id="T_d26a0_row9_col12" class="data row9 col12" >0.0000%</td>
-      <td id="T_d26a0_row9_col13" class="data row9 col13" >1.00</td>
-      <td id="T_d26a0_row9_col14" class="data row9 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_d1a29_row9_col0" class="data row9 col0" >2023-09-26</td>
+      <td id="T_d1a29_row9_col1" class="data row9 col1" >2024-03-26</td>
+      <td id="T_d1a29_row9_col2" class="data row9 col2" >2024-03-26</td>
+      <td id="T_d1a29_row9_col3" class="data row9 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row9_col4" class="data row9 col4" >0.00</td>
+      <td id="T_d1a29_row9_col5" class="data row9 col5" >True</td>
+      <td id="T_d1a29_row9_col6" class="data row9 col6" >0.00</td>
+      <td id="T_d1a29_row9_col7" class="data row9 col7" >CLP</td>
+      <td id="T_d1a29_row9_col8" class="data row9 col8" >10,000.00</td>
+      <td id="T_d1a29_row9_col9" class="data row9 col9" >10,000.00</td>
+      <td id="T_d1a29_row9_col10" class="data row9 col10" >0.0000%</td>
+      <td id="T_d1a29_row9_col11" class="data row9 col11" >0.00</td>
+      <td id="T_d1a29_row9_col12" class="data row9 col12" >0.0000%</td>
+      <td id="T_d1a29_row9_col13" class="data row9 col13" >1.00</td>
+      <td id="T_d1a29_row9_col14" class="data row9 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_d26a0_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_d26a0_row10_col0" class="data row10 col0" >2024-03-26</td>
-      <td id="T_d26a0_row10_col1" class="data row10 col1" >2024-09-26</td>
-      <td id="T_d26a0_row10_col2" class="data row10 col2" >2024-09-26</td>
-      <td id="T_d26a0_row10_col3" class="data row10 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row10_col4" class="data row10 col4" >0.00</td>
-      <td id="T_d26a0_row10_col5" class="data row10 col5" >True</td>
-      <td id="T_d26a0_row10_col6" class="data row10 col6" >0.00</td>
-      <td id="T_d26a0_row10_col7" class="data row10 col7" >CLP</td>
-      <td id="T_d26a0_row10_col8" class="data row10 col8" >10,000.00</td>
-      <td id="T_d26a0_row10_col9" class="data row10 col9" >10,000.00</td>
-      <td id="T_d26a0_row10_col10" class="data row10 col10" >0.0000%</td>
-      <td id="T_d26a0_row10_col11" class="data row10 col11" >0.00</td>
-      <td id="T_d26a0_row10_col12" class="data row10 col12" >0.0000%</td>
-      <td id="T_d26a0_row10_col13" class="data row10 col13" >1.00</td>
-      <td id="T_d26a0_row10_col14" class="data row10 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_d1a29_row10_col0" class="data row10 col0" >2024-03-26</td>
+      <td id="T_d1a29_row10_col1" class="data row10 col1" >2024-09-26</td>
+      <td id="T_d1a29_row10_col2" class="data row10 col2" >2024-09-26</td>
+      <td id="T_d1a29_row10_col3" class="data row10 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row10_col4" class="data row10 col4" >0.00</td>
+      <td id="T_d1a29_row10_col5" class="data row10 col5" >True</td>
+      <td id="T_d1a29_row10_col6" class="data row10 col6" >0.00</td>
+      <td id="T_d1a29_row10_col7" class="data row10 col7" >CLP</td>
+      <td id="T_d1a29_row10_col8" class="data row10 col8" >10,000.00</td>
+      <td id="T_d1a29_row10_col9" class="data row10 col9" >10,000.00</td>
+      <td id="T_d1a29_row10_col10" class="data row10 col10" >0.0000%</td>
+      <td id="T_d1a29_row10_col11" class="data row10 col11" >0.00</td>
+      <td id="T_d1a29_row10_col12" class="data row10 col12" >0.0000%</td>
+      <td id="T_d1a29_row10_col13" class="data row10 col13" >1.00</td>
+      <td id="T_d1a29_row10_col14" class="data row10 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_d26a0_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_d26a0_row11_col0" class="data row11 col0" >2024-09-26</td>
-      <td id="T_d26a0_row11_col1" class="data row11 col1" >2025-03-26</td>
-      <td id="T_d26a0_row11_col2" class="data row11 col2" >2025-03-26</td>
-      <td id="T_d26a0_row11_col3" class="data row11 col3" >1,000,000.00</td>
-      <td id="T_d26a0_row11_col4" class="data row11 col4" >1,000,000.00</td>
-      <td id="T_d26a0_row11_col5" class="data row11 col5" >True</td>
-      <td id="T_d26a0_row11_col6" class="data row11 col6" >1,000,000.00</td>
-      <td id="T_d26a0_row11_col7" class="data row11 col7" >CLP</td>
-      <td id="T_d26a0_row11_col8" class="data row11 col8" >10,000.00</td>
-      <td id="T_d26a0_row11_col9" class="data row11 col9" >10,000.00</td>
-      <td id="T_d26a0_row11_col10" class="data row11 col10" >0.0000%</td>
-      <td id="T_d26a0_row11_col11" class="data row11 col11" >0.00</td>
-      <td id="T_d26a0_row11_col12" class="data row11 col12" >0.0000%</td>
-      <td id="T_d26a0_row11_col13" class="data row11 col13" >1.00</td>
-      <td id="T_d26a0_row11_col14" class="data row11 col14" >LinAct360</td>
+      <th id="T_d1a29_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_d1a29_row11_col0" class="data row11 col0" >2024-09-26</td>
+      <td id="T_d1a29_row11_col1" class="data row11 col1" >2025-03-26</td>
+      <td id="T_d1a29_row11_col2" class="data row11 col2" >2025-03-26</td>
+      <td id="T_d1a29_row11_col3" class="data row11 col3" >1,000,000.00</td>
+      <td id="T_d1a29_row11_col4" class="data row11 col4" >1,000,000.00</td>
+      <td id="T_d1a29_row11_col5" class="data row11 col5" >True</td>
+      <td id="T_d1a29_row11_col6" class="data row11 col6" >1,000,000.00</td>
+      <td id="T_d1a29_row11_col7" class="data row11 col7" >CLP</td>
+      <td id="T_d1a29_row11_col8" class="data row11 col8" >10,000.00</td>
+      <td id="T_d1a29_row11_col9" class="data row11 col9" >10,000.00</td>
+      <td id="T_d1a29_row11_col10" class="data row11 col10" >0.0000%</td>
+      <td id="T_d1a29_row11_col11" class="data row11 col11" >0.00</td>
+      <td id="T_d1a29_row11_col12" class="data row11 col12" >0.0000%</td>
+      <td id="T_d1a29_row11_col13" class="data row11 col13" >1.00</td>
+      <td id="T_d1a29_row11_col14" class="data row11 col14" >LinAct360</td>
     </tr>
   </tbody>
 </table>
@@ -5398,243 +5618,243 @@ df9.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_b5bdd">
+<table id="T_23e52">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_b5bdd_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_b5bdd_level0_col1" class="col_heading level0 col1" >fecha__final</th>
-      <th id="T_b5bdd_level0_col2" class="col_heading level0 col2" >fecha__pago</th>
-      <th id="T_b5bdd_level0_col3" class="col_heading level0 col3" >nominal</th>
-      <th id="T_b5bdd_level0_col4" class="col_heading level0 col4" >amort</th>
-      <th id="T_b5bdd_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
-      <th id="T_b5bdd_level0_col6" class="col_heading level0 col6" >flujo</th>
-      <th id="T_b5bdd_level0_col7" class="col_heading level0 col7" >moneda</th>
-      <th id="T_b5bdd_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
-      <th id="T_b5bdd_level0_col9" class="col_heading level0 col9" >icp_final</th>
-      <th id="T_b5bdd_level0_col10" class="col_heading level0 col10" >valor_tasa</th>
-      <th id="T_b5bdd_level0_col11" class="col_heading level0 col11" >interes</th>
-      <th id="T_b5bdd_level0_col12" class="col_heading level0 col12" >spread</th>
-      <th id="T_b5bdd_level0_col13" class="col_heading level0 col13" >gearing</th>
-      <th id="T_b5bdd_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
+      <th id="T_23e52_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_23e52_level0_col1" class="col_heading level0 col1" >fecha__final</th>
+      <th id="T_23e52_level0_col2" class="col_heading level0 col2" >fecha__pago</th>
+      <th id="T_23e52_level0_col3" class="col_heading level0 col3" >nominal</th>
+      <th id="T_23e52_level0_col4" class="col_heading level0 col4" >amort</th>
+      <th id="T_23e52_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
+      <th id="T_23e52_level0_col6" class="col_heading level0 col6" >flujo</th>
+      <th id="T_23e52_level0_col7" class="col_heading level0 col7" >moneda</th>
+      <th id="T_23e52_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
+      <th id="T_23e52_level0_col9" class="col_heading level0 col9" >icp_final</th>
+      <th id="T_23e52_level0_col10" class="col_heading level0 col10" >valor_tasa</th>
+      <th id="T_23e52_level0_col11" class="col_heading level0 col11" >interes</th>
+      <th id="T_23e52_level0_col12" class="col_heading level0 col12" >spread</th>
+      <th id="T_23e52_level0_col13" class="col_heading level0 col13" >gearing</th>
+      <th id="T_23e52_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_b5bdd_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_b5bdd_row0_col0" class="data row0 col0" >2019-03-26</td>
-      <td id="T_b5bdd_row0_col1" class="data row0 col1" >2019-09-26</td>
-      <td id="T_b5bdd_row0_col2" class="data row0 col2" >2019-09-26</td>
-      <td id="T_b5bdd_row0_col3" class="data row0 col3" >1,000,000.00</td>
-      <td id="T_b5bdd_row0_col4" class="data row0 col4" >0.00</td>
-      <td id="T_b5bdd_row0_col5" class="data row0 col5" >True</td>
-      <td id="T_b5bdd_row0_col6" class="data row0 col6" >0.00</td>
-      <td id="T_b5bdd_row0_col7" class="data row0 col7" >CLP</td>
-      <td id="T_b5bdd_row0_col8" class="data row0 col8" >10,000.00</td>
-      <td id="T_b5bdd_row0_col9" class="data row0 col9" >10,000.00</td>
-      <td id="T_b5bdd_row0_col10" class="data row0 col10" >0.0000%</td>
-      <td id="T_b5bdd_row0_col11" class="data row0 col11" >0.00</td>
-      <td id="T_b5bdd_row0_col12" class="data row0 col12" >0.0000%</td>
-      <td id="T_b5bdd_row0_col13" class="data row0 col13" >1.00</td>
-      <td id="T_b5bdd_row0_col14" class="data row0 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_23e52_row0_col0" class="data row0 col0" >2019-03-26</td>
+      <td id="T_23e52_row0_col1" class="data row0 col1" >2019-09-26</td>
+      <td id="T_23e52_row0_col2" class="data row0 col2" >2019-09-26</td>
+      <td id="T_23e52_row0_col3" class="data row0 col3" >1,000,000.00</td>
+      <td id="T_23e52_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_23e52_row0_col5" class="data row0 col5" >True</td>
+      <td id="T_23e52_row0_col6" class="data row0 col6" >0.00</td>
+      <td id="T_23e52_row0_col7" class="data row0 col7" >CLP</td>
+      <td id="T_23e52_row0_col8" class="data row0 col8" >10,000.00</td>
+      <td id="T_23e52_row0_col9" class="data row0 col9" >10,000.00</td>
+      <td id="T_23e52_row0_col10" class="data row0 col10" >0.0000%</td>
+      <td id="T_23e52_row0_col11" class="data row0 col11" >0.00</td>
+      <td id="T_23e52_row0_col12" class="data row0 col12" >0.0000%</td>
+      <td id="T_23e52_row0_col13" class="data row0 col13" >1.00</td>
+      <td id="T_23e52_row0_col14" class="data row0 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_b5bdd_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_b5bdd_row1_col0" class="data row1 col0" >2019-09-26</td>
-      <td id="T_b5bdd_row1_col1" class="data row1 col1" >2020-03-26</td>
-      <td id="T_b5bdd_row1_col2" class="data row1 col2" >2020-03-26</td>
-      <td id="T_b5bdd_row1_col3" class="data row1 col3" >1,000,000.00</td>
-      <td id="T_b5bdd_row1_col4" class="data row1 col4" >0.00</td>
-      <td id="T_b5bdd_row1_col5" class="data row1 col5" >True</td>
-      <td id="T_b5bdd_row1_col6" class="data row1 col6" >0.00</td>
-      <td id="T_b5bdd_row1_col7" class="data row1 col7" >CLP</td>
-      <td id="T_b5bdd_row1_col8" class="data row1 col8" >10,000.00</td>
-      <td id="T_b5bdd_row1_col9" class="data row1 col9" >10,000.00</td>
-      <td id="T_b5bdd_row1_col10" class="data row1 col10" >0.0000%</td>
-      <td id="T_b5bdd_row1_col11" class="data row1 col11" >0.00</td>
-      <td id="T_b5bdd_row1_col12" class="data row1 col12" >0.0000%</td>
-      <td id="T_b5bdd_row1_col13" class="data row1 col13" >1.00</td>
-      <td id="T_b5bdd_row1_col14" class="data row1 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_23e52_row1_col0" class="data row1 col0" >2019-09-26</td>
+      <td id="T_23e52_row1_col1" class="data row1 col1" >2020-03-26</td>
+      <td id="T_23e52_row1_col2" class="data row1 col2" >2020-03-26</td>
+      <td id="T_23e52_row1_col3" class="data row1 col3" >1,000,000.00</td>
+      <td id="T_23e52_row1_col4" class="data row1 col4" >0.00</td>
+      <td id="T_23e52_row1_col5" class="data row1 col5" >True</td>
+      <td id="T_23e52_row1_col6" class="data row1 col6" >0.00</td>
+      <td id="T_23e52_row1_col7" class="data row1 col7" >CLP</td>
+      <td id="T_23e52_row1_col8" class="data row1 col8" >10,000.00</td>
+      <td id="T_23e52_row1_col9" class="data row1 col9" >10,000.00</td>
+      <td id="T_23e52_row1_col10" class="data row1 col10" >0.0000%</td>
+      <td id="T_23e52_row1_col11" class="data row1 col11" >0.00</td>
+      <td id="T_23e52_row1_col12" class="data row1 col12" >0.0000%</td>
+      <td id="T_23e52_row1_col13" class="data row1 col13" >1.00</td>
+      <td id="T_23e52_row1_col14" class="data row1 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_b5bdd_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_b5bdd_row2_col0" class="data row2 col0" >2020-03-26</td>
-      <td id="T_b5bdd_row2_col1" class="data row2 col1" >2020-09-28</td>
-      <td id="T_b5bdd_row2_col2" class="data row2 col2" >2020-09-28</td>
-      <td id="T_b5bdd_row2_col3" class="data row2 col3" >1,000,000.00</td>
-      <td id="T_b5bdd_row2_col4" class="data row2 col4" >0.00</td>
-      <td id="T_b5bdd_row2_col5" class="data row2 col5" >True</td>
-      <td id="T_b5bdd_row2_col6" class="data row2 col6" >0.00</td>
-      <td id="T_b5bdd_row2_col7" class="data row2 col7" >CLP</td>
-      <td id="T_b5bdd_row2_col8" class="data row2 col8" >10,000.00</td>
-      <td id="T_b5bdd_row2_col9" class="data row2 col9" >10,000.00</td>
-      <td id="T_b5bdd_row2_col10" class="data row2 col10" >0.0000%</td>
-      <td id="T_b5bdd_row2_col11" class="data row2 col11" >0.00</td>
-      <td id="T_b5bdd_row2_col12" class="data row2 col12" >0.0000%</td>
-      <td id="T_b5bdd_row2_col13" class="data row2 col13" >1.00</td>
-      <td id="T_b5bdd_row2_col14" class="data row2 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_23e52_row2_col0" class="data row2 col0" >2020-03-26</td>
+      <td id="T_23e52_row2_col1" class="data row2 col1" >2020-09-28</td>
+      <td id="T_23e52_row2_col2" class="data row2 col2" >2020-09-28</td>
+      <td id="T_23e52_row2_col3" class="data row2 col3" >1,000,000.00</td>
+      <td id="T_23e52_row2_col4" class="data row2 col4" >0.00</td>
+      <td id="T_23e52_row2_col5" class="data row2 col5" >True</td>
+      <td id="T_23e52_row2_col6" class="data row2 col6" >0.00</td>
+      <td id="T_23e52_row2_col7" class="data row2 col7" >CLP</td>
+      <td id="T_23e52_row2_col8" class="data row2 col8" >10,000.00</td>
+      <td id="T_23e52_row2_col9" class="data row2 col9" >10,000.00</td>
+      <td id="T_23e52_row2_col10" class="data row2 col10" >0.0000%</td>
+      <td id="T_23e52_row2_col11" class="data row2 col11" >0.00</td>
+      <td id="T_23e52_row2_col12" class="data row2 col12" >0.0000%</td>
+      <td id="T_23e52_row2_col13" class="data row2 col13" >1.00</td>
+      <td id="T_23e52_row2_col14" class="data row2 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_b5bdd_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_b5bdd_row3_col0" class="data row3 col0" >2020-09-28</td>
-      <td id="T_b5bdd_row3_col1" class="data row3 col1" >2021-03-26</td>
-      <td id="T_b5bdd_row3_col2" class="data row3 col2" >2021-03-26</td>
-      <td id="T_b5bdd_row3_col3" class="data row3 col3" >1,000,000.00</td>
-      <td id="T_b5bdd_row3_col4" class="data row3 col4" >0.00</td>
-      <td id="T_b5bdd_row3_col5" class="data row3 col5" >True</td>
-      <td id="T_b5bdd_row3_col6" class="data row3 col6" >0.00</td>
-      <td id="T_b5bdd_row3_col7" class="data row3 col7" >CLP</td>
-      <td id="T_b5bdd_row3_col8" class="data row3 col8" >10,000.00</td>
-      <td id="T_b5bdd_row3_col9" class="data row3 col9" >10,000.00</td>
-      <td id="T_b5bdd_row3_col10" class="data row3 col10" >0.0000%</td>
-      <td id="T_b5bdd_row3_col11" class="data row3 col11" >0.00</td>
-      <td id="T_b5bdd_row3_col12" class="data row3 col12" >0.0000%</td>
-      <td id="T_b5bdd_row3_col13" class="data row3 col13" >1.00</td>
-      <td id="T_b5bdd_row3_col14" class="data row3 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_23e52_row3_col0" class="data row3 col0" >2020-09-28</td>
+      <td id="T_23e52_row3_col1" class="data row3 col1" >2021-03-26</td>
+      <td id="T_23e52_row3_col2" class="data row3 col2" >2021-03-26</td>
+      <td id="T_23e52_row3_col3" class="data row3 col3" >1,000,000.00</td>
+      <td id="T_23e52_row3_col4" class="data row3 col4" >0.00</td>
+      <td id="T_23e52_row3_col5" class="data row3 col5" >True</td>
+      <td id="T_23e52_row3_col6" class="data row3 col6" >0.00</td>
+      <td id="T_23e52_row3_col7" class="data row3 col7" >CLP</td>
+      <td id="T_23e52_row3_col8" class="data row3 col8" >10,000.00</td>
+      <td id="T_23e52_row3_col9" class="data row3 col9" >10,000.00</td>
+      <td id="T_23e52_row3_col10" class="data row3 col10" >0.0000%</td>
+      <td id="T_23e52_row3_col11" class="data row3 col11" >0.00</td>
+      <td id="T_23e52_row3_col12" class="data row3 col12" >0.0000%</td>
+      <td id="T_23e52_row3_col13" class="data row3 col13" >1.00</td>
+      <td id="T_23e52_row3_col14" class="data row3 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_b5bdd_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_b5bdd_row4_col0" class="data row4 col0" >2021-03-26</td>
-      <td id="T_b5bdd_row4_col1" class="data row4 col1" >2021-09-27</td>
-      <td id="T_b5bdd_row4_col2" class="data row4 col2" >2021-09-27</td>
-      <td id="T_b5bdd_row4_col3" class="data row4 col3" >1,000,000.00</td>
-      <td id="T_b5bdd_row4_col4" class="data row4 col4" >0.00</td>
-      <td id="T_b5bdd_row4_col5" class="data row4 col5" >True</td>
-      <td id="T_b5bdd_row4_col6" class="data row4 col6" >0.00</td>
-      <td id="T_b5bdd_row4_col7" class="data row4 col7" >CLP</td>
-      <td id="T_b5bdd_row4_col8" class="data row4 col8" >10,000.00</td>
-      <td id="T_b5bdd_row4_col9" class="data row4 col9" >10,000.00</td>
-      <td id="T_b5bdd_row4_col10" class="data row4 col10" >0.0000%</td>
-      <td id="T_b5bdd_row4_col11" class="data row4 col11" >0.00</td>
-      <td id="T_b5bdd_row4_col12" class="data row4 col12" >0.0000%</td>
-      <td id="T_b5bdd_row4_col13" class="data row4 col13" >1.00</td>
-      <td id="T_b5bdd_row4_col14" class="data row4 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_23e52_row4_col0" class="data row4 col0" >2021-03-26</td>
+      <td id="T_23e52_row4_col1" class="data row4 col1" >2021-09-27</td>
+      <td id="T_23e52_row4_col2" class="data row4 col2" >2021-09-27</td>
+      <td id="T_23e52_row4_col3" class="data row4 col3" >1,000,000.00</td>
+      <td id="T_23e52_row4_col4" class="data row4 col4" >0.00</td>
+      <td id="T_23e52_row4_col5" class="data row4 col5" >True</td>
+      <td id="T_23e52_row4_col6" class="data row4 col6" >0.00</td>
+      <td id="T_23e52_row4_col7" class="data row4 col7" >CLP</td>
+      <td id="T_23e52_row4_col8" class="data row4 col8" >10,000.00</td>
+      <td id="T_23e52_row4_col9" class="data row4 col9" >10,000.00</td>
+      <td id="T_23e52_row4_col10" class="data row4 col10" >0.0000%</td>
+      <td id="T_23e52_row4_col11" class="data row4 col11" >0.00</td>
+      <td id="T_23e52_row4_col12" class="data row4 col12" >0.0000%</td>
+      <td id="T_23e52_row4_col13" class="data row4 col13" >1.00</td>
+      <td id="T_23e52_row4_col14" class="data row4 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_b5bdd_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_b5bdd_row5_col0" class="data row5 col0" >2021-09-27</td>
-      <td id="T_b5bdd_row5_col1" class="data row5 col1" >2022-03-28</td>
-      <td id="T_b5bdd_row5_col2" class="data row5 col2" >2022-03-28</td>
-      <td id="T_b5bdd_row5_col3" class="data row5 col3" >1,000,000.00</td>
-      <td id="T_b5bdd_row5_col4" class="data row5 col4" >0.00</td>
-      <td id="T_b5bdd_row5_col5" class="data row5 col5" >True</td>
-      <td id="T_b5bdd_row5_col6" class="data row5 col6" >0.00</td>
-      <td id="T_b5bdd_row5_col7" class="data row5 col7" >CLP</td>
-      <td id="T_b5bdd_row5_col8" class="data row5 col8" >10,000.00</td>
-      <td id="T_b5bdd_row5_col9" class="data row5 col9" >10,000.00</td>
-      <td id="T_b5bdd_row5_col10" class="data row5 col10" >0.0000%</td>
-      <td id="T_b5bdd_row5_col11" class="data row5 col11" >0.00</td>
-      <td id="T_b5bdd_row5_col12" class="data row5 col12" >0.0000%</td>
-      <td id="T_b5bdd_row5_col13" class="data row5 col13" >1.00</td>
-      <td id="T_b5bdd_row5_col14" class="data row5 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_23e52_row5_col0" class="data row5 col0" >2021-09-27</td>
+      <td id="T_23e52_row5_col1" class="data row5 col1" >2022-03-28</td>
+      <td id="T_23e52_row5_col2" class="data row5 col2" >2022-03-28</td>
+      <td id="T_23e52_row5_col3" class="data row5 col3" >1,000,000.00</td>
+      <td id="T_23e52_row5_col4" class="data row5 col4" >0.00</td>
+      <td id="T_23e52_row5_col5" class="data row5 col5" >True</td>
+      <td id="T_23e52_row5_col6" class="data row5 col6" >0.00</td>
+      <td id="T_23e52_row5_col7" class="data row5 col7" >CLP</td>
+      <td id="T_23e52_row5_col8" class="data row5 col8" >10,000.00</td>
+      <td id="T_23e52_row5_col9" class="data row5 col9" >10,000.00</td>
+      <td id="T_23e52_row5_col10" class="data row5 col10" >0.0000%</td>
+      <td id="T_23e52_row5_col11" class="data row5 col11" >0.00</td>
+      <td id="T_23e52_row5_col12" class="data row5 col12" >0.0000%</td>
+      <td id="T_23e52_row5_col13" class="data row5 col13" >1.00</td>
+      <td id="T_23e52_row5_col14" class="data row5 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_b5bdd_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_b5bdd_row6_col0" class="data row6 col0" >2022-03-28</td>
-      <td id="T_b5bdd_row6_col1" class="data row6 col1" >2022-09-26</td>
-      <td id="T_b5bdd_row6_col2" class="data row6 col2" >2022-09-26</td>
-      <td id="T_b5bdd_row6_col3" class="data row6 col3" >1,000,000.00</td>
-      <td id="T_b5bdd_row6_col4" class="data row6 col4" >0.00</td>
-      <td id="T_b5bdd_row6_col5" class="data row6 col5" >True</td>
-      <td id="T_b5bdd_row6_col6" class="data row6 col6" >0.00</td>
-      <td id="T_b5bdd_row6_col7" class="data row6 col7" >CLP</td>
-      <td id="T_b5bdd_row6_col8" class="data row6 col8" >10,000.00</td>
-      <td id="T_b5bdd_row6_col9" class="data row6 col9" >10,000.00</td>
-      <td id="T_b5bdd_row6_col10" class="data row6 col10" >0.0000%</td>
-      <td id="T_b5bdd_row6_col11" class="data row6 col11" >0.00</td>
-      <td id="T_b5bdd_row6_col12" class="data row6 col12" >0.0000%</td>
-      <td id="T_b5bdd_row6_col13" class="data row6 col13" >1.00</td>
-      <td id="T_b5bdd_row6_col14" class="data row6 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_23e52_row6_col0" class="data row6 col0" >2022-03-28</td>
+      <td id="T_23e52_row6_col1" class="data row6 col1" >2022-09-26</td>
+      <td id="T_23e52_row6_col2" class="data row6 col2" >2022-09-26</td>
+      <td id="T_23e52_row6_col3" class="data row6 col3" >1,000,000.00</td>
+      <td id="T_23e52_row6_col4" class="data row6 col4" >0.00</td>
+      <td id="T_23e52_row6_col5" class="data row6 col5" >True</td>
+      <td id="T_23e52_row6_col6" class="data row6 col6" >0.00</td>
+      <td id="T_23e52_row6_col7" class="data row6 col7" >CLP</td>
+      <td id="T_23e52_row6_col8" class="data row6 col8" >10,000.00</td>
+      <td id="T_23e52_row6_col9" class="data row6 col9" >10,000.00</td>
+      <td id="T_23e52_row6_col10" class="data row6 col10" >0.0000%</td>
+      <td id="T_23e52_row6_col11" class="data row6 col11" >0.00</td>
+      <td id="T_23e52_row6_col12" class="data row6 col12" >0.0000%</td>
+      <td id="T_23e52_row6_col13" class="data row6 col13" >1.00</td>
+      <td id="T_23e52_row6_col14" class="data row6 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_b5bdd_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_b5bdd_row7_col0" class="data row7 col0" >2022-09-26</td>
-      <td id="T_b5bdd_row7_col1" class="data row7 col1" >2023-03-27</td>
-      <td id="T_b5bdd_row7_col2" class="data row7 col2" >2023-03-27</td>
-      <td id="T_b5bdd_row7_col3" class="data row7 col3" >1,000,000.00</td>
-      <td id="T_b5bdd_row7_col4" class="data row7 col4" >0.00</td>
-      <td id="T_b5bdd_row7_col5" class="data row7 col5" >True</td>
-      <td id="T_b5bdd_row7_col6" class="data row7 col6" >0.00</td>
-      <td id="T_b5bdd_row7_col7" class="data row7 col7" >CLP</td>
-      <td id="T_b5bdd_row7_col8" class="data row7 col8" >10,000.00</td>
-      <td id="T_b5bdd_row7_col9" class="data row7 col9" >10,000.00</td>
-      <td id="T_b5bdd_row7_col10" class="data row7 col10" >0.0000%</td>
-      <td id="T_b5bdd_row7_col11" class="data row7 col11" >0.00</td>
-      <td id="T_b5bdd_row7_col12" class="data row7 col12" >0.0000%</td>
-      <td id="T_b5bdd_row7_col13" class="data row7 col13" >1.00</td>
-      <td id="T_b5bdd_row7_col14" class="data row7 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_23e52_row7_col0" class="data row7 col0" >2022-09-26</td>
+      <td id="T_23e52_row7_col1" class="data row7 col1" >2023-03-27</td>
+      <td id="T_23e52_row7_col2" class="data row7 col2" >2023-03-27</td>
+      <td id="T_23e52_row7_col3" class="data row7 col3" >1,000,000.00</td>
+      <td id="T_23e52_row7_col4" class="data row7 col4" >0.00</td>
+      <td id="T_23e52_row7_col5" class="data row7 col5" >True</td>
+      <td id="T_23e52_row7_col6" class="data row7 col6" >0.00</td>
+      <td id="T_23e52_row7_col7" class="data row7 col7" >CLP</td>
+      <td id="T_23e52_row7_col8" class="data row7 col8" >10,000.00</td>
+      <td id="T_23e52_row7_col9" class="data row7 col9" >10,000.00</td>
+      <td id="T_23e52_row7_col10" class="data row7 col10" >0.0000%</td>
+      <td id="T_23e52_row7_col11" class="data row7 col11" >0.00</td>
+      <td id="T_23e52_row7_col12" class="data row7 col12" >0.0000%</td>
+      <td id="T_23e52_row7_col13" class="data row7 col13" >1.00</td>
+      <td id="T_23e52_row7_col14" class="data row7 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_b5bdd_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_b5bdd_row8_col0" class="data row8 col0" >2023-03-27</td>
-      <td id="T_b5bdd_row8_col1" class="data row8 col1" >2023-09-26</td>
-      <td id="T_b5bdd_row8_col2" class="data row8 col2" >2023-09-26</td>
-      <td id="T_b5bdd_row8_col3" class="data row8 col3" >1,000,000.00</td>
-      <td id="T_b5bdd_row8_col4" class="data row8 col4" >0.00</td>
-      <td id="T_b5bdd_row8_col5" class="data row8 col5" >True</td>
-      <td id="T_b5bdd_row8_col6" class="data row8 col6" >0.00</td>
-      <td id="T_b5bdd_row8_col7" class="data row8 col7" >CLP</td>
-      <td id="T_b5bdd_row8_col8" class="data row8 col8" >10,000.00</td>
-      <td id="T_b5bdd_row8_col9" class="data row8 col9" >10,000.00</td>
-      <td id="T_b5bdd_row8_col10" class="data row8 col10" >0.0000%</td>
-      <td id="T_b5bdd_row8_col11" class="data row8 col11" >0.00</td>
-      <td id="T_b5bdd_row8_col12" class="data row8 col12" >0.0000%</td>
-      <td id="T_b5bdd_row8_col13" class="data row8 col13" >1.00</td>
-      <td id="T_b5bdd_row8_col14" class="data row8 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_23e52_row8_col0" class="data row8 col0" >2023-03-27</td>
+      <td id="T_23e52_row8_col1" class="data row8 col1" >2023-09-26</td>
+      <td id="T_23e52_row8_col2" class="data row8 col2" >2023-09-26</td>
+      <td id="T_23e52_row8_col3" class="data row8 col3" >1,000,000.00</td>
+      <td id="T_23e52_row8_col4" class="data row8 col4" >0.00</td>
+      <td id="T_23e52_row8_col5" class="data row8 col5" >True</td>
+      <td id="T_23e52_row8_col6" class="data row8 col6" >0.00</td>
+      <td id="T_23e52_row8_col7" class="data row8 col7" >CLP</td>
+      <td id="T_23e52_row8_col8" class="data row8 col8" >10,000.00</td>
+      <td id="T_23e52_row8_col9" class="data row8 col9" >10,000.00</td>
+      <td id="T_23e52_row8_col10" class="data row8 col10" >0.0000%</td>
+      <td id="T_23e52_row8_col11" class="data row8 col11" >0.00</td>
+      <td id="T_23e52_row8_col12" class="data row8 col12" >0.0000%</td>
+      <td id="T_23e52_row8_col13" class="data row8 col13" >1.00</td>
+      <td id="T_23e52_row8_col14" class="data row8 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_b5bdd_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_b5bdd_row9_col0" class="data row9 col0" >2023-09-26</td>
-      <td id="T_b5bdd_row9_col1" class="data row9 col1" >2024-03-26</td>
-      <td id="T_b5bdd_row9_col2" class="data row9 col2" >2024-03-26</td>
-      <td id="T_b5bdd_row9_col3" class="data row9 col3" >1,000,000.00</td>
-      <td id="T_b5bdd_row9_col4" class="data row9 col4" >0.00</td>
-      <td id="T_b5bdd_row9_col5" class="data row9 col5" >True</td>
-      <td id="T_b5bdd_row9_col6" class="data row9 col6" >0.00</td>
-      <td id="T_b5bdd_row9_col7" class="data row9 col7" >CLP</td>
-      <td id="T_b5bdd_row9_col8" class="data row9 col8" >10,000.00</td>
-      <td id="T_b5bdd_row9_col9" class="data row9 col9" >10,000.00</td>
-      <td id="T_b5bdd_row9_col10" class="data row9 col10" >0.0000%</td>
-      <td id="T_b5bdd_row9_col11" class="data row9 col11" >0.00</td>
-      <td id="T_b5bdd_row9_col12" class="data row9 col12" >0.0000%</td>
-      <td id="T_b5bdd_row9_col13" class="data row9 col13" >1.00</td>
-      <td id="T_b5bdd_row9_col14" class="data row9 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_23e52_row9_col0" class="data row9 col0" >2023-09-26</td>
+      <td id="T_23e52_row9_col1" class="data row9 col1" >2024-03-26</td>
+      <td id="T_23e52_row9_col2" class="data row9 col2" >2024-03-26</td>
+      <td id="T_23e52_row9_col3" class="data row9 col3" >1,000,000.00</td>
+      <td id="T_23e52_row9_col4" class="data row9 col4" >0.00</td>
+      <td id="T_23e52_row9_col5" class="data row9 col5" >True</td>
+      <td id="T_23e52_row9_col6" class="data row9 col6" >0.00</td>
+      <td id="T_23e52_row9_col7" class="data row9 col7" >CLP</td>
+      <td id="T_23e52_row9_col8" class="data row9 col8" >10,000.00</td>
+      <td id="T_23e52_row9_col9" class="data row9 col9" >10,000.00</td>
+      <td id="T_23e52_row9_col10" class="data row9 col10" >0.0000%</td>
+      <td id="T_23e52_row9_col11" class="data row9 col11" >0.00</td>
+      <td id="T_23e52_row9_col12" class="data row9 col12" >0.0000%</td>
+      <td id="T_23e52_row9_col13" class="data row9 col13" >1.00</td>
+      <td id="T_23e52_row9_col14" class="data row9 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_b5bdd_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_b5bdd_row10_col0" class="data row10 col0" >2024-03-26</td>
-      <td id="T_b5bdd_row10_col1" class="data row10 col1" >2024-09-26</td>
-      <td id="T_b5bdd_row10_col2" class="data row10 col2" >2024-09-26</td>
-      <td id="T_b5bdd_row10_col3" class="data row10 col3" >1,000,000.00</td>
-      <td id="T_b5bdd_row10_col4" class="data row10 col4" >500,000.00</td>
-      <td id="T_b5bdd_row10_col5" class="data row10 col5" >True</td>
-      <td id="T_b5bdd_row10_col6" class="data row10 col6" >500,000.00</td>
-      <td id="T_b5bdd_row10_col7" class="data row10 col7" >CLP</td>
-      <td id="T_b5bdd_row10_col8" class="data row10 col8" >10,000.00</td>
-      <td id="T_b5bdd_row10_col9" class="data row10 col9" >10,000.00</td>
-      <td id="T_b5bdd_row10_col10" class="data row10 col10" >0.0000%</td>
-      <td id="T_b5bdd_row10_col11" class="data row10 col11" >0.00</td>
-      <td id="T_b5bdd_row10_col12" class="data row10 col12" >0.0000%</td>
-      <td id="T_b5bdd_row10_col13" class="data row10 col13" >1.00</td>
-      <td id="T_b5bdd_row10_col14" class="data row10 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_23e52_row10_col0" class="data row10 col0" >2024-03-26</td>
+      <td id="T_23e52_row10_col1" class="data row10 col1" >2024-09-26</td>
+      <td id="T_23e52_row10_col2" class="data row10 col2" >2024-09-26</td>
+      <td id="T_23e52_row10_col3" class="data row10 col3" >1,000,000.00</td>
+      <td id="T_23e52_row10_col4" class="data row10 col4" >500,000.00</td>
+      <td id="T_23e52_row10_col5" class="data row10 col5" >True</td>
+      <td id="T_23e52_row10_col6" class="data row10 col6" >500,000.00</td>
+      <td id="T_23e52_row10_col7" class="data row10 col7" >CLP</td>
+      <td id="T_23e52_row10_col8" class="data row10 col8" >10,000.00</td>
+      <td id="T_23e52_row10_col9" class="data row10 col9" >10,000.00</td>
+      <td id="T_23e52_row10_col10" class="data row10 col10" >0.0000%</td>
+      <td id="T_23e52_row10_col11" class="data row10 col11" >0.00</td>
+      <td id="T_23e52_row10_col12" class="data row10 col12" >0.0000%</td>
+      <td id="T_23e52_row10_col13" class="data row10 col13" >1.00</td>
+      <td id="T_23e52_row10_col14" class="data row10 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_b5bdd_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_b5bdd_row11_col0" class="data row11 col0" >2024-09-26</td>
-      <td id="T_b5bdd_row11_col1" class="data row11 col1" >2025-03-26</td>
-      <td id="T_b5bdd_row11_col2" class="data row11 col2" >2025-03-26</td>
-      <td id="T_b5bdd_row11_col3" class="data row11 col3" >500,000.00</td>
-      <td id="T_b5bdd_row11_col4" class="data row11 col4" >500,000.00</td>
-      <td id="T_b5bdd_row11_col5" class="data row11 col5" >True</td>
-      <td id="T_b5bdd_row11_col6" class="data row11 col6" >500,000.00</td>
-      <td id="T_b5bdd_row11_col7" class="data row11 col7" >CLP</td>
-      <td id="T_b5bdd_row11_col8" class="data row11 col8" >10,000.00</td>
-      <td id="T_b5bdd_row11_col9" class="data row11 col9" >10,000.00</td>
-      <td id="T_b5bdd_row11_col10" class="data row11 col10" >0.0000%</td>
-      <td id="T_b5bdd_row11_col11" class="data row11 col11" >0.00</td>
-      <td id="T_b5bdd_row11_col12" class="data row11 col12" >0.0000%</td>
-      <td id="T_b5bdd_row11_col13" class="data row11 col13" >1.00</td>
-      <td id="T_b5bdd_row11_col14" class="data row11 col14" >LinAct360</td>
+      <th id="T_23e52_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_23e52_row11_col0" class="data row11 col0" >2024-09-26</td>
+      <td id="T_23e52_row11_col1" class="data row11 col1" >2025-03-26</td>
+      <td id="T_23e52_row11_col2" class="data row11 col2" >2025-03-26</td>
+      <td id="T_23e52_row11_col3" class="data row11 col3" >500,000.00</td>
+      <td id="T_23e52_row11_col4" class="data row11 col4" >500,000.00</td>
+      <td id="T_23e52_row11_col5" class="data row11 col5" >True</td>
+      <td id="T_23e52_row11_col6" class="data row11 col6" >500,000.00</td>
+      <td id="T_23e52_row11_col7" class="data row11 col7" >CLP</td>
+      <td id="T_23e52_row11_col8" class="data row11 col8" >10,000.00</td>
+      <td id="T_23e52_row11_col9" class="data row11 col9" >10,000.00</td>
+      <td id="T_23e52_row11_col10" class="data row11 col10" >0.0000%</td>
+      <td id="T_23e52_row11_col11" class="data row11 col11" >0.00</td>
+      <td id="T_23e52_row11_col12" class="data row11 col12" >0.0000%</td>
+      <td id="T_23e52_row11_col13" class="data row11 col13" >1.00</td>
+      <td id="T_23e52_row11_col14" class="data row11 col14" >LinAct360</td>
     </tr>
   </tbody>
 </table>
@@ -5717,429 +5937,429 @@ df8.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_fdbe1">
+<table id="T_db097">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_fdbe1_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_fdbe1_level0_col1" class="col_heading level0 col1" >fecha__final</th>
-      <th id="T_fdbe1_level0_col2" class="col_heading level0 col2" >fecha__pago</th>
-      <th id="T_fdbe1_level0_col3" class="col_heading level0 col3" >nominal</th>
-      <th id="T_fdbe1_level0_col4" class="col_heading level0 col4" >amort</th>
-      <th id="T_fdbe1_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
-      <th id="T_fdbe1_level0_col6" class="col_heading level0 col6" >flujo</th>
-      <th id="T_fdbe1_level0_col7" class="col_heading level0 col7" >moneda</th>
-      <th id="T_fdbe1_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
-      <th id="T_fdbe1_level0_col9" class="col_heading level0 col9" >icp_final</th>
-      <th id="T_fdbe1_level0_col10" class="col_heading level0 col10" >uf_inicial</th>
-      <th id="T_fdbe1_level0_col11" class="col_heading level0 col11" >uf_final</th>
-      <th id="T_fdbe1_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
-      <th id="T_fdbe1_level0_col13" class="col_heading level0 col13" >interes</th>
-      <th id="T_fdbe1_level0_col14" class="col_heading level0 col14" >spread</th>
-      <th id="T_fdbe1_level0_col15" class="col_heading level0 col15" >gearing</th>
-      <th id="T_fdbe1_level0_col16" class="col_heading level0 col16" >tipo_tasa</th>
+      <th id="T_db097_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_db097_level0_col1" class="col_heading level0 col1" >fecha__final</th>
+      <th id="T_db097_level0_col2" class="col_heading level0 col2" >fecha__pago</th>
+      <th id="T_db097_level0_col3" class="col_heading level0 col3" >nominal</th>
+      <th id="T_db097_level0_col4" class="col_heading level0 col4" >amort</th>
+      <th id="T_db097_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
+      <th id="T_db097_level0_col6" class="col_heading level0 col6" >flujo</th>
+      <th id="T_db097_level0_col7" class="col_heading level0 col7" >moneda</th>
+      <th id="T_db097_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
+      <th id="T_db097_level0_col9" class="col_heading level0 col9" >icp_final</th>
+      <th id="T_db097_level0_col10" class="col_heading level0 col10" >uf_inicial</th>
+      <th id="T_db097_level0_col11" class="col_heading level0 col11" >uf_final</th>
+      <th id="T_db097_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
+      <th id="T_db097_level0_col13" class="col_heading level0 col13" >interes</th>
+      <th id="T_db097_level0_col14" class="col_heading level0 col14" >spread</th>
+      <th id="T_db097_level0_col15" class="col_heading level0 col15" >gearing</th>
+      <th id="T_db097_level0_col16" class="col_heading level0 col16" >tipo_tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_fdbe1_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_fdbe1_row0_col0" class="data row0 col0" >1969-01-31</td>
-      <td id="T_fdbe1_row0_col1" class="data row0 col1" >1969-04-30</td>
-      <td id="T_fdbe1_row0_col2" class="data row0 col2" >1969-04-30</td>
-      <td id="T_fdbe1_row0_col3" class="data row0 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row0_col4" class="data row0 col4" >0.00</td>
-      <td id="T_fdbe1_row0_col5" class="data row0 col5" >True</td>
-      <td id="T_fdbe1_row0_col6" class="data row0 col6" >2,472.22</td>
-      <td id="T_fdbe1_row0_col7" class="data row0 col7" >CLF</td>
-      <td id="T_fdbe1_row0_col8" class="data row0 col8" >10,000.00</td>
-      <td id="T_fdbe1_row0_col9" class="data row0 col9" >10,000.00</td>
-      <td id="T_fdbe1_row0_col10" class="data row0 col10" >35000.000000</td>
-      <td id="T_fdbe1_row0_col11" class="data row0 col11" >35000.000000</td>
-      <td id="T_fdbe1_row0_col12" class="data row0 col12" >1.0000%</td>
-      <td id="T_fdbe1_row0_col13" class="data row0 col13" >2,472.22</td>
-      <td id="T_fdbe1_row0_col14" class="data row0 col14" >1.0000%</td>
-      <td id="T_fdbe1_row0_col15" class="data row0 col15" >1.00</td>
-      <td id="T_fdbe1_row0_col16" class="data row0 col16" >LinAct360</td>
+      <th id="T_db097_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_db097_row0_col0" class="data row0 col0" >1969-01-31</td>
+      <td id="T_db097_row0_col1" class="data row0 col1" >1969-04-30</td>
+      <td id="T_db097_row0_col2" class="data row0 col2" >1969-04-30</td>
+      <td id="T_db097_row0_col3" class="data row0 col3" >1,000,000.00</td>
+      <td id="T_db097_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_db097_row0_col5" class="data row0 col5" >True</td>
+      <td id="T_db097_row0_col6" class="data row0 col6" >2,472.22</td>
+      <td id="T_db097_row0_col7" class="data row0 col7" >CLF</td>
+      <td id="T_db097_row0_col8" class="data row0 col8" >10,000.00</td>
+      <td id="T_db097_row0_col9" class="data row0 col9" >10,000.00</td>
+      <td id="T_db097_row0_col10" class="data row0 col10" >35000.000000</td>
+      <td id="T_db097_row0_col11" class="data row0 col11" >35000.000000</td>
+      <td id="T_db097_row0_col12" class="data row0 col12" >1.0000%</td>
+      <td id="T_db097_row0_col13" class="data row0 col13" >2,472.22</td>
+      <td id="T_db097_row0_col14" class="data row0 col14" >1.0000%</td>
+      <td id="T_db097_row0_col15" class="data row0 col15" >1.00</td>
+      <td id="T_db097_row0_col16" class="data row0 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_fdbe1_row1_col0" class="data row1 col0" >1969-04-30</td>
-      <td id="T_fdbe1_row1_col1" class="data row1 col1" >1969-07-31</td>
-      <td id="T_fdbe1_row1_col2" class="data row1 col2" >1969-07-31</td>
-      <td id="T_fdbe1_row1_col3" class="data row1 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row1_col4" class="data row1 col4" >0.00</td>
-      <td id="T_fdbe1_row1_col5" class="data row1 col5" >True</td>
-      <td id="T_fdbe1_row1_col6" class="data row1 col6" >2,555.56</td>
-      <td id="T_fdbe1_row1_col7" class="data row1 col7" >CLF</td>
-      <td id="T_fdbe1_row1_col8" class="data row1 col8" >10,000.00</td>
-      <td id="T_fdbe1_row1_col9" class="data row1 col9" >10,000.00</td>
-      <td id="T_fdbe1_row1_col10" class="data row1 col10" >35000.000000</td>
-      <td id="T_fdbe1_row1_col11" class="data row1 col11" >35000.000000</td>
-      <td id="T_fdbe1_row1_col12" class="data row1 col12" >1.0000%</td>
-      <td id="T_fdbe1_row1_col13" class="data row1 col13" >2,555.56</td>
-      <td id="T_fdbe1_row1_col14" class="data row1 col14" >1.0000%</td>
-      <td id="T_fdbe1_row1_col15" class="data row1 col15" >1.00</td>
-      <td id="T_fdbe1_row1_col16" class="data row1 col16" >LinAct360</td>
+      <th id="T_db097_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_db097_row1_col0" class="data row1 col0" >1969-04-30</td>
+      <td id="T_db097_row1_col1" class="data row1 col1" >1969-07-31</td>
+      <td id="T_db097_row1_col2" class="data row1 col2" >1969-07-31</td>
+      <td id="T_db097_row1_col3" class="data row1 col3" >1,000,000.00</td>
+      <td id="T_db097_row1_col4" class="data row1 col4" >0.00</td>
+      <td id="T_db097_row1_col5" class="data row1 col5" >True</td>
+      <td id="T_db097_row1_col6" class="data row1 col6" >2,555.56</td>
+      <td id="T_db097_row1_col7" class="data row1 col7" >CLF</td>
+      <td id="T_db097_row1_col8" class="data row1 col8" >10,000.00</td>
+      <td id="T_db097_row1_col9" class="data row1 col9" >10,000.00</td>
+      <td id="T_db097_row1_col10" class="data row1 col10" >35000.000000</td>
+      <td id="T_db097_row1_col11" class="data row1 col11" >35000.000000</td>
+      <td id="T_db097_row1_col12" class="data row1 col12" >1.0000%</td>
+      <td id="T_db097_row1_col13" class="data row1 col13" >2,555.56</td>
+      <td id="T_db097_row1_col14" class="data row1 col14" >1.0000%</td>
+      <td id="T_db097_row1_col15" class="data row1 col15" >1.00</td>
+      <td id="T_db097_row1_col16" class="data row1 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_fdbe1_row2_col0" class="data row2 col0" >1969-07-31</td>
-      <td id="T_fdbe1_row2_col1" class="data row2 col1" >1969-10-31</td>
-      <td id="T_fdbe1_row2_col2" class="data row2 col2" >1969-10-31</td>
-      <td id="T_fdbe1_row2_col3" class="data row2 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row2_col4" class="data row2 col4" >0.00</td>
-      <td id="T_fdbe1_row2_col5" class="data row2 col5" >True</td>
-      <td id="T_fdbe1_row2_col6" class="data row2 col6" >2,555.56</td>
-      <td id="T_fdbe1_row2_col7" class="data row2 col7" >CLF</td>
-      <td id="T_fdbe1_row2_col8" class="data row2 col8" >10,000.00</td>
-      <td id="T_fdbe1_row2_col9" class="data row2 col9" >10,000.00</td>
-      <td id="T_fdbe1_row2_col10" class="data row2 col10" >35000.000000</td>
-      <td id="T_fdbe1_row2_col11" class="data row2 col11" >35000.000000</td>
-      <td id="T_fdbe1_row2_col12" class="data row2 col12" >1.0000%</td>
-      <td id="T_fdbe1_row2_col13" class="data row2 col13" >2,555.56</td>
-      <td id="T_fdbe1_row2_col14" class="data row2 col14" >1.0000%</td>
-      <td id="T_fdbe1_row2_col15" class="data row2 col15" >1.00</td>
-      <td id="T_fdbe1_row2_col16" class="data row2 col16" >LinAct360</td>
+      <th id="T_db097_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_db097_row2_col0" class="data row2 col0" >1969-07-31</td>
+      <td id="T_db097_row2_col1" class="data row2 col1" >1969-10-31</td>
+      <td id="T_db097_row2_col2" class="data row2 col2" >1969-10-31</td>
+      <td id="T_db097_row2_col3" class="data row2 col3" >1,000,000.00</td>
+      <td id="T_db097_row2_col4" class="data row2 col4" >0.00</td>
+      <td id="T_db097_row2_col5" class="data row2 col5" >True</td>
+      <td id="T_db097_row2_col6" class="data row2 col6" >2,555.56</td>
+      <td id="T_db097_row2_col7" class="data row2 col7" >CLF</td>
+      <td id="T_db097_row2_col8" class="data row2 col8" >10,000.00</td>
+      <td id="T_db097_row2_col9" class="data row2 col9" >10,000.00</td>
+      <td id="T_db097_row2_col10" class="data row2 col10" >35000.000000</td>
+      <td id="T_db097_row2_col11" class="data row2 col11" >35000.000000</td>
+      <td id="T_db097_row2_col12" class="data row2 col12" >1.0000%</td>
+      <td id="T_db097_row2_col13" class="data row2 col13" >2,555.56</td>
+      <td id="T_db097_row2_col14" class="data row2 col14" >1.0000%</td>
+      <td id="T_db097_row2_col15" class="data row2 col15" >1.00</td>
+      <td id="T_db097_row2_col16" class="data row2 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_fdbe1_row3_col0" class="data row3 col0" >1969-10-31</td>
-      <td id="T_fdbe1_row3_col1" class="data row3 col1" >1970-01-30</td>
-      <td id="T_fdbe1_row3_col2" class="data row3 col2" >1970-01-30</td>
-      <td id="T_fdbe1_row3_col3" class="data row3 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row3_col4" class="data row3 col4" >0.00</td>
-      <td id="T_fdbe1_row3_col5" class="data row3 col5" >True</td>
-      <td id="T_fdbe1_row3_col6" class="data row3 col6" >2,527.78</td>
-      <td id="T_fdbe1_row3_col7" class="data row3 col7" >CLF</td>
-      <td id="T_fdbe1_row3_col8" class="data row3 col8" >10,000.00</td>
-      <td id="T_fdbe1_row3_col9" class="data row3 col9" >10,000.00</td>
-      <td id="T_fdbe1_row3_col10" class="data row3 col10" >35000.000000</td>
-      <td id="T_fdbe1_row3_col11" class="data row3 col11" >35000.000000</td>
-      <td id="T_fdbe1_row3_col12" class="data row3 col12" >1.0000%</td>
-      <td id="T_fdbe1_row3_col13" class="data row3 col13" >2,527.78</td>
-      <td id="T_fdbe1_row3_col14" class="data row3 col14" >1.0000%</td>
-      <td id="T_fdbe1_row3_col15" class="data row3 col15" >1.00</td>
-      <td id="T_fdbe1_row3_col16" class="data row3 col16" >LinAct360</td>
+      <th id="T_db097_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_db097_row3_col0" class="data row3 col0" >1969-10-31</td>
+      <td id="T_db097_row3_col1" class="data row3 col1" >1970-01-30</td>
+      <td id="T_db097_row3_col2" class="data row3 col2" >1970-01-30</td>
+      <td id="T_db097_row3_col3" class="data row3 col3" >1,000,000.00</td>
+      <td id="T_db097_row3_col4" class="data row3 col4" >0.00</td>
+      <td id="T_db097_row3_col5" class="data row3 col5" >True</td>
+      <td id="T_db097_row3_col6" class="data row3 col6" >2,527.78</td>
+      <td id="T_db097_row3_col7" class="data row3 col7" >CLF</td>
+      <td id="T_db097_row3_col8" class="data row3 col8" >10,000.00</td>
+      <td id="T_db097_row3_col9" class="data row3 col9" >10,000.00</td>
+      <td id="T_db097_row3_col10" class="data row3 col10" >35000.000000</td>
+      <td id="T_db097_row3_col11" class="data row3 col11" >35000.000000</td>
+      <td id="T_db097_row3_col12" class="data row3 col12" >1.0000%</td>
+      <td id="T_db097_row3_col13" class="data row3 col13" >2,527.78</td>
+      <td id="T_db097_row3_col14" class="data row3 col14" >1.0000%</td>
+      <td id="T_db097_row3_col15" class="data row3 col15" >1.00</td>
+      <td id="T_db097_row3_col16" class="data row3 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_fdbe1_row4_col0" class="data row4 col0" >1970-01-30</td>
-      <td id="T_fdbe1_row4_col1" class="data row4 col1" >1970-04-30</td>
-      <td id="T_fdbe1_row4_col2" class="data row4 col2" >1970-04-30</td>
-      <td id="T_fdbe1_row4_col3" class="data row4 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row4_col4" class="data row4 col4" >0.00</td>
-      <td id="T_fdbe1_row4_col5" class="data row4 col5" >True</td>
-      <td id="T_fdbe1_row4_col6" class="data row4 col6" >2,500.00</td>
-      <td id="T_fdbe1_row4_col7" class="data row4 col7" >CLF</td>
-      <td id="T_fdbe1_row4_col8" class="data row4 col8" >10,000.00</td>
-      <td id="T_fdbe1_row4_col9" class="data row4 col9" >10,000.00</td>
-      <td id="T_fdbe1_row4_col10" class="data row4 col10" >35000.000000</td>
-      <td id="T_fdbe1_row4_col11" class="data row4 col11" >35000.000000</td>
-      <td id="T_fdbe1_row4_col12" class="data row4 col12" >1.0000%</td>
-      <td id="T_fdbe1_row4_col13" class="data row4 col13" >2,500.00</td>
-      <td id="T_fdbe1_row4_col14" class="data row4 col14" >1.0000%</td>
-      <td id="T_fdbe1_row4_col15" class="data row4 col15" >1.00</td>
-      <td id="T_fdbe1_row4_col16" class="data row4 col16" >LinAct360</td>
+      <th id="T_db097_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_db097_row4_col0" class="data row4 col0" >1970-01-30</td>
+      <td id="T_db097_row4_col1" class="data row4 col1" >1970-04-30</td>
+      <td id="T_db097_row4_col2" class="data row4 col2" >1970-04-30</td>
+      <td id="T_db097_row4_col3" class="data row4 col3" >1,000,000.00</td>
+      <td id="T_db097_row4_col4" class="data row4 col4" >0.00</td>
+      <td id="T_db097_row4_col5" class="data row4 col5" >True</td>
+      <td id="T_db097_row4_col6" class="data row4 col6" >2,500.00</td>
+      <td id="T_db097_row4_col7" class="data row4 col7" >CLF</td>
+      <td id="T_db097_row4_col8" class="data row4 col8" >10,000.00</td>
+      <td id="T_db097_row4_col9" class="data row4 col9" >10,000.00</td>
+      <td id="T_db097_row4_col10" class="data row4 col10" >35000.000000</td>
+      <td id="T_db097_row4_col11" class="data row4 col11" >35000.000000</td>
+      <td id="T_db097_row4_col12" class="data row4 col12" >1.0000%</td>
+      <td id="T_db097_row4_col13" class="data row4 col13" >2,500.00</td>
+      <td id="T_db097_row4_col14" class="data row4 col14" >1.0000%</td>
+      <td id="T_db097_row4_col15" class="data row4 col15" >1.00</td>
+      <td id="T_db097_row4_col16" class="data row4 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_fdbe1_row5_col0" class="data row5 col0" >1970-04-30</td>
-      <td id="T_fdbe1_row5_col1" class="data row5 col1" >1970-07-31</td>
-      <td id="T_fdbe1_row5_col2" class="data row5 col2" >1970-07-31</td>
-      <td id="T_fdbe1_row5_col3" class="data row5 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row5_col4" class="data row5 col4" >0.00</td>
-      <td id="T_fdbe1_row5_col5" class="data row5 col5" >True</td>
-      <td id="T_fdbe1_row5_col6" class="data row5 col6" >2,555.56</td>
-      <td id="T_fdbe1_row5_col7" class="data row5 col7" >CLF</td>
-      <td id="T_fdbe1_row5_col8" class="data row5 col8" >10,000.00</td>
-      <td id="T_fdbe1_row5_col9" class="data row5 col9" >10,000.00</td>
-      <td id="T_fdbe1_row5_col10" class="data row5 col10" >35000.000000</td>
-      <td id="T_fdbe1_row5_col11" class="data row5 col11" >35000.000000</td>
-      <td id="T_fdbe1_row5_col12" class="data row5 col12" >1.0000%</td>
-      <td id="T_fdbe1_row5_col13" class="data row5 col13" >2,555.56</td>
-      <td id="T_fdbe1_row5_col14" class="data row5 col14" >1.0000%</td>
-      <td id="T_fdbe1_row5_col15" class="data row5 col15" >1.00</td>
-      <td id="T_fdbe1_row5_col16" class="data row5 col16" >LinAct360</td>
+      <th id="T_db097_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_db097_row5_col0" class="data row5 col0" >1970-04-30</td>
+      <td id="T_db097_row5_col1" class="data row5 col1" >1970-07-31</td>
+      <td id="T_db097_row5_col2" class="data row5 col2" >1970-07-31</td>
+      <td id="T_db097_row5_col3" class="data row5 col3" >1,000,000.00</td>
+      <td id="T_db097_row5_col4" class="data row5 col4" >0.00</td>
+      <td id="T_db097_row5_col5" class="data row5 col5" >True</td>
+      <td id="T_db097_row5_col6" class="data row5 col6" >2,555.56</td>
+      <td id="T_db097_row5_col7" class="data row5 col7" >CLF</td>
+      <td id="T_db097_row5_col8" class="data row5 col8" >10,000.00</td>
+      <td id="T_db097_row5_col9" class="data row5 col9" >10,000.00</td>
+      <td id="T_db097_row5_col10" class="data row5 col10" >35000.000000</td>
+      <td id="T_db097_row5_col11" class="data row5 col11" >35000.000000</td>
+      <td id="T_db097_row5_col12" class="data row5 col12" >1.0000%</td>
+      <td id="T_db097_row5_col13" class="data row5 col13" >2,555.56</td>
+      <td id="T_db097_row5_col14" class="data row5 col14" >1.0000%</td>
+      <td id="T_db097_row5_col15" class="data row5 col15" >1.00</td>
+      <td id="T_db097_row5_col16" class="data row5 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_fdbe1_row6_col0" class="data row6 col0" >1970-07-31</td>
-      <td id="T_fdbe1_row6_col1" class="data row6 col1" >1970-10-30</td>
-      <td id="T_fdbe1_row6_col2" class="data row6 col2" >1970-10-30</td>
-      <td id="T_fdbe1_row6_col3" class="data row6 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row6_col4" class="data row6 col4" >0.00</td>
-      <td id="T_fdbe1_row6_col5" class="data row6 col5" >True</td>
-      <td id="T_fdbe1_row6_col6" class="data row6 col6" >2,527.78</td>
-      <td id="T_fdbe1_row6_col7" class="data row6 col7" >CLF</td>
-      <td id="T_fdbe1_row6_col8" class="data row6 col8" >10,000.00</td>
-      <td id="T_fdbe1_row6_col9" class="data row6 col9" >10,000.00</td>
-      <td id="T_fdbe1_row6_col10" class="data row6 col10" >35000.000000</td>
-      <td id="T_fdbe1_row6_col11" class="data row6 col11" >35000.000000</td>
-      <td id="T_fdbe1_row6_col12" class="data row6 col12" >1.0000%</td>
-      <td id="T_fdbe1_row6_col13" class="data row6 col13" >2,527.78</td>
-      <td id="T_fdbe1_row6_col14" class="data row6 col14" >1.0000%</td>
-      <td id="T_fdbe1_row6_col15" class="data row6 col15" >1.00</td>
-      <td id="T_fdbe1_row6_col16" class="data row6 col16" >LinAct360</td>
+      <th id="T_db097_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_db097_row6_col0" class="data row6 col0" >1970-07-31</td>
+      <td id="T_db097_row6_col1" class="data row6 col1" >1970-10-30</td>
+      <td id="T_db097_row6_col2" class="data row6 col2" >1970-10-30</td>
+      <td id="T_db097_row6_col3" class="data row6 col3" >1,000,000.00</td>
+      <td id="T_db097_row6_col4" class="data row6 col4" >0.00</td>
+      <td id="T_db097_row6_col5" class="data row6 col5" >True</td>
+      <td id="T_db097_row6_col6" class="data row6 col6" >2,527.78</td>
+      <td id="T_db097_row6_col7" class="data row6 col7" >CLF</td>
+      <td id="T_db097_row6_col8" class="data row6 col8" >10,000.00</td>
+      <td id="T_db097_row6_col9" class="data row6 col9" >10,000.00</td>
+      <td id="T_db097_row6_col10" class="data row6 col10" >35000.000000</td>
+      <td id="T_db097_row6_col11" class="data row6 col11" >35000.000000</td>
+      <td id="T_db097_row6_col12" class="data row6 col12" >1.0000%</td>
+      <td id="T_db097_row6_col13" class="data row6 col13" >2,527.78</td>
+      <td id="T_db097_row6_col14" class="data row6 col14" >1.0000%</td>
+      <td id="T_db097_row6_col15" class="data row6 col15" >1.00</td>
+      <td id="T_db097_row6_col16" class="data row6 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_fdbe1_row7_col0" class="data row7 col0" >1970-10-30</td>
-      <td id="T_fdbe1_row7_col1" class="data row7 col1" >1971-01-29</td>
-      <td id="T_fdbe1_row7_col2" class="data row7 col2" >1971-01-29</td>
-      <td id="T_fdbe1_row7_col3" class="data row7 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row7_col4" class="data row7 col4" >0.00</td>
-      <td id="T_fdbe1_row7_col5" class="data row7 col5" >True</td>
-      <td id="T_fdbe1_row7_col6" class="data row7 col6" >2,527.78</td>
-      <td id="T_fdbe1_row7_col7" class="data row7 col7" >CLF</td>
-      <td id="T_fdbe1_row7_col8" class="data row7 col8" >10,000.00</td>
-      <td id="T_fdbe1_row7_col9" class="data row7 col9" >10,000.00</td>
-      <td id="T_fdbe1_row7_col10" class="data row7 col10" >35000.000000</td>
-      <td id="T_fdbe1_row7_col11" class="data row7 col11" >35000.000000</td>
-      <td id="T_fdbe1_row7_col12" class="data row7 col12" >1.0000%</td>
-      <td id="T_fdbe1_row7_col13" class="data row7 col13" >2,527.78</td>
-      <td id="T_fdbe1_row7_col14" class="data row7 col14" >1.0000%</td>
-      <td id="T_fdbe1_row7_col15" class="data row7 col15" >1.00</td>
-      <td id="T_fdbe1_row7_col16" class="data row7 col16" >LinAct360</td>
+      <th id="T_db097_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_db097_row7_col0" class="data row7 col0" >1970-10-30</td>
+      <td id="T_db097_row7_col1" class="data row7 col1" >1971-01-29</td>
+      <td id="T_db097_row7_col2" class="data row7 col2" >1971-01-29</td>
+      <td id="T_db097_row7_col3" class="data row7 col3" >1,000,000.00</td>
+      <td id="T_db097_row7_col4" class="data row7 col4" >0.00</td>
+      <td id="T_db097_row7_col5" class="data row7 col5" >True</td>
+      <td id="T_db097_row7_col6" class="data row7 col6" >2,527.78</td>
+      <td id="T_db097_row7_col7" class="data row7 col7" >CLF</td>
+      <td id="T_db097_row7_col8" class="data row7 col8" >10,000.00</td>
+      <td id="T_db097_row7_col9" class="data row7 col9" >10,000.00</td>
+      <td id="T_db097_row7_col10" class="data row7 col10" >35000.000000</td>
+      <td id="T_db097_row7_col11" class="data row7 col11" >35000.000000</td>
+      <td id="T_db097_row7_col12" class="data row7 col12" >1.0000%</td>
+      <td id="T_db097_row7_col13" class="data row7 col13" >2,527.78</td>
+      <td id="T_db097_row7_col14" class="data row7 col14" >1.0000%</td>
+      <td id="T_db097_row7_col15" class="data row7 col15" >1.00</td>
+      <td id="T_db097_row7_col16" class="data row7 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_fdbe1_row8_col0" class="data row8 col0" >1971-01-29</td>
-      <td id="T_fdbe1_row8_col1" class="data row8 col1" >1971-04-30</td>
-      <td id="T_fdbe1_row8_col2" class="data row8 col2" >1971-04-30</td>
-      <td id="T_fdbe1_row8_col3" class="data row8 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row8_col4" class="data row8 col4" >0.00</td>
-      <td id="T_fdbe1_row8_col5" class="data row8 col5" >True</td>
-      <td id="T_fdbe1_row8_col6" class="data row8 col6" >2,527.78</td>
-      <td id="T_fdbe1_row8_col7" class="data row8 col7" >CLF</td>
-      <td id="T_fdbe1_row8_col8" class="data row8 col8" >10,000.00</td>
-      <td id="T_fdbe1_row8_col9" class="data row8 col9" >10,000.00</td>
-      <td id="T_fdbe1_row8_col10" class="data row8 col10" >35000.000000</td>
-      <td id="T_fdbe1_row8_col11" class="data row8 col11" >35000.000000</td>
-      <td id="T_fdbe1_row8_col12" class="data row8 col12" >1.0000%</td>
-      <td id="T_fdbe1_row8_col13" class="data row8 col13" >2,527.78</td>
-      <td id="T_fdbe1_row8_col14" class="data row8 col14" >1.0000%</td>
-      <td id="T_fdbe1_row8_col15" class="data row8 col15" >1.00</td>
-      <td id="T_fdbe1_row8_col16" class="data row8 col16" >LinAct360</td>
+      <th id="T_db097_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_db097_row8_col0" class="data row8 col0" >1971-01-29</td>
+      <td id="T_db097_row8_col1" class="data row8 col1" >1971-04-30</td>
+      <td id="T_db097_row8_col2" class="data row8 col2" >1971-04-30</td>
+      <td id="T_db097_row8_col3" class="data row8 col3" >1,000,000.00</td>
+      <td id="T_db097_row8_col4" class="data row8 col4" >0.00</td>
+      <td id="T_db097_row8_col5" class="data row8 col5" >True</td>
+      <td id="T_db097_row8_col6" class="data row8 col6" >2,527.78</td>
+      <td id="T_db097_row8_col7" class="data row8 col7" >CLF</td>
+      <td id="T_db097_row8_col8" class="data row8 col8" >10,000.00</td>
+      <td id="T_db097_row8_col9" class="data row8 col9" >10,000.00</td>
+      <td id="T_db097_row8_col10" class="data row8 col10" >35000.000000</td>
+      <td id="T_db097_row8_col11" class="data row8 col11" >35000.000000</td>
+      <td id="T_db097_row8_col12" class="data row8 col12" >1.0000%</td>
+      <td id="T_db097_row8_col13" class="data row8 col13" >2,527.78</td>
+      <td id="T_db097_row8_col14" class="data row8 col14" >1.0000%</td>
+      <td id="T_db097_row8_col15" class="data row8 col15" >1.00</td>
+      <td id="T_db097_row8_col16" class="data row8 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_fdbe1_row9_col0" class="data row9 col0" >1971-04-30</td>
-      <td id="T_fdbe1_row9_col1" class="data row9 col1" >1971-07-30</td>
-      <td id="T_fdbe1_row9_col2" class="data row9 col2" >1971-07-30</td>
-      <td id="T_fdbe1_row9_col3" class="data row9 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row9_col4" class="data row9 col4" >0.00</td>
-      <td id="T_fdbe1_row9_col5" class="data row9 col5" >True</td>
-      <td id="T_fdbe1_row9_col6" class="data row9 col6" >2,527.78</td>
-      <td id="T_fdbe1_row9_col7" class="data row9 col7" >CLF</td>
-      <td id="T_fdbe1_row9_col8" class="data row9 col8" >10,000.00</td>
-      <td id="T_fdbe1_row9_col9" class="data row9 col9" >10,000.00</td>
-      <td id="T_fdbe1_row9_col10" class="data row9 col10" >35000.000000</td>
-      <td id="T_fdbe1_row9_col11" class="data row9 col11" >35000.000000</td>
-      <td id="T_fdbe1_row9_col12" class="data row9 col12" >1.0000%</td>
-      <td id="T_fdbe1_row9_col13" class="data row9 col13" >2,527.78</td>
-      <td id="T_fdbe1_row9_col14" class="data row9 col14" >1.0000%</td>
-      <td id="T_fdbe1_row9_col15" class="data row9 col15" >1.00</td>
-      <td id="T_fdbe1_row9_col16" class="data row9 col16" >LinAct360</td>
+      <th id="T_db097_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_db097_row9_col0" class="data row9 col0" >1971-04-30</td>
+      <td id="T_db097_row9_col1" class="data row9 col1" >1971-07-30</td>
+      <td id="T_db097_row9_col2" class="data row9 col2" >1971-07-30</td>
+      <td id="T_db097_row9_col3" class="data row9 col3" >1,000,000.00</td>
+      <td id="T_db097_row9_col4" class="data row9 col4" >0.00</td>
+      <td id="T_db097_row9_col5" class="data row9 col5" >True</td>
+      <td id="T_db097_row9_col6" class="data row9 col6" >2,527.78</td>
+      <td id="T_db097_row9_col7" class="data row9 col7" >CLF</td>
+      <td id="T_db097_row9_col8" class="data row9 col8" >10,000.00</td>
+      <td id="T_db097_row9_col9" class="data row9 col9" >10,000.00</td>
+      <td id="T_db097_row9_col10" class="data row9 col10" >35000.000000</td>
+      <td id="T_db097_row9_col11" class="data row9 col11" >35000.000000</td>
+      <td id="T_db097_row9_col12" class="data row9 col12" >1.0000%</td>
+      <td id="T_db097_row9_col13" class="data row9 col13" >2,527.78</td>
+      <td id="T_db097_row9_col14" class="data row9 col14" >1.0000%</td>
+      <td id="T_db097_row9_col15" class="data row9 col15" >1.00</td>
+      <td id="T_db097_row9_col16" class="data row9 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_fdbe1_row10_col0" class="data row10 col0" >1971-07-30</td>
-      <td id="T_fdbe1_row10_col1" class="data row10 col1" >1971-10-29</td>
-      <td id="T_fdbe1_row10_col2" class="data row10 col2" >1971-10-29</td>
-      <td id="T_fdbe1_row10_col3" class="data row10 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row10_col4" class="data row10 col4" >0.00</td>
-      <td id="T_fdbe1_row10_col5" class="data row10 col5" >True</td>
-      <td id="T_fdbe1_row10_col6" class="data row10 col6" >2,527.78</td>
-      <td id="T_fdbe1_row10_col7" class="data row10 col7" >CLF</td>
-      <td id="T_fdbe1_row10_col8" class="data row10 col8" >10,000.00</td>
-      <td id="T_fdbe1_row10_col9" class="data row10 col9" >10,000.00</td>
-      <td id="T_fdbe1_row10_col10" class="data row10 col10" >35000.000000</td>
-      <td id="T_fdbe1_row10_col11" class="data row10 col11" >35000.000000</td>
-      <td id="T_fdbe1_row10_col12" class="data row10 col12" >1.0000%</td>
-      <td id="T_fdbe1_row10_col13" class="data row10 col13" >2,527.78</td>
-      <td id="T_fdbe1_row10_col14" class="data row10 col14" >1.0000%</td>
-      <td id="T_fdbe1_row10_col15" class="data row10 col15" >1.00</td>
-      <td id="T_fdbe1_row10_col16" class="data row10 col16" >LinAct360</td>
+      <th id="T_db097_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_db097_row10_col0" class="data row10 col0" >1971-07-30</td>
+      <td id="T_db097_row10_col1" class="data row10 col1" >1971-10-29</td>
+      <td id="T_db097_row10_col2" class="data row10 col2" >1971-10-29</td>
+      <td id="T_db097_row10_col3" class="data row10 col3" >1,000,000.00</td>
+      <td id="T_db097_row10_col4" class="data row10 col4" >0.00</td>
+      <td id="T_db097_row10_col5" class="data row10 col5" >True</td>
+      <td id="T_db097_row10_col6" class="data row10 col6" >2,527.78</td>
+      <td id="T_db097_row10_col7" class="data row10 col7" >CLF</td>
+      <td id="T_db097_row10_col8" class="data row10 col8" >10,000.00</td>
+      <td id="T_db097_row10_col9" class="data row10 col9" >10,000.00</td>
+      <td id="T_db097_row10_col10" class="data row10 col10" >35000.000000</td>
+      <td id="T_db097_row10_col11" class="data row10 col11" >35000.000000</td>
+      <td id="T_db097_row10_col12" class="data row10 col12" >1.0000%</td>
+      <td id="T_db097_row10_col13" class="data row10 col13" >2,527.78</td>
+      <td id="T_db097_row10_col14" class="data row10 col14" >1.0000%</td>
+      <td id="T_db097_row10_col15" class="data row10 col15" >1.00</td>
+      <td id="T_db097_row10_col16" class="data row10 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_fdbe1_row11_col0" class="data row11 col0" >1971-10-29</td>
-      <td id="T_fdbe1_row11_col1" class="data row11 col1" >1972-01-31</td>
-      <td id="T_fdbe1_row11_col2" class="data row11 col2" >1972-01-31</td>
-      <td id="T_fdbe1_row11_col3" class="data row11 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row11_col4" class="data row11 col4" >0.00</td>
-      <td id="T_fdbe1_row11_col5" class="data row11 col5" >True</td>
-      <td id="T_fdbe1_row11_col6" class="data row11 col6" >2,611.11</td>
-      <td id="T_fdbe1_row11_col7" class="data row11 col7" >CLF</td>
-      <td id="T_fdbe1_row11_col8" class="data row11 col8" >10,000.00</td>
-      <td id="T_fdbe1_row11_col9" class="data row11 col9" >10,000.00</td>
-      <td id="T_fdbe1_row11_col10" class="data row11 col10" >35000.000000</td>
-      <td id="T_fdbe1_row11_col11" class="data row11 col11" >35000.000000</td>
-      <td id="T_fdbe1_row11_col12" class="data row11 col12" >1.0000%</td>
-      <td id="T_fdbe1_row11_col13" class="data row11 col13" >2,611.11</td>
-      <td id="T_fdbe1_row11_col14" class="data row11 col14" >1.0000%</td>
-      <td id="T_fdbe1_row11_col15" class="data row11 col15" >1.00</td>
-      <td id="T_fdbe1_row11_col16" class="data row11 col16" >LinAct360</td>
+      <th id="T_db097_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_db097_row11_col0" class="data row11 col0" >1971-10-29</td>
+      <td id="T_db097_row11_col1" class="data row11 col1" >1972-01-31</td>
+      <td id="T_db097_row11_col2" class="data row11 col2" >1972-01-31</td>
+      <td id="T_db097_row11_col3" class="data row11 col3" >1,000,000.00</td>
+      <td id="T_db097_row11_col4" class="data row11 col4" >0.00</td>
+      <td id="T_db097_row11_col5" class="data row11 col5" >True</td>
+      <td id="T_db097_row11_col6" class="data row11 col6" >2,611.11</td>
+      <td id="T_db097_row11_col7" class="data row11 col7" >CLF</td>
+      <td id="T_db097_row11_col8" class="data row11 col8" >10,000.00</td>
+      <td id="T_db097_row11_col9" class="data row11 col9" >10,000.00</td>
+      <td id="T_db097_row11_col10" class="data row11 col10" >35000.000000</td>
+      <td id="T_db097_row11_col11" class="data row11 col11" >35000.000000</td>
+      <td id="T_db097_row11_col12" class="data row11 col12" >1.0000%</td>
+      <td id="T_db097_row11_col13" class="data row11 col13" >2,611.11</td>
+      <td id="T_db097_row11_col14" class="data row11 col14" >1.0000%</td>
+      <td id="T_db097_row11_col15" class="data row11 col15" >1.00</td>
+      <td id="T_db097_row11_col16" class="data row11 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row12" class="row_heading level0 row12" >12</th>
-      <td id="T_fdbe1_row12_col0" class="data row12 col0" >1972-01-31</td>
-      <td id="T_fdbe1_row12_col1" class="data row12 col1" >1972-04-28</td>
-      <td id="T_fdbe1_row12_col2" class="data row12 col2" >1972-04-28</td>
-      <td id="T_fdbe1_row12_col3" class="data row12 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row12_col4" class="data row12 col4" >0.00</td>
-      <td id="T_fdbe1_row12_col5" class="data row12 col5" >True</td>
-      <td id="T_fdbe1_row12_col6" class="data row12 col6" >2,444.44</td>
-      <td id="T_fdbe1_row12_col7" class="data row12 col7" >CLF</td>
-      <td id="T_fdbe1_row12_col8" class="data row12 col8" >10,000.00</td>
-      <td id="T_fdbe1_row12_col9" class="data row12 col9" >10,000.00</td>
-      <td id="T_fdbe1_row12_col10" class="data row12 col10" >35000.000000</td>
-      <td id="T_fdbe1_row12_col11" class="data row12 col11" >35000.000000</td>
-      <td id="T_fdbe1_row12_col12" class="data row12 col12" >1.0000%</td>
-      <td id="T_fdbe1_row12_col13" class="data row12 col13" >2,444.44</td>
-      <td id="T_fdbe1_row12_col14" class="data row12 col14" >1.0000%</td>
-      <td id="T_fdbe1_row12_col15" class="data row12 col15" >1.00</td>
-      <td id="T_fdbe1_row12_col16" class="data row12 col16" >LinAct360</td>
+      <th id="T_db097_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_db097_row12_col0" class="data row12 col0" >1972-01-31</td>
+      <td id="T_db097_row12_col1" class="data row12 col1" >1972-04-28</td>
+      <td id="T_db097_row12_col2" class="data row12 col2" >1972-04-28</td>
+      <td id="T_db097_row12_col3" class="data row12 col3" >1,000,000.00</td>
+      <td id="T_db097_row12_col4" class="data row12 col4" >0.00</td>
+      <td id="T_db097_row12_col5" class="data row12 col5" >True</td>
+      <td id="T_db097_row12_col6" class="data row12 col6" >2,444.44</td>
+      <td id="T_db097_row12_col7" class="data row12 col7" >CLF</td>
+      <td id="T_db097_row12_col8" class="data row12 col8" >10,000.00</td>
+      <td id="T_db097_row12_col9" class="data row12 col9" >10,000.00</td>
+      <td id="T_db097_row12_col10" class="data row12 col10" >35000.000000</td>
+      <td id="T_db097_row12_col11" class="data row12 col11" >35000.000000</td>
+      <td id="T_db097_row12_col12" class="data row12 col12" >1.0000%</td>
+      <td id="T_db097_row12_col13" class="data row12 col13" >2,444.44</td>
+      <td id="T_db097_row12_col14" class="data row12 col14" >1.0000%</td>
+      <td id="T_db097_row12_col15" class="data row12 col15" >1.00</td>
+      <td id="T_db097_row12_col16" class="data row12 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row13" class="row_heading level0 row13" >13</th>
-      <td id="T_fdbe1_row13_col0" class="data row13 col0" >1972-04-28</td>
-      <td id="T_fdbe1_row13_col1" class="data row13 col1" >1972-07-31</td>
-      <td id="T_fdbe1_row13_col2" class="data row13 col2" >1972-07-31</td>
-      <td id="T_fdbe1_row13_col3" class="data row13 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row13_col4" class="data row13 col4" >0.00</td>
-      <td id="T_fdbe1_row13_col5" class="data row13 col5" >True</td>
-      <td id="T_fdbe1_row13_col6" class="data row13 col6" >2,611.11</td>
-      <td id="T_fdbe1_row13_col7" class="data row13 col7" >CLF</td>
-      <td id="T_fdbe1_row13_col8" class="data row13 col8" >10,000.00</td>
-      <td id="T_fdbe1_row13_col9" class="data row13 col9" >10,000.00</td>
-      <td id="T_fdbe1_row13_col10" class="data row13 col10" >35000.000000</td>
-      <td id="T_fdbe1_row13_col11" class="data row13 col11" >35000.000000</td>
-      <td id="T_fdbe1_row13_col12" class="data row13 col12" >1.0000%</td>
-      <td id="T_fdbe1_row13_col13" class="data row13 col13" >2,611.11</td>
-      <td id="T_fdbe1_row13_col14" class="data row13 col14" >1.0000%</td>
-      <td id="T_fdbe1_row13_col15" class="data row13 col15" >1.00</td>
-      <td id="T_fdbe1_row13_col16" class="data row13 col16" >LinAct360</td>
+      <th id="T_db097_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_db097_row13_col0" class="data row13 col0" >1972-04-28</td>
+      <td id="T_db097_row13_col1" class="data row13 col1" >1972-07-31</td>
+      <td id="T_db097_row13_col2" class="data row13 col2" >1972-07-31</td>
+      <td id="T_db097_row13_col3" class="data row13 col3" >1,000,000.00</td>
+      <td id="T_db097_row13_col4" class="data row13 col4" >0.00</td>
+      <td id="T_db097_row13_col5" class="data row13 col5" >True</td>
+      <td id="T_db097_row13_col6" class="data row13 col6" >2,611.11</td>
+      <td id="T_db097_row13_col7" class="data row13 col7" >CLF</td>
+      <td id="T_db097_row13_col8" class="data row13 col8" >10,000.00</td>
+      <td id="T_db097_row13_col9" class="data row13 col9" >10,000.00</td>
+      <td id="T_db097_row13_col10" class="data row13 col10" >35000.000000</td>
+      <td id="T_db097_row13_col11" class="data row13 col11" >35000.000000</td>
+      <td id="T_db097_row13_col12" class="data row13 col12" >1.0000%</td>
+      <td id="T_db097_row13_col13" class="data row13 col13" >2,611.11</td>
+      <td id="T_db097_row13_col14" class="data row13 col14" >1.0000%</td>
+      <td id="T_db097_row13_col15" class="data row13 col15" >1.00</td>
+      <td id="T_db097_row13_col16" class="data row13 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row14" class="row_heading level0 row14" >14</th>
-      <td id="T_fdbe1_row14_col0" class="data row14 col0" >1972-07-31</td>
-      <td id="T_fdbe1_row14_col1" class="data row14 col1" >1972-10-31</td>
-      <td id="T_fdbe1_row14_col2" class="data row14 col2" >1972-10-31</td>
-      <td id="T_fdbe1_row14_col3" class="data row14 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row14_col4" class="data row14 col4" >0.00</td>
-      <td id="T_fdbe1_row14_col5" class="data row14 col5" >True</td>
-      <td id="T_fdbe1_row14_col6" class="data row14 col6" >2,555.56</td>
-      <td id="T_fdbe1_row14_col7" class="data row14 col7" >CLF</td>
-      <td id="T_fdbe1_row14_col8" class="data row14 col8" >10,000.00</td>
-      <td id="T_fdbe1_row14_col9" class="data row14 col9" >10,000.00</td>
-      <td id="T_fdbe1_row14_col10" class="data row14 col10" >35000.000000</td>
-      <td id="T_fdbe1_row14_col11" class="data row14 col11" >35000.000000</td>
-      <td id="T_fdbe1_row14_col12" class="data row14 col12" >1.0000%</td>
-      <td id="T_fdbe1_row14_col13" class="data row14 col13" >2,555.56</td>
-      <td id="T_fdbe1_row14_col14" class="data row14 col14" >1.0000%</td>
-      <td id="T_fdbe1_row14_col15" class="data row14 col15" >1.00</td>
-      <td id="T_fdbe1_row14_col16" class="data row14 col16" >LinAct360</td>
+      <th id="T_db097_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_db097_row14_col0" class="data row14 col0" >1972-07-31</td>
+      <td id="T_db097_row14_col1" class="data row14 col1" >1972-10-31</td>
+      <td id="T_db097_row14_col2" class="data row14 col2" >1972-10-31</td>
+      <td id="T_db097_row14_col3" class="data row14 col3" >1,000,000.00</td>
+      <td id="T_db097_row14_col4" class="data row14 col4" >0.00</td>
+      <td id="T_db097_row14_col5" class="data row14 col5" >True</td>
+      <td id="T_db097_row14_col6" class="data row14 col6" >2,555.56</td>
+      <td id="T_db097_row14_col7" class="data row14 col7" >CLF</td>
+      <td id="T_db097_row14_col8" class="data row14 col8" >10,000.00</td>
+      <td id="T_db097_row14_col9" class="data row14 col9" >10,000.00</td>
+      <td id="T_db097_row14_col10" class="data row14 col10" >35000.000000</td>
+      <td id="T_db097_row14_col11" class="data row14 col11" >35000.000000</td>
+      <td id="T_db097_row14_col12" class="data row14 col12" >1.0000%</td>
+      <td id="T_db097_row14_col13" class="data row14 col13" >2,555.56</td>
+      <td id="T_db097_row14_col14" class="data row14 col14" >1.0000%</td>
+      <td id="T_db097_row14_col15" class="data row14 col15" >1.00</td>
+      <td id="T_db097_row14_col16" class="data row14 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row15" class="row_heading level0 row15" >15</th>
-      <td id="T_fdbe1_row15_col0" class="data row15 col0" >1972-10-31</td>
-      <td id="T_fdbe1_row15_col1" class="data row15 col1" >1973-01-31</td>
-      <td id="T_fdbe1_row15_col2" class="data row15 col2" >1973-01-31</td>
-      <td id="T_fdbe1_row15_col3" class="data row15 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row15_col4" class="data row15 col4" >0.00</td>
-      <td id="T_fdbe1_row15_col5" class="data row15 col5" >True</td>
-      <td id="T_fdbe1_row15_col6" class="data row15 col6" >2,555.56</td>
-      <td id="T_fdbe1_row15_col7" class="data row15 col7" >CLF</td>
-      <td id="T_fdbe1_row15_col8" class="data row15 col8" >10,000.00</td>
-      <td id="T_fdbe1_row15_col9" class="data row15 col9" >10,000.00</td>
-      <td id="T_fdbe1_row15_col10" class="data row15 col10" >35000.000000</td>
-      <td id="T_fdbe1_row15_col11" class="data row15 col11" >35000.000000</td>
-      <td id="T_fdbe1_row15_col12" class="data row15 col12" >1.0000%</td>
-      <td id="T_fdbe1_row15_col13" class="data row15 col13" >2,555.56</td>
-      <td id="T_fdbe1_row15_col14" class="data row15 col14" >1.0000%</td>
-      <td id="T_fdbe1_row15_col15" class="data row15 col15" >1.00</td>
-      <td id="T_fdbe1_row15_col16" class="data row15 col16" >LinAct360</td>
+      <th id="T_db097_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_db097_row15_col0" class="data row15 col0" >1972-10-31</td>
+      <td id="T_db097_row15_col1" class="data row15 col1" >1973-01-31</td>
+      <td id="T_db097_row15_col2" class="data row15 col2" >1973-01-31</td>
+      <td id="T_db097_row15_col3" class="data row15 col3" >1,000,000.00</td>
+      <td id="T_db097_row15_col4" class="data row15 col4" >0.00</td>
+      <td id="T_db097_row15_col5" class="data row15 col5" >True</td>
+      <td id="T_db097_row15_col6" class="data row15 col6" >2,555.56</td>
+      <td id="T_db097_row15_col7" class="data row15 col7" >CLF</td>
+      <td id="T_db097_row15_col8" class="data row15 col8" >10,000.00</td>
+      <td id="T_db097_row15_col9" class="data row15 col9" >10,000.00</td>
+      <td id="T_db097_row15_col10" class="data row15 col10" >35000.000000</td>
+      <td id="T_db097_row15_col11" class="data row15 col11" >35000.000000</td>
+      <td id="T_db097_row15_col12" class="data row15 col12" >1.0000%</td>
+      <td id="T_db097_row15_col13" class="data row15 col13" >2,555.56</td>
+      <td id="T_db097_row15_col14" class="data row15 col14" >1.0000%</td>
+      <td id="T_db097_row15_col15" class="data row15 col15" >1.00</td>
+      <td id="T_db097_row15_col16" class="data row15 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row16" class="row_heading level0 row16" >16</th>
-      <td id="T_fdbe1_row16_col0" class="data row16 col0" >1973-01-31</td>
-      <td id="T_fdbe1_row16_col1" class="data row16 col1" >1973-04-30</td>
-      <td id="T_fdbe1_row16_col2" class="data row16 col2" >1973-04-30</td>
-      <td id="T_fdbe1_row16_col3" class="data row16 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row16_col4" class="data row16 col4" >0.00</td>
-      <td id="T_fdbe1_row16_col5" class="data row16 col5" >True</td>
-      <td id="T_fdbe1_row16_col6" class="data row16 col6" >2,472.22</td>
-      <td id="T_fdbe1_row16_col7" class="data row16 col7" >CLF</td>
-      <td id="T_fdbe1_row16_col8" class="data row16 col8" >10,000.00</td>
-      <td id="T_fdbe1_row16_col9" class="data row16 col9" >10,000.00</td>
-      <td id="T_fdbe1_row16_col10" class="data row16 col10" >35000.000000</td>
-      <td id="T_fdbe1_row16_col11" class="data row16 col11" >35000.000000</td>
-      <td id="T_fdbe1_row16_col12" class="data row16 col12" >1.0000%</td>
-      <td id="T_fdbe1_row16_col13" class="data row16 col13" >2,472.22</td>
-      <td id="T_fdbe1_row16_col14" class="data row16 col14" >1.0000%</td>
-      <td id="T_fdbe1_row16_col15" class="data row16 col15" >1.00</td>
-      <td id="T_fdbe1_row16_col16" class="data row16 col16" >LinAct360</td>
+      <th id="T_db097_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_db097_row16_col0" class="data row16 col0" >1973-01-31</td>
+      <td id="T_db097_row16_col1" class="data row16 col1" >1973-04-30</td>
+      <td id="T_db097_row16_col2" class="data row16 col2" >1973-04-30</td>
+      <td id="T_db097_row16_col3" class="data row16 col3" >1,000,000.00</td>
+      <td id="T_db097_row16_col4" class="data row16 col4" >0.00</td>
+      <td id="T_db097_row16_col5" class="data row16 col5" >True</td>
+      <td id="T_db097_row16_col6" class="data row16 col6" >2,472.22</td>
+      <td id="T_db097_row16_col7" class="data row16 col7" >CLF</td>
+      <td id="T_db097_row16_col8" class="data row16 col8" >10,000.00</td>
+      <td id="T_db097_row16_col9" class="data row16 col9" >10,000.00</td>
+      <td id="T_db097_row16_col10" class="data row16 col10" >35000.000000</td>
+      <td id="T_db097_row16_col11" class="data row16 col11" >35000.000000</td>
+      <td id="T_db097_row16_col12" class="data row16 col12" >1.0000%</td>
+      <td id="T_db097_row16_col13" class="data row16 col13" >2,472.22</td>
+      <td id="T_db097_row16_col14" class="data row16 col14" >1.0000%</td>
+      <td id="T_db097_row16_col15" class="data row16 col15" >1.00</td>
+      <td id="T_db097_row16_col16" class="data row16 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row17" class="row_heading level0 row17" >17</th>
-      <td id="T_fdbe1_row17_col0" class="data row17 col0" >1973-04-30</td>
-      <td id="T_fdbe1_row17_col1" class="data row17 col1" >1973-07-31</td>
-      <td id="T_fdbe1_row17_col2" class="data row17 col2" >1973-07-31</td>
-      <td id="T_fdbe1_row17_col3" class="data row17 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row17_col4" class="data row17 col4" >0.00</td>
-      <td id="T_fdbe1_row17_col5" class="data row17 col5" >True</td>
-      <td id="T_fdbe1_row17_col6" class="data row17 col6" >2,555.56</td>
-      <td id="T_fdbe1_row17_col7" class="data row17 col7" >CLF</td>
-      <td id="T_fdbe1_row17_col8" class="data row17 col8" >10,000.00</td>
-      <td id="T_fdbe1_row17_col9" class="data row17 col9" >10,000.00</td>
-      <td id="T_fdbe1_row17_col10" class="data row17 col10" >35000.000000</td>
-      <td id="T_fdbe1_row17_col11" class="data row17 col11" >35000.000000</td>
-      <td id="T_fdbe1_row17_col12" class="data row17 col12" >1.0000%</td>
-      <td id="T_fdbe1_row17_col13" class="data row17 col13" >2,555.56</td>
-      <td id="T_fdbe1_row17_col14" class="data row17 col14" >1.0000%</td>
-      <td id="T_fdbe1_row17_col15" class="data row17 col15" >1.00</td>
-      <td id="T_fdbe1_row17_col16" class="data row17 col16" >LinAct360</td>
+      <th id="T_db097_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_db097_row17_col0" class="data row17 col0" >1973-04-30</td>
+      <td id="T_db097_row17_col1" class="data row17 col1" >1973-07-31</td>
+      <td id="T_db097_row17_col2" class="data row17 col2" >1973-07-31</td>
+      <td id="T_db097_row17_col3" class="data row17 col3" >1,000,000.00</td>
+      <td id="T_db097_row17_col4" class="data row17 col4" >0.00</td>
+      <td id="T_db097_row17_col5" class="data row17 col5" >True</td>
+      <td id="T_db097_row17_col6" class="data row17 col6" >2,555.56</td>
+      <td id="T_db097_row17_col7" class="data row17 col7" >CLF</td>
+      <td id="T_db097_row17_col8" class="data row17 col8" >10,000.00</td>
+      <td id="T_db097_row17_col9" class="data row17 col9" >10,000.00</td>
+      <td id="T_db097_row17_col10" class="data row17 col10" >35000.000000</td>
+      <td id="T_db097_row17_col11" class="data row17 col11" >35000.000000</td>
+      <td id="T_db097_row17_col12" class="data row17 col12" >1.0000%</td>
+      <td id="T_db097_row17_col13" class="data row17 col13" >2,555.56</td>
+      <td id="T_db097_row17_col14" class="data row17 col14" >1.0000%</td>
+      <td id="T_db097_row17_col15" class="data row17 col15" >1.00</td>
+      <td id="T_db097_row17_col16" class="data row17 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row18" class="row_heading level0 row18" >18</th>
-      <td id="T_fdbe1_row18_col0" class="data row18 col0" >1973-07-31</td>
-      <td id="T_fdbe1_row18_col1" class="data row18 col1" >1973-10-31</td>
-      <td id="T_fdbe1_row18_col2" class="data row18 col2" >1973-10-31</td>
-      <td id="T_fdbe1_row18_col3" class="data row18 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row18_col4" class="data row18 col4" >0.00</td>
-      <td id="T_fdbe1_row18_col5" class="data row18 col5" >True</td>
-      <td id="T_fdbe1_row18_col6" class="data row18 col6" >2,555.56</td>
-      <td id="T_fdbe1_row18_col7" class="data row18 col7" >CLF</td>
-      <td id="T_fdbe1_row18_col8" class="data row18 col8" >10,000.00</td>
-      <td id="T_fdbe1_row18_col9" class="data row18 col9" >10,000.00</td>
-      <td id="T_fdbe1_row18_col10" class="data row18 col10" >35000.000000</td>
-      <td id="T_fdbe1_row18_col11" class="data row18 col11" >35000.000000</td>
-      <td id="T_fdbe1_row18_col12" class="data row18 col12" >1.0000%</td>
-      <td id="T_fdbe1_row18_col13" class="data row18 col13" >2,555.56</td>
-      <td id="T_fdbe1_row18_col14" class="data row18 col14" >1.0000%</td>
-      <td id="T_fdbe1_row18_col15" class="data row18 col15" >1.00</td>
-      <td id="T_fdbe1_row18_col16" class="data row18 col16" >LinAct360</td>
+      <th id="T_db097_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_db097_row18_col0" class="data row18 col0" >1973-07-31</td>
+      <td id="T_db097_row18_col1" class="data row18 col1" >1973-10-31</td>
+      <td id="T_db097_row18_col2" class="data row18 col2" >1973-10-31</td>
+      <td id="T_db097_row18_col3" class="data row18 col3" >1,000,000.00</td>
+      <td id="T_db097_row18_col4" class="data row18 col4" >0.00</td>
+      <td id="T_db097_row18_col5" class="data row18 col5" >True</td>
+      <td id="T_db097_row18_col6" class="data row18 col6" >2,555.56</td>
+      <td id="T_db097_row18_col7" class="data row18 col7" >CLF</td>
+      <td id="T_db097_row18_col8" class="data row18 col8" >10,000.00</td>
+      <td id="T_db097_row18_col9" class="data row18 col9" >10,000.00</td>
+      <td id="T_db097_row18_col10" class="data row18 col10" >35000.000000</td>
+      <td id="T_db097_row18_col11" class="data row18 col11" >35000.000000</td>
+      <td id="T_db097_row18_col12" class="data row18 col12" >1.0000%</td>
+      <td id="T_db097_row18_col13" class="data row18 col13" >2,555.56</td>
+      <td id="T_db097_row18_col14" class="data row18 col14" >1.0000%</td>
+      <td id="T_db097_row18_col15" class="data row18 col15" >1.00</td>
+      <td id="T_db097_row18_col16" class="data row18 col16" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fdbe1_level0_row19" class="row_heading level0 row19" >19</th>
-      <td id="T_fdbe1_row19_col0" class="data row19 col0" >1973-10-31</td>
-      <td id="T_fdbe1_row19_col1" class="data row19 col1" >1974-01-31</td>
-      <td id="T_fdbe1_row19_col2" class="data row19 col2" >1974-01-31</td>
-      <td id="T_fdbe1_row19_col3" class="data row19 col3" >1,000,000.00</td>
-      <td id="T_fdbe1_row19_col4" class="data row19 col4" >1,000,000.00</td>
-      <td id="T_fdbe1_row19_col5" class="data row19 col5" >True</td>
-      <td id="T_fdbe1_row19_col6" class="data row19 col6" >1,002,555.56</td>
-      <td id="T_fdbe1_row19_col7" class="data row19 col7" >CLF</td>
-      <td id="T_fdbe1_row19_col8" class="data row19 col8" >10,000.00</td>
-      <td id="T_fdbe1_row19_col9" class="data row19 col9" >10,000.00</td>
-      <td id="T_fdbe1_row19_col10" class="data row19 col10" >35000.000000</td>
-      <td id="T_fdbe1_row19_col11" class="data row19 col11" >35000.000000</td>
-      <td id="T_fdbe1_row19_col12" class="data row19 col12" >1.0000%</td>
-      <td id="T_fdbe1_row19_col13" class="data row19 col13" >2,555.56</td>
-      <td id="T_fdbe1_row19_col14" class="data row19 col14" >1.0000%</td>
-      <td id="T_fdbe1_row19_col15" class="data row19 col15" >1.00</td>
-      <td id="T_fdbe1_row19_col16" class="data row19 col16" >LinAct360</td>
+      <th id="T_db097_level0_row19" class="row_heading level0 row19" >19</th>
+      <td id="T_db097_row19_col0" class="data row19 col0" >1973-10-31</td>
+      <td id="T_db097_row19_col1" class="data row19 col1" >1974-01-31</td>
+      <td id="T_db097_row19_col2" class="data row19 col2" >1974-01-31</td>
+      <td id="T_db097_row19_col3" class="data row19 col3" >1,000,000.00</td>
+      <td id="T_db097_row19_col4" class="data row19 col4" >1,000,000.00</td>
+      <td id="T_db097_row19_col5" class="data row19 col5" >True</td>
+      <td id="T_db097_row19_col6" class="data row19 col6" >1,002,555.56</td>
+      <td id="T_db097_row19_col7" class="data row19 col7" >CLF</td>
+      <td id="T_db097_row19_col8" class="data row19 col8" >10,000.00</td>
+      <td id="T_db097_row19_col9" class="data row19 col9" >10,000.00</td>
+      <td id="T_db097_row19_col10" class="data row19 col10" >35000.000000</td>
+      <td id="T_db097_row19_col11" class="data row19 col11" >35000.000000</td>
+      <td id="T_db097_row19_col12" class="data row19 col12" >1.0000%</td>
+      <td id="T_db097_row19_col13" class="data row19 col13" >2,555.56</td>
+      <td id="T_db097_row19_col14" class="data row19 col14" >1.0000%</td>
+      <td id="T_db097_row19_col15" class="data row19 col15" >1.00</td>
+      <td id="T_db097_row19_col16" class="data row19 col16" >LinAct360</td>
     </tr>
   </tbody>
 </table>
@@ -6233,97 +6453,845 @@ df9.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_c5d3d">
+<table id="T_676f4">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_c5d3d_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_c5d3d_level0_col1" class="col_heading level0 col1" >fecha__final</th>
-      <th id="T_c5d3d_level0_col2" class="col_heading level0 col2" >fecha__pago</th>
-      <th id="T_c5d3d_level0_col3" class="col_heading level0 col3" >nominal</th>
-      <th id="T_c5d3d_level0_col4" class="col_heading level0 col4" >amort</th>
-      <th id="T_c5d3d_level0_col5" class="col_heading level0 col5" >interes</th>
-      <th id="T_c5d3d_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
-      <th id="T_c5d3d_level0_col7" class="col_heading level0 col7" >flujo</th>
-      <th id="T_c5d3d_level0_col8" class="col_heading level0 col8" >moneda</th>
-      <th id="T_c5d3d_level0_col9" class="col_heading level0 col9" >indice</th>
-      <th id="T_c5d3d_level0_col10" class="col_heading level0 col10" >valor_tasa</th>
-      <th id="T_c5d3d_level0_col11" class="col_heading level0 col11" >spread</th>
-      <th id="T_c5d3d_level0_col12" class="col_heading level0 col12" >gearing</th>
-      <th id="T_c5d3d_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
+      <th id="T_676f4_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_676f4_level0_col1" class="col_heading level0 col1" >fecha__final</th>
+      <th id="T_676f4_level0_col2" class="col_heading level0 col2" >fecha__pago</th>
+      <th id="T_676f4_level0_col3" class="col_heading level0 col3" >nominal</th>
+      <th id="T_676f4_level0_col4" class="col_heading level0 col4" >amort</th>
+      <th id="T_676f4_level0_col5" class="col_heading level0 col5" >interes</th>
+      <th id="T_676f4_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
+      <th id="T_676f4_level0_col7" class="col_heading level0 col7" >flujo</th>
+      <th id="T_676f4_level0_col8" class="col_heading level0 col8" >moneda</th>
+      <th id="T_676f4_level0_col9" class="col_heading level0 col9" >indice</th>
+      <th id="T_676f4_level0_col10" class="col_heading level0 col10" >valor_tasa</th>
+      <th id="T_676f4_level0_col11" class="col_heading level0 col11" >spread</th>
+      <th id="T_676f4_level0_col12" class="col_heading level0 col12" >gearing</th>
+      <th id="T_676f4_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_c5d3d_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_c5d3d_row0_col0" class="data row0 col0" >2022-01-03</td>
-      <td id="T_c5d3d_row0_col1" class="data row0 col1" >2022-04-04</td>
-      <td id="T_c5d3d_row0_col2" class="data row0 col2" >2022-04-04</td>
-      <td id="T_c5d3d_row0_col3" class="data row0 col3" >1,000,000.00</td>
-      <td id="T_c5d3d_row0_col4" class="data row0 col4" >0.00</td>
-      <td id="T_c5d3d_row0_col5" class="data row0 col5" >2,527.78</td>
-      <td id="T_c5d3d_row0_col6" class="data row0 col6" >True</td>
-      <td id="T_c5d3d_row0_col7" class="data row0 col7" >2,527.78</td>
-      <td id="T_c5d3d_row0_col8" class="data row0 col8" >USD</td>
-      <td id="T_c5d3d_row0_col9" class="data row0 col9" >OISTEST</td>
-      <td id="T_c5d3d_row0_col10" class="data row0 col10" >0.0000%</td>
-      <td id="T_c5d3d_row0_col11" class="data row0 col11" >1.0000%</td>
-      <td id="T_c5d3d_row0_col12" class="data row0 col12" >1.00</td>
-      <td id="T_c5d3d_row0_col13" class="data row0 col13" >LinAct360</td>
+      <th id="T_676f4_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_676f4_row0_col0" class="data row0 col0" >2022-01-03</td>
+      <td id="T_676f4_row0_col1" class="data row0 col1" >2022-04-04</td>
+      <td id="T_676f4_row0_col2" class="data row0 col2" >2022-04-04</td>
+      <td id="T_676f4_row0_col3" class="data row0 col3" >1,000,000.00</td>
+      <td id="T_676f4_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_676f4_row0_col5" class="data row0 col5" >2,527.78</td>
+      <td id="T_676f4_row0_col6" class="data row0 col6" >True</td>
+      <td id="T_676f4_row0_col7" class="data row0 col7" >2,527.78</td>
+      <td id="T_676f4_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_676f4_row0_col9" class="data row0 col9" >OISTEST</td>
+      <td id="T_676f4_row0_col10" class="data row0 col10" >0.0000%</td>
+      <td id="T_676f4_row0_col11" class="data row0 col11" >1.0000%</td>
+      <td id="T_676f4_row0_col12" class="data row0 col12" >1.00</td>
+      <td id="T_676f4_row0_col13" class="data row0 col13" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_c5d3d_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_c5d3d_row1_col0" class="data row1 col0" >2022-04-04</td>
-      <td id="T_c5d3d_row1_col1" class="data row1 col1" >2022-07-04</td>
-      <td id="T_c5d3d_row1_col2" class="data row1 col2" >2022-07-04</td>
-      <td id="T_c5d3d_row1_col3" class="data row1 col3" >1,000,000.00</td>
-      <td id="T_c5d3d_row1_col4" class="data row1 col4" >0.00</td>
-      <td id="T_c5d3d_row1_col5" class="data row1 col5" >2,527.78</td>
-      <td id="T_c5d3d_row1_col6" class="data row1 col6" >True</td>
-      <td id="T_c5d3d_row1_col7" class="data row1 col7" >2,527.78</td>
-      <td id="T_c5d3d_row1_col8" class="data row1 col8" >USD</td>
-      <td id="T_c5d3d_row1_col9" class="data row1 col9" >OISTEST</td>
-      <td id="T_c5d3d_row1_col10" class="data row1 col10" >0.0000%</td>
-      <td id="T_c5d3d_row1_col11" class="data row1 col11" >1.0000%</td>
-      <td id="T_c5d3d_row1_col12" class="data row1 col12" >1.00</td>
-      <td id="T_c5d3d_row1_col13" class="data row1 col13" >LinAct360</td>
+      <th id="T_676f4_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_676f4_row1_col0" class="data row1 col0" >2022-04-04</td>
+      <td id="T_676f4_row1_col1" class="data row1 col1" >2022-07-04</td>
+      <td id="T_676f4_row1_col2" class="data row1 col2" >2022-07-04</td>
+      <td id="T_676f4_row1_col3" class="data row1 col3" >1,000,000.00</td>
+      <td id="T_676f4_row1_col4" class="data row1 col4" >0.00</td>
+      <td id="T_676f4_row1_col5" class="data row1 col5" >2,527.78</td>
+      <td id="T_676f4_row1_col6" class="data row1 col6" >True</td>
+      <td id="T_676f4_row1_col7" class="data row1 col7" >2,527.78</td>
+      <td id="T_676f4_row1_col8" class="data row1 col8" >USD</td>
+      <td id="T_676f4_row1_col9" class="data row1 col9" >OISTEST</td>
+      <td id="T_676f4_row1_col10" class="data row1 col10" >0.0000%</td>
+      <td id="T_676f4_row1_col11" class="data row1 col11" >1.0000%</td>
+      <td id="T_676f4_row1_col12" class="data row1 col12" >1.00</td>
+      <td id="T_676f4_row1_col13" class="data row1 col13" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_c5d3d_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_c5d3d_row2_col0" class="data row2 col0" >2022-07-04</td>
-      <td id="T_c5d3d_row2_col1" class="data row2 col1" >2022-10-03</td>
-      <td id="T_c5d3d_row2_col2" class="data row2 col2" >2022-10-03</td>
-      <td id="T_c5d3d_row2_col3" class="data row2 col3" >1,000,000.00</td>
-      <td id="T_c5d3d_row2_col4" class="data row2 col4" >0.00</td>
-      <td id="T_c5d3d_row2_col5" class="data row2 col5" >2,527.78</td>
-      <td id="T_c5d3d_row2_col6" class="data row2 col6" >True</td>
-      <td id="T_c5d3d_row2_col7" class="data row2 col7" >2,527.78</td>
-      <td id="T_c5d3d_row2_col8" class="data row2 col8" >USD</td>
-      <td id="T_c5d3d_row2_col9" class="data row2 col9" >OISTEST</td>
-      <td id="T_c5d3d_row2_col10" class="data row2 col10" >0.0000%</td>
-      <td id="T_c5d3d_row2_col11" class="data row2 col11" >1.0000%</td>
-      <td id="T_c5d3d_row2_col12" class="data row2 col12" >1.00</td>
-      <td id="T_c5d3d_row2_col13" class="data row2 col13" >LinAct360</td>
+      <th id="T_676f4_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_676f4_row2_col0" class="data row2 col0" >2022-07-04</td>
+      <td id="T_676f4_row2_col1" class="data row2 col1" >2022-10-03</td>
+      <td id="T_676f4_row2_col2" class="data row2 col2" >2022-10-03</td>
+      <td id="T_676f4_row2_col3" class="data row2 col3" >1,000,000.00</td>
+      <td id="T_676f4_row2_col4" class="data row2 col4" >0.00</td>
+      <td id="T_676f4_row2_col5" class="data row2 col5" >2,527.78</td>
+      <td id="T_676f4_row2_col6" class="data row2 col6" >True</td>
+      <td id="T_676f4_row2_col7" class="data row2 col7" >2,527.78</td>
+      <td id="T_676f4_row2_col8" class="data row2 col8" >USD</td>
+      <td id="T_676f4_row2_col9" class="data row2 col9" >OISTEST</td>
+      <td id="T_676f4_row2_col10" class="data row2 col10" >0.0000%</td>
+      <td id="T_676f4_row2_col11" class="data row2 col11" >1.0000%</td>
+      <td id="T_676f4_row2_col12" class="data row2 col12" >1.00</td>
+      <td id="T_676f4_row2_col13" class="data row2 col13" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_c5d3d_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_c5d3d_row3_col0" class="data row3 col0" >2022-10-03</td>
-      <td id="T_c5d3d_row3_col1" class="data row3 col1" >2023-01-03</td>
-      <td id="T_c5d3d_row3_col2" class="data row3 col2" >2023-01-03</td>
-      <td id="T_c5d3d_row3_col3" class="data row3 col3" >1,000,000.00</td>
-      <td id="T_c5d3d_row3_col4" class="data row3 col4" >1,000,000.00</td>
-      <td id="T_c5d3d_row3_col5" class="data row3 col5" >2,555.56</td>
-      <td id="T_c5d3d_row3_col6" class="data row3 col6" >True</td>
-      <td id="T_c5d3d_row3_col7" class="data row3 col7" >1,002,555.56</td>
-      <td id="T_c5d3d_row3_col8" class="data row3 col8" >USD</td>
-      <td id="T_c5d3d_row3_col9" class="data row3 col9" >OISTEST</td>
-      <td id="T_c5d3d_row3_col10" class="data row3 col10" >0.0000%</td>
-      <td id="T_c5d3d_row3_col11" class="data row3 col11" >1.0000%</td>
-      <td id="T_c5d3d_row3_col12" class="data row3 col12" >1.00</td>
-      <td id="T_c5d3d_row3_col13" class="data row3 col13" >LinAct360</td>
+      <th id="T_676f4_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_676f4_row3_col0" class="data row3 col0" >2022-10-03</td>
+      <td id="T_676f4_row3_col1" class="data row3 col1" >2023-01-03</td>
+      <td id="T_676f4_row3_col2" class="data row3 col2" >2023-01-03</td>
+      <td id="T_676f4_row3_col3" class="data row3 col3" >1,000,000.00</td>
+      <td id="T_676f4_row3_col4" class="data row3 col4" >1,000,000.00</td>
+      <td id="T_676f4_row3_col5" class="data row3 col5" >2,555.56</td>
+      <td id="T_676f4_row3_col6" class="data row3 col6" >True</td>
+      <td id="T_676f4_row3_col7" class="data row3 col7" >1,002,555.56</td>
+      <td id="T_676f4_row3_col8" class="data row3 col8" >USD</td>
+      <td id="T_676f4_row3_col9" class="data row3 col9" >OISTEST</td>
+      <td id="T_676f4_row3_col10" class="data row3 col10" >0.0000%</td>
+      <td id="T_676f4_row3_col11" class="data row3 col11" >1.0000%</td>
+      <td id="T_676f4_row3_col12" class="data row3 col12" >1.00</td>
+      <td id="T_676f4_row3_col13" class="data row3 col13" >LinAct360</td>
     </tr>
   </tbody>
 </table>
 
+
+
+
+### Construcción Asistida de un `CompoundedOvernightRateLeg2`
+
+
+```python
+# Se da de alta los parámetros requeridos
+rp = qcf.RecPay.RECEIVE
+fecha_inicio = qcf.QCDate(3, 1, 2022)
+fecha_final = qcf.QCDate(3, 1, 2023)
+bus_adj_rule = qcf.BusyAdjRules.MODFOLLOW
+periodicidad_pago = qcf.Tenor('3M')
+periodo_irregular_pago = qcf.StubPeriod.NO
+calendario = qcf.BusinessCalendar(fecha_inicio, 20)
+lag_pago = 0
+
+######################################################################
+# Definición del índice
+
+codigo = 'OISTEST'
+lin_act360 = qcf.QCInterestRate(.0, qcf.QCAct360(), qcf.QCLinearWf())
+fixing_lag = qcf.Tenor('0d')
+tenor = qcf.Tenor('1d')
+fixing_calendar = calendario
+settlement_calendar = calendario
+usd = qcf.QCUSD()
+oistest = qcf.InterestRateIndex(
+    codigo,
+    lin_act360,
+    fixing_lag,
+    tenor,
+    fixing_calendar,
+    settlement_calendar,
+    usd)
+
+# Fin índice
+######################################################################
+
+nominal = 1000000.0
+amort_es_flujo = True
+moneda = usd
+spread = .01
+gearing = 1.0
+
+cor_leg_2 = qcf.LegFactory.build_bullet_compounded_overnight_rate_leg_2(
+    rec_pay=rp,
+    start_date=fecha_inicio,
+    end_date=fecha_final,
+    bus_adj_rule=bus_adj_rule,
+    settlement_periodicity=periodicidad_pago,
+    settlement_stub_period=periodo_irregular_pago,
+    settlement_calendar=calendario,
+    settlement_lag=lag_pago,
+    fixing_calendar=calendario,
+    interest_rate_index=oistest,
+    initial_notional=nominal,
+    cashflow_is_amort=amort_es_flujo,
+    notional_currency=usd,
+    spread=spread,
+    gearing=gearing,
+    interest_rate=qcf.QCInterestRate(0.0, qcf.QCAct360(), qcf.QCLinearWf()),
+    eq_rate_decimal_places=8,
+    lookback=0,
+    lockout=0,
+)
+```
+
+
+```python
+# Se define un list donde almacenar los resultados de la función show
+tabla = []
+for i in range(0, cor_leg_2.size()):
+    tabla.append(qcf.show(cor_leg_2.get_cashflow_at(i)))
+
+# Se utiliza tabla para inicializar el Dataframe
+columnas = qcf.get_column_names("CompoundedOvernightRateCashflow2", "")
+df9 = pd.DataFrame(tabla, columns=columnas)
+
+# Se despliega la data en este formato
+df9
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fecha_inicial</th>
+      <th>fecha_final</th>
+      <th>fecha_pago</th>
+      <th>nominal</th>
+      <th>amortizacion</th>
+      <th>interes</th>
+      <th>amort_es_flujo</th>
+      <th>flujo</th>
+      <th>moneda</th>
+      <th>codigo_indice_tasa</th>
+      <th>valor_tasa</th>
+      <th>spread</th>
+      <th>gearing</th>
+      <th>tipo_tasa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2022-01-03</td>
+      <td>2022-04-04</td>
+      <td>2022-04-04</td>
+      <td>1000000.0</td>
+      <td>0.0</td>
+      <td>2527.777778</td>
+      <td>True</td>
+      <td>2.527778e+03</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>LinAct360</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2022-04-04</td>
+      <td>2022-07-04</td>
+      <td>2022-07-04</td>
+      <td>1000000.0</td>
+      <td>0.0</td>
+      <td>2527.777778</td>
+      <td>True</td>
+      <td>2.527778e+03</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>LinAct360</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2022-07-04</td>
+      <td>2022-10-03</td>
+      <td>2022-10-03</td>
+      <td>1000000.0</td>
+      <td>0.0</td>
+      <td>2527.777778</td>
+      <td>True</td>
+      <td>2.527778e+03</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>LinAct360</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2022-10-03</td>
+      <td>2023-01-03</td>
+      <td>2023-01-03</td>
+      <td>1000000.0</td>
+      <td>1000000.0</td>
+      <td>2555.555556</td>
+      <td>True</td>
+      <td>1.002556e+06</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>LinAct360</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Para hacer una amortizable:
+
+
+```python
+custom_amort = qcf.CustomNotionalAmort(4)
+for i in range(4):
+    custom_amort.set_notional_amort_at(i, 400 - i * 100, 100)
+```
+
+
+```python
+amort_cor_leg_2 = qcf.LegFactory.build_custom_amort_compounded_overnight_rate_leg_2(
+    rec_pay=rp,
+    start_date=fecha_inicio,
+    end_date=fecha_final,
+    bus_adj_rule=bus_adj_rule,
+    settlement_periodicity=periodicidad_pago,
+    settlement_stub_period=periodo_irregular_pago,
+    settlement_calendar=calendario,
+    settlement_lag=lag_pago,
+    fixing_calendar=calendario,
+    interest_rate_index=oistest,
+    notional_and_amort=custom_amort,
+    cashflow_is_amort=amort_es_flujo,
+    notional_currency=usd,
+    spread=spread,
+    gearing=gearing,
+    interest_rate=qcf.QCInterestRate(0.0, qcf.QCAct360(), qcf.QCLinearWf()),
+    eq_rate_decimal_places=8,
+    lookback=0,
+    lockout=0,
+)
+```
+
+
+```python
+# Se define un list donde almacenar los resultados de la función show
+tabla = []
+for i in range(0, cor_leg.size()):
+    tabla.append(qcf.show(amort_cor_leg_2.get_cashflow_at(i)))
+
+# Se utiliza tabla para inicializar el Dataframe
+columnas = qcf.get_column_names("CompoundedOvernightRateCashflow2", "")
+df10 = pd.DataFrame(tabla, columns=columnas)
+
+# Se despliega la data en este formato
+df10
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fecha_inicial</th>
+      <th>fecha_final</th>
+      <th>fecha_pago</th>
+      <th>nominal</th>
+      <th>amortizacion</th>
+      <th>interes</th>
+      <th>amort_es_flujo</th>
+      <th>flujo</th>
+      <th>moneda</th>
+      <th>codigo_indice_tasa</th>
+      <th>valor_tasa</th>
+      <th>spread</th>
+      <th>gearing</th>
+      <th>tipo_tasa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2022-01-03</td>
+      <td>2022-04-04</td>
+      <td>2022-04-04</td>
+      <td>400.0</td>
+      <td>100.0</td>
+      <td>0.002528</td>
+      <td>True</td>
+      <td>101.011111</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>LinAct360</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2022-04-04</td>
+      <td>2022-07-04</td>
+      <td>2022-07-04</td>
+      <td>300.0</td>
+      <td>100.0</td>
+      <td>0.002528</td>
+      <td>True</td>
+      <td>100.758333</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>LinAct360</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2022-07-04</td>
+      <td>2022-10-03</td>
+      <td>2022-10-03</td>
+      <td>200.0</td>
+      <td>100.0</td>
+      <td>0.002528</td>
+      <td>True</td>
+      <td>100.505556</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>LinAct360</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2022-10-03</td>
+      <td>2023-01-03</td>
+      <td>2023-01-03</td>
+      <td>100.0</td>
+      <td>100.0</td>
+      <td>0.002556</td>
+      <td>True</td>
+      <td>100.255556</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>LinAct360</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+En `qcfinancial` falta implementar el MultiCurrency.
+
+### Construcción Asistida de un `CompoundedOvernightRateMultiCurrencyLeg2`
+
+
+```python
+bullet_cor2_mccy_leg = qcf.LegFactory.build_bullet_compounded_overnight_rate_mccy_leg_2(
+    rec_pay=rp,
+    start_date=fecha_inicio,
+    end_date=fecha_final,
+    bus_adj_rule=bus_adj_rule,
+    settlement_periodicity=periodicidad_pago,
+    settlement_stub_period=periodo_irregular_pago,
+    settlement_calendar=calendario,
+    settlement_lag=lag_pago,
+    fixing_calendar=calendario,
+    interest_rate_index=oistest,
+    initial_notional=1_000_000,
+    cashflow_is_amort=amort_es_flujo,
+    notional_currency=usd,
+    spread=spread,
+    gearing=gearing,
+    interest_rate=qcf.QCInterestRate(0.0, qcf.QCAct360(), qcf.QCLinearWf()),
+    eq_rate_decimal_places=8,
+    lookback=0,
+    lockout=0,
+    fx_rate_index_fixing_lag=2,
+    settlement_currency=clp,
+    fx_rate_index=usdclp_obs,
+)
+```
+
+
+```python
+# Se define un list donde almacenar los resultados de la función show
+tabla = []
+for i in range(0, bullet_cor2_mccy_leg.size()):
+    tabla.append(qcf.show(bullet_cor2_mccy_leg.get_cashflow_at(i)))
+
+# Se utiliza tabla para inicializar el Dataframe
+columnas = qcf.get_column_names("CompoundedOvernightRateMultiCurrencyCashflow2", "")
+df11 = pd.DataFrame(tabla, columns=columnas)
+
+# Se despliega la data en este formato
+df11
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fecha_inicial</th>
+      <th>fecha_final</th>
+      <th>fecha_pago</th>
+      <th>nominal</th>
+      <th>amortizacion</th>
+      <th>interes</th>
+      <th>amort_es_flujo</th>
+      <th>flujo</th>
+      <th>moneda</th>
+      <th>codigo_indice_tasa</th>
+      <th>...</th>
+      <th>spread</th>
+      <th>gearing</th>
+      <th>tipo_tasa</th>
+      <th>moneda_pago</th>
+      <th>fx_rate_index</th>
+      <th>fecha_fixing_fx</th>
+      <th>valor_indice_fx</th>
+      <th>interes_moneda_pago</th>
+      <th>amortizacion_moneda_pago</th>
+      <th>flujo_moneda_pago</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2022-01-03</td>
+      <td>2022-04-04</td>
+      <td>2022-04-04</td>
+      <td>1000000.0</td>
+      <td>0.0</td>
+      <td>2527.777778</td>
+      <td>True</td>
+      <td>2.527778e+03</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>...</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>CLP</td>
+      <td>USDOBS</td>
+      <td>2022-03-31</td>
+      <td>1.0</td>
+      <td>2527.777778</td>
+      <td>0.0</td>
+      <td>2.527778e+03</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2022-04-04</td>
+      <td>2022-07-04</td>
+      <td>2022-07-04</td>
+      <td>1000000.0</td>
+      <td>0.0</td>
+      <td>2527.777778</td>
+      <td>True</td>
+      <td>2.527778e+03</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>...</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>CLP</td>
+      <td>USDOBS</td>
+      <td>2022-06-30</td>
+      <td>1.0</td>
+      <td>2527.777778</td>
+      <td>0.0</td>
+      <td>2.527778e+03</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2022-07-04</td>
+      <td>2022-10-03</td>
+      <td>2022-10-03</td>
+      <td>1000000.0</td>
+      <td>0.0</td>
+      <td>2527.777778</td>
+      <td>True</td>
+      <td>2.527778e+03</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>...</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>CLP</td>
+      <td>USDOBS</td>
+      <td>2022-09-29</td>
+      <td>1.0</td>
+      <td>2527.777778</td>
+      <td>0.0</td>
+      <td>2.527778e+03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2022-10-03</td>
+      <td>2023-01-03</td>
+      <td>2023-01-03</td>
+      <td>1000000.0</td>
+      <td>1000000.0</td>
+      <td>2555.555556</td>
+      <td>True</td>
+      <td>1.002556e+06</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>...</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>CLP</td>
+      <td>USDOBS</td>
+      <td>2022-12-30</td>
+      <td>1.0</td>
+      <td>2555.555556</td>
+      <td>1000000.0</td>
+      <td>1.002556e+06</td>
+    </tr>
+  </tbody>
+</table>
+<p>4 rows × 21 columns</p>
+</div>
+
+
+
+Para `CustomAmort`:
+
+
+```python
+custom_amort = qcf.CustomNotionalAmort(4)
+for i in range(4):
+    custom_amort.set_notional_amort_at(i, 400 - i * 100, 100)
+```
+
+
+```python
+custom_cor2_mccy_leg = qcf.LegFactory.build_custom_amort_compounded_overnight_rate_multi_currency_leg_2(
+    rec_pay=rp,
+    start_date=fecha_inicio,
+    end_date=fecha_final,
+    bus_adj_rule=bus_adj_rule,
+    settlement_periodicity=periodicidad_pago,
+    settlement_stub_period=periodo_irregular_pago,
+    settlement_calendar=calendario,
+    settlement_lag=lag_pago,
+    fixing_calendar=calendario,
+    interest_rate_index=oistest,
+    notional_and_amort=custom_amort,
+    cashflow_is_amort=amort_es_flujo,
+    notional_currency=usd,
+    spread=spread,
+    gearing=gearing,
+    interest_rate=qcf.QCInterestRate(0.0, qcf.QCAct360(), qcf.QCLinearWf()),
+    eq_rate_decimal_places=8,
+    lookback=0,
+    lockout=0,
+    fx_rate_index_fixing_lag=2,
+    settlement_currency=clp,
+    fx_rate_index=usdclp_obs,
+)
+```
+
+
+```python
+# Se define un list donde almacenar los resultados de la función show
+tabla = []
+for i in range(0, custom_cor2_mccy_leg.size()):
+    tabla.append(qcf.show(custom_cor2_mccy_leg.get_cashflow_at(i)))
+
+# Se utiliza tabla para inicializar el Dataframe
+columnas = qcf.get_column_names("CompoundedOvernightRateMultiCurrencyCashflow2", "")
+df12 = pd.DataFrame(tabla, columns=columnas)
+
+# Se despliega la data en este formato
+df12
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fecha_inicial</th>
+      <th>fecha_final</th>
+      <th>fecha_pago</th>
+      <th>nominal</th>
+      <th>amortizacion</th>
+      <th>interes</th>
+      <th>amort_es_flujo</th>
+      <th>flujo</th>
+      <th>moneda</th>
+      <th>codigo_indice_tasa</th>
+      <th>...</th>
+      <th>spread</th>
+      <th>gearing</th>
+      <th>tipo_tasa</th>
+      <th>moneda_pago</th>
+      <th>fx_rate_index</th>
+      <th>fecha_fixing_fx</th>
+      <th>valor_indice_fx</th>
+      <th>interes_moneda_pago</th>
+      <th>amortizacion_moneda_pago</th>
+      <th>flujo_moneda_pago</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2022-01-03</td>
+      <td>2022-04-04</td>
+      <td>2022-04-04</td>
+      <td>400.0</td>
+      <td>100.0</td>
+      <td>0.002528</td>
+      <td>True</td>
+      <td>101.011111</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>...</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>CLP</td>
+      <td>USDOBS</td>
+      <td>2022-03-31</td>
+      <td>1.0</td>
+      <td>0.002528</td>
+      <td>100.0</td>
+      <td>100.002528</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2022-04-04</td>
+      <td>2022-07-04</td>
+      <td>2022-07-04</td>
+      <td>300.0</td>
+      <td>100.0</td>
+      <td>0.002528</td>
+      <td>True</td>
+      <td>100.758333</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>...</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>CLP</td>
+      <td>USDOBS</td>
+      <td>2022-06-30</td>
+      <td>1.0</td>
+      <td>0.002528</td>
+      <td>100.0</td>
+      <td>100.002528</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2022-07-04</td>
+      <td>2022-10-03</td>
+      <td>2022-10-03</td>
+      <td>200.0</td>
+      <td>100.0</td>
+      <td>0.002528</td>
+      <td>True</td>
+      <td>100.505556</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>...</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>CLP</td>
+      <td>USDOBS</td>
+      <td>2022-09-29</td>
+      <td>1.0</td>
+      <td>0.002528</td>
+      <td>100.0</td>
+      <td>100.002528</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2022-10-03</td>
+      <td>2023-01-03</td>
+      <td>2023-01-03</td>
+      <td>100.0</td>
+      <td>100.0</td>
+      <td>0.002556</td>
+      <td>True</td>
+      <td>100.255556</td>
+      <td>USD</td>
+      <td>OISTEST</td>
+      <td>...</td>
+      <td>0.01</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>CLP</td>
+      <td>USDOBS</td>
+      <td>2022-12-30</td>
+      <td>1.0</td>
+      <td>0.002556</td>
+      <td>100.0</td>
+      <td>100.002556</td>
+    </tr>
+  </tbody>
+</table>
+<p>4 rows × 21 columns</p>
+</div>
 
 
