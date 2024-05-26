@@ -108,21 +108,15 @@ Las fechas se representan con objetos de tipo `QCDate`. Para inicializar un `QCD
 
 ### Constructores
 
-Inicializar sin valor. Se muestra además los métodos `description()` y `__str__()`.
+Inicializar sin valor.
 
 
 ```python
 fecha = qcf.QCDate()
-print(f"description(True): {fecha.description(True)}")
-print(f"description(False): {fecha.description(False)}")
-print(f"iso_code(): {fecha.iso_code()}")
-print(f"__str__: {fecha}")
+print(f"Fecha: {fecha}")
 ```
 
-    description(True): 12-01-1969
-    description(False): 1969-01-12
-    iso_code(): 1969-01-12
-    __str__: 1969-01-12
+    Fecha: 1969-01-12
 
 
 Inicializar con una fecha específica. En este caso, el contructor realiza una validación de los parámetros iniciales.
@@ -147,6 +141,22 @@ except ValueError as e:
 ```
 
     Invalid day for month = 2
+
+
+### Métodos `description`, `iso_code` y `__str__`
+
+
+```python
+print(f"description(True): {fecha.description(True)}")
+print(f"description(False): {fecha.description(False)}")
+print(f"iso_code(): {fecha.iso_code()}")
+print(f"__str__: {fecha}")
+```
+
+    description(True): 12-01-1969
+    description(False): 1969-01-12
+    iso_code(): 1969-01-12
+    __str__: 1969-01-12
 
 
 ### Getters y Setters
