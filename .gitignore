@@ -2,3 +2,4 @@
 .DS_Store
 .idea/
 qcfinancial.cpython-311-darwin.so
+*.csv
