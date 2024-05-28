@@ -35,7 +35,8 @@ copyright: Copyright &copy; 2017 - 2023 Alvaro Díaz Valenzuela
 
 nav:
   - Home: index.md
-  - Objetos Fundamentales: Ejemplos_qcfinancial_1.md
+  - Objetos Fundamentales: 1_Objetos_Fundamentales.md
+  - Cashflows: Ejemplos_qcfinancial_1.md
   - Construcción de Operaciones: Ejemplos_qcfinancial_2.md
   - Valorización y Sensibilidad: Ejemplos_qcfinancial_3.md
 
