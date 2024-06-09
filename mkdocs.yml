@@ -38,7 +38,7 @@ nav:
   - Objetos Fundamentales: 1_Objetos_Fundamentales.md
   - Cashflows: 2_Cashflows.md
   - Construcción de Operaciones: 3_Construccion_Operaciones.md
-  - Valorización y Sensibilidad: Ejemplos_qcfinancial_3.md
+  - Valorización y Sensibilidad: 4_Valorizacion_Sensibilidad.md
 
 markdown_extensions:
   toc:
