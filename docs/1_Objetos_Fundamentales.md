@@ -521,9 +521,12 @@ for yf in yfs:
 Las funciones de capitalización representan las distintas formas en que se puede usar el valor de una tasa de interés para calcular o traer a valor presente un flujo de caja futuro. Al resultado de la función de capitalización lo llamamos *factor de capitalización*.
 
 Están disponibles los siguientes 3 tipos de funciones (donde $yf$ es la fracción de año asociada a la tasa de valor $r$):
-- QCLinearWf     ---> $1 + r \cdot yf$
-- QCCompundWf    ---> $1 + r \cdot yf$
-- QCContinousWf  ---> $exp(r \cdot yf)$
+
+- QCLinearWf:     $\rightarrow 1 + r \cdot yf$
+
+- QCCompoundWf:    $\rightarrow \left(1 + r \right)^{yf}$
+
+- QCContinousWf:  $\rightarrow exp(r \cdot yf)$
 
 
 ```python

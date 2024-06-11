@@ -31,14 +31,14 @@ theme:
   - content.code.select
   language: es
 
-copyright: Copyright &copy; 2017 - 2023 Alvaro Díaz Valenzuela
+copyright: Copyright &copy; 2017 - 2024 Alvaro Díaz Valenzuela
 
 nav:
   - Home: index.md
   - Objetos Fundamentales: 1_Objetos_Fundamentales.md
-  - Cashflows: Ejemplos_qcfinancial_1.md
-  - Construcción de Operaciones: Ejemplos_qcfinancial_2.md
-  - Valorización y Sensibilidad: Ejemplos_qcfinancial_3.md
+  - Cashflows: 2_Cashflows.md
+  - Construcción de Operaciones: 3_Construccion_Operaciones.md
+  - Valorización y Sensibilidad: 4_Valorizacion_Sensibilidad.md
 
 markdown_extensions:
   toc:
@@ -59,6 +59,8 @@ markdown_extensions:
     alternate_style: true
   attr_list: null
   md_in_html: null
+  pymdownx.arithmatex:
+    generic: true
 extra:
   analytics:
     provider: google
@@ -77,3 +79,7 @@ extra:
   - icon: fontawesome/solid/globe
     link: https://qcfinancial.github.io/qcfinancial-docs/
 
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
