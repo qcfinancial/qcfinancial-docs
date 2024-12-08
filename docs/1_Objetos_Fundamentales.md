@@ -29,14 +29,10 @@ El constructor por default retorna USD.
 
 ```python
 x = qcf.QCCurrency()
-x.get_iso_code()
+print(f"ISO Code: {x.get_iso_code()}")
 ```
 
-
-
-
-    'USD'
-
+    ISO Code: USD
 
 
 Alta de divisas CLP, USD y JPY (USD se puede instanciar también de forma explícita).
@@ -209,14 +205,14 @@ Suma **n meses** a `fecha1` y retorna esa nueva fecha sin cambiar el valor de `f
 
 
 ```python
-num_meses = 1
+num_meses = 12
 fecha2 = fecha1.add_months(num_meses)
 print(f"fecha1: {fecha1}")
 print(f"fecha2: {fecha2}")
 ```
 
     fecha1: 2024-10-17
-    fecha2: 2024-11-17
+    fecha2: 2025-10-17
 
 
 ### Método `add_days`
@@ -269,7 +265,7 @@ print(f"fecha1 >= fecha2: {fecha1 >= fecha2}")
 ```
 
     fecha1: 2024-10-17
-    fecha2: 2024-11-17
+    fecha2: 2025-10-17
     fecha1 == fecha2: False
     fecha1 != fecha2: True
     fecha1 < fecha2: True
@@ -332,13 +328,30 @@ print(f"{str3}: {fecha4}")
 
 
 ## Calendarios
-Los calendarios se representan con objetos de tipo `BusinesssCalendar` y son **listas** de fechas arbitrarias que representan días feriados en alguna ciudad, país, región o unión de las anteriores. Para dar de alta un calendario se requiere una fecha inicial (`QCDate` y un número entero positivo que representa el plazo inicial total del calendario en años). El objeto `BusinessCalendar` incluye explícitamente todos los días 1 de enero y considera siempre como feriado los días sábado y domingo (aunque no pertenecen de forma explícita a la **lista**).
+
+Para construir correctamente la tabla de desarrollo de un bono o de las patas de un swap, es necesario conocer los calendarios que se debe aplicar en cada caso. 
+
+Sólo así es posible determinar qué fechas de pago, de inicio y fin de devengo y otras son admisibles.
+
+Los calendarios se representan con objetos de tipo `BusinesssCalendar` y son **listas** de fechas arbitrarias que representan días feriados en alguna ciudad, país, región o unión de las anteriores. 
+
+Para dar de alta un calendario se requiere:
+
+- una fecha inicial (`QCDate`)
+- y un número entero positivo que representa el plazo inicial total del calendario en años.
+
+El objeto `BusinessCalendar` incluye explícitamente todos los días 1 de enero y considera siempre como feriado los días sábado y domingo (aunque no pertenecen de forma explícita a la **lista**).
 
 En el siguiente loop, por ejemplo, no se imprime nada.
 
 
 ```python
+fecha_inicio_calendario = qcf.QCDate(1, 1, 2024)
 scl = qcf.BusinessCalendar(fecha1, 10)
+```
+
+
+```python
 for holiday in scl.get_holidays():
     print(holiday)
 ```
@@ -349,49 +362,104 @@ Agrega una fecha a la lista.
 
 
 ```python
-scl.add_holiday(qcf.QCDate(2, 1, 2018))
+scl.add_holiday(qcf.QCDate(18, 9, 2024))
+```
+
+
+```python
 for holiday in scl.get_holidays():
     print(holiday)
 ```
 
-    2018-01-02
+    2024-09-18
 
 
 ### Método `next_busy_day`
 
 Dada una fecha, si ésta es hábil retorna la misma fecha, si, por el contrario, la fecha es inhábil, devuelve la siguiente fecha hábil del calendario.
 
+Veamos qué ocurre si aplicamos este método al 18-09-2024, fecha que acabamos de incluir.
+
 
 ```python
-print("next:", scl.next_busy_day(qcf.QCDate(15, 9, 2018)))  # es sábado
-print("Se agrega el 17-9-2018 a la lista")
-scl.add_holiday(qcf.QCDate(17, 9, 2018))
-print("nuevo next:", scl.next_busy_day(qcf.QCDate(15, 9, 2018)))
+print(f"Next para el {(sept18 := qcf.QCDate(18, 9, 2024))}: {scl.next_busy_day(sept18)}")
 ```
 
-    next: 2018-09-17
-    Se agrega el 17-9-2018 a la lista
-    nuevo next: 2018-09-18
+    Next para el 2024-09-18: 2024-09-19
+
+
+Agregamos ahora el 19-09-2024 y vemos el nuevo resultado.
+
+
+```python
+print("Se agrega el 19-9-2024 a la lista")
+scl.add_holiday(qcf.QCDate(19, 9, 2024))
+next = scl.next_busy_day(qcf.QCDate(18, 9, 2024))
+print(f"Nuevo next para el {sept18}: {next.week_day()}, {next}")
+```
+
+    Se agrega el 19-9-2024 a la lista
+    Nuevo next para el 2024-09-18: WeekDay.FRI, 2024-09-20
+
+
+Pero el 2024, el 20 de septiembre también es feriado. Incluyámoslo y veamos el efecto.
+
+
+```python
+print("Se agrega el 20-9-2024 a la lista")
+scl.add_holiday(qcf.QCDate(20, 9, 2024))
+next = scl.next_busy_day(qcf.QCDate(18, 9, 2024))
+print(f"Nuevo next para el {sept18}: {next.week_day()}, {next}")
+```
+
+    Se agrega el 20-9-2024 a la lista
+    Nuevo next para el 2024-09-18: WeekDay.MON, 2024-09-23
 
 
 ### Método `mod_next_busy_day`
 
-Opera igual que la función anterior a menos que la función anterior retorne una fecha del mes siguiente, en ese caso retorna la fecha hábil anterior.
+Opera igual que la función anterior a menos que ésta retorne una fecha del mes siguiente, en ese caso retorna la fecha hábil anterior.
+
+Probemos el comportamiento usando el 30-04-2024.
 
 
 ```python
 abril30 = qcf.QCDate(30, 4, 2024)
 print(f"Abril 30: {abril30.week_day()}, {abril30}")
-
-scl.add_holiday(abril30)
-
-print("next:", scl.next_busy_day(abril30))
-print("mod next:", scl.mod_next_busy_day(abril30))
 ```
 
     Abril 30: WeekDay.TUE, 2024-04-30
-    next: 2024-05-01
-    mod next: 2024-04-29
+
+
+Vemos que es un martes y no es feriado, por lo tanto al aplicar `next_busy_day` no hay cambio de fecha:
+
+
+```python
+print(f"Next para el {abril30}: {scl.next_busy_day(abril30)}")
+```
+
+    Next para el 2024-04-30: 2024-04-30
+
+
+Ahora, si lo agregamos al calendario, sí se produce el cambio de fecha.
+
+
+```python
+scl.add_holiday(abril30)
+print(f"Next para el {abril30}: {scl.next_busy_day(abril30)}")
+```
+
+    Next para el 2024-04-30: 2024-05-01
+
+
+Y vemos además que nos cambiamos de mes, pero si aplicamos `mod_next_busy_day` vemos que el resultado es el día hábil anterior.
+
+
+```python
+print(f"Mod next para el {abril30}: {scl.mod_next_busy_day(abril30)}")
+```
+
+    Mod next para el 2024-04-30: 2024-04-29
 
 
 ### Método `prev_busy_day`
@@ -410,19 +478,36 @@ print("prev:", scl.prev_busy_day(abril30))
 
 Suma un número *n* (positivo o negativo) de días hábiles a una fecha.
 
+Veamos algunos ejemplos.
+
+
+```python
+print(f"Fecha inicial: {abril30}")
+shifted = scl.shift(abril30, 0)
+print(f"n = 0, {shifted.week_day()}, {shifted}")
+
+shifted = scl.shift(abril30, 1)
+print(f"n = 1, {shifted.week_day()}, {shifted}")
+
+shifted = scl.shift(abril30, 5)
+print(f"n = 5, {shifted.week_day()}, {shifted}")
+```
+
+    Fecha inicial: 2024-04-30
+    n = 0, WeekDay.TUE, 2024-04-30
+    n = 1, WeekDay.WED, 2024-05-01
+    n = 5, WeekDay.TUE, 2024-05-07
+
+
+Veamos en particular qué ocurre cuando usamos un número negativo.
+
 
 ```python
 mayo2 = qcf.QCDate(2, 5, 2024)
-print(scl.shift(mayo2, -1))
-print(scl.shift(abril30, 0))
-print(scl.shift(abril30, 1))
-print(scl.shift(abril30, 5))
+print(f"n = -1: {scl.shift(mayo2, -1)}")
 ```
 
-    2024-05-01
-    2024-04-30
-    2024-05-01
-    2024-05-07
+    n = -1: 2024-05-01
 
 
 Agreguemos el 2024-05-01 a los feriados de `scl` y veamos cómo cambia el primer resultado.
@@ -430,32 +515,34 @@ Agreguemos el 2024-05-01 a los feriados de `scl` y veamos cómo cambia el primer
 
 ```python
 scl.add_holiday(qcf.QCDate(1, 5, 2024))
-print(scl.shift(mayo2, -1))
+print(f"n = -1: {scl.shift(mayo2, -1)}")
 ```
 
-    2024-04-29
+    n = -1: 2024-04-29
 
 
 Se va al 29 de abril porque también agregamos como feriado el 30 de abril.
 
 ## Fracciones de Año
 
-Las fracciones de año corresponden a las distintas formas de medir un intervalo de tiempo entre dos fechas que comunmente se utilizan en los productos de tasa de interés.
+Las fracciones de año corresponden a las distintas formas de medir un intervalo de tiempo entre dos fechas que comúnmente se utiliza en los productos de tasa de interés.
+
+En `qcfinancial` están definidas las más utilizadas.
 
 
 ```python
 yfs = [
-    act360:=qcf.QCAct360(),
-    act365:=qcf.QCAct365(),
-    act30:=qcf.QCAct30(),
-    t30360:=qcf.QC30360(),
-    t3030:=qcf.QC3030(),
+    act360 := qcf.QCAct360(),
+    act365 := qcf.QCAct365(),
+    act30 := qcf.QCAct30(),
+    t30360 := qcf.QC30360(),
+    t3030 := qcf.QC3030(),
     
     # Corresponde a depósitos a plazo en CLP
-    act30:=qcf.QCAct30(),
+    act30 := qcf.QCAct30(),
 
     # La utilizan los bonos del tesoro americano
-    actact:=qcf.QCActAct(),
+    actact := qcf.QCActAct(),
 ]
 ```
 
@@ -555,17 +642,31 @@ for wf in wfs:
     Función: Exp. Factor: 1.051271
 
 
+### Método `rate`
+
+Dada una función de capitalización, permite obtener la tasa de interés correspondiente a un factor de capitalización y fracción de año.
+
+En este caso el factor de capitalización es 1.1, la fracción de año es 1.0 y la función de capitalización es Linear.
+
+
+```python
+print(f"Tasa equivalente: {wfs[0].rate(1.1, 1.0):.4%}")
+```
+
+    Tasa equivalente: 10.0000%
+
+
 ## Tasas de Interés
 
-Utilizando un número real, una fracción de año y un factor de capitalización, se puede dar de alta (instanciar) un objeto de tipo `QCInterestRate` que representa una tasa de interés (ver por ejemplo el video [Convenciones de Tasas](https://youtu.be/AdCMPKBFwgg?si=8v4wT1WER_poqEBg)).
+Utilizando un número real, una fracción de año y una función de capitalización, se puede dar de alta (instanciar) un objeto de tipo `QCInterestRate` que representa una tasa de interés (ver por ejemplo el video [Convenciones de Tasas](https://youtu.be/AdCMPKBFwgg?si=8v4wT1WER_poqEBg)).
 
 
 ```python
 r0 = 0.1
 tasas = [
-    tasa_lin_act360:=qcf.QCInterestRate(0.1, act360, lin_wf),
-    tasa_com_act365:= qcf.QCInterestRate(0.1, act365, com_wf),
-    tasa_exp_act365:=qcf.QCInterestRate(0.1, act365, exp_wf),
+    tasa_lin_act360 := qcf.QCInterestRate(0.1, act360, lin_wf),
+    tasa_com_act365 := qcf.QCInterestRate(0.1, act365, com_wf),
+    tasa_exp_act365 := qcf.QCInterestRate(0.1, act365, exp_wf),
 ]
 ```
 
@@ -616,14 +717,15 @@ En muchas situaciones nos interesará saber como cambia el factor de capitalizac
 
 $$\Delta wf = \frac{dg\left(r,yf\right)}{dr}\left(r_0,yf\right)\cdot\delta$$
 
-Donde $r_0$ es el valor inicial de la tasa y $\delta$ es el cambio en su valor. Tenemos que:
+Donde $r_0$ es el valor inicial de la tasa y $\delta$ es el cambio en su valor.
+
+Tenemos que:
 
 - Si $g=1+r\cdot yf$ entonces $\Delta wf = yf\cdot\delta$
-  
+
 - Si $g=\left(1+r\right)^{yf}$ entonces $\Delta wf = yf\cdot\left(1+r_0\right)^{yf-1}\cdot\delta$
 
 - Si $g=exp\left(r\cdot yf\right)$ entonces $\Delta wf = yf\cdot exp\left(r_0\cdot yf\right)\cdot\delta$
-
 
 Calculemos `wf` y `dwf` usando un par de fechas.
 
@@ -631,7 +733,7 @@ Calculemos `wf` y `dwf` usando un par de fechas.
 ```python
 for i, tasa in enumerate(tasas):
     # Retorna el factor de capitalización entre las fechas
-    print(f"wf(fecha1, fecha3): {tasa.wf(fecha1, fecha3):.8F}")
+    print(f"wf(fecha1, fecha3): {tasa.wf(fecha1, fecha3):.8f}")
 
     # Retorna la derivada del factor de capitalización respecto al valor de la tasa entre las fechas
     print(f"dwf(fecha1, fecha3): {tasa.dwf(fecha1, fecha3):.8f}")
@@ -639,10 +741,10 @@ for i, tasa in enumerate(tasas):
     # Para verificar se calcula "a mano" la derivada
     match i:
         case 0:
-            print(f"Check: {tasa.yf(fecha1, fecha3) * r0:.8f}")
+            print(f"Check: {tasa.yf(fecha1, fecha3):.8f}")
         case 1:
             yf_ = tasa.yf(fecha1, fecha3)
-            print(f"Check: {tasa.yf(fecha1, fecha3) * (1 + r0)**(yf_ - 1):.8f}")
+            print(f"Check: {tasa.yf(fecha1, fecha3) * (1 + r1)**(yf_ - 1):.8f}")
         case 2:
             print(f"Check: {tasa.yf(fecha1, fecha3) * tasa.wf(fecha1, fecha3):.8f}")
     
@@ -651,11 +753,11 @@ for i, tasa in enumerate(tasas):
 
     wf(fecha1, fecha3): 1.01000000
     dwf(fecha1, fecha3): 0.08333333
-    Check: 0.00833333
+    Check: 0.08333333
     
     wf(fecha1, fecha3): 1.00935820
     dwf(fecha1, fecha3): 0.07407228
-    Check: 0.07530743
+    Check: 0.07407228
     
     wf(fecha1, fecha3): 1.00991181
     dwf(fecha1, fecha3): 0.08300645
@@ -678,10 +780,10 @@ for i, tasa in enumerate(tasas):
     # Para verificar se calcula "a mano" la derivada
     match i:
         case 0:
-            print(f"Check: {dias / 360 * r0:.8f}")
+            print(f"Check: {dias / 360:.8f}")
         case 1:
             yf_ = dias / 365
-            print(f"Check: {yf_ * (1 + r0)**(yf_ - 1):.8f}")
+            print(f"Check: {yf_ * (1 + r1)**(yf_ - 1):.8f}")
         case 2:
             print(f"Check: {dias / 365 * tasa.wf(dias):.8f}")
     
@@ -690,11 +792,11 @@ for i, tasa in enumerate(tasas):
 
     wf(dias): 1.13333333
     dwf(dias): 1.11111111
-    Check: 0.11111111
+    Check: 1.11111111
     
     wf(dias): 1.13223756
     dwf(dias): 1.10786454
-    Check: 1.10595203
+    Check: 1.10786454
     
     wf(dias): 1.14054572
     dwf(dias): 1.24991312
@@ -704,7 +806,9 @@ for i, tasa in enumerate(tasas):
 
 ### Método `get_rate_from_wf`
 
-Este método permite calcular la tasa de interés correspondiente a un dado factor de capitalización, utilizando la función de capitalización y la fracción de año de la tasa. El intervalor de tiempo de la tasa se puede especificar con un par de fechas o con un número de días.
+Este método permite calcular la tasa de interés correspondiente a un dado factor de capitalización, utilizando la función de capitalización y la fracción de año de la tasa. El intervalo de tiempo de la tasa se puede especificar con un par de fechas o con un número de días.
+
+Veamos un ejemplo:
 
 
 ```python
@@ -741,14 +845,14 @@ Es una clase que representa el concepto de plazo estructurado o tenor (1D, 1M, 1
 
 ```python
 tenors = [
-    _1d:=qcf.Tenor("1d"),
-    _1m:=qcf.Tenor("1M"),
-    _1y:=qcf.Tenor("1y"),
-    _1d_1m_1y:=qcf.Tenor("1D1M1Y"),
+    _1d := qcf.Tenor("1d"),
+    _1m := qcf.Tenor("1M"),
+    _1y := qcf.Tenor("1y"),
+    _1d_1m_1y := qcf.Tenor("1D1M1Y"),
 
     # Notar que, en este caso, el constructor es capaz de eliminar
     # los espacios y la substr nyse
-    _2y_3m:=qcf.Tenor("2y nyse 3m"),  
+    _2y_3m := qcf.Tenor("2y nyse 3m"),  
 ]
 ```
 
@@ -816,6 +920,7 @@ for i, tenor in enumerate(tenors):
 Es una clase que representa el concepto de tipo de cambio entre dos monedas. Para dar de alta un FXRate se requiere:
 
 - QCCurrency: la moneda fuerte del par.
+
 - QCCurrency: la moneda débl del par.
 
 ### Ejemplo: USDCLP
@@ -841,9 +946,9 @@ Esta clase representa un índice de tipo de cambio, por ejemplo, el dólar obser
 
 Para dar de alta un FXRateIndex se requiere:
 
-- `FXRate`: el FXRate correspoondiente.
+- `FXRate`: el FXRate correspondiente.
 - `str`: nombre del índice
-- `Tenor`: la regla de fixing, es 1D como el USD Observado o es 0D como un ínidce de cierre de día.
+- `Tenor`: la regla de fixing, es 1D como el USD Observado o es 0D como un índice de cierre de día.
 - `Tenor`: la regla para la valuta. Es 1D como el USDCLP o 2D como el EURUSD.
 - `BusinessCalendar`: el calendario adecuado para aplicar las reglas de fixing y valuta.
 
@@ -875,7 +980,9 @@ Notar que la fecha de fixing se calcula aplicando la regla de fixing a la fecha 
 
 ### Método `convert`
 
-El método `convert` permite pasar rápidamente de una moneda a la otra (de las que forman el par del índice) usando yun valor para el índice.
+El método `convert` permite pasar rápidamente de una moneda a la otra (de las que forman el par del índice) usando un valor para el índice.
+
+Veamos un ejemplo:
 
 
 ```python
@@ -905,16 +1012,14 @@ Este es un objeto que permite realizar conversiones de una moneda a otra con un 
 ccy_converter = qcf.QCCurrencyConverter()
 ```
 
-Dentro de esta clase se definen dos 
-
 ### Método `convert`
 
 El método `convert` se puede utilizar con dos conjuntos distintos de argumentos:
 
-- float: que representa el monto en una divisa a convertir,
-- QCCurrency: que representa la divisa del monto anterior
-- float: que representa el valor del tipo de cambio a utilizar en la convención de mercado del par
-- QCFxRateIndex: que representa el par de monedas entre las cuales se realiza la conversión
+- `float`: que representa el monto en una divisa a convertir,
+- `QCCurrency`: que representa la divisa del monto anterior
+- `float`: que representa el valor del tipo de cambio a utilizar en la convención de mercado del par
+- `FXRateIndex`: que representa el par de monedas entre las cuales se realiza la conversión
 
 Por ejemplo:
 
@@ -980,22 +1085,6 @@ qcf.QCFxRateEnum.EURUSD
 
     <QCFxRateEnum.EURUSD: 30>
 
-
-
-
-```python
-print(f'Monto en CLP: {ccy_converter.convert(1_000, usd, 800, usdclp_obs):,.0f}')
-```
-
-    Monto en CLP: 800,000
-
-
-
-```python
-print(f'Monto en USD: {ccy_converter.convert(800_000, clp, 800, usdclp_obs):,.0f}')
-```
-
-    Monto en USD: 1,000
 
 
 Con estos `enum` el segundo conjunto de argumentos para el método `convert` es:

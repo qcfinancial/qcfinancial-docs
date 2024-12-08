@@ -39,6 +39,8 @@ nav:
   - Cashflows: 2_Cashflows.md
   - Construcción de Operaciones: 3_Construccion_Operaciones.md
   - Valorización y Sensibilidad: 4_Valorizacion_Sensibilidad.md
+  - Swap ICPCLP: 5_SwapICPCLP.md
+  - Curva SOFR: 6_Curva_SOFR.md
 
 markdown_extensions:
   toc:
