@@ -515,109 +515,109 @@ curva_clp.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_2b0cf">
+<table id="T_1c600">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_2b0cf_level0_col0" class="col_heading level0 col0" >plazo</th>
-      <th id="T_2b0cf_level0_col1" class="col_heading level0 col1" >tasa</th>
+      <th id="T_1c600_level0_col0" class="col_heading level0 col0" >plazo</th>
+      <th id="T_1c600_level0_col1" class="col_heading level0 col1" >tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_2b0cf_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_2b0cf_row0_col0" class="data row0 col0" >1</td>
-      <td id="T_2b0cf_row0_col1" class="data row0 col1" >1.7500%</td>
+      <th id="T_1c600_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_1c600_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_1c600_row0_col1" class="data row0 col1" >1.7500%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_2b0cf_row1_col0" class="data row1 col0" >4</td>
-      <td id="T_2b0cf_row1_col1" class="data row1 col1" >1.7501%</td>
+      <th id="T_1c600_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_1c600_row1_col0" class="data row1 col0" >4</td>
+      <td id="T_1c600_row1_col1" class="data row1 col1" >1.7501%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_2b0cf_row2_col0" class="data row2 col0" >96</td>
-      <td id="T_2b0cf_row2_col1" class="data row2 col1" >1.4867%</td>
+      <th id="T_1c600_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_1c600_row2_col0" class="data row2 col0" >96</td>
+      <td id="T_1c600_row2_col1" class="data row2 col1" >1.4867%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_2b0cf_row3_col0" class="data row3 col0" >188</td>
-      <td id="T_2b0cf_row3_col1" class="data row3 col1" >1.3049%</td>
+      <th id="T_1c600_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_1c600_row3_col0" class="data row3 col0" >188</td>
+      <td id="T_1c600_row3_col1" class="data row3 col1" >1.3049%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_2b0cf_row4_col0" class="data row4 col0" >279</td>
-      <td id="T_2b0cf_row4_col1" class="data row4 col1" >1.2870%</td>
+      <th id="T_1c600_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_1c600_row4_col0" class="data row4 col0" >279</td>
+      <td id="T_1c600_row4_col1" class="data row4 col1" >1.2870%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_2b0cf_row5_col0" class="data row5 col0" >369</td>
-      <td id="T_2b0cf_row5_col1" class="data row5 col1" >1.3002%</td>
+      <th id="T_1c600_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_1c600_row5_col0" class="data row5 col0" >369</td>
+      <td id="T_1c600_row5_col1" class="data row5 col1" >1.3002%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_2b0cf_row6_col0" class="data row6 col0" >553</td>
-      <td id="T_2b0cf_row6_col1" class="data row6 col1" >1.3035%</td>
+      <th id="T_1c600_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_1c600_row6_col0" class="data row6 col0" >553</td>
+      <td id="T_1c600_row6_col1" class="data row6 col1" >1.3035%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_2b0cf_row7_col0" class="data row7 col0" >734</td>
-      <td id="T_2b0cf_row7_col1" class="data row7 col1" >1.2951%</td>
+      <th id="T_1c600_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_1c600_row7_col0" class="data row7 col0" >734</td>
+      <td id="T_1c600_row7_col1" class="data row7 col1" >1.2951%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_2b0cf_row8_col0" class="data row8 col0" >1,099</td>
-      <td id="T_2b0cf_row8_col1" class="data row8 col1" >1.4440%</td>
+      <th id="T_1c600_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_1c600_row8_col0" class="data row8 col0" >1,099</td>
+      <td id="T_1c600_row8_col1" class="data row8 col1" >1.4440%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_2b0cf_row9_col0" class="data row9 col0" >1,465</td>
-      <td id="T_2b0cf_row9_col1" class="data row9 col1" >1.6736%</td>
+      <th id="T_1c600_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_1c600_row9_col0" class="data row9 col0" >1,465</td>
+      <td id="T_1c600_row9_col1" class="data row9 col1" >1.6736%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_2b0cf_row10_col0" class="data row10 col0" >1,830</td>
-      <td id="T_2b0cf_row10_col1" class="data row10 col1" >1.9860%</td>
+      <th id="T_1c600_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_1c600_row10_col0" class="data row10 col0" >1,830</td>
+      <td id="T_1c600_row10_col1" class="data row10 col1" >1.9860%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_2b0cf_row11_col0" class="data row11 col0" >2,195</td>
-      <td id="T_2b0cf_row11_col1" class="data row11 col1" >2.2766%</td>
+      <th id="T_1c600_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_1c600_row11_col0" class="data row11 col0" >2,195</td>
+      <td id="T_1c600_row11_col1" class="data row11 col1" >2.2766%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row12" class="row_heading level0 row12" >12</th>
-      <td id="T_2b0cf_row12_col0" class="data row12 col0" >2,560</td>
-      <td id="T_2b0cf_row12_col1" class="data row12 col1" >2.5812%</td>
+      <th id="T_1c600_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_1c600_row12_col0" class="data row12 col0" >2,560</td>
+      <td id="T_1c600_row12_col1" class="data row12 col1" >2.5812%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row13" class="row_heading level0 row13" >13</th>
-      <td id="T_2b0cf_row13_col0" class="data row13 col0" >2,926</td>
-      <td id="T_2b0cf_row13_col1" class="data row13 col1" >2.8216%</td>
+      <th id="T_1c600_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_1c600_row13_col0" class="data row13 col0" >2,926</td>
+      <td id="T_1c600_row13_col1" class="data row13 col1" >2.8216%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row14" class="row_heading level0 row14" >14</th>
-      <td id="T_2b0cf_row14_col0" class="data row14 col0" >3,291</td>
-      <td id="T_2b0cf_row14_col1" class="data row14 col1" >3.0373%</td>
+      <th id="T_1c600_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_1c600_row14_col0" class="data row14 col0" >3,291</td>
+      <td id="T_1c600_row14_col1" class="data row14 col1" >3.0373%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row15" class="row_heading level0 row15" >15</th>
-      <td id="T_2b0cf_row15_col0" class="data row15 col0" >3,656</td>
-      <td id="T_2b0cf_row15_col1" class="data row15 col1" >3.2154%</td>
+      <th id="T_1c600_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_1c600_row15_col0" class="data row15 col0" >3,656</td>
+      <td id="T_1c600_row15_col1" class="data row15 col1" >3.2154%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row16" class="row_heading level0 row16" >16</th>
-      <td id="T_2b0cf_row16_col0" class="data row16 col0" >4,387</td>
-      <td id="T_2b0cf_row16_col1" class="data row16 col1" >3.4525%</td>
+      <th id="T_1c600_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_1c600_row16_col0" class="data row16 col0" >4,387</td>
+      <td id="T_1c600_row16_col1" class="data row16 col1" >3.4525%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row17" class="row_heading level0 row17" >17</th>
-      <td id="T_2b0cf_row17_col0" class="data row17 col0" >5,482</td>
-      <td id="T_2b0cf_row17_col1" class="data row17 col1" >3.7636%</td>
+      <th id="T_1c600_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_1c600_row17_col0" class="data row17 col0" >5,482</td>
+      <td id="T_1c600_row17_col1" class="data row17 col1" >3.7636%</td>
     </tr>
     <tr>
-      <th id="T_2b0cf_level0_row18" class="row_heading level0 row18" >18</th>
-      <td id="T_2b0cf_row18_col0" class="data row18 col0" >7,309</td>
-      <td id="T_2b0cf_row18_col1" class="data row18 col1" >4.1641%</td>
+      <th id="T_1c600_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_1c600_row18_col0" class="data row18 col0" >7,309</td>
+      <td id="T_1c600_row18_col1" class="data row18 col1" >4.1641%</td>
     </tr>
   </tbody>
 </table>
@@ -658,154 +658,154 @@ curva_usd.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_e52c3">
+<table id="T_1f981">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_e52c3_level0_col0" class="col_heading level0 col0" >plazo</th>
-      <th id="T_e52c3_level0_col1" class="col_heading level0 col1" >tasa</th>
+      <th id="T_1f981_level0_col0" class="col_heading level0 col0" >plazo</th>
+      <th id="T_1f981_level0_col1" class="col_heading level0 col1" >tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_e52c3_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_e52c3_row0_col0" class="data row0 col0" >3</td>
-      <td id="T_e52c3_row0_col1" class="data row0 col1" >1.5362%</td>
+      <th id="T_1f981_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_1f981_row0_col0" class="data row0 col0" >3</td>
+      <td id="T_1f981_row0_col1" class="data row0 col1" >1.5362%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_e52c3_row1_col0" class="data row1 col0" >4</td>
-      <td id="T_e52c3_row1_col1" class="data row1 col1" >1.1521%</td>
+      <th id="T_1f981_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_1f981_row1_col0" class="data row1 col0" >4</td>
+      <td id="T_1f981_row1_col1" class="data row1 col1" >1.1521%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_e52c3_row2_col0" class="data row2 col0" >7</td>
-      <td id="T_e52c3_row2_col1" class="data row2 col1" >1.5536%</td>
+      <th id="T_1f981_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_1f981_row2_col0" class="data row2 col0" >7</td>
+      <td id="T_1f981_row2_col1" class="data row2 col1" >1.5536%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_e52c3_row3_col0" class="data row3 col0" >14</td>
-      <td id="T_e52c3_row3_col1" class="data row3 col1" >1.5850%</td>
+      <th id="T_1f981_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_1f981_row3_col0" class="data row3 col0" >14</td>
+      <td id="T_1f981_row3_col1" class="data row3 col1" >1.5850%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_e52c3_row4_col0" class="data row4 col0" >31</td>
-      <td id="T_e52c3_row4_col1" class="data row4 col1" >1.6595%</td>
+      <th id="T_1f981_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_1f981_row4_col0" class="data row4 col0" >31</td>
+      <td id="T_1f981_row4_col1" class="data row4 col1" >1.6595%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_e52c3_row5_col0" class="data row5 col0" >60</td>
-      <td id="T_e52c3_row5_col1" class="data row5 col1" >1.7698%</td>
+      <th id="T_1f981_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_1f981_row5_col0" class="data row5 col0" >60</td>
+      <td id="T_1f981_row5_col1" class="data row5 col1" >1.7698%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_e52c3_row6_col0" class="data row6 col0" >91</td>
-      <td id="T_e52c3_row6_col1" class="data row6 col1" >1.8010%</td>
+      <th id="T_1f981_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_1f981_row6_col0" class="data row6 col0" >91</td>
+      <td id="T_1f981_row6_col1" class="data row6 col1" >1.8010%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_e52c3_row7_col0" class="data row7 col0" >123</td>
-      <td id="T_e52c3_row7_col1" class="data row7 col1" >1.7711%</td>
+      <th id="T_1f981_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_1f981_row7_col0" class="data row7 col0" >123</td>
+      <td id="T_1f981_row7_col1" class="data row7 col1" >1.7711%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_e52c3_row8_col0" class="data row8 col0" >152</td>
-      <td id="T_e52c3_row8_col1" class="data row8 col1" >1.7542%</td>
+      <th id="T_1f981_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_1f981_row8_col0" class="data row8 col0" >152</td>
+      <td id="T_1f981_row8_col1" class="data row8 col1" >1.7542%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_e52c3_row9_col0" class="data row9 col0" >182</td>
-      <td id="T_e52c3_row9_col1" class="data row9 col1" >1.7394%</td>
+      <th id="T_1f981_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_1f981_row9_col0" class="data row9 col0" >182</td>
+      <td id="T_1f981_row9_col1" class="data row9 col1" >1.7394%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_e52c3_row10_col0" class="data row10 col0" >213</td>
-      <td id="T_e52c3_row10_col1" class="data row10 col1" >1.7288%</td>
+      <th id="T_1f981_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_1f981_row10_col0" class="data row10 col0" >213</td>
+      <td id="T_1f981_row10_col1" class="data row10 col1" >1.7288%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_e52c3_row11_col0" class="data row11 col0" >244</td>
-      <td id="T_e52c3_row11_col1" class="data row11 col1" >1.7183%</td>
+      <th id="T_1f981_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_1f981_row11_col0" class="data row11 col0" >244</td>
+      <td id="T_1f981_row11_col1" class="data row11 col1" >1.7183%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row12" class="row_heading level0 row12" >12</th>
-      <td id="T_e52c3_row12_col0" class="data row12 col0" >276</td>
-      <td id="T_e52c3_row12_col1" class="data row12 col1" >1.7027%</td>
+      <th id="T_1f981_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_1f981_row12_col0" class="data row12 col0" >276</td>
+      <td id="T_1f981_row12_col1" class="data row12 col1" >1.7027%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row13" class="row_heading level0 row13" >13</th>
-      <td id="T_e52c3_row13_col0" class="data row13 col0" >305</td>
-      <td id="T_e52c3_row13_col1" class="data row13 col1" >1.6917%</td>
+      <th id="T_1f981_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_1f981_row13_col0" class="data row13 col0" >305</td>
+      <td id="T_1f981_row13_col1" class="data row13 col1" >1.6917%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row14" class="row_heading level0 row14" >14</th>
-      <td id="T_e52c3_row14_col0" class="data row14 col0" >335</td>
-      <td id="T_e52c3_row14_col1" class="data row14 col1" >1.6820%</td>
+      <th id="T_1f981_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_1f981_row14_col0" class="data row14 col0" >335</td>
+      <td id="T_1f981_row14_col1" class="data row14 col1" >1.6820%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row15" class="row_heading level0 row15" >15</th>
-      <td id="T_e52c3_row15_col0" class="data row15 col0" >367</td>
-      <td id="T_e52c3_row15_col1" class="data row15 col1" >1.6722%</td>
+      <th id="T_1f981_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_1f981_row15_col0" class="data row15 col0" >367</td>
+      <td id="T_1f981_row15_col1" class="data row15 col1" >1.6722%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row16" class="row_heading level0 row16" >16</th>
-      <td id="T_e52c3_row16_col0" class="data row16 col0" >549</td>
-      <td id="T_e52c3_row16_col1" class="data row16 col1" >1.6207%</td>
+      <th id="T_1f981_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_1f981_row16_col0" class="data row16 col0" >549</td>
+      <td id="T_1f981_row16_col1" class="data row16 col1" >1.6207%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row17" class="row_heading level0 row17" >17</th>
-      <td id="T_e52c3_row17_col0" class="data row17 col0" >731</td>
-      <td id="T_e52c3_row17_col1" class="data row17 col1" >1.5947%</td>
+      <th id="T_1f981_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_1f981_row17_col0" class="data row17 col0" >731</td>
+      <td id="T_1f981_row17_col1" class="data row17 col1" >1.5947%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row18" class="row_heading level0 row18" >18</th>
-      <td id="T_e52c3_row18_col0" class="data row18 col0" >1,096</td>
-      <td id="T_e52c3_row18_col1" class="data row18 col1" >1.5788%</td>
+      <th id="T_1f981_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_1f981_row18_col0" class="data row18 col0" >1,096</td>
+      <td id="T_1f981_row18_col1" class="data row18 col1" >1.5788%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row19" class="row_heading level0 row19" >19</th>
-      <td id="T_e52c3_row19_col0" class="data row19 col0" >1,461</td>
-      <td id="T_e52c3_row19_col1" class="data row19 col1" >1.5906%</td>
+      <th id="T_1f981_level0_row19" class="row_heading level0 row19" >19</th>
+      <td id="T_1f981_row19_col0" class="data row19 col0" >1,461</td>
+      <td id="T_1f981_row19_col1" class="data row19 col1" >1.5906%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row20" class="row_heading level0 row20" >20</th>
-      <td id="T_e52c3_row20_col0" class="data row20 col0" >1,827</td>
-      <td id="T_e52c3_row20_col1" class="data row20 col1" >1.6190%</td>
+      <th id="T_1f981_level0_row20" class="row_heading level0 row20" >20</th>
+      <td id="T_1f981_row20_col0" class="data row20 col0" >1,827</td>
+      <td id="T_1f981_row20_col1" class="data row20 col1" >1.6190%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row21" class="row_heading level0 row21" >21</th>
-      <td id="T_e52c3_row21_col0" class="data row21 col0" >2,558</td>
-      <td id="T_e52c3_row21_col1" class="data row21 col1" >1.7028%</td>
+      <th id="T_1f981_level0_row21" class="row_heading level0 row21" >21</th>
+      <td id="T_1f981_row21_col0" class="data row21 col0" >2,558</td>
+      <td id="T_1f981_row21_col1" class="data row21 col1" >1.7028%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row22" class="row_heading level0 row22" >22</th>
-      <td id="T_e52c3_row22_col0" class="data row22 col0" >3,653</td>
-      <td id="T_e52c3_row22_col1" class="data row22 col1" >1.8533%</td>
+      <th id="T_1f981_level0_row22" class="row_heading level0 row22" >22</th>
+      <td id="T_1f981_row22_col0" class="data row22 col0" >3,653</td>
+      <td id="T_1f981_row22_col1" class="data row22 col1" >1.8533%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row23" class="row_heading level0 row23" >23</th>
-      <td id="T_e52c3_row23_col0" class="data row23 col0" >4,385</td>
-      <td id="T_e52c3_row23_col1" class="data row23 col1" >1.9547%</td>
+      <th id="T_1f981_level0_row23" class="row_heading level0 row23" >23</th>
+      <td id="T_1f981_row23_col0" class="data row23 col0" >4,385</td>
+      <td id="T_1f981_row23_col1" class="data row23 col1" >1.9547%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row24" class="row_heading level0 row24" >24</th>
-      <td id="T_e52c3_row24_col0" class="data row24 col0" >5,479</td>
-      <td id="T_e52c3_row24_col1" class="data row24 col1" >2.0893%</td>
+      <th id="T_1f981_level0_row24" class="row_heading level0 row24" >24</th>
+      <td id="T_1f981_row24_col0" class="data row24 col0" >5,479</td>
+      <td id="T_1f981_row24_col1" class="data row24 col1" >2.0893%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row25" class="row_heading level0 row25" >25</th>
-      <td id="T_e52c3_row25_col0" class="data row25 col0" >7,305</td>
-      <td id="T_e52c3_row25_col1" class="data row25 col1" >2.2831%</td>
+      <th id="T_1f981_level0_row25" class="row_heading level0 row25" >25</th>
+      <td id="T_1f981_row25_col0" class="data row25 col0" >7,305</td>
+      <td id="T_1f981_row25_col1" class="data row25 col1" >2.2831%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row26" class="row_heading level0 row26" >26</th>
-      <td id="T_e52c3_row26_col0" class="data row26 col0" >9,132</td>
-      <td id="T_e52c3_row26_col1" class="data row26 col1" >2.4306%</td>
+      <th id="T_1f981_level0_row26" class="row_heading level0 row26" >26</th>
+      <td id="T_1f981_row26_col0" class="data row26 col0" >9,132</td>
+      <td id="T_1f981_row26_col1" class="data row26 col1" >2.4306%</td>
     </tr>
     <tr>
-      <th id="T_e52c3_level0_row27" class="row_heading level0 row27" >27</th>
-      <td id="T_e52c3_row27_col0" class="data row27 col0" >10,958</td>
-      <td id="T_e52c3_row27_col1" class="data row27 col1" >2.5576%</td>
+      <th id="T_1f981_level0_row27" class="row_heading level0 row27" >27</th>
+      <td id="T_1f981_row27_col0" class="data row27 col0" >10,958</td>
+      <td id="T_1f981_row27_col1" class="data row27 col1" >2.5576%</td>
     </tr>
   </tbody>
 </table>
@@ -846,179 +846,179 @@ curva_clf.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_49929">
+<table id="T_68a03">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_49929_level0_col0" class="col_heading level0 col0" >plazo</th>
-      <th id="T_49929_level0_col1" class="col_heading level0 col1" >tasa</th>
+      <th id="T_68a03_level0_col0" class="col_heading level0 col0" >plazo</th>
+      <th id="T_68a03_level0_col1" class="col_heading level0 col1" >tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_49929_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_49929_row0_col0" class="data row0 col0" >1</td>
-      <td id="T_49929_row0_col1" class="data row0 col1" >-5.6780%</td>
+      <th id="T_68a03_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_68a03_row0_col0" class="data row0 col0" >1</td>
+      <td id="T_68a03_row0_col1" class="data row0 col1" >-5.6780%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_49929_row1_col0" class="data row1 col0" >4</td>
-      <td id="T_49929_row1_col1" class="data row1 col1" >-5.6744%</td>
+      <th id="T_68a03_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_68a03_row1_col0" class="data row1 col0" >4</td>
+      <td id="T_68a03_row1_col1" class="data row1 col1" >-5.6744%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_49929_row2_col0" class="data row2 col0" >35</td>
-      <td id="T_49929_row2_col1" class="data row2 col1" >-0.9340%</td>
+      <th id="T_68a03_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_68a03_row2_col0" class="data row2 col0" >35</td>
+      <td id="T_68a03_row2_col1" class="data row2 col1" >-0.9340%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_49929_row3_col0" class="data row3 col0" >64</td>
-      <td id="T_49929_row3_col1" class="data row3 col1" >-2.1183%</td>
+      <th id="T_68a03_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_68a03_row3_col0" class="data row3 col0" >64</td>
+      <td id="T_68a03_row3_col1" class="data row3 col1" >-2.1183%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_49929_row4_col0" class="data row4 col0" >96</td>
-      <td id="T_49929_row4_col1" class="data row4 col1" >-2.0079%</td>
+      <th id="T_68a03_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_68a03_row4_col0" class="data row4 col0" >96</td>
+      <td id="T_68a03_row4_col1" class="data row4 col1" >-2.0079%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_49929_row5_col0" class="data row5 col0" >126</td>
-      <td id="T_49929_row5_col1" class="data row5 col1" >-2.0762%</td>
+      <th id="T_68a03_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_68a03_row5_col0" class="data row5 col0" >126</td>
+      <td id="T_68a03_row5_col1" class="data row5 col1" >-2.0762%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_49929_row6_col0" class="data row6 col0" >155</td>
-      <td id="T_49929_row6_col1" class="data row6 col1" >-1.9197%</td>
+      <th id="T_68a03_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_68a03_row6_col0" class="data row6 col0" >155</td>
+      <td id="T_68a03_row6_col1" class="data row6 col1" >-1.9197%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_49929_row7_col0" class="data row7 col0" >188</td>
-      <td id="T_49929_row7_col1" class="data row7 col1" >-1.9347%</td>
+      <th id="T_68a03_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_68a03_row7_col0" class="data row7 col0" >188</td>
+      <td id="T_68a03_row7_col1" class="data row7 col1" >-1.9347%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_49929_row8_col0" class="data row8 col0" >218</td>
-      <td id="T_49929_row8_col1" class="data row8 col1" >-1.7626%</td>
+      <th id="T_68a03_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_68a03_row8_col0" class="data row8 col0" >218</td>
+      <td id="T_68a03_row8_col1" class="data row8 col1" >-1.7626%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_49929_row9_col0" class="data row9 col0" >249</td>
-      <td id="T_49929_row9_col1" class="data row9 col1" >-1.7987%</td>
+      <th id="T_68a03_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_68a03_row9_col0" class="data row9 col0" >249</td>
+      <td id="T_68a03_row9_col1" class="data row9 col1" >-1.7987%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_49929_row10_col0" class="data row10 col0" >279</td>
-      <td id="T_49929_row10_col1" class="data row10 col1" >-1.9335%</td>
+      <th id="T_68a03_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_68a03_row10_col0" class="data row10 col0" >279</td>
+      <td id="T_68a03_row10_col1" class="data row10 col1" >-1.9335%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_49929_row11_col0" class="data row11 col0" >309</td>
-      <td id="T_49929_row11_col1" class="data row11 col1" >-1.8159%</td>
+      <th id="T_68a03_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_68a03_row11_col0" class="data row11 col0" >309</td>
+      <td id="T_68a03_row11_col1" class="data row11 col1" >-1.8159%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row12" class="row_heading level0 row12" >12</th>
-      <td id="T_49929_row12_col0" class="data row12 col0" >341</td>
-      <td id="T_49929_row12_col1" class="data row12 col1" >-1.5940%</td>
+      <th id="T_68a03_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_68a03_row12_col0" class="data row12 col0" >341</td>
+      <td id="T_68a03_row12_col1" class="data row12 col1" >-1.5940%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row13" class="row_heading level0 row13" >13</th>
-      <td id="T_49929_row13_col0" class="data row13 col0" >369</td>
-      <td id="T_49929_row13_col1" class="data row13 col1" >-1.5994%</td>
+      <th id="T_68a03_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_68a03_row13_col0" class="data row13 col0" >369</td>
+      <td id="T_68a03_row13_col1" class="data row13 col1" >-1.5994%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row14" class="row_heading level0 row14" >14</th>
-      <td id="T_49929_row14_col0" class="data row14 col0" >400</td>
-      <td id="T_49929_row14_col1" class="data row14 col1" >-1.5068%</td>
+      <th id="T_68a03_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_68a03_row14_col0" class="data row14 col0" >400</td>
+      <td id="T_68a03_row14_col1" class="data row14 col1" >-1.5068%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row15" class="row_heading level0 row15" >15</th>
-      <td id="T_49929_row15_col0" class="data row15 col0" >428</td>
-      <td id="T_49929_row15_col1" class="data row15 col1" >-1.6115%</td>
+      <th id="T_68a03_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_68a03_row15_col0" class="data row15 col0" >428</td>
+      <td id="T_68a03_row15_col1" class="data row15 col1" >-1.6115%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row16" class="row_heading level0 row16" >16</th>
-      <td id="T_49929_row16_col0" class="data row16 col0" >461</td>
-      <td id="T_49929_row16_col1" class="data row16 col1" >-1.5923%</td>
+      <th id="T_68a03_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_68a03_row16_col0" class="data row16 col0" >461</td>
+      <td id="T_68a03_row16_col1" class="data row16 col1" >-1.5923%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row17" class="row_heading level0 row17" >17</th>
-      <td id="T_49929_row17_col0" class="data row17 col0" >491</td>
-      <td id="T_49929_row17_col1" class="data row17 col1" >-1.5780%</td>
+      <th id="T_68a03_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_68a03_row17_col0" class="data row17 col0" >491</td>
+      <td id="T_68a03_row17_col1" class="data row17 col1" >-1.5780%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row18" class="row_heading level0 row18" >18</th>
-      <td id="T_49929_row18_col0" class="data row18 col0" >522</td>
-      <td id="T_49929_row18_col1" class="data row18 col1" >-1.5186%</td>
+      <th id="T_68a03_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_68a03_row18_col0" class="data row18 col0" >522</td>
+      <td id="T_68a03_row18_col1" class="data row18 col1" >-1.5186%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row19" class="row_heading level0 row19" >19</th>
-      <td id="T_49929_row19_col0" class="data row19 col0" >553</td>
-      <td id="T_49929_row19_col1" class="data row19 col1" >-1.5533%</td>
+      <th id="T_68a03_level0_row19" class="row_heading level0 row19" >19</th>
+      <td id="T_68a03_row19_col0" class="data row19 col0" >553</td>
+      <td id="T_68a03_row19_col1" class="data row19 col1" >-1.5533%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row20" class="row_heading level0 row20" >20</th>
-      <td id="T_49929_row20_col0" class="data row20 col0" >582</td>
-      <td id="T_49929_row20_col1" class="data row20 col1" >-1.5649%</td>
+      <th id="T_68a03_level0_row20" class="row_heading level0 row20" >20</th>
+      <td id="T_68a03_row20_col0" class="data row20 col0" >582</td>
+      <td id="T_68a03_row20_col1" class="data row20 col1" >-1.5649%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row21" class="row_heading level0 row21" >21</th>
-      <td id="T_49929_row21_col0" class="data row21 col0" >734</td>
-      <td id="T_49929_row21_col1" class="data row21 col1" >-1.6594%</td>
+      <th id="T_68a03_level0_row21" class="row_heading level0 row21" >21</th>
+      <td id="T_68a03_row21_col0" class="data row21 col0" >734</td>
+      <td id="T_68a03_row21_col1" class="data row21 col1" >-1.6594%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row22" class="row_heading level0 row22" >22</th>
-      <td id="T_49929_row22_col0" class="data row22 col0" >1,099</td>
-      <td id="T_49929_row22_col1" class="data row22 col1" >-1.4881%</td>
+      <th id="T_68a03_level0_row22" class="row_heading level0 row22" >22</th>
+      <td id="T_68a03_row22_col0" class="data row22 col0" >1,099</td>
+      <td id="T_68a03_row22_col1" class="data row22 col1" >-1.4881%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row23" class="row_heading level0 row23" >23</th>
-      <td id="T_49929_row23_col0" class="data row23 col0" >1,465</td>
-      <td id="T_49929_row23_col1" class="data row23 col1" >-1.2740%</td>
+      <th id="T_68a03_level0_row23" class="row_heading level0 row23" >23</th>
+      <td id="T_68a03_row23_col0" class="data row23 col0" >1,465</td>
+      <td id="T_68a03_row23_col1" class="data row23 col1" >-1.2740%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row24" class="row_heading level0 row24" >24</th>
-      <td id="T_49929_row24_col0" class="data row24 col0" >1,830</td>
-      <td id="T_49929_row24_col1" class="data row24 col1" >-1.0201%</td>
+      <th id="T_68a03_level0_row24" class="row_heading level0 row24" >24</th>
+      <td id="T_68a03_row24_col0" class="data row24 col0" >1,830</td>
+      <td id="T_68a03_row24_col1" class="data row24 col1" >-1.0201%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row25" class="row_heading level0 row25" >25</th>
-      <td id="T_49929_row25_col0" class="data row25 col0" >2,195</td>
-      <td id="T_49929_row25_col1" class="data row25 col1" >-0.8009%</td>
+      <th id="T_68a03_level0_row25" class="row_heading level0 row25" >25</th>
+      <td id="T_68a03_row25_col0" class="data row25 col0" >2,195</td>
+      <td id="T_68a03_row25_col1" class="data row25 col1" >-0.8009%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row26" class="row_heading level0 row26" >26</th>
-      <td id="T_49929_row26_col0" class="data row26 col0" >2,560</td>
-      <td id="T_49929_row26_col1" class="data row26 col1" >-0.5868%</td>
+      <th id="T_68a03_level0_row26" class="row_heading level0 row26" >26</th>
+      <td id="T_68a03_row26_col0" class="data row26 col0" >2,560</td>
+      <td id="T_68a03_row26_col1" class="data row26 col1" >-0.5868%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row27" class="row_heading level0 row27" >27</th>
-      <td id="T_49929_row27_col0" class="data row27 col0" >2,926</td>
-      <td id="T_49929_row27_col1" class="data row27 col1" >-0.4145%</td>
+      <th id="T_68a03_level0_row27" class="row_heading level0 row27" >27</th>
+      <td id="T_68a03_row27_col0" class="data row27 col0" >2,926</td>
+      <td id="T_68a03_row27_col1" class="data row27 col1" >-0.4145%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row28" class="row_heading level0 row28" >28</th>
-      <td id="T_49929_row28_col0" class="data row28 col0" >3,291</td>
-      <td id="T_49929_row28_col1" class="data row28 col1" >-0.3047%</td>
+      <th id="T_68a03_level0_row28" class="row_heading level0 row28" >28</th>
+      <td id="T_68a03_row28_col0" class="data row28 col0" >3,291</td>
+      <td id="T_68a03_row28_col1" class="data row28 col1" >-0.3047%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row29" class="row_heading level0 row29" >29</th>
-      <td id="T_49929_row29_col0" class="data row29 col0" >3,656</td>
-      <td id="T_49929_row29_col1" class="data row29 col1" >-0.2242%</td>
+      <th id="T_68a03_level0_row29" class="row_heading level0 row29" >29</th>
+      <td id="T_68a03_row29_col0" class="data row29 col0" >3,656</td>
+      <td id="T_68a03_row29_col1" class="data row29 col1" >-0.2242%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row30" class="row_heading level0 row30" >30</th>
-      <td id="T_49929_row30_col0" class="data row30 col0" >4,387</td>
-      <td id="T_49929_row30_col1" class="data row30 col1" >-0.1871%</td>
+      <th id="T_68a03_level0_row30" class="row_heading level0 row30" >30</th>
+      <td id="T_68a03_row30_col0" class="data row30 col0" >4,387</td>
+      <td id="T_68a03_row30_col1" class="data row30 col1" >-0.1871%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row31" class="row_heading level0 row31" >31</th>
-      <td id="T_49929_row31_col0" class="data row31 col0" >5,482</td>
-      <td id="T_49929_row31_col1" class="data row31 col1" >-0.1056%</td>
+      <th id="T_68a03_level0_row31" class="row_heading level0 row31" >31</th>
+      <td id="T_68a03_row31_col0" class="data row31 col0" >5,482</td>
+      <td id="T_68a03_row31_col1" class="data row31 col1" >-0.1056%</td>
     </tr>
     <tr>
-      <th id="T_49929_level0_row32" class="row_heading level0 row32" >32</th>
-      <td id="T_49929_row32_col0" class="data row32 col0" >7,309</td>
-      <td id="T_49929_row32_col1" class="data row32 col1" >-0.0639%</td>
+      <th id="T_68a03_level0_row32" class="row_heading level0 row32" >32</th>
+      <td id="T_68a03_row32_col0" class="data row32 col0" >7,309</td>
+      <td id="T_68a03_row32_col1" class="data row32 col1" >-0.0639%</td>
     </tr>
   </tbody>
 </table>
@@ -1042,219 +1042,219 @@ curva_sofr.style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_9f5cc">
+<table id="T_34490">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_9f5cc_level0_col0" class="col_heading level0 col0" >curva</th>
-      <th id="T_9f5cc_level0_col1" class="col_heading level0 col1" >fecha</th>
-      <th id="T_9f5cc_level0_col2" class="col_heading level0 col2" >plazo</th>
-      <th id="T_9f5cc_level0_col3" class="col_heading level0 col3" >tasa</th>
+      <th id="T_34490_level0_col0" class="col_heading level0 col0" >curva</th>
+      <th id="T_34490_level0_col1" class="col_heading level0 col1" >fecha</th>
+      <th id="T_34490_level0_col2" class="col_heading level0 col2" >plazo</th>
+      <th id="T_34490_level0_col3" class="col_heading level0 col3" >tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_9f5cc_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_9f5cc_row0_col0" class="data row0 col0" >SOFR</td>
-      <td id="T_9f5cc_row0_col1" class="data row0 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row0_col2" class="data row0 col2" >1</td>
-      <td id="T_9f5cc_row0_col3" class="data row0 col3" >5.3935%</td>
+      <th id="T_34490_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_34490_row0_col0" class="data row0 col0" >SOFR</td>
+      <td id="T_34490_row0_col1" class="data row0 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row0_col2" class="data row0 col2" >1</td>
+      <td id="T_34490_row0_col3" class="data row0 col3" >5.3935%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_9f5cc_row1_col0" class="data row1 col0" >SOFR</td>
-      <td id="T_9f5cc_row1_col1" class="data row1 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row1_col2" class="data row1 col2" >2</td>
-      <td id="T_9f5cc_row1_col3" class="data row1 col3" >5.3930%</td>
+      <th id="T_34490_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_34490_row1_col0" class="data row1 col0" >SOFR</td>
+      <td id="T_34490_row1_col1" class="data row1 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row1_col2" class="data row1 col2" >2</td>
+      <td id="T_34490_row1_col3" class="data row1 col3" >5.3930%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_9f5cc_row2_col0" class="data row2 col0" >SOFR</td>
-      <td id="T_9f5cc_row2_col1" class="data row2 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row2_col2" class="data row2 col2" >9</td>
-      <td id="T_9f5cc_row2_col3" class="data row2 col3" >5.3911%</td>
+      <th id="T_34490_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_34490_row2_col0" class="data row2 col0" >SOFR</td>
+      <td id="T_34490_row2_col1" class="data row2 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row2_col2" class="data row2 col2" >9</td>
+      <td id="T_34490_row2_col3" class="data row2 col3" >5.3911%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_9f5cc_row3_col0" class="data row3 col0" >SOFR</td>
-      <td id="T_9f5cc_row3_col1" class="data row3 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row3_col2" class="data row3 col2" >16</td>
-      <td id="T_9f5cc_row3_col3" class="data row3 col3" >5.3909%</td>
+      <th id="T_34490_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_34490_row3_col0" class="data row3 col0" >SOFR</td>
+      <td id="T_34490_row3_col1" class="data row3 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row3_col2" class="data row3 col2" >16</td>
+      <td id="T_34490_row3_col3" class="data row3 col3" >5.3909%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_9f5cc_row4_col0" class="data row4 col0" >SOFR</td>
-      <td id="T_9f5cc_row4_col1" class="data row4 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row4_col2" class="data row4 col2" >32</td>
-      <td id="T_9f5cc_row4_col3" class="data row4 col3" >5.3936%</td>
+      <th id="T_34490_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_34490_row4_col0" class="data row4 col0" >SOFR</td>
+      <td id="T_34490_row4_col1" class="data row4 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row4_col2" class="data row4 col2" >32</td>
+      <td id="T_34490_row4_col3" class="data row4 col3" >5.3936%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_9f5cc_row5_col0" class="data row5 col0" >SOFR</td>
-      <td id="T_9f5cc_row5_col1" class="data row5 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row5_col2" class="data row5 col2" >63</td>
-      <td id="T_9f5cc_row5_col3" class="data row5 col3" >5.3894%</td>
+      <th id="T_34490_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_34490_row5_col0" class="data row5 col0" >SOFR</td>
+      <td id="T_34490_row5_col1" class="data row5 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row5_col2" class="data row5 col2" >63</td>
+      <td id="T_34490_row5_col3" class="data row5 col3" >5.3894%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_9f5cc_row6_col0" class="data row6 col0" >SOFR</td>
-      <td id="T_9f5cc_row6_col1" class="data row6 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row6_col2" class="data row6 col2" >94</td>
-      <td id="T_9f5cc_row6_col3" class="data row6 col3" >5.3843%</td>
+      <th id="T_34490_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_34490_row6_col0" class="data row6 col0" >SOFR</td>
+      <td id="T_34490_row6_col1" class="data row6 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row6_col2" class="data row6 col2" >94</td>
+      <td id="T_34490_row6_col3" class="data row6 col3" >5.3843%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_9f5cc_row7_col0" class="data row7 col0" >SOFR</td>
-      <td id="T_9f5cc_row7_col1" class="data row7 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row7_col2" class="data row7 col2" >124</td>
-      <td id="T_9f5cc_row7_col3" class="data row7 col3" >5.3598%</td>
+      <th id="T_34490_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_34490_row7_col0" class="data row7 col0" >SOFR</td>
+      <td id="T_34490_row7_col1" class="data row7 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row7_col2" class="data row7 col2" >124</td>
+      <td id="T_34490_row7_col3" class="data row7 col3" >5.3598%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row8" class="row_heading level0 row8" >8</th>
-      <td id="T_9f5cc_row8_col0" class="data row8 col0" >SOFR</td>
-      <td id="T_9f5cc_row8_col1" class="data row8 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row8_col2" class="data row8 col2" >155</td>
-      <td id="T_9f5cc_row8_col3" class="data row8 col3" >5.3375%</td>
+      <th id="T_34490_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_34490_row8_col0" class="data row8 col0" >SOFR</td>
+      <td id="T_34490_row8_col1" class="data row8 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row8_col2" class="data row8 col2" >155</td>
+      <td id="T_34490_row8_col3" class="data row8 col3" >5.3375%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row9" class="row_heading level0 row9" >9</th>
-      <td id="T_9f5cc_row9_col0" class="data row9 col0" >SOFR</td>
-      <td id="T_9f5cc_row9_col1" class="data row9 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row9_col2" class="data row9 col2" >185</td>
-      <td id="T_9f5cc_row9_col3" class="data row9 col3" >5.3127%</td>
+      <th id="T_34490_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_34490_row9_col0" class="data row9 col0" >SOFR</td>
+      <td id="T_34490_row9_col1" class="data row9 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row9_col2" class="data row9 col2" >185</td>
+      <td id="T_34490_row9_col3" class="data row9 col3" >5.3127%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row10" class="row_heading level0 row10" >10</th>
-      <td id="T_9f5cc_row10_col0" class="data row10 col0" >SOFR</td>
-      <td id="T_9f5cc_row10_col1" class="data row10 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row10_col2" class="data row10 col2" >216</td>
-      <td id="T_9f5cc_row10_col3" class="data row10 col3" >5.2777%</td>
+      <th id="T_34490_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_34490_row10_col0" class="data row10 col0" >SOFR</td>
+      <td id="T_34490_row10_col1" class="data row10 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row10_col2" class="data row10 col2" >216</td>
+      <td id="T_34490_row10_col3" class="data row10 col3" >5.2777%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row11" class="row_heading level0 row11" >11</th>
-      <td id="T_9f5cc_row11_col0" class="data row11 col0" >SOFR</td>
-      <td id="T_9f5cc_row11_col1" class="data row11 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row11_col2" class="data row11 col2" >247</td>
-      <td id="T_9f5cc_row11_col3" class="data row11 col3" >5.2404%</td>
+      <th id="T_34490_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_34490_row11_col0" class="data row11 col0" >SOFR</td>
+      <td id="T_34490_row11_col1" class="data row11 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row11_col2" class="data row11 col2" >247</td>
+      <td id="T_34490_row11_col3" class="data row11 col3" >5.2404%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row12" class="row_heading level0 row12" >12</th>
-      <td id="T_9f5cc_row12_col0" class="data row12 col0" >SOFR</td>
-      <td id="T_9f5cc_row12_col1" class="data row12 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row12_col2" class="data row12 col2" >275</td>
-      <td id="T_9f5cc_row12_col3" class="data row12 col3" >5.2070%</td>
+      <th id="T_34490_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_34490_row12_col0" class="data row12 col0" >SOFR</td>
+      <td id="T_34490_row12_col1" class="data row12 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row12_col2" class="data row12 col2" >275</td>
+      <td id="T_34490_row12_col3" class="data row12 col3" >5.2070%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row13" class="row_heading level0 row13" >13</th>
-      <td id="T_9f5cc_row13_col0" class="data row13 col0" >SOFR</td>
-      <td id="T_9f5cc_row13_col1" class="data row13 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row13_col2" class="data row13 col2" >367</td>
-      <td id="T_9f5cc_row13_col3" class="data row13 col3" >5.0882%</td>
+      <th id="T_34490_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_34490_row13_col0" class="data row13 col0" >SOFR</td>
+      <td id="T_34490_row13_col1" class="data row13 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row13_col2" class="data row13 col2" >367</td>
+      <td id="T_34490_row13_col3" class="data row13 col3" >5.0882%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row14" class="row_heading level0 row14" >14</th>
-      <td id="T_9f5cc_row14_col0" class="data row14 col0" >SOFR</td>
-      <td id="T_9f5cc_row14_col1" class="data row14 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row14_col2" class="data row14 col2" >550</td>
-      <td id="T_9f5cc_row14_col3" class="data row14 col3" >4.8542%</td>
+      <th id="T_34490_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_34490_row14_col0" class="data row14 col0" >SOFR</td>
+      <td id="T_34490_row14_col1" class="data row14 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row14_col2" class="data row14 col2" >550</td>
+      <td id="T_34490_row14_col3" class="data row14 col3" >4.8542%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row15" class="row_heading level0 row15" >15</th>
-      <td id="T_9f5cc_row15_col0" class="data row15 col0" >SOFR</td>
-      <td id="T_9f5cc_row15_col1" class="data row15 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row15_col2" class="data row15 col2" >732</td>
-      <td id="T_9f5cc_row15_col3" class="data row15 col3" >4.6727%</td>
+      <th id="T_34490_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_34490_row15_col0" class="data row15 col0" >SOFR</td>
+      <td id="T_34490_row15_col1" class="data row15 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row15_col2" class="data row15 col2" >732</td>
+      <td id="T_34490_row15_col3" class="data row15 col3" >4.6727%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row16" class="row_heading level0 row16" >16</th>
-      <td id="T_9f5cc_row16_col0" class="data row16 col0" >SOFR</td>
-      <td id="T_9f5cc_row16_col1" class="data row16 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row16_col2" class="data row16 col2" >1,097</td>
-      <td id="T_9f5cc_row16_col3" class="data row16 col3" >4.4059%</td>
+      <th id="T_34490_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_34490_row16_col0" class="data row16 col0" >SOFR</td>
+      <td id="T_34490_row16_col1" class="data row16 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row16_col2" class="data row16 col2" >1,097</td>
+      <td id="T_34490_row16_col3" class="data row16 col3" >4.4059%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row17" class="row_heading level0 row17" >17</th>
-      <td id="T_9f5cc_row17_col0" class="data row17 col0" >SOFR</td>
-      <td id="T_9f5cc_row17_col1" class="data row17 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row17_col2" class="data row17 col2" >1,463</td>
-      <td id="T_9f5cc_row17_col3" class="data row17 col3" >4.2398%</td>
+      <th id="T_34490_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_34490_row17_col0" class="data row17 col0" >SOFR</td>
+      <td id="T_34490_row17_col1" class="data row17 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row17_col2" class="data row17 col2" >1,463</td>
+      <td id="T_34490_row17_col3" class="data row17 col3" >4.2398%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row18" class="row_heading level0 row18" >18</th>
-      <td id="T_9f5cc_row18_col0" class="data row18 col0" >SOFR</td>
-      <td id="T_9f5cc_row18_col1" class="data row18 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row18_col2" class="data row18 col2" >1,828</td>
-      <td id="T_9f5cc_row18_col3" class="data row18 col3" >4.1384%</td>
+      <th id="T_34490_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_34490_row18_col0" class="data row18 col0" >SOFR</td>
+      <td id="T_34490_row18_col1" class="data row18 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row18_col2" class="data row18 col2" >1,828</td>
+      <td id="T_34490_row18_col3" class="data row18 col3" >4.1384%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row19" class="row_heading level0 row19" >19</th>
-      <td id="T_9f5cc_row19_col0" class="data row19 col0" >SOFR</td>
-      <td id="T_9f5cc_row19_col1" class="data row19 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row19_col2" class="data row19 col2" >2,193</td>
-      <td id="T_9f5cc_row19_col3" class="data row19 col3" >4.0790%</td>
+      <th id="T_34490_level0_row19" class="row_heading level0 row19" >19</th>
+      <td id="T_34490_row19_col0" class="data row19 col0" >SOFR</td>
+      <td id="T_34490_row19_col1" class="data row19 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row19_col2" class="data row19 col2" >2,193</td>
+      <td id="T_34490_row19_col3" class="data row19 col3" >4.0790%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row20" class="row_heading level0 row20" >20</th>
-      <td id="T_9f5cc_row20_col0" class="data row20 col0" >SOFR</td>
-      <td id="T_9f5cc_row20_col1" class="data row20 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row20_col2" class="data row20 col2" >2,558</td>
-      <td id="T_9f5cc_row20_col3" class="data row20 col3" >4.0405%</td>
+      <th id="T_34490_level0_row20" class="row_heading level0 row20" >20</th>
+      <td id="T_34490_row20_col0" class="data row20 col0" >SOFR</td>
+      <td id="T_34490_row20_col1" class="data row20 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row20_col2" class="data row20 col2" >2,558</td>
+      <td id="T_34490_row20_col3" class="data row20 col3" >4.0405%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row21" class="row_heading level0 row21" >21</th>
-      <td id="T_9f5cc_row21_col0" class="data row21 col0" >SOFR</td>
-      <td id="T_9f5cc_row21_col1" class="data row21 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row21_col2" class="data row21 col2" >2,924</td>
-      <td id="T_9f5cc_row21_col3" class="data row21 col3" >4.0173%</td>
+      <th id="T_34490_level0_row21" class="row_heading level0 row21" >21</th>
+      <td id="T_34490_row21_col0" class="data row21 col0" >SOFR</td>
+      <td id="T_34490_row21_col1" class="data row21 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row21_col2" class="data row21 col2" >2,924</td>
+      <td id="T_34490_row21_col3" class="data row21 col3" >4.0173%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row22" class="row_heading level0 row22" >22</th>
-      <td id="T_9f5cc_row22_col0" class="data row22 col0" >SOFR</td>
-      <td id="T_9f5cc_row22_col1" class="data row22 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row22_col2" class="data row22 col2" >3,289</td>
-      <td id="T_9f5cc_row22_col3" class="data row22 col3" >4.0022%</td>
+      <th id="T_34490_level0_row22" class="row_heading level0 row22" >22</th>
+      <td id="T_34490_row22_col0" class="data row22 col0" >SOFR</td>
+      <td id="T_34490_row22_col1" class="data row22 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row22_col2" class="data row22 col2" >3,289</td>
+      <td id="T_34490_row22_col3" class="data row22 col3" >4.0022%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row23" class="row_heading level0 row23" >23</th>
-      <td id="T_9f5cc_row23_col0" class="data row23 col0" >SOFR</td>
-      <td id="T_9f5cc_row23_col1" class="data row23 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row23_col2" class="data row23 col2" >3,654</td>
-      <td id="T_9f5cc_row23_col3" class="data row23 col3" >3.9939%</td>
+      <th id="T_34490_level0_row23" class="row_heading level0 row23" >23</th>
+      <td id="T_34490_row23_col0" class="data row23 col0" >SOFR</td>
+      <td id="T_34490_row23_col1" class="data row23 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row23_col2" class="data row23 col2" >3,654</td>
+      <td id="T_34490_row23_col3" class="data row23 col3" >3.9939%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row24" class="row_heading level0 row24" >24</th>
-      <td id="T_9f5cc_row24_col0" class="data row24 col0" >SOFR</td>
-      <td id="T_9f5cc_row24_col1" class="data row24 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row24_col2" class="data row24 col2" >4,385</td>
-      <td id="T_9f5cc_row24_col3" class="data row24 col3" >3.9904%</td>
+      <th id="T_34490_level0_row24" class="row_heading level0 row24" >24</th>
+      <td id="T_34490_row24_col0" class="data row24 col0" >SOFR</td>
+      <td id="T_34490_row24_col1" class="data row24 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row24_col2" class="data row24 col2" >4,385</td>
+      <td id="T_34490_row24_col3" class="data row24 col3" >3.9904%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row25" class="row_heading level0 row25" >25</th>
-      <td id="T_9f5cc_row25_col0" class="data row25 col0" >SOFR</td>
-      <td id="T_9f5cc_row25_col1" class="data row25 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row25_col2" class="data row25 col2" >5,480</td>
-      <td id="T_9f5cc_row25_col3" class="data row25 col3" >3.9912%</td>
+      <th id="T_34490_level0_row25" class="row_heading level0 row25" >25</th>
+      <td id="T_34490_row25_col0" class="data row25 col0" >SOFR</td>
+      <td id="T_34490_row25_col1" class="data row25 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row25_col2" class="data row25 col2" >5,480</td>
+      <td id="T_34490_row25_col3" class="data row25 col3" >3.9912%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row26" class="row_heading level0 row26" >26</th>
-      <td id="T_9f5cc_row26_col0" class="data row26 col0" >SOFR</td>
-      <td id="T_9f5cc_row26_col1" class="data row26 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row26_col2" class="data row26 col2" >7,307</td>
-      <td id="T_9f5cc_row26_col3" class="data row26 col3" >3.9428%</td>
+      <th id="T_34490_level0_row26" class="row_heading level0 row26" >26</th>
+      <td id="T_34490_row26_col0" class="data row26 col0" >SOFR</td>
+      <td id="T_34490_row26_col1" class="data row26 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row26_col2" class="data row26 col2" >7,307</td>
+      <td id="T_34490_row26_col3" class="data row26 col3" >3.9428%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row27" class="row_heading level0 row27" >27</th>
-      <td id="T_9f5cc_row27_col0" class="data row27 col0" >SOFR</td>
-      <td id="T_9f5cc_row27_col1" class="data row27 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row27_col2" class="data row27 col2" >9,133</td>
-      <td id="T_9f5cc_row27_col3" class="data row27 col3" >3.8068%</td>
+      <th id="T_34490_level0_row27" class="row_heading level0 row27" >27</th>
+      <td id="T_34490_row27_col0" class="data row27 col0" >SOFR</td>
+      <td id="T_34490_row27_col1" class="data row27 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row27_col2" class="data row27 col2" >9,133</td>
+      <td id="T_34490_row27_col3" class="data row27 col3" >3.8068%</td>
     </tr>
     <tr>
-      <th id="T_9f5cc_level0_row28" class="row_heading level0 row28" >28</th>
-      <td id="T_9f5cc_row28_col0" class="data row28 col0" >SOFR</td>
-      <td id="T_9f5cc_row28_col1" class="data row28 col1" >2024-06-11 00:00:00</td>
-      <td id="T_9f5cc_row28_col2" class="data row28 col2" >10,959</td>
-      <td id="T_9f5cc_row28_col3" class="data row28 col3" >3.6594%</td>
+      <th id="T_34490_level0_row28" class="row_heading level0 row28" >28</th>
+      <td id="T_34490_row28_col0" class="data row28 col0" >SOFR</td>
+      <td id="T_34490_row28_col1" class="data row28 col1" >2024-06-11 00:00:00</td>
+      <td id="T_34490_row28_col2" class="data row28 col2" >10,959</td>
+      <td id="T_34490_row28_col3" class="data row28 col3" >3.6594%</td>
     </tr>
   </tbody>
 </table>
@@ -1552,51 +1552,51 @@ aux.leg_as_dataframe(fixed_rate_leg).style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_024c6">
+<table id="T_a7ff4">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_024c6_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_024c6_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_024c6_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
-      <th id="T_024c6_level0_col3" class="col_heading level0 col3" >nocional</th>
-      <th id="T_024c6_level0_col4" class="col_heading level0 col4" >amortizacion</th>
-      <th id="T_024c6_level0_col5" class="col_heading level0 col5" >interes</th>
-      <th id="T_024c6_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
-      <th id="T_024c6_level0_col7" class="col_heading level0 col7" >flujo</th>
-      <th id="T_024c6_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_024c6_level0_col9" class="col_heading level0 col9" >valor_tasa</th>
-      <th id="T_024c6_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
+      <th id="T_a7ff4_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_a7ff4_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_a7ff4_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
+      <th id="T_a7ff4_level0_col3" class="col_heading level0 col3" >nocional</th>
+      <th id="T_a7ff4_level0_col4" class="col_heading level0 col4" >amortizacion</th>
+      <th id="T_a7ff4_level0_col5" class="col_heading level0 col5" >interes</th>
+      <th id="T_a7ff4_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
+      <th id="T_a7ff4_level0_col7" class="col_heading level0 col7" >flujo</th>
+      <th id="T_a7ff4_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_a7ff4_level0_col9" class="col_heading level0 col9" >valor_tasa</th>
+      <th id="T_a7ff4_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_024c6_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_024c6_row0_col0" class="data row0 col0" >2024-06-13</td>
-      <td id="T_024c6_row0_col1" class="data row0 col1" >2025-06-13</td>
-      <td id="T_024c6_row0_col2" class="data row0 col2" >2025-06-13</td>
-      <td id="T_024c6_row0_col3" class="data row0 col3" >1,000,000.00</td>
-      <td id="T_024c6_row0_col4" class="data row0 col4" >0.00</td>
-      <td id="T_024c6_row0_col5" class="data row0 col5" >47,788.64</td>
-      <td id="T_024c6_row0_col6" class="data row0 col6" >True</td>
-      <td id="T_024c6_row0_col7" class="data row0 col7" >47,788.64</td>
-      <td id="T_024c6_row0_col8" class="data row0 col8" >USD</td>
-      <td id="T_024c6_row0_col9" class="data row0 col9" >4.7134%</td>
-      <td id="T_024c6_row0_col10" class="data row0 col10" >LinAct360</td>
+      <th id="T_a7ff4_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_a7ff4_row0_col0" class="data row0 col0" >2024-06-13</td>
+      <td id="T_a7ff4_row0_col1" class="data row0 col1" >2025-06-13</td>
+      <td id="T_a7ff4_row0_col2" class="data row0 col2" >2025-06-13</td>
+      <td id="T_a7ff4_row0_col3" class="data row0 col3" >1,000,000.00</td>
+      <td id="T_a7ff4_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_a7ff4_row0_col5" class="data row0 col5" >47,788.64</td>
+      <td id="T_a7ff4_row0_col6" class="data row0 col6" >True</td>
+      <td id="T_a7ff4_row0_col7" class="data row0 col7" >47,788.64</td>
+      <td id="T_a7ff4_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_a7ff4_row0_col9" class="data row0 col9" >4.7134%</td>
+      <td id="T_a7ff4_row0_col10" class="data row0 col10" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_024c6_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_024c6_row1_col0" class="data row1 col0" >2025-06-13</td>
-      <td id="T_024c6_row1_col1" class="data row1 col1" >2026-06-15</td>
-      <td id="T_024c6_row1_col2" class="data row1 col2" >2026-06-15</td>
-      <td id="T_024c6_row1_col3" class="data row1 col3" >1,000,000.00</td>
-      <td id="T_024c6_row1_col4" class="data row1 col4" >1,000,000.00</td>
-      <td id="T_024c6_row1_col5" class="data row1 col5" >48,050.49</td>
-      <td id="T_024c6_row1_col6" class="data row1 col6" >True</td>
-      <td id="T_024c6_row1_col7" class="data row1 col7" >1,048,050.49</td>
-      <td id="T_024c6_row1_col8" class="data row1 col8" >USD</td>
-      <td id="T_024c6_row1_col9" class="data row1 col9" >4.7134%</td>
-      <td id="T_024c6_row1_col10" class="data row1 col10" >LinAct360</td>
+      <th id="T_a7ff4_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_a7ff4_row1_col0" class="data row1 col0" >2025-06-13</td>
+      <td id="T_a7ff4_row1_col1" class="data row1 col1" >2026-06-15</td>
+      <td id="T_a7ff4_row1_col2" class="data row1 col2" >2026-06-15</td>
+      <td id="T_a7ff4_row1_col3" class="data row1 col3" >1,000,000.00</td>
+      <td id="T_a7ff4_row1_col4" class="data row1 col4" >1,000,000.00</td>
+      <td id="T_a7ff4_row1_col5" class="data row1 col5" >48,050.49</td>
+      <td id="T_a7ff4_row1_col6" class="data row1 col6" >True</td>
+      <td id="T_a7ff4_row1_col7" class="data row1 col7" >1,048,050.49</td>
+      <td id="T_a7ff4_row1_col8" class="data row1 col8" >USD</td>
+      <td id="T_a7ff4_row1_col9" class="data row1 col9" >4.7134%</td>
+      <td id="T_a7ff4_row1_col10" class="data row1 col10" >LinAct360</td>
     </tr>
   </tbody>
 </table>
@@ -1751,156 +1751,156 @@ aux.leg_as_dataframe(overnight_index_leg).style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_a74d6">
+<table id="T_37cf9">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_a74d6_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_a74d6_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_a74d6_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
-      <th id="T_a74d6_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
-      <th id="T_a74d6_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
-      <th id="T_a74d6_level0_col5" class="col_heading level0 col5" >nocional</th>
-      <th id="T_a74d6_level0_col6" class="col_heading level0 col6" >amortizacion</th>
-      <th id="T_a74d6_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_a74d6_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_a74d6_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
-      <th id="T_a74d6_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
-      <th id="T_a74d6_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
-      <th id="T_a74d6_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
-      <th id="T_a74d6_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
-      <th id="T_a74d6_level0_col14" class="col_heading level0 col14" >interes</th>
-      <th id="T_a74d6_level0_col15" class="col_heading level0 col15" >flujo</th>
-      <th id="T_a74d6_level0_col16" class="col_heading level0 col16" >spread</th>
-      <th id="T_a74d6_level0_col17" class="col_heading level0 col17" >gearing</th>
+      <th id="T_37cf9_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_37cf9_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_37cf9_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
+      <th id="T_37cf9_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
+      <th id="T_37cf9_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
+      <th id="T_37cf9_level0_col5" class="col_heading level0 col5" >nocional</th>
+      <th id="T_37cf9_level0_col6" class="col_heading level0 col6" >amortizacion</th>
+      <th id="T_37cf9_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_37cf9_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_37cf9_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
+      <th id="T_37cf9_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
+      <th id="T_37cf9_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
+      <th id="T_37cf9_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
+      <th id="T_37cf9_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
+      <th id="T_37cf9_level0_col14" class="col_heading level0 col14" >interes</th>
+      <th id="T_37cf9_level0_col15" class="col_heading level0 col15" >flujo</th>
+      <th id="T_37cf9_level0_col16" class="col_heading level0 col16" >spread</th>
+      <th id="T_37cf9_level0_col17" class="col_heading level0 col17" >gearing</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_a74d6_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_a74d6_row0_col0" class="data row0 col0" >2019-01-10</td>
-      <td id="T_a74d6_row0_col1" class="data row0 col1" >2019-07-10</td>
-      <td id="T_a74d6_row0_col2" class="data row0 col2" >2019-01-10</td>
-      <td id="T_a74d6_row0_col3" class="data row0 col3" >2019-07-10</td>
-      <td id="T_a74d6_row0_col4" class="data row0 col4" >2019-07-10</td>
-      <td id="T_a74d6_row0_col5" class="data row0 col5" >38,000,000,000.00</td>
-      <td id="T_a74d6_row0_col6" class="data row0 col6" >0.00</td>
-      <td id="T_a74d6_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_a74d6_row0_col8" class="data row0 col8" >CLP</td>
-      <td id="T_a74d6_row0_col9" class="data row0 col9" >ICPCLP</td>
-      <td id="T_a74d6_row0_col10" class="data row0 col10" >1.00</td>
-      <td id="T_a74d6_row0_col11" class="data row0 col11" >1.00</td>
-      <td id="T_a74d6_row0_col12" class="data row0 col12" >0.0000%</td>
-      <td id="T_a74d6_row0_col13" class="data row0 col13" >LinAct360</td>
-      <td id="T_a74d6_row0_col14" class="data row0 col14" >0.00</td>
-      <td id="T_a74d6_row0_col15" class="data row0 col15" >0.00</td>
-      <td id="T_a74d6_row0_col16" class="data row0 col16" >0.0000%</td>
-      <td id="T_a74d6_row0_col17" class="data row0 col17" >1.00</td>
+      <th id="T_37cf9_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_37cf9_row0_col0" class="data row0 col0" >2019-01-10</td>
+      <td id="T_37cf9_row0_col1" class="data row0 col1" >2019-07-10</td>
+      <td id="T_37cf9_row0_col2" class="data row0 col2" >2019-01-10</td>
+      <td id="T_37cf9_row0_col3" class="data row0 col3" >2019-07-10</td>
+      <td id="T_37cf9_row0_col4" class="data row0 col4" >2019-07-10</td>
+      <td id="T_37cf9_row0_col5" class="data row0 col5" >38,000,000,000.00</td>
+      <td id="T_37cf9_row0_col6" class="data row0 col6" >0.00</td>
+      <td id="T_37cf9_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_37cf9_row0_col8" class="data row0 col8" >CLP</td>
+      <td id="T_37cf9_row0_col9" class="data row0 col9" >ICPCLP</td>
+      <td id="T_37cf9_row0_col10" class="data row0 col10" >1.00</td>
+      <td id="T_37cf9_row0_col11" class="data row0 col11" >1.00</td>
+      <td id="T_37cf9_row0_col12" class="data row0 col12" >0.0000%</td>
+      <td id="T_37cf9_row0_col13" class="data row0 col13" >LinAct360</td>
+      <td id="T_37cf9_row0_col14" class="data row0 col14" >0.00</td>
+      <td id="T_37cf9_row0_col15" class="data row0 col15" >0.00</td>
+      <td id="T_37cf9_row0_col16" class="data row0 col16" >0.0000%</td>
+      <td id="T_37cf9_row0_col17" class="data row0 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_a74d6_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_a74d6_row1_col0" class="data row1 col0" >2019-07-10</td>
-      <td id="T_a74d6_row1_col1" class="data row1 col1" >2020-01-10</td>
-      <td id="T_a74d6_row1_col2" class="data row1 col2" >2019-07-10</td>
-      <td id="T_a74d6_row1_col3" class="data row1 col3" >2020-01-10</td>
-      <td id="T_a74d6_row1_col4" class="data row1 col4" >2020-01-10</td>
-      <td id="T_a74d6_row1_col5" class="data row1 col5" >38,000,000,000.00</td>
-      <td id="T_a74d6_row1_col6" class="data row1 col6" >0.00</td>
-      <td id="T_a74d6_row1_col7" class="data row1 col7" >True</td>
-      <td id="T_a74d6_row1_col8" class="data row1 col8" >CLP</td>
-      <td id="T_a74d6_row1_col9" class="data row1 col9" >ICPCLP</td>
-      <td id="T_a74d6_row1_col10" class="data row1 col10" >1.00</td>
-      <td id="T_a74d6_row1_col11" class="data row1 col11" >1.00</td>
-      <td id="T_a74d6_row1_col12" class="data row1 col12" >0.0000%</td>
-      <td id="T_a74d6_row1_col13" class="data row1 col13" >LinAct360</td>
-      <td id="T_a74d6_row1_col14" class="data row1 col14" >0.00</td>
-      <td id="T_a74d6_row1_col15" class="data row1 col15" >0.00</td>
-      <td id="T_a74d6_row1_col16" class="data row1 col16" >0.0000%</td>
-      <td id="T_a74d6_row1_col17" class="data row1 col17" >1.00</td>
+      <th id="T_37cf9_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_37cf9_row1_col0" class="data row1 col0" >2019-07-10</td>
+      <td id="T_37cf9_row1_col1" class="data row1 col1" >2020-01-10</td>
+      <td id="T_37cf9_row1_col2" class="data row1 col2" >2019-07-10</td>
+      <td id="T_37cf9_row1_col3" class="data row1 col3" >2020-01-10</td>
+      <td id="T_37cf9_row1_col4" class="data row1 col4" >2020-01-10</td>
+      <td id="T_37cf9_row1_col5" class="data row1 col5" >38,000,000,000.00</td>
+      <td id="T_37cf9_row1_col6" class="data row1 col6" >0.00</td>
+      <td id="T_37cf9_row1_col7" class="data row1 col7" >True</td>
+      <td id="T_37cf9_row1_col8" class="data row1 col8" >CLP</td>
+      <td id="T_37cf9_row1_col9" class="data row1 col9" >ICPCLP</td>
+      <td id="T_37cf9_row1_col10" class="data row1 col10" >1.00</td>
+      <td id="T_37cf9_row1_col11" class="data row1 col11" >1.00</td>
+      <td id="T_37cf9_row1_col12" class="data row1 col12" >0.0000%</td>
+      <td id="T_37cf9_row1_col13" class="data row1 col13" >LinAct360</td>
+      <td id="T_37cf9_row1_col14" class="data row1 col14" >0.00</td>
+      <td id="T_37cf9_row1_col15" class="data row1 col15" >0.00</td>
+      <td id="T_37cf9_row1_col16" class="data row1 col16" >0.0000%</td>
+      <td id="T_37cf9_row1_col17" class="data row1 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_a74d6_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_a74d6_row2_col0" class="data row2 col0" >2020-01-10</td>
-      <td id="T_a74d6_row2_col1" class="data row2 col1" >2020-07-10</td>
-      <td id="T_a74d6_row2_col2" class="data row2 col2" >2020-01-10</td>
-      <td id="T_a74d6_row2_col3" class="data row2 col3" >2020-07-10</td>
-      <td id="T_a74d6_row2_col4" class="data row2 col4" >2020-07-10</td>
-      <td id="T_a74d6_row2_col5" class="data row2 col5" >38,000,000,000.00</td>
-      <td id="T_a74d6_row2_col6" class="data row2 col6" >0.00</td>
-      <td id="T_a74d6_row2_col7" class="data row2 col7" >True</td>
-      <td id="T_a74d6_row2_col8" class="data row2 col8" >CLP</td>
-      <td id="T_a74d6_row2_col9" class="data row2 col9" >ICPCLP</td>
-      <td id="T_a74d6_row2_col10" class="data row2 col10" >1.00</td>
-      <td id="T_a74d6_row2_col11" class="data row2 col11" >1.00</td>
-      <td id="T_a74d6_row2_col12" class="data row2 col12" >0.0000%</td>
-      <td id="T_a74d6_row2_col13" class="data row2 col13" >LinAct360</td>
-      <td id="T_a74d6_row2_col14" class="data row2 col14" >0.00</td>
-      <td id="T_a74d6_row2_col15" class="data row2 col15" >0.00</td>
-      <td id="T_a74d6_row2_col16" class="data row2 col16" >0.0000%</td>
-      <td id="T_a74d6_row2_col17" class="data row2 col17" >1.00</td>
+      <th id="T_37cf9_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_37cf9_row2_col0" class="data row2 col0" >2020-01-10</td>
+      <td id="T_37cf9_row2_col1" class="data row2 col1" >2020-07-10</td>
+      <td id="T_37cf9_row2_col2" class="data row2 col2" >2020-01-10</td>
+      <td id="T_37cf9_row2_col3" class="data row2 col3" >2020-07-10</td>
+      <td id="T_37cf9_row2_col4" class="data row2 col4" >2020-07-10</td>
+      <td id="T_37cf9_row2_col5" class="data row2 col5" >38,000,000,000.00</td>
+      <td id="T_37cf9_row2_col6" class="data row2 col6" >0.00</td>
+      <td id="T_37cf9_row2_col7" class="data row2 col7" >True</td>
+      <td id="T_37cf9_row2_col8" class="data row2 col8" >CLP</td>
+      <td id="T_37cf9_row2_col9" class="data row2 col9" >ICPCLP</td>
+      <td id="T_37cf9_row2_col10" class="data row2 col10" >1.00</td>
+      <td id="T_37cf9_row2_col11" class="data row2 col11" >1.00</td>
+      <td id="T_37cf9_row2_col12" class="data row2 col12" >0.0000%</td>
+      <td id="T_37cf9_row2_col13" class="data row2 col13" >LinAct360</td>
+      <td id="T_37cf9_row2_col14" class="data row2 col14" >0.00</td>
+      <td id="T_37cf9_row2_col15" class="data row2 col15" >0.00</td>
+      <td id="T_37cf9_row2_col16" class="data row2 col16" >0.0000%</td>
+      <td id="T_37cf9_row2_col17" class="data row2 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_a74d6_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_a74d6_row3_col0" class="data row3 col0" >2020-07-10</td>
-      <td id="T_a74d6_row3_col1" class="data row3 col1" >2021-01-11</td>
-      <td id="T_a74d6_row3_col2" class="data row3 col2" >2020-07-10</td>
-      <td id="T_a74d6_row3_col3" class="data row3 col3" >2021-01-11</td>
-      <td id="T_a74d6_row3_col4" class="data row3 col4" >2021-01-11</td>
-      <td id="T_a74d6_row3_col5" class="data row3 col5" >38,000,000,000.00</td>
-      <td id="T_a74d6_row3_col6" class="data row3 col6" >0.00</td>
-      <td id="T_a74d6_row3_col7" class="data row3 col7" >True</td>
-      <td id="T_a74d6_row3_col8" class="data row3 col8" >CLP</td>
-      <td id="T_a74d6_row3_col9" class="data row3 col9" >ICPCLP</td>
-      <td id="T_a74d6_row3_col10" class="data row3 col10" >1.00</td>
-      <td id="T_a74d6_row3_col11" class="data row3 col11" >1.00</td>
-      <td id="T_a74d6_row3_col12" class="data row3 col12" >0.0000%</td>
-      <td id="T_a74d6_row3_col13" class="data row3 col13" >LinAct360</td>
-      <td id="T_a74d6_row3_col14" class="data row3 col14" >0.00</td>
-      <td id="T_a74d6_row3_col15" class="data row3 col15" >0.00</td>
-      <td id="T_a74d6_row3_col16" class="data row3 col16" >0.0000%</td>
-      <td id="T_a74d6_row3_col17" class="data row3 col17" >1.00</td>
+      <th id="T_37cf9_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_37cf9_row3_col0" class="data row3 col0" >2020-07-10</td>
+      <td id="T_37cf9_row3_col1" class="data row3 col1" >2021-01-11</td>
+      <td id="T_37cf9_row3_col2" class="data row3 col2" >2020-07-10</td>
+      <td id="T_37cf9_row3_col3" class="data row3 col3" >2021-01-11</td>
+      <td id="T_37cf9_row3_col4" class="data row3 col4" >2021-01-11</td>
+      <td id="T_37cf9_row3_col5" class="data row3 col5" >38,000,000,000.00</td>
+      <td id="T_37cf9_row3_col6" class="data row3 col6" >0.00</td>
+      <td id="T_37cf9_row3_col7" class="data row3 col7" >True</td>
+      <td id="T_37cf9_row3_col8" class="data row3 col8" >CLP</td>
+      <td id="T_37cf9_row3_col9" class="data row3 col9" >ICPCLP</td>
+      <td id="T_37cf9_row3_col10" class="data row3 col10" >1.00</td>
+      <td id="T_37cf9_row3_col11" class="data row3 col11" >1.00</td>
+      <td id="T_37cf9_row3_col12" class="data row3 col12" >0.0000%</td>
+      <td id="T_37cf9_row3_col13" class="data row3 col13" >LinAct360</td>
+      <td id="T_37cf9_row3_col14" class="data row3 col14" >0.00</td>
+      <td id="T_37cf9_row3_col15" class="data row3 col15" >0.00</td>
+      <td id="T_37cf9_row3_col16" class="data row3 col16" >0.0000%</td>
+      <td id="T_37cf9_row3_col17" class="data row3 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_a74d6_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_a74d6_row4_col0" class="data row4 col0" >2021-01-11</td>
-      <td id="T_a74d6_row4_col1" class="data row4 col1" >2021-07-12</td>
-      <td id="T_a74d6_row4_col2" class="data row4 col2" >2021-01-11</td>
-      <td id="T_a74d6_row4_col3" class="data row4 col3" >2021-07-12</td>
-      <td id="T_a74d6_row4_col4" class="data row4 col4" >2021-07-12</td>
-      <td id="T_a74d6_row4_col5" class="data row4 col5" >38,000,000,000.00</td>
-      <td id="T_a74d6_row4_col6" class="data row4 col6" >0.00</td>
-      <td id="T_a74d6_row4_col7" class="data row4 col7" >True</td>
-      <td id="T_a74d6_row4_col8" class="data row4 col8" >CLP</td>
-      <td id="T_a74d6_row4_col9" class="data row4 col9" >ICPCLP</td>
-      <td id="T_a74d6_row4_col10" class="data row4 col10" >1.00</td>
-      <td id="T_a74d6_row4_col11" class="data row4 col11" >1.00</td>
-      <td id="T_a74d6_row4_col12" class="data row4 col12" >0.0000%</td>
-      <td id="T_a74d6_row4_col13" class="data row4 col13" >LinAct360</td>
-      <td id="T_a74d6_row4_col14" class="data row4 col14" >0.00</td>
-      <td id="T_a74d6_row4_col15" class="data row4 col15" >0.00</td>
-      <td id="T_a74d6_row4_col16" class="data row4 col16" >0.0000%</td>
-      <td id="T_a74d6_row4_col17" class="data row4 col17" >1.00</td>
+      <th id="T_37cf9_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_37cf9_row4_col0" class="data row4 col0" >2021-01-11</td>
+      <td id="T_37cf9_row4_col1" class="data row4 col1" >2021-07-12</td>
+      <td id="T_37cf9_row4_col2" class="data row4 col2" >2021-01-11</td>
+      <td id="T_37cf9_row4_col3" class="data row4 col3" >2021-07-12</td>
+      <td id="T_37cf9_row4_col4" class="data row4 col4" >2021-07-12</td>
+      <td id="T_37cf9_row4_col5" class="data row4 col5" >38,000,000,000.00</td>
+      <td id="T_37cf9_row4_col6" class="data row4 col6" >0.00</td>
+      <td id="T_37cf9_row4_col7" class="data row4 col7" >True</td>
+      <td id="T_37cf9_row4_col8" class="data row4 col8" >CLP</td>
+      <td id="T_37cf9_row4_col9" class="data row4 col9" >ICPCLP</td>
+      <td id="T_37cf9_row4_col10" class="data row4 col10" >1.00</td>
+      <td id="T_37cf9_row4_col11" class="data row4 col11" >1.00</td>
+      <td id="T_37cf9_row4_col12" class="data row4 col12" >0.0000%</td>
+      <td id="T_37cf9_row4_col13" class="data row4 col13" >LinAct360</td>
+      <td id="T_37cf9_row4_col14" class="data row4 col14" >0.00</td>
+      <td id="T_37cf9_row4_col15" class="data row4 col15" >0.00</td>
+      <td id="T_37cf9_row4_col16" class="data row4 col16" >0.0000%</td>
+      <td id="T_37cf9_row4_col17" class="data row4 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_a74d6_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_a74d6_row5_col0" class="data row5 col0" >2021-07-12</td>
-      <td id="T_a74d6_row5_col1" class="data row5 col1" >2022-01-10</td>
-      <td id="T_a74d6_row5_col2" class="data row5 col2" >2021-07-12</td>
-      <td id="T_a74d6_row5_col3" class="data row5 col3" >2022-01-10</td>
-      <td id="T_a74d6_row5_col4" class="data row5 col4" >2022-01-10</td>
-      <td id="T_a74d6_row5_col5" class="data row5 col5" >38,000,000,000.00</td>
-      <td id="T_a74d6_row5_col6" class="data row5 col6" >38,000,000,000.00</td>
-      <td id="T_a74d6_row5_col7" class="data row5 col7" >True</td>
-      <td id="T_a74d6_row5_col8" class="data row5 col8" >CLP</td>
-      <td id="T_a74d6_row5_col9" class="data row5 col9" >ICPCLP</td>
-      <td id="T_a74d6_row5_col10" class="data row5 col10" >1.00</td>
-      <td id="T_a74d6_row5_col11" class="data row5 col11" >1.00</td>
-      <td id="T_a74d6_row5_col12" class="data row5 col12" >0.0000%</td>
-      <td id="T_a74d6_row5_col13" class="data row5 col13" >LinAct360</td>
-      <td id="T_a74d6_row5_col14" class="data row5 col14" >0.00</td>
-      <td id="T_a74d6_row5_col15" class="data row5 col15" >38,000,000,000.00</td>
-      <td id="T_a74d6_row5_col16" class="data row5 col16" >0.0000%</td>
-      <td id="T_a74d6_row5_col17" class="data row5 col17" >1.00</td>
+      <th id="T_37cf9_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_37cf9_row5_col0" class="data row5 col0" >2021-07-12</td>
+      <td id="T_37cf9_row5_col1" class="data row5 col1" >2022-01-10</td>
+      <td id="T_37cf9_row5_col2" class="data row5 col2" >2021-07-12</td>
+      <td id="T_37cf9_row5_col3" class="data row5 col3" >2022-01-10</td>
+      <td id="T_37cf9_row5_col4" class="data row5 col4" >2022-01-10</td>
+      <td id="T_37cf9_row5_col5" class="data row5 col5" >38,000,000,000.00</td>
+      <td id="T_37cf9_row5_col6" class="data row5 col6" >38,000,000,000.00</td>
+      <td id="T_37cf9_row5_col7" class="data row5 col7" >True</td>
+      <td id="T_37cf9_row5_col8" class="data row5 col8" >CLP</td>
+      <td id="T_37cf9_row5_col9" class="data row5 col9" >ICPCLP</td>
+      <td id="T_37cf9_row5_col10" class="data row5 col10" >1.00</td>
+      <td id="T_37cf9_row5_col11" class="data row5 col11" >1.00</td>
+      <td id="T_37cf9_row5_col12" class="data row5 col12" >0.0000%</td>
+      <td id="T_37cf9_row5_col13" class="data row5 col13" >LinAct360</td>
+      <td id="T_37cf9_row5_col14" class="data row5 col14" >0.00</td>
+      <td id="T_37cf9_row5_col15" class="data row5 col15" >38,000,000,000.00</td>
+      <td id="T_37cf9_row5_col16" class="data row5 col16" >0.0000%</td>
+      <td id="T_37cf9_row5_col17" class="data row5 col17" >1.00</td>
     </tr>
   </tbody>
 </table>
@@ -1946,156 +1946,156 @@ aux.leg_as_dataframe(overnight_index_leg).style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_5cb0f">
+<table id="T_8775e">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_5cb0f_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_5cb0f_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_5cb0f_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
-      <th id="T_5cb0f_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
-      <th id="T_5cb0f_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
-      <th id="T_5cb0f_level0_col5" class="col_heading level0 col5" >nocional</th>
-      <th id="T_5cb0f_level0_col6" class="col_heading level0 col6" >amortizacion</th>
-      <th id="T_5cb0f_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_5cb0f_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_5cb0f_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
-      <th id="T_5cb0f_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
-      <th id="T_5cb0f_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
-      <th id="T_5cb0f_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
-      <th id="T_5cb0f_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
-      <th id="T_5cb0f_level0_col14" class="col_heading level0 col14" >interes</th>
-      <th id="T_5cb0f_level0_col15" class="col_heading level0 col15" >flujo</th>
-      <th id="T_5cb0f_level0_col16" class="col_heading level0 col16" >spread</th>
-      <th id="T_5cb0f_level0_col17" class="col_heading level0 col17" >gearing</th>
+      <th id="T_8775e_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_8775e_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_8775e_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
+      <th id="T_8775e_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
+      <th id="T_8775e_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
+      <th id="T_8775e_level0_col5" class="col_heading level0 col5" >nocional</th>
+      <th id="T_8775e_level0_col6" class="col_heading level0 col6" >amortizacion</th>
+      <th id="T_8775e_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_8775e_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_8775e_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
+      <th id="T_8775e_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
+      <th id="T_8775e_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
+      <th id="T_8775e_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
+      <th id="T_8775e_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
+      <th id="T_8775e_level0_col14" class="col_heading level0 col14" >interes</th>
+      <th id="T_8775e_level0_col15" class="col_heading level0 col15" >flujo</th>
+      <th id="T_8775e_level0_col16" class="col_heading level0 col16" >spread</th>
+      <th id="T_8775e_level0_col17" class="col_heading level0 col17" >gearing</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_5cb0f_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_5cb0f_row0_col0" class="data row0 col0" >2019-01-10</td>
-      <td id="T_5cb0f_row0_col1" class="data row0 col1" >2019-07-10</td>
-      <td id="T_5cb0f_row0_col2" class="data row0 col2" >2019-01-10</td>
-      <td id="T_5cb0f_row0_col3" class="data row0 col3" >2019-07-10</td>
-      <td id="T_5cb0f_row0_col4" class="data row0 col4" >2019-07-10</td>
-      <td id="T_5cb0f_row0_col5" class="data row0 col5" >38,000,000,000.00</td>
-      <td id="T_5cb0f_row0_col6" class="data row0 col6" >0.00</td>
-      <td id="T_5cb0f_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_5cb0f_row0_col8" class="data row0 col8" >CLP</td>
-      <td id="T_5cb0f_row0_col9" class="data row0 col9" >ICPCLP</td>
-      <td id="T_5cb0f_row0_col10" class="data row0 col10" >18,892.15</td>
-      <td id="T_5cb0f_row0_col11" class="data row0 col11" >19,015.28</td>
-      <td id="T_5cb0f_row0_col12" class="data row0 col12" >1.3000%</td>
-      <td id="T_5cb0f_row0_col13" class="data row0 col13" >LinAct360</td>
-      <td id="T_5cb0f_row0_col14" class="data row0 col14" >248,372,222.00</td>
-      <td id="T_5cb0f_row0_col15" class="data row0 col15" >248,372,222.00</td>
-      <td id="T_5cb0f_row0_col16" class="data row0 col16" >0.0000%</td>
-      <td id="T_5cb0f_row0_col17" class="data row0 col17" >1.00</td>
+      <th id="T_8775e_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_8775e_row0_col0" class="data row0 col0" >2019-01-10</td>
+      <td id="T_8775e_row0_col1" class="data row0 col1" >2019-07-10</td>
+      <td id="T_8775e_row0_col2" class="data row0 col2" >2019-01-10</td>
+      <td id="T_8775e_row0_col3" class="data row0 col3" >2019-07-10</td>
+      <td id="T_8775e_row0_col4" class="data row0 col4" >2019-07-10</td>
+      <td id="T_8775e_row0_col5" class="data row0 col5" >38,000,000,000.00</td>
+      <td id="T_8775e_row0_col6" class="data row0 col6" >0.00</td>
+      <td id="T_8775e_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_8775e_row0_col8" class="data row0 col8" >CLP</td>
+      <td id="T_8775e_row0_col9" class="data row0 col9" >ICPCLP</td>
+      <td id="T_8775e_row0_col10" class="data row0 col10" >18,892.15</td>
+      <td id="T_8775e_row0_col11" class="data row0 col11" >19,015.28</td>
+      <td id="T_8775e_row0_col12" class="data row0 col12" >1.3000%</td>
+      <td id="T_8775e_row0_col13" class="data row0 col13" >LinAct360</td>
+      <td id="T_8775e_row0_col14" class="data row0 col14" >248,372,222.00</td>
+      <td id="T_8775e_row0_col15" class="data row0 col15" >248,372,222.00</td>
+      <td id="T_8775e_row0_col16" class="data row0 col16" >0.0000%</td>
+      <td id="T_8775e_row0_col17" class="data row0 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_5cb0f_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_5cb0f_row1_col0" class="data row1 col0" >2019-07-10</td>
-      <td id="T_5cb0f_row1_col1" class="data row1 col1" >2020-01-10</td>
-      <td id="T_5cb0f_row1_col2" class="data row1 col2" >2019-07-10</td>
-      <td id="T_5cb0f_row1_col3" class="data row1 col3" >2020-01-10</td>
-      <td id="T_5cb0f_row1_col4" class="data row1 col4" >2020-01-10</td>
-      <td id="T_5cb0f_row1_col5" class="data row1 col5" >38,000,000,000.00</td>
-      <td id="T_5cb0f_row1_col6" class="data row1 col6" >0.00</td>
-      <td id="T_5cb0f_row1_col7" class="data row1 col7" >True</td>
-      <td id="T_5cb0f_row1_col8" class="data row1 col8" >CLP</td>
-      <td id="T_5cb0f_row1_col9" class="data row1 col9" >ICPCLP</td>
-      <td id="T_5cb0f_row1_col10" class="data row1 col10" >19,015.28</td>
-      <td id="T_5cb0f_row1_col11" class="data row1 col11" >19,138.86</td>
-      <td id="T_5cb0f_row1_col12" class="data row1 col12" >1.2700%</td>
-      <td id="T_5cb0f_row1_col13" class="data row1 col13" >LinAct360</td>
-      <td id="T_5cb0f_row1_col14" class="data row1 col14" >246,662,222.00</td>
-      <td id="T_5cb0f_row1_col15" class="data row1 col15" >246,662,222.00</td>
-      <td id="T_5cb0f_row1_col16" class="data row1 col16" >0.0000%</td>
-      <td id="T_5cb0f_row1_col17" class="data row1 col17" >1.00</td>
+      <th id="T_8775e_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_8775e_row1_col0" class="data row1 col0" >2019-07-10</td>
+      <td id="T_8775e_row1_col1" class="data row1 col1" >2020-01-10</td>
+      <td id="T_8775e_row1_col2" class="data row1 col2" >2019-07-10</td>
+      <td id="T_8775e_row1_col3" class="data row1 col3" >2020-01-10</td>
+      <td id="T_8775e_row1_col4" class="data row1 col4" >2020-01-10</td>
+      <td id="T_8775e_row1_col5" class="data row1 col5" >38,000,000,000.00</td>
+      <td id="T_8775e_row1_col6" class="data row1 col6" >0.00</td>
+      <td id="T_8775e_row1_col7" class="data row1 col7" >True</td>
+      <td id="T_8775e_row1_col8" class="data row1 col8" >CLP</td>
+      <td id="T_8775e_row1_col9" class="data row1 col9" >ICPCLP</td>
+      <td id="T_8775e_row1_col10" class="data row1 col10" >19,015.28</td>
+      <td id="T_8775e_row1_col11" class="data row1 col11" >19,138.86</td>
+      <td id="T_8775e_row1_col12" class="data row1 col12" >1.2700%</td>
+      <td id="T_8775e_row1_col13" class="data row1 col13" >LinAct360</td>
+      <td id="T_8775e_row1_col14" class="data row1 col14" >246,662,222.00</td>
+      <td id="T_8775e_row1_col15" class="data row1 col15" >246,662,222.00</td>
+      <td id="T_8775e_row1_col16" class="data row1 col16" >0.0000%</td>
+      <td id="T_8775e_row1_col17" class="data row1 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_5cb0f_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_5cb0f_row2_col0" class="data row2 col0" >2020-01-10</td>
-      <td id="T_5cb0f_row2_col1" class="data row2 col1" >2020-07-10</td>
-      <td id="T_5cb0f_row2_col2" class="data row2 col2" >2020-01-10</td>
-      <td id="T_5cb0f_row2_col3" class="data row2 col3" >2020-07-10</td>
-      <td id="T_5cb0f_row2_col4" class="data row2 col4" >2020-07-10</td>
-      <td id="T_5cb0f_row2_col5" class="data row2 col5" >38,000,000,000.00</td>
-      <td id="T_5cb0f_row2_col6" class="data row2 col6" >0.00</td>
-      <td id="T_5cb0f_row2_col7" class="data row2 col7" >True</td>
-      <td id="T_5cb0f_row2_col8" class="data row2 col8" >CLP</td>
-      <td id="T_5cb0f_row2_col9" class="data row2 col9" >ICPCLP</td>
-      <td id="T_5cb0f_row2_col10" class="data row2 col10" >19,138.86</td>
-      <td id="T_5cb0f_row2_col11" class="data row2 col11" >19,264.34</td>
-      <td id="T_5cb0f_row2_col12" class="data row2 col12" >1.3000%</td>
-      <td id="T_5cb0f_row2_col13" class="data row2 col13" >LinAct360</td>
-      <td id="T_5cb0f_row2_col14" class="data row2 col14" >249,744,444.00</td>
-      <td id="T_5cb0f_row2_col15" class="data row2 col15" >249,744,444.00</td>
-      <td id="T_5cb0f_row2_col16" class="data row2 col16" >0.0000%</td>
-      <td id="T_5cb0f_row2_col17" class="data row2 col17" >1.00</td>
+      <th id="T_8775e_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_8775e_row2_col0" class="data row2 col0" >2020-01-10</td>
+      <td id="T_8775e_row2_col1" class="data row2 col1" >2020-07-10</td>
+      <td id="T_8775e_row2_col2" class="data row2 col2" >2020-01-10</td>
+      <td id="T_8775e_row2_col3" class="data row2 col3" >2020-07-10</td>
+      <td id="T_8775e_row2_col4" class="data row2 col4" >2020-07-10</td>
+      <td id="T_8775e_row2_col5" class="data row2 col5" >38,000,000,000.00</td>
+      <td id="T_8775e_row2_col6" class="data row2 col6" >0.00</td>
+      <td id="T_8775e_row2_col7" class="data row2 col7" >True</td>
+      <td id="T_8775e_row2_col8" class="data row2 col8" >CLP</td>
+      <td id="T_8775e_row2_col9" class="data row2 col9" >ICPCLP</td>
+      <td id="T_8775e_row2_col10" class="data row2 col10" >19,138.86</td>
+      <td id="T_8775e_row2_col11" class="data row2 col11" >19,264.34</td>
+      <td id="T_8775e_row2_col12" class="data row2 col12" >1.3000%</td>
+      <td id="T_8775e_row2_col13" class="data row2 col13" >LinAct360</td>
+      <td id="T_8775e_row2_col14" class="data row2 col14" >249,744,444.00</td>
+      <td id="T_8775e_row2_col15" class="data row2 col15" >249,744,444.00</td>
+      <td id="T_8775e_row2_col16" class="data row2 col16" >0.0000%</td>
+      <td id="T_8775e_row2_col17" class="data row2 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_5cb0f_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_5cb0f_row3_col0" class="data row3 col0" >2020-07-10</td>
-      <td id="T_5cb0f_row3_col1" class="data row3 col1" >2021-01-11</td>
-      <td id="T_5cb0f_row3_col2" class="data row3 col2" >2020-07-10</td>
-      <td id="T_5cb0f_row3_col3" class="data row3 col3" >2021-01-11</td>
-      <td id="T_5cb0f_row3_col4" class="data row3 col4" >2021-01-11</td>
-      <td id="T_5cb0f_row3_col5" class="data row3 col5" >38,000,000,000.00</td>
-      <td id="T_5cb0f_row3_col6" class="data row3 col6" >0.00</td>
-      <td id="T_5cb0f_row3_col7" class="data row3 col7" >True</td>
-      <td id="T_5cb0f_row3_col8" class="data row3 col8" >CLP</td>
-      <td id="T_5cb0f_row3_col9" class="data row3 col9" >ICPCLP</td>
-      <td id="T_5cb0f_row3_col10" class="data row3 col10" >19,264.34</td>
-      <td id="T_5cb0f_row3_col11" class="data row3 col11" >19,388.80</td>
-      <td id="T_5cb0f_row3_col12" class="data row3 col12" >1.2600%</td>
-      <td id="T_5cb0f_row3_col13" class="data row3 col13" >LinAct360</td>
-      <td id="T_5cb0f_row3_col14" class="data row3 col14" >246,050,000.00</td>
-      <td id="T_5cb0f_row3_col15" class="data row3 col15" >246,050,000.00</td>
-      <td id="T_5cb0f_row3_col16" class="data row3 col16" >0.0000%</td>
-      <td id="T_5cb0f_row3_col17" class="data row3 col17" >1.00</td>
+      <th id="T_8775e_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_8775e_row3_col0" class="data row3 col0" >2020-07-10</td>
+      <td id="T_8775e_row3_col1" class="data row3 col1" >2021-01-11</td>
+      <td id="T_8775e_row3_col2" class="data row3 col2" >2020-07-10</td>
+      <td id="T_8775e_row3_col3" class="data row3 col3" >2021-01-11</td>
+      <td id="T_8775e_row3_col4" class="data row3 col4" >2021-01-11</td>
+      <td id="T_8775e_row3_col5" class="data row3 col5" >38,000,000,000.00</td>
+      <td id="T_8775e_row3_col6" class="data row3 col6" >0.00</td>
+      <td id="T_8775e_row3_col7" class="data row3 col7" >True</td>
+      <td id="T_8775e_row3_col8" class="data row3 col8" >CLP</td>
+      <td id="T_8775e_row3_col9" class="data row3 col9" >ICPCLP</td>
+      <td id="T_8775e_row3_col10" class="data row3 col10" >19,264.34</td>
+      <td id="T_8775e_row3_col11" class="data row3 col11" >19,388.80</td>
+      <td id="T_8775e_row3_col12" class="data row3 col12" >1.2600%</td>
+      <td id="T_8775e_row3_col13" class="data row3 col13" >LinAct360</td>
+      <td id="T_8775e_row3_col14" class="data row3 col14" >246,050,000.00</td>
+      <td id="T_8775e_row3_col15" class="data row3 col15" >246,050,000.00</td>
+      <td id="T_8775e_row3_col16" class="data row3 col16" >0.0000%</td>
+      <td id="T_8775e_row3_col17" class="data row3 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_5cb0f_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_5cb0f_row4_col0" class="data row4 col0" >2021-01-11</td>
-      <td id="T_5cb0f_row4_col1" class="data row4 col1" >2021-07-12</td>
-      <td id="T_5cb0f_row4_col2" class="data row4 col2" >2021-01-11</td>
-      <td id="T_5cb0f_row4_col3" class="data row4 col3" >2021-07-12</td>
-      <td id="T_5cb0f_row4_col4" class="data row4 col4" >2021-07-12</td>
-      <td id="T_5cb0f_row4_col5" class="data row4 col5" >38,000,000,000.00</td>
-      <td id="T_5cb0f_row4_col6" class="data row4 col6" >0.00</td>
-      <td id="T_5cb0f_row4_col7" class="data row4 col7" >True</td>
-      <td id="T_5cb0f_row4_col8" class="data row4 col8" >CLP</td>
-      <td id="T_5cb0f_row4_col9" class="data row4 col9" >ICPCLP</td>
-      <td id="T_5cb0f_row4_col10" class="data row4 col10" >19,388.80</td>
-      <td id="T_5cb0f_row4_col11" class="data row4 col11" >19,550.81</td>
-      <td id="T_5cb0f_row4_col12" class="data row4 col12" >1.6500%</td>
-      <td id="T_5cb0f_row4_col13" class="data row4 col13" >LinAct360</td>
-      <td id="T_5cb0f_row4_col14" class="data row4 col14" >316,983,333.00</td>
-      <td id="T_5cb0f_row4_col15" class="data row4 col15" >316,983,333.00</td>
-      <td id="T_5cb0f_row4_col16" class="data row4 col16" >0.0000%</td>
-      <td id="T_5cb0f_row4_col17" class="data row4 col17" >1.00</td>
+      <th id="T_8775e_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_8775e_row4_col0" class="data row4 col0" >2021-01-11</td>
+      <td id="T_8775e_row4_col1" class="data row4 col1" >2021-07-12</td>
+      <td id="T_8775e_row4_col2" class="data row4 col2" >2021-01-11</td>
+      <td id="T_8775e_row4_col3" class="data row4 col3" >2021-07-12</td>
+      <td id="T_8775e_row4_col4" class="data row4 col4" >2021-07-12</td>
+      <td id="T_8775e_row4_col5" class="data row4 col5" >38,000,000,000.00</td>
+      <td id="T_8775e_row4_col6" class="data row4 col6" >0.00</td>
+      <td id="T_8775e_row4_col7" class="data row4 col7" >True</td>
+      <td id="T_8775e_row4_col8" class="data row4 col8" >CLP</td>
+      <td id="T_8775e_row4_col9" class="data row4 col9" >ICPCLP</td>
+      <td id="T_8775e_row4_col10" class="data row4 col10" >19,388.80</td>
+      <td id="T_8775e_row4_col11" class="data row4 col11" >19,550.81</td>
+      <td id="T_8775e_row4_col12" class="data row4 col12" >1.6500%</td>
+      <td id="T_8775e_row4_col13" class="data row4 col13" >LinAct360</td>
+      <td id="T_8775e_row4_col14" class="data row4 col14" >316,983,333.00</td>
+      <td id="T_8775e_row4_col15" class="data row4 col15" >316,983,333.00</td>
+      <td id="T_8775e_row4_col16" class="data row4 col16" >0.0000%</td>
+      <td id="T_8775e_row4_col17" class="data row4 col17" >1.00</td>
     </tr>
     <tr>
-      <th id="T_5cb0f_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_5cb0f_row5_col0" class="data row5 col0" >2021-07-12</td>
-      <td id="T_5cb0f_row5_col1" class="data row5 col1" >2022-01-10</td>
-      <td id="T_5cb0f_row5_col2" class="data row5 col2" >2021-07-12</td>
-      <td id="T_5cb0f_row5_col3" class="data row5 col3" >2022-01-10</td>
-      <td id="T_5cb0f_row5_col4" class="data row5 col4" >2022-01-10</td>
-      <td id="T_5cb0f_row5_col5" class="data row5 col5" >38,000,000,000.00</td>
-      <td id="T_5cb0f_row5_col6" class="data row5 col6" >38,000,000,000.00</td>
-      <td id="T_5cb0f_row5_col7" class="data row5 col7" >True</td>
-      <td id="T_5cb0f_row5_col8" class="data row5 col8" >CLP</td>
-      <td id="T_5cb0f_row5_col9" class="data row5 col9" >ICPCLP</td>
-      <td id="T_5cb0f_row5_col10" class="data row5 col10" >19,550.81</td>
-      <td id="T_5cb0f_row5_col11" class="data row5 col11" >19,728.77</td>
-      <td id="T_5cb0f_row5_col12" class="data row5 col12" >1.8000%</td>
-      <td id="T_5cb0f_row5_col13" class="data row5 col13" >LinAct360</td>
-      <td id="T_5cb0f_row5_col14" class="data row5 col14" >345,800,000.00</td>
-      <td id="T_5cb0f_row5_col15" class="data row5 col15" >38,345,800,000.00</td>
-      <td id="T_5cb0f_row5_col16" class="data row5 col16" >0.0000%</td>
-      <td id="T_5cb0f_row5_col17" class="data row5 col17" >1.00</td>
+      <th id="T_8775e_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_8775e_row5_col0" class="data row5 col0" >2021-07-12</td>
+      <td id="T_8775e_row5_col1" class="data row5 col1" >2022-01-10</td>
+      <td id="T_8775e_row5_col2" class="data row5 col2" >2021-07-12</td>
+      <td id="T_8775e_row5_col3" class="data row5 col3" >2022-01-10</td>
+      <td id="T_8775e_row5_col4" class="data row5 col4" >2022-01-10</td>
+      <td id="T_8775e_row5_col5" class="data row5 col5" >38,000,000,000.00</td>
+      <td id="T_8775e_row5_col6" class="data row5 col6" >38,000,000,000.00</td>
+      <td id="T_8775e_row5_col7" class="data row5 col7" >True</td>
+      <td id="T_8775e_row5_col8" class="data row5 col8" >CLP</td>
+      <td id="T_8775e_row5_col9" class="data row5 col9" >ICPCLP</td>
+      <td id="T_8775e_row5_col10" class="data row5 col10" >19,550.81</td>
+      <td id="T_8775e_row5_col11" class="data row5 col11" >19,728.77</td>
+      <td id="T_8775e_row5_col12" class="data row5 col12" >1.8000%</td>
+      <td id="T_8775e_row5_col13" class="data row5 col13" >LinAct360</td>
+      <td id="T_8775e_row5_col14" class="data row5 col14" >345,800,000.00</td>
+      <td id="T_8775e_row5_col15" class="data row5 col15" >38,345,800,000.00</td>
+      <td id="T_8775e_row5_col16" class="data row5 col16" >0.0000%</td>
+      <td id="T_8775e_row5_col17" class="data row5 col17" >1.00</td>
     </tr>
   </tbody>
 </table>
@@ -2301,81 +2301,81 @@ aux.leg_as_dataframe(ibor_leg).style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_fa344">
+<table id="T_48003">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_fa344_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_fa344_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_fa344_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
-      <th id="T_fa344_level0_col3" class="col_heading level0 col3" >fecha_pago</th>
-      <th id="T_fa344_level0_col4" class="col_heading level0 col4" >nocional</th>
-      <th id="T_fa344_level0_col5" class="col_heading level0 col5" >amortizacion</th>
-      <th id="T_fa344_level0_col6" class="col_heading level0 col6" >interes</th>
-      <th id="T_fa344_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_fa344_level0_col8" class="col_heading level0 col8" >flujo</th>
-      <th id="T_fa344_level0_col9" class="col_heading level0 col9" >moneda_nocional</th>
-      <th id="T_fa344_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
-      <th id="T_fa344_level0_col11" class="col_heading level0 col11" >valor_tasa</th>
-      <th id="T_fa344_level0_col12" class="col_heading level0 col12" >spread</th>
-      <th id="T_fa344_level0_col13" class="col_heading level0 col13" >gearing</th>
-      <th id="T_fa344_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
+      <th id="T_48003_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_48003_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_48003_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
+      <th id="T_48003_level0_col3" class="col_heading level0 col3" >fecha_pago</th>
+      <th id="T_48003_level0_col4" class="col_heading level0 col4" >nocional</th>
+      <th id="T_48003_level0_col5" class="col_heading level0 col5" >amortizacion</th>
+      <th id="T_48003_level0_col6" class="col_heading level0 col6" >interes</th>
+      <th id="T_48003_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_48003_level0_col8" class="col_heading level0 col8" >flujo</th>
+      <th id="T_48003_level0_col9" class="col_heading level0 col9" >moneda_nocional</th>
+      <th id="T_48003_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
+      <th id="T_48003_level0_col11" class="col_heading level0 col11" >valor_tasa</th>
+      <th id="T_48003_level0_col12" class="col_heading level0 col12" >spread</th>
+      <th id="T_48003_level0_col13" class="col_heading level0 col13" >gearing</th>
+      <th id="T_48003_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_fa344_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_fa344_row0_col0" class="data row0 col0" >2019-11-12</td>
-      <td id="T_fa344_row0_col1" class="data row0 col1" >2020-05-12</td>
-      <td id="T_fa344_row0_col2" class="data row0 col2" >2019-11-08</td>
-      <td id="T_fa344_row0_col3" class="data row0 col3" >2020-05-12</td>
-      <td id="T_fa344_row0_col4" class="data row0 col4" >20,000,000.00</td>
-      <td id="T_fa344_row0_col5" class="data row0 col5" >0.00</td>
-      <td id="T_fa344_row0_col6" class="data row0 col6" >0.00</td>
-      <td id="T_fa344_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_fa344_row0_col8" class="data row0 col8" >0.00</td>
-      <td id="T_fa344_row0_col9" class="data row0 col9" >USD</td>
-      <td id="T_fa344_row0_col10" class="data row0 col10" >TERSOFR6M</td>
-      <td id="T_fa344_row0_col11" class="data row0 col11" >0.0000%</td>
-      <td id="T_fa344_row0_col12" class="data row0 col12" >0.0000%</td>
-      <td id="T_fa344_row0_col13" class="data row0 col13" >1.00</td>
-      <td id="T_fa344_row0_col14" class="data row0 col14" >LinAct360</td>
+      <th id="T_48003_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_48003_row0_col0" class="data row0 col0" >2019-11-12</td>
+      <td id="T_48003_row0_col1" class="data row0 col1" >2020-05-12</td>
+      <td id="T_48003_row0_col2" class="data row0 col2" >2019-11-08</td>
+      <td id="T_48003_row0_col3" class="data row0 col3" >2020-05-12</td>
+      <td id="T_48003_row0_col4" class="data row0 col4" >20,000,000.00</td>
+      <td id="T_48003_row0_col5" class="data row0 col5" >0.00</td>
+      <td id="T_48003_row0_col6" class="data row0 col6" >0.00</td>
+      <td id="T_48003_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_48003_row0_col8" class="data row0 col8" >0.00</td>
+      <td id="T_48003_row0_col9" class="data row0 col9" >USD</td>
+      <td id="T_48003_row0_col10" class="data row0 col10" >TERSOFR6M</td>
+      <td id="T_48003_row0_col11" class="data row0 col11" >0.0000%</td>
+      <td id="T_48003_row0_col12" class="data row0 col12" >0.0000%</td>
+      <td id="T_48003_row0_col13" class="data row0 col13" >1.00</td>
+      <td id="T_48003_row0_col14" class="data row0 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fa344_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_fa344_row1_col0" class="data row1 col0" >2020-05-12</td>
-      <td id="T_fa344_row1_col1" class="data row1 col1" >2020-11-12</td>
-      <td id="T_fa344_row1_col2" class="data row1 col2" >2020-05-08</td>
-      <td id="T_fa344_row1_col3" class="data row1 col3" >2020-11-12</td>
-      <td id="T_fa344_row1_col4" class="data row1 col4" >20,000,000.00</td>
-      <td id="T_fa344_row1_col5" class="data row1 col5" >0.00</td>
-      <td id="T_fa344_row1_col6" class="data row1 col6" >0.00</td>
-      <td id="T_fa344_row1_col7" class="data row1 col7" >True</td>
-      <td id="T_fa344_row1_col8" class="data row1 col8" >0.00</td>
-      <td id="T_fa344_row1_col9" class="data row1 col9" >USD</td>
-      <td id="T_fa344_row1_col10" class="data row1 col10" >TERSOFR6M</td>
-      <td id="T_fa344_row1_col11" class="data row1 col11" >0.0000%</td>
-      <td id="T_fa344_row1_col12" class="data row1 col12" >0.0000%</td>
-      <td id="T_fa344_row1_col13" class="data row1 col13" >1.00</td>
-      <td id="T_fa344_row1_col14" class="data row1 col14" >LinAct360</td>
+      <th id="T_48003_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_48003_row1_col0" class="data row1 col0" >2020-05-12</td>
+      <td id="T_48003_row1_col1" class="data row1 col1" >2020-11-12</td>
+      <td id="T_48003_row1_col2" class="data row1 col2" >2020-05-08</td>
+      <td id="T_48003_row1_col3" class="data row1 col3" >2020-11-12</td>
+      <td id="T_48003_row1_col4" class="data row1 col4" >20,000,000.00</td>
+      <td id="T_48003_row1_col5" class="data row1 col5" >0.00</td>
+      <td id="T_48003_row1_col6" class="data row1 col6" >0.00</td>
+      <td id="T_48003_row1_col7" class="data row1 col7" >True</td>
+      <td id="T_48003_row1_col8" class="data row1 col8" >0.00</td>
+      <td id="T_48003_row1_col9" class="data row1 col9" >USD</td>
+      <td id="T_48003_row1_col10" class="data row1 col10" >TERSOFR6M</td>
+      <td id="T_48003_row1_col11" class="data row1 col11" >0.0000%</td>
+      <td id="T_48003_row1_col12" class="data row1 col12" >0.0000%</td>
+      <td id="T_48003_row1_col13" class="data row1 col13" >1.00</td>
+      <td id="T_48003_row1_col14" class="data row1 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_fa344_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_fa344_row2_col0" class="data row2 col0" >2020-11-12</td>
-      <td id="T_fa344_row2_col1" class="data row2 col1" >2021-05-12</td>
-      <td id="T_fa344_row2_col2" class="data row2 col2" >2020-11-10</td>
-      <td id="T_fa344_row2_col3" class="data row2 col3" >2021-05-12</td>
-      <td id="T_fa344_row2_col4" class="data row2 col4" >20,000,000.00</td>
-      <td id="T_fa344_row2_col5" class="data row2 col5" >20,000,000.00</td>
-      <td id="T_fa344_row2_col6" class="data row2 col6" >0.00</td>
-      <td id="T_fa344_row2_col7" class="data row2 col7" >True</td>
-      <td id="T_fa344_row2_col8" class="data row2 col8" >20,000,000.00</td>
-      <td id="T_fa344_row2_col9" class="data row2 col9" >USD</td>
-      <td id="T_fa344_row2_col10" class="data row2 col10" >TERSOFR6M</td>
-      <td id="T_fa344_row2_col11" class="data row2 col11" >0.0000%</td>
-      <td id="T_fa344_row2_col12" class="data row2 col12" >0.0000%</td>
-      <td id="T_fa344_row2_col13" class="data row2 col13" >1.00</td>
-      <td id="T_fa344_row2_col14" class="data row2 col14" >LinAct360</td>
+      <th id="T_48003_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_48003_row2_col0" class="data row2 col0" >2020-11-12</td>
+      <td id="T_48003_row2_col1" class="data row2 col1" >2021-05-12</td>
+      <td id="T_48003_row2_col2" class="data row2 col2" >2020-11-10</td>
+      <td id="T_48003_row2_col3" class="data row2 col3" >2021-05-12</td>
+      <td id="T_48003_row2_col4" class="data row2 col4" >20,000,000.00</td>
+      <td id="T_48003_row2_col5" class="data row2 col5" >20,000,000.00</td>
+      <td id="T_48003_row2_col6" class="data row2 col6" >0.00</td>
+      <td id="T_48003_row2_col7" class="data row2 col7" >True</td>
+      <td id="T_48003_row2_col8" class="data row2 col8" >20,000,000.00</td>
+      <td id="T_48003_row2_col9" class="data row2 col9" >USD</td>
+      <td id="T_48003_row2_col10" class="data row2 col10" >TERSOFR6M</td>
+      <td id="T_48003_row2_col11" class="data row2 col11" >0.0000%</td>
+      <td id="T_48003_row2_col12" class="data row2 col12" >0.0000%</td>
+      <td id="T_48003_row2_col13" class="data row2 col13" >1.00</td>
+      <td id="T_48003_row2_col14" class="data row2 col14" >LinAct360</td>
     </tr>
   </tbody>
 </table>
@@ -2401,81 +2401,81 @@ aux.leg_as_dataframe(ibor_leg).style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_e2210">
+<table id="T_986fe">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_e2210_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_e2210_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_e2210_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
-      <th id="T_e2210_level0_col3" class="col_heading level0 col3" >fecha_pago</th>
-      <th id="T_e2210_level0_col4" class="col_heading level0 col4" >nocional</th>
-      <th id="T_e2210_level0_col5" class="col_heading level0 col5" >amortizacion</th>
-      <th id="T_e2210_level0_col6" class="col_heading level0 col6" >interes</th>
-      <th id="T_e2210_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_e2210_level0_col8" class="col_heading level0 col8" >flujo</th>
-      <th id="T_e2210_level0_col9" class="col_heading level0 col9" >moneda_nocional</th>
-      <th id="T_e2210_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
-      <th id="T_e2210_level0_col11" class="col_heading level0 col11" >valor_tasa</th>
-      <th id="T_e2210_level0_col12" class="col_heading level0 col12" >spread</th>
-      <th id="T_e2210_level0_col13" class="col_heading level0 col13" >gearing</th>
-      <th id="T_e2210_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
+      <th id="T_986fe_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_986fe_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_986fe_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
+      <th id="T_986fe_level0_col3" class="col_heading level0 col3" >fecha_pago</th>
+      <th id="T_986fe_level0_col4" class="col_heading level0 col4" >nocional</th>
+      <th id="T_986fe_level0_col5" class="col_heading level0 col5" >amortizacion</th>
+      <th id="T_986fe_level0_col6" class="col_heading level0 col6" >interes</th>
+      <th id="T_986fe_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_986fe_level0_col8" class="col_heading level0 col8" >flujo</th>
+      <th id="T_986fe_level0_col9" class="col_heading level0 col9" >moneda_nocional</th>
+      <th id="T_986fe_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
+      <th id="T_986fe_level0_col11" class="col_heading level0 col11" >valor_tasa</th>
+      <th id="T_986fe_level0_col12" class="col_heading level0 col12" >spread</th>
+      <th id="T_986fe_level0_col13" class="col_heading level0 col13" >gearing</th>
+      <th id="T_986fe_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_e2210_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_e2210_row0_col0" class="data row0 col0" >2019-11-12</td>
-      <td id="T_e2210_row0_col1" class="data row0 col1" >2020-05-12</td>
-      <td id="T_e2210_row0_col2" class="data row0 col2" >2019-11-08</td>
-      <td id="T_e2210_row0_col3" class="data row0 col3" >2020-05-12</td>
-      <td id="T_e2210_row0_col4" class="data row0 col4" >20,000,000.00</td>
-      <td id="T_e2210_row0_col5" class="data row0 col5" >0.00</td>
-      <td id="T_e2210_row0_col6" class="data row0 col6" >202,222.22</td>
-      <td id="T_e2210_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_e2210_row0_col8" class="data row0 col8" >202,222.22</td>
-      <td id="T_e2210_row0_col9" class="data row0 col9" >USD</td>
-      <td id="T_e2210_row0_col10" class="data row0 col10" >TERSOFR6M</td>
-      <td id="T_e2210_row0_col11" class="data row0 col11" >2.0000%</td>
-      <td id="T_e2210_row0_col12" class="data row0 col12" >0.0000%</td>
-      <td id="T_e2210_row0_col13" class="data row0 col13" >1.00</td>
-      <td id="T_e2210_row0_col14" class="data row0 col14" >LinAct360</td>
+      <th id="T_986fe_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_986fe_row0_col0" class="data row0 col0" >2019-11-12</td>
+      <td id="T_986fe_row0_col1" class="data row0 col1" >2020-05-12</td>
+      <td id="T_986fe_row0_col2" class="data row0 col2" >2019-11-08</td>
+      <td id="T_986fe_row0_col3" class="data row0 col3" >2020-05-12</td>
+      <td id="T_986fe_row0_col4" class="data row0 col4" >20,000,000.00</td>
+      <td id="T_986fe_row0_col5" class="data row0 col5" >0.00</td>
+      <td id="T_986fe_row0_col6" class="data row0 col6" >202,222.22</td>
+      <td id="T_986fe_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_986fe_row0_col8" class="data row0 col8" >202,222.22</td>
+      <td id="T_986fe_row0_col9" class="data row0 col9" >USD</td>
+      <td id="T_986fe_row0_col10" class="data row0 col10" >TERSOFR6M</td>
+      <td id="T_986fe_row0_col11" class="data row0 col11" >2.0000%</td>
+      <td id="T_986fe_row0_col12" class="data row0 col12" >0.0000%</td>
+      <td id="T_986fe_row0_col13" class="data row0 col13" >1.00</td>
+      <td id="T_986fe_row0_col14" class="data row0 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_e2210_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_e2210_row1_col0" class="data row1 col0" >2020-05-12</td>
-      <td id="T_e2210_row1_col1" class="data row1 col1" >2020-11-12</td>
-      <td id="T_e2210_row1_col2" class="data row1 col2" >2020-05-08</td>
-      <td id="T_e2210_row1_col3" class="data row1 col3" >2020-11-12</td>
-      <td id="T_e2210_row1_col4" class="data row1 col4" >20,000,000.00</td>
-      <td id="T_e2210_row1_col5" class="data row1 col5" >0.00</td>
-      <td id="T_e2210_row1_col6" class="data row1 col6" >169,878.64</td>
-      <td id="T_e2210_row1_col7" class="data row1 col7" >True</td>
-      <td id="T_e2210_row1_col8" class="data row1 col8" >169,878.64</td>
-      <td id="T_e2210_row1_col9" class="data row1 col9" >USD</td>
-      <td id="T_e2210_row1_col10" class="data row1 col10" >TERSOFR6M</td>
-      <td id="T_e2210_row1_col11" class="data row1 col11" >1.6619%</td>
-      <td id="T_e2210_row1_col12" class="data row1 col12" >0.0000%</td>
-      <td id="T_e2210_row1_col13" class="data row1 col13" >1.00</td>
-      <td id="T_e2210_row1_col14" class="data row1 col14" >LinAct360</td>
+      <th id="T_986fe_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_986fe_row1_col0" class="data row1 col0" >2020-05-12</td>
+      <td id="T_986fe_row1_col1" class="data row1 col1" >2020-11-12</td>
+      <td id="T_986fe_row1_col2" class="data row1 col2" >2020-05-08</td>
+      <td id="T_986fe_row1_col3" class="data row1 col3" >2020-11-12</td>
+      <td id="T_986fe_row1_col4" class="data row1 col4" >20,000,000.00</td>
+      <td id="T_986fe_row1_col5" class="data row1 col5" >0.00</td>
+      <td id="T_986fe_row1_col6" class="data row1 col6" >169,878.64</td>
+      <td id="T_986fe_row1_col7" class="data row1 col7" >True</td>
+      <td id="T_986fe_row1_col8" class="data row1 col8" >169,878.64</td>
+      <td id="T_986fe_row1_col9" class="data row1 col9" >USD</td>
+      <td id="T_986fe_row1_col10" class="data row1 col10" >TERSOFR6M</td>
+      <td id="T_986fe_row1_col11" class="data row1 col11" >1.6619%</td>
+      <td id="T_986fe_row1_col12" class="data row1 col12" >0.0000%</td>
+      <td id="T_986fe_row1_col13" class="data row1 col13" >1.00</td>
+      <td id="T_986fe_row1_col14" class="data row1 col14" >LinAct360</td>
     </tr>
     <tr>
-      <th id="T_e2210_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_e2210_row2_col0" class="data row2 col0" >2020-11-12</td>
-      <td id="T_e2210_row2_col1" class="data row2 col1" >2021-05-12</td>
-      <td id="T_e2210_row2_col2" class="data row2 col2" >2020-11-10</td>
-      <td id="T_e2210_row2_col3" class="data row2 col3" >2021-05-12</td>
-      <td id="T_e2210_row2_col4" class="data row2 col4" >20,000,000.00</td>
-      <td id="T_e2210_row2_col5" class="data row2 col5" >20,000,000.00</td>
-      <td id="T_e2210_row2_col6" class="data row2 col6" >155,899.59</td>
-      <td id="T_e2210_row2_col7" class="data row2 col7" >True</td>
-      <td id="T_e2210_row2_col8" class="data row2 col8" >20,155,899.59</td>
-      <td id="T_e2210_row2_col9" class="data row2 col9" >USD</td>
-      <td id="T_e2210_row2_col10" class="data row2 col10" >TERSOFR6M</td>
-      <td id="T_e2210_row2_col11" class="data row2 col11" >1.5504%</td>
-      <td id="T_e2210_row2_col12" class="data row2 col12" >0.0000%</td>
-      <td id="T_e2210_row2_col13" class="data row2 col13" >1.00</td>
-      <td id="T_e2210_row2_col14" class="data row2 col14" >LinAct360</td>
+      <th id="T_986fe_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_986fe_row2_col0" class="data row2 col0" >2020-11-12</td>
+      <td id="T_986fe_row2_col1" class="data row2 col1" >2021-05-12</td>
+      <td id="T_986fe_row2_col2" class="data row2 col2" >2020-11-10</td>
+      <td id="T_986fe_row2_col3" class="data row2 col3" >2021-05-12</td>
+      <td id="T_986fe_row2_col4" class="data row2 col4" >20,000,000.00</td>
+      <td id="T_986fe_row2_col5" class="data row2 col5" >20,000,000.00</td>
+      <td id="T_986fe_row2_col6" class="data row2 col6" >155,899.59</td>
+      <td id="T_986fe_row2_col7" class="data row2 col7" >True</td>
+      <td id="T_986fe_row2_col8" class="data row2 col8" >20,155,899.59</td>
+      <td id="T_986fe_row2_col9" class="data row2 col9" >USD</td>
+      <td id="T_986fe_row2_col10" class="data row2 col10" >TERSOFR6M</td>
+      <td id="T_986fe_row2_col11" class="data row2 col11" >1.5504%</td>
+      <td id="T_986fe_row2_col12" class="data row2 col12" >0.0000%</td>
+      <td id="T_986fe_row2_col13" class="data row2 col13" >1.00</td>
+      <td id="T_986fe_row2_col14" class="data row2 col14" >LinAct360</td>
     </tr>
   </tbody>
 </table>
@@ -2702,156 +2702,156 @@ aux.leg_as_dataframe(icp_clf_leg).style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_9456e">
+<table id="T_99538">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_9456e_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_9456e_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_9456e_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
-      <th id="T_9456e_level0_col3" class="col_heading level0 col3" >nocional</th>
-      <th id="T_9456e_level0_col4" class="col_heading level0 col4" >amortizacion</th>
-      <th id="T_9456e_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
-      <th id="T_9456e_level0_col6" class="col_heading level0 col6" >flujo</th>
-      <th id="T_9456e_level0_col7" class="col_heading level0 col7" >moneda_nocional</th>
-      <th id="T_9456e_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
-      <th id="T_9456e_level0_col9" class="col_heading level0 col9" >icp_final</th>
-      <th id="T_9456e_level0_col10" class="col_heading level0 col10" >uf_inicial</th>
-      <th id="T_9456e_level0_col11" class="col_heading level0 col11" >uf_final</th>
-      <th id="T_9456e_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
-      <th id="T_9456e_level0_col13" class="col_heading level0 col13" >interes</th>
-      <th id="T_9456e_level0_col14" class="col_heading level0 col14" >spread</th>
-      <th id="T_9456e_level0_col15" class="col_heading level0 col15" >gearing</th>
-      <th id="T_9456e_level0_col16" class="col_heading level0 col16" >tipo_tasa</th>
-      <th id="T_9456e_level0_col17" class="col_heading level0 col17" >flujo_en_clp</th>
+      <th id="T_99538_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_99538_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_99538_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
+      <th id="T_99538_level0_col3" class="col_heading level0 col3" >nocional</th>
+      <th id="T_99538_level0_col4" class="col_heading level0 col4" >amortizacion</th>
+      <th id="T_99538_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
+      <th id="T_99538_level0_col6" class="col_heading level0 col6" >flujo</th>
+      <th id="T_99538_level0_col7" class="col_heading level0 col7" >moneda_nocional</th>
+      <th id="T_99538_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
+      <th id="T_99538_level0_col9" class="col_heading level0 col9" >icp_final</th>
+      <th id="T_99538_level0_col10" class="col_heading level0 col10" >uf_inicial</th>
+      <th id="T_99538_level0_col11" class="col_heading level0 col11" >uf_final</th>
+      <th id="T_99538_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
+      <th id="T_99538_level0_col13" class="col_heading level0 col13" >interes</th>
+      <th id="T_99538_level0_col14" class="col_heading level0 col14" >spread</th>
+      <th id="T_99538_level0_col15" class="col_heading level0 col15" >gearing</th>
+      <th id="T_99538_level0_col16" class="col_heading level0 col16" >tipo_tasa</th>
+      <th id="T_99538_level0_col17" class="col_heading level0 col17" >flujo_en_clp</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_9456e_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_9456e_row0_col0" class="data row0 col0" >2018-05-31</td>
-      <td id="T_9456e_row0_col1" class="data row0 col1" >2018-10-31</td>
-      <td id="T_9456e_row0_col2" class="data row0 col2" >2018-10-31</td>
-      <td id="T_9456e_row0_col3" class="data row0 col3" >300,000.00</td>
-      <td id="T_9456e_row0_col4" class="data row0 col4" >0.00</td>
-      <td id="T_9456e_row0_col5" class="data row0 col5" >True</td>
-      <td id="T_9456e_row0_col6" class="data row0 col6" >0.00</td>
-      <td id="T_9456e_row0_col7" class="data row0 col7" >CLF</td>
-      <td id="T_9456e_row0_col8" class="data row0 col8" >10,000.00</td>
-      <td id="T_9456e_row0_col9" class="data row0 col9" >10,000.00</td>
-      <td id="T_9456e_row0_col10" class="data row0 col10" >35,000.00</td>
-      <td id="T_9456e_row0_col11" class="data row0 col11" >35,000.00</td>
-      <td id="T_9456e_row0_col12" class="data row0 col12" >0.0000%</td>
-      <td id="T_9456e_row0_col13" class="data row0 col13" >0.00</td>
-      <td id="T_9456e_row0_col14" class="data row0 col14" >0.0000%</td>
-      <td id="T_9456e_row0_col15" class="data row0 col15" >1.00</td>
-      <td id="T_9456e_row0_col16" class="data row0 col16" >LinAct360</td>
-      <td id="T_9456e_row0_col17" class="data row0 col17" >0.00</td>
+      <th id="T_99538_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_99538_row0_col0" class="data row0 col0" >2018-05-31</td>
+      <td id="T_99538_row0_col1" class="data row0 col1" >2018-10-31</td>
+      <td id="T_99538_row0_col2" class="data row0 col2" >2018-10-31</td>
+      <td id="T_99538_row0_col3" class="data row0 col3" >300,000.00</td>
+      <td id="T_99538_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_99538_row0_col5" class="data row0 col5" >True</td>
+      <td id="T_99538_row0_col6" class="data row0 col6" >0.00</td>
+      <td id="T_99538_row0_col7" class="data row0 col7" >CLF</td>
+      <td id="T_99538_row0_col8" class="data row0 col8" >10,000.00</td>
+      <td id="T_99538_row0_col9" class="data row0 col9" >10,000.00</td>
+      <td id="T_99538_row0_col10" class="data row0 col10" >35,000.00</td>
+      <td id="T_99538_row0_col11" class="data row0 col11" >35,000.00</td>
+      <td id="T_99538_row0_col12" class="data row0 col12" >0.0000%</td>
+      <td id="T_99538_row0_col13" class="data row0 col13" >0.00</td>
+      <td id="T_99538_row0_col14" class="data row0 col14" >0.0000%</td>
+      <td id="T_99538_row0_col15" class="data row0 col15" >1.00</td>
+      <td id="T_99538_row0_col16" class="data row0 col16" >LinAct360</td>
+      <td id="T_99538_row0_col17" class="data row0 col17" >0.00</td>
     </tr>
     <tr>
-      <th id="T_9456e_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_9456e_row1_col0" class="data row1 col0" >2018-10-31</td>
-      <td id="T_9456e_row1_col1" class="data row1 col1" >2019-04-30</td>
-      <td id="T_9456e_row1_col2" class="data row1 col2" >2019-04-30</td>
-      <td id="T_9456e_row1_col3" class="data row1 col3" >300,000.00</td>
-      <td id="T_9456e_row1_col4" class="data row1 col4" >0.00</td>
-      <td id="T_9456e_row1_col5" class="data row1 col5" >True</td>
-      <td id="T_9456e_row1_col6" class="data row1 col6" >0.00</td>
-      <td id="T_9456e_row1_col7" class="data row1 col7" >CLF</td>
-      <td id="T_9456e_row1_col8" class="data row1 col8" >10,000.00</td>
-      <td id="T_9456e_row1_col9" class="data row1 col9" >10,000.00</td>
-      <td id="T_9456e_row1_col10" class="data row1 col10" >35,000.00</td>
-      <td id="T_9456e_row1_col11" class="data row1 col11" >35,000.00</td>
-      <td id="T_9456e_row1_col12" class="data row1 col12" >0.0000%</td>
-      <td id="T_9456e_row1_col13" class="data row1 col13" >0.00</td>
-      <td id="T_9456e_row1_col14" class="data row1 col14" >0.0000%</td>
-      <td id="T_9456e_row1_col15" class="data row1 col15" >1.00</td>
-      <td id="T_9456e_row1_col16" class="data row1 col16" >LinAct360</td>
-      <td id="T_9456e_row1_col17" class="data row1 col17" >0.00</td>
+      <th id="T_99538_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_99538_row1_col0" class="data row1 col0" >2018-10-31</td>
+      <td id="T_99538_row1_col1" class="data row1 col1" >2019-04-30</td>
+      <td id="T_99538_row1_col2" class="data row1 col2" >2019-04-30</td>
+      <td id="T_99538_row1_col3" class="data row1 col3" >300,000.00</td>
+      <td id="T_99538_row1_col4" class="data row1 col4" >0.00</td>
+      <td id="T_99538_row1_col5" class="data row1 col5" >True</td>
+      <td id="T_99538_row1_col6" class="data row1 col6" >0.00</td>
+      <td id="T_99538_row1_col7" class="data row1 col7" >CLF</td>
+      <td id="T_99538_row1_col8" class="data row1 col8" >10,000.00</td>
+      <td id="T_99538_row1_col9" class="data row1 col9" >10,000.00</td>
+      <td id="T_99538_row1_col10" class="data row1 col10" >35,000.00</td>
+      <td id="T_99538_row1_col11" class="data row1 col11" >35,000.00</td>
+      <td id="T_99538_row1_col12" class="data row1 col12" >0.0000%</td>
+      <td id="T_99538_row1_col13" class="data row1 col13" >0.00</td>
+      <td id="T_99538_row1_col14" class="data row1 col14" >0.0000%</td>
+      <td id="T_99538_row1_col15" class="data row1 col15" >1.00</td>
+      <td id="T_99538_row1_col16" class="data row1 col16" >LinAct360</td>
+      <td id="T_99538_row1_col17" class="data row1 col17" >0.00</td>
     </tr>
     <tr>
-      <th id="T_9456e_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_9456e_row2_col0" class="data row2 col0" >2019-04-30</td>
-      <td id="T_9456e_row2_col1" class="data row2 col1" >2019-10-31</td>
-      <td id="T_9456e_row2_col2" class="data row2 col2" >2019-10-31</td>
-      <td id="T_9456e_row2_col3" class="data row2 col3" >300,000.00</td>
-      <td id="T_9456e_row2_col4" class="data row2 col4" >0.00</td>
-      <td id="T_9456e_row2_col5" class="data row2 col5" >True</td>
-      <td id="T_9456e_row2_col6" class="data row2 col6" >0.00</td>
-      <td id="T_9456e_row2_col7" class="data row2 col7" >CLF</td>
-      <td id="T_9456e_row2_col8" class="data row2 col8" >10,000.00</td>
-      <td id="T_9456e_row2_col9" class="data row2 col9" >10,000.00</td>
-      <td id="T_9456e_row2_col10" class="data row2 col10" >35,000.00</td>
-      <td id="T_9456e_row2_col11" class="data row2 col11" >35,000.00</td>
-      <td id="T_9456e_row2_col12" class="data row2 col12" >0.0000%</td>
-      <td id="T_9456e_row2_col13" class="data row2 col13" >0.00</td>
-      <td id="T_9456e_row2_col14" class="data row2 col14" >0.0000%</td>
-      <td id="T_9456e_row2_col15" class="data row2 col15" >1.00</td>
-      <td id="T_9456e_row2_col16" class="data row2 col16" >LinAct360</td>
-      <td id="T_9456e_row2_col17" class="data row2 col17" >0.00</td>
+      <th id="T_99538_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_99538_row2_col0" class="data row2 col0" >2019-04-30</td>
+      <td id="T_99538_row2_col1" class="data row2 col1" >2019-10-31</td>
+      <td id="T_99538_row2_col2" class="data row2 col2" >2019-10-31</td>
+      <td id="T_99538_row2_col3" class="data row2 col3" >300,000.00</td>
+      <td id="T_99538_row2_col4" class="data row2 col4" >0.00</td>
+      <td id="T_99538_row2_col5" class="data row2 col5" >True</td>
+      <td id="T_99538_row2_col6" class="data row2 col6" >0.00</td>
+      <td id="T_99538_row2_col7" class="data row2 col7" >CLF</td>
+      <td id="T_99538_row2_col8" class="data row2 col8" >10,000.00</td>
+      <td id="T_99538_row2_col9" class="data row2 col9" >10,000.00</td>
+      <td id="T_99538_row2_col10" class="data row2 col10" >35,000.00</td>
+      <td id="T_99538_row2_col11" class="data row2 col11" >35,000.00</td>
+      <td id="T_99538_row2_col12" class="data row2 col12" >0.0000%</td>
+      <td id="T_99538_row2_col13" class="data row2 col13" >0.00</td>
+      <td id="T_99538_row2_col14" class="data row2 col14" >0.0000%</td>
+      <td id="T_99538_row2_col15" class="data row2 col15" >1.00</td>
+      <td id="T_99538_row2_col16" class="data row2 col16" >LinAct360</td>
+      <td id="T_99538_row2_col17" class="data row2 col17" >0.00</td>
     </tr>
     <tr>
-      <th id="T_9456e_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_9456e_row3_col0" class="data row3 col0" >2019-10-31</td>
-      <td id="T_9456e_row3_col1" class="data row3 col1" >2020-04-30</td>
-      <td id="T_9456e_row3_col2" class="data row3 col2" >2020-04-30</td>
-      <td id="T_9456e_row3_col3" class="data row3 col3" >300,000.00</td>
-      <td id="T_9456e_row3_col4" class="data row3 col4" >0.00</td>
-      <td id="T_9456e_row3_col5" class="data row3 col5" >True</td>
-      <td id="T_9456e_row3_col6" class="data row3 col6" >0.00</td>
-      <td id="T_9456e_row3_col7" class="data row3 col7" >CLF</td>
-      <td id="T_9456e_row3_col8" class="data row3 col8" >10,000.00</td>
-      <td id="T_9456e_row3_col9" class="data row3 col9" >10,000.00</td>
-      <td id="T_9456e_row3_col10" class="data row3 col10" >35,000.00</td>
-      <td id="T_9456e_row3_col11" class="data row3 col11" >35,000.00</td>
-      <td id="T_9456e_row3_col12" class="data row3 col12" >0.0000%</td>
-      <td id="T_9456e_row3_col13" class="data row3 col13" >0.00</td>
-      <td id="T_9456e_row3_col14" class="data row3 col14" >0.0000%</td>
-      <td id="T_9456e_row3_col15" class="data row3 col15" >1.00</td>
-      <td id="T_9456e_row3_col16" class="data row3 col16" >LinAct360</td>
-      <td id="T_9456e_row3_col17" class="data row3 col17" >0.00</td>
+      <th id="T_99538_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_99538_row3_col0" class="data row3 col0" >2019-10-31</td>
+      <td id="T_99538_row3_col1" class="data row3 col1" >2020-04-30</td>
+      <td id="T_99538_row3_col2" class="data row3 col2" >2020-04-30</td>
+      <td id="T_99538_row3_col3" class="data row3 col3" >300,000.00</td>
+      <td id="T_99538_row3_col4" class="data row3 col4" >0.00</td>
+      <td id="T_99538_row3_col5" class="data row3 col5" >True</td>
+      <td id="T_99538_row3_col6" class="data row3 col6" >0.00</td>
+      <td id="T_99538_row3_col7" class="data row3 col7" >CLF</td>
+      <td id="T_99538_row3_col8" class="data row3 col8" >10,000.00</td>
+      <td id="T_99538_row3_col9" class="data row3 col9" >10,000.00</td>
+      <td id="T_99538_row3_col10" class="data row3 col10" >35,000.00</td>
+      <td id="T_99538_row3_col11" class="data row3 col11" >35,000.00</td>
+      <td id="T_99538_row3_col12" class="data row3 col12" >0.0000%</td>
+      <td id="T_99538_row3_col13" class="data row3 col13" >0.00</td>
+      <td id="T_99538_row3_col14" class="data row3 col14" >0.0000%</td>
+      <td id="T_99538_row3_col15" class="data row3 col15" >1.00</td>
+      <td id="T_99538_row3_col16" class="data row3 col16" >LinAct360</td>
+      <td id="T_99538_row3_col17" class="data row3 col17" >0.00</td>
     </tr>
     <tr>
-      <th id="T_9456e_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_9456e_row4_col0" class="data row4 col0" >2020-04-30</td>
-      <td id="T_9456e_row4_col1" class="data row4 col1" >2020-11-02</td>
-      <td id="T_9456e_row4_col2" class="data row4 col2" >2020-11-02</td>
-      <td id="T_9456e_row4_col3" class="data row4 col3" >300,000.00</td>
-      <td id="T_9456e_row4_col4" class="data row4 col4" >0.00</td>
-      <td id="T_9456e_row4_col5" class="data row4 col5" >True</td>
-      <td id="T_9456e_row4_col6" class="data row4 col6" >0.00</td>
-      <td id="T_9456e_row4_col7" class="data row4 col7" >CLF</td>
-      <td id="T_9456e_row4_col8" class="data row4 col8" >10,000.00</td>
-      <td id="T_9456e_row4_col9" class="data row4 col9" >10,000.00</td>
-      <td id="T_9456e_row4_col10" class="data row4 col10" >35,000.00</td>
-      <td id="T_9456e_row4_col11" class="data row4 col11" >35,000.00</td>
-      <td id="T_9456e_row4_col12" class="data row4 col12" >0.0000%</td>
-      <td id="T_9456e_row4_col13" class="data row4 col13" >0.00</td>
-      <td id="T_9456e_row4_col14" class="data row4 col14" >0.0000%</td>
-      <td id="T_9456e_row4_col15" class="data row4 col15" >1.00</td>
-      <td id="T_9456e_row4_col16" class="data row4 col16" >LinAct360</td>
-      <td id="T_9456e_row4_col17" class="data row4 col17" >0.00</td>
+      <th id="T_99538_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_99538_row4_col0" class="data row4 col0" >2020-04-30</td>
+      <td id="T_99538_row4_col1" class="data row4 col1" >2020-11-02</td>
+      <td id="T_99538_row4_col2" class="data row4 col2" >2020-11-02</td>
+      <td id="T_99538_row4_col3" class="data row4 col3" >300,000.00</td>
+      <td id="T_99538_row4_col4" class="data row4 col4" >0.00</td>
+      <td id="T_99538_row4_col5" class="data row4 col5" >True</td>
+      <td id="T_99538_row4_col6" class="data row4 col6" >0.00</td>
+      <td id="T_99538_row4_col7" class="data row4 col7" >CLF</td>
+      <td id="T_99538_row4_col8" class="data row4 col8" >10,000.00</td>
+      <td id="T_99538_row4_col9" class="data row4 col9" >10,000.00</td>
+      <td id="T_99538_row4_col10" class="data row4 col10" >35,000.00</td>
+      <td id="T_99538_row4_col11" class="data row4 col11" >35,000.00</td>
+      <td id="T_99538_row4_col12" class="data row4 col12" >0.0000%</td>
+      <td id="T_99538_row4_col13" class="data row4 col13" >0.00</td>
+      <td id="T_99538_row4_col14" class="data row4 col14" >0.0000%</td>
+      <td id="T_99538_row4_col15" class="data row4 col15" >1.00</td>
+      <td id="T_99538_row4_col16" class="data row4 col16" >LinAct360</td>
+      <td id="T_99538_row4_col17" class="data row4 col17" >0.00</td>
     </tr>
     <tr>
-      <th id="T_9456e_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_9456e_row5_col0" class="data row5 col0" >2020-11-02</td>
-      <td id="T_9456e_row5_col1" class="data row5 col1" >2021-04-30</td>
-      <td id="T_9456e_row5_col2" class="data row5 col2" >2021-04-30</td>
-      <td id="T_9456e_row5_col3" class="data row5 col3" >300,000.00</td>
-      <td id="T_9456e_row5_col4" class="data row5 col4" >300,000.00</td>
-      <td id="T_9456e_row5_col5" class="data row5 col5" >True</td>
-      <td id="T_9456e_row5_col6" class="data row5 col6" >300,000.00</td>
-      <td id="T_9456e_row5_col7" class="data row5 col7" >CLF</td>
-      <td id="T_9456e_row5_col8" class="data row5 col8" >10,000.00</td>
-      <td id="T_9456e_row5_col9" class="data row5 col9" >10,000.00</td>
-      <td id="T_9456e_row5_col10" class="data row5 col10" >35,000.00</td>
-      <td id="T_9456e_row5_col11" class="data row5 col11" >35,000.00</td>
-      <td id="T_9456e_row5_col12" class="data row5 col12" >0.0000%</td>
-      <td id="T_9456e_row5_col13" class="data row5 col13" >0.00</td>
-      <td id="T_9456e_row5_col14" class="data row5 col14" >0.0000%</td>
-      <td id="T_9456e_row5_col15" class="data row5 col15" >1.00</td>
-      <td id="T_9456e_row5_col16" class="data row5 col16" >LinAct360</td>
-      <td id="T_9456e_row5_col17" class="data row5 col17" >10,500,000,000.00</td>
+      <th id="T_99538_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_99538_row5_col0" class="data row5 col0" >2020-11-02</td>
+      <td id="T_99538_row5_col1" class="data row5 col1" >2021-04-30</td>
+      <td id="T_99538_row5_col2" class="data row5 col2" >2021-04-30</td>
+      <td id="T_99538_row5_col3" class="data row5 col3" >300,000.00</td>
+      <td id="T_99538_row5_col4" class="data row5 col4" >300,000.00</td>
+      <td id="T_99538_row5_col5" class="data row5 col5" >True</td>
+      <td id="T_99538_row5_col6" class="data row5 col6" >300,000.00</td>
+      <td id="T_99538_row5_col7" class="data row5 col7" >CLF</td>
+      <td id="T_99538_row5_col8" class="data row5 col8" >10,000.00</td>
+      <td id="T_99538_row5_col9" class="data row5 col9" >10,000.00</td>
+      <td id="T_99538_row5_col10" class="data row5 col10" >35,000.00</td>
+      <td id="T_99538_row5_col11" class="data row5 col11" >35,000.00</td>
+      <td id="T_99538_row5_col12" class="data row5 col12" >0.0000%</td>
+      <td id="T_99538_row5_col13" class="data row5 col13" >0.00</td>
+      <td id="T_99538_row5_col14" class="data row5 col14" >0.0000%</td>
+      <td id="T_99538_row5_col15" class="data row5 col15" >1.00</td>
+      <td id="T_99538_row5_col16" class="data row5 col16" >LinAct360</td>
+      <td id="T_99538_row5_col17" class="data row5 col17" >10,500,000,000.00</td>
     </tr>
   </tbody>
 </table>
@@ -2879,156 +2879,156 @@ aux.leg_as_dataframe(icp_clf_leg).style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_fbc87">
+<table id="T_743d1">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_fbc87_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_fbc87_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_fbc87_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
-      <th id="T_fbc87_level0_col3" class="col_heading level0 col3" >nocional</th>
-      <th id="T_fbc87_level0_col4" class="col_heading level0 col4" >amortizacion</th>
-      <th id="T_fbc87_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
-      <th id="T_fbc87_level0_col6" class="col_heading level0 col6" >flujo</th>
-      <th id="T_fbc87_level0_col7" class="col_heading level0 col7" >moneda_nocional</th>
-      <th id="T_fbc87_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
-      <th id="T_fbc87_level0_col9" class="col_heading level0 col9" >icp_final</th>
-      <th id="T_fbc87_level0_col10" class="col_heading level0 col10" >uf_inicial</th>
-      <th id="T_fbc87_level0_col11" class="col_heading level0 col11" >uf_final</th>
-      <th id="T_fbc87_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
-      <th id="T_fbc87_level0_col13" class="col_heading level0 col13" >interes</th>
-      <th id="T_fbc87_level0_col14" class="col_heading level0 col14" >spread</th>
-      <th id="T_fbc87_level0_col15" class="col_heading level0 col15" >gearing</th>
-      <th id="T_fbc87_level0_col16" class="col_heading level0 col16" >tipo_tasa</th>
-      <th id="T_fbc87_level0_col17" class="col_heading level0 col17" >flujo_en_clp</th>
+      <th id="T_743d1_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_743d1_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_743d1_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
+      <th id="T_743d1_level0_col3" class="col_heading level0 col3" >nocional</th>
+      <th id="T_743d1_level0_col4" class="col_heading level0 col4" >amortizacion</th>
+      <th id="T_743d1_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
+      <th id="T_743d1_level0_col6" class="col_heading level0 col6" >flujo</th>
+      <th id="T_743d1_level0_col7" class="col_heading level0 col7" >moneda_nocional</th>
+      <th id="T_743d1_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
+      <th id="T_743d1_level0_col9" class="col_heading level0 col9" >icp_final</th>
+      <th id="T_743d1_level0_col10" class="col_heading level0 col10" >uf_inicial</th>
+      <th id="T_743d1_level0_col11" class="col_heading level0 col11" >uf_final</th>
+      <th id="T_743d1_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
+      <th id="T_743d1_level0_col13" class="col_heading level0 col13" >interes</th>
+      <th id="T_743d1_level0_col14" class="col_heading level0 col14" >spread</th>
+      <th id="T_743d1_level0_col15" class="col_heading level0 col15" >gearing</th>
+      <th id="T_743d1_level0_col16" class="col_heading level0 col16" >tipo_tasa</th>
+      <th id="T_743d1_level0_col17" class="col_heading level0 col17" >flujo_en_clp</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_fbc87_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_fbc87_row0_col0" class="data row0 col0" >2018-05-31</td>
-      <td id="T_fbc87_row0_col1" class="data row0 col1" >2018-10-31</td>
-      <td id="T_fbc87_row0_col2" class="data row0 col2" >2018-10-31</td>
-      <td id="T_fbc87_row0_col3" class="data row0 col3" >300,000.00</td>
-      <td id="T_fbc87_row0_col4" class="data row0 col4" >0.00</td>
-      <td id="T_fbc87_row0_col5" class="data row0 col5" >True</td>
-      <td id="T_fbc87_row0_col6" class="data row0 col6" >0.00</td>
-      <td id="T_fbc87_row0_col7" class="data row0 col7" >CLF</td>
-      <td id="T_fbc87_row0_col8" class="data row0 col8" >10,000.00</td>
-      <td id="T_fbc87_row0_col9" class="data row0 col9" >10,000.00</td>
-      <td id="T_fbc87_row0_col10" class="data row0 col10" >35,000.00</td>
-      <td id="T_fbc87_row0_col11" class="data row0 col11" >35,000.00</td>
-      <td id="T_fbc87_row0_col12" class="data row0 col12" >0.0000%</td>
-      <td id="T_fbc87_row0_col13" class="data row0 col13" >0.00</td>
-      <td id="T_fbc87_row0_col14" class="data row0 col14" >0.0000%</td>
-      <td id="T_fbc87_row0_col15" class="data row0 col15" >1.00</td>
-      <td id="T_fbc87_row0_col16" class="data row0 col16" >LinAct360</td>
-      <td id="T_fbc87_row0_col17" class="data row0 col17" >0.00</td>
+      <th id="T_743d1_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_743d1_row0_col0" class="data row0 col0" >2018-05-31</td>
+      <td id="T_743d1_row0_col1" class="data row0 col1" >2018-10-31</td>
+      <td id="T_743d1_row0_col2" class="data row0 col2" >2018-10-31</td>
+      <td id="T_743d1_row0_col3" class="data row0 col3" >300,000.00</td>
+      <td id="T_743d1_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_743d1_row0_col5" class="data row0 col5" >True</td>
+      <td id="T_743d1_row0_col6" class="data row0 col6" >0.00</td>
+      <td id="T_743d1_row0_col7" class="data row0 col7" >CLF</td>
+      <td id="T_743d1_row0_col8" class="data row0 col8" >10,000.00</td>
+      <td id="T_743d1_row0_col9" class="data row0 col9" >10,000.00</td>
+      <td id="T_743d1_row0_col10" class="data row0 col10" >35,000.00</td>
+      <td id="T_743d1_row0_col11" class="data row0 col11" >35,000.00</td>
+      <td id="T_743d1_row0_col12" class="data row0 col12" >0.0000%</td>
+      <td id="T_743d1_row0_col13" class="data row0 col13" >0.00</td>
+      <td id="T_743d1_row0_col14" class="data row0 col14" >0.0000%</td>
+      <td id="T_743d1_row0_col15" class="data row0 col15" >1.00</td>
+      <td id="T_743d1_row0_col16" class="data row0 col16" >LinAct360</td>
+      <td id="T_743d1_row0_col17" class="data row0 col17" >0.00</td>
     </tr>
     <tr>
-      <th id="T_fbc87_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_fbc87_row1_col0" class="data row1 col0" >2018-10-31</td>
-      <td id="T_fbc87_row1_col1" class="data row1 col1" >2019-04-30</td>
-      <td id="T_fbc87_row1_col2" class="data row1 col2" >2019-04-30</td>
-      <td id="T_fbc87_row1_col3" class="data row1 col3" >300,000.00</td>
-      <td id="T_fbc87_row1_col4" class="data row1 col4" >0.00</td>
-      <td id="T_fbc87_row1_col5" class="data row1 col5" >True</td>
-      <td id="T_fbc87_row1_col6" class="data row1 col6" >0.00</td>
-      <td id="T_fbc87_row1_col7" class="data row1 col7" >CLF</td>
-      <td id="T_fbc87_row1_col8" class="data row1 col8" >10,000.00</td>
-      <td id="T_fbc87_row1_col9" class="data row1 col9" >10,000.00</td>
-      <td id="T_fbc87_row1_col10" class="data row1 col10" >35,000.00</td>
-      <td id="T_fbc87_row1_col11" class="data row1 col11" >35,000.00</td>
-      <td id="T_fbc87_row1_col12" class="data row1 col12" >0.0000%</td>
-      <td id="T_fbc87_row1_col13" class="data row1 col13" >0.00</td>
-      <td id="T_fbc87_row1_col14" class="data row1 col14" >0.0000%</td>
-      <td id="T_fbc87_row1_col15" class="data row1 col15" >1.00</td>
-      <td id="T_fbc87_row1_col16" class="data row1 col16" >LinAct360</td>
-      <td id="T_fbc87_row1_col17" class="data row1 col17" >0.00</td>
+      <th id="T_743d1_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_743d1_row1_col0" class="data row1 col0" >2018-10-31</td>
+      <td id="T_743d1_row1_col1" class="data row1 col1" >2019-04-30</td>
+      <td id="T_743d1_row1_col2" class="data row1 col2" >2019-04-30</td>
+      <td id="T_743d1_row1_col3" class="data row1 col3" >300,000.00</td>
+      <td id="T_743d1_row1_col4" class="data row1 col4" >0.00</td>
+      <td id="T_743d1_row1_col5" class="data row1 col5" >True</td>
+      <td id="T_743d1_row1_col6" class="data row1 col6" >0.00</td>
+      <td id="T_743d1_row1_col7" class="data row1 col7" >CLF</td>
+      <td id="T_743d1_row1_col8" class="data row1 col8" >10,000.00</td>
+      <td id="T_743d1_row1_col9" class="data row1 col9" >10,000.00</td>
+      <td id="T_743d1_row1_col10" class="data row1 col10" >35,000.00</td>
+      <td id="T_743d1_row1_col11" class="data row1 col11" >35,000.00</td>
+      <td id="T_743d1_row1_col12" class="data row1 col12" >0.0000%</td>
+      <td id="T_743d1_row1_col13" class="data row1 col13" >0.00</td>
+      <td id="T_743d1_row1_col14" class="data row1 col14" >0.0000%</td>
+      <td id="T_743d1_row1_col15" class="data row1 col15" >1.00</td>
+      <td id="T_743d1_row1_col16" class="data row1 col16" >LinAct360</td>
+      <td id="T_743d1_row1_col17" class="data row1 col17" >0.00</td>
     </tr>
     <tr>
-      <th id="T_fbc87_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_fbc87_row2_col0" class="data row2 col0" >2019-04-30</td>
-      <td id="T_fbc87_row2_col1" class="data row2 col1" >2019-10-31</td>
-      <td id="T_fbc87_row2_col2" class="data row2 col2" >2019-10-31</td>
-      <td id="T_fbc87_row2_col3" class="data row2 col3" >300,000.00</td>
-      <td id="T_fbc87_row2_col4" class="data row2 col4" >0.00</td>
-      <td id="T_fbc87_row2_col5" class="data row2 col5" >True</td>
-      <td id="T_fbc87_row2_col6" class="data row2 col6" >0.00</td>
-      <td id="T_fbc87_row2_col7" class="data row2 col7" >CLF</td>
-      <td id="T_fbc87_row2_col8" class="data row2 col8" >10,000.00</td>
-      <td id="T_fbc87_row2_col9" class="data row2 col9" >10,000.00</td>
-      <td id="T_fbc87_row2_col10" class="data row2 col10" >35,000.00</td>
-      <td id="T_fbc87_row2_col11" class="data row2 col11" >35,000.00</td>
-      <td id="T_fbc87_row2_col12" class="data row2 col12" >0.0000%</td>
-      <td id="T_fbc87_row2_col13" class="data row2 col13" >0.00</td>
-      <td id="T_fbc87_row2_col14" class="data row2 col14" >0.0000%</td>
-      <td id="T_fbc87_row2_col15" class="data row2 col15" >1.00</td>
-      <td id="T_fbc87_row2_col16" class="data row2 col16" >LinAct360</td>
-      <td id="T_fbc87_row2_col17" class="data row2 col17" >0.00</td>
+      <th id="T_743d1_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_743d1_row2_col0" class="data row2 col0" >2019-04-30</td>
+      <td id="T_743d1_row2_col1" class="data row2 col1" >2019-10-31</td>
+      <td id="T_743d1_row2_col2" class="data row2 col2" >2019-10-31</td>
+      <td id="T_743d1_row2_col3" class="data row2 col3" >300,000.00</td>
+      <td id="T_743d1_row2_col4" class="data row2 col4" >0.00</td>
+      <td id="T_743d1_row2_col5" class="data row2 col5" >True</td>
+      <td id="T_743d1_row2_col6" class="data row2 col6" >0.00</td>
+      <td id="T_743d1_row2_col7" class="data row2 col7" >CLF</td>
+      <td id="T_743d1_row2_col8" class="data row2 col8" >10,000.00</td>
+      <td id="T_743d1_row2_col9" class="data row2 col9" >10,000.00</td>
+      <td id="T_743d1_row2_col10" class="data row2 col10" >35,000.00</td>
+      <td id="T_743d1_row2_col11" class="data row2 col11" >35,000.00</td>
+      <td id="T_743d1_row2_col12" class="data row2 col12" >0.0000%</td>
+      <td id="T_743d1_row2_col13" class="data row2 col13" >0.00</td>
+      <td id="T_743d1_row2_col14" class="data row2 col14" >0.0000%</td>
+      <td id="T_743d1_row2_col15" class="data row2 col15" >1.00</td>
+      <td id="T_743d1_row2_col16" class="data row2 col16" >LinAct360</td>
+      <td id="T_743d1_row2_col17" class="data row2 col17" >0.00</td>
     </tr>
     <tr>
-      <th id="T_fbc87_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_fbc87_row3_col0" class="data row3 col0" >2019-10-31</td>
-      <td id="T_fbc87_row3_col1" class="data row3 col1" >2020-04-30</td>
-      <td id="T_fbc87_row3_col2" class="data row3 col2" >2020-04-30</td>
-      <td id="T_fbc87_row3_col3" class="data row3 col3" >300,000.00</td>
-      <td id="T_fbc87_row3_col4" class="data row3 col4" >0.00</td>
-      <td id="T_fbc87_row3_col5" class="data row3 col5" >True</td>
-      <td id="T_fbc87_row3_col6" class="data row3 col6" >-3,401.28</td>
-      <td id="T_fbc87_row3_col7" class="data row3 col7" >CLF</td>
-      <td id="T_fbc87_row3_col8" class="data row3 col8" >18,786.13</td>
-      <td id="T_fbc87_row3_col9" class="data row3 col9" >18,935.12</td>
-      <td id="T_fbc87_row3_col10" class="data row3 col10" >28,080.26</td>
-      <td id="T_fbc87_row3_col11" class="data row3 col11" >28,627.71</td>
-      <td id="T_fbc87_row3_col12" class="data row3 col12" >-2.2426%</td>
-      <td id="T_fbc87_row3_col13" class="data row3 col13" >-3,401.28</td>
-      <td id="T_fbc87_row3_col14" class="data row3 col14" >0.0000%</td>
-      <td id="T_fbc87_row3_col15" class="data row3 col15" >1.00</td>
-      <td id="T_fbc87_row3_col16" class="data row3 col16" >LinAct360</td>
-      <td id="T_fbc87_row3_col17" class="data row3 col17" >-97,370,764.00</td>
+      <th id="T_743d1_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_743d1_row3_col0" class="data row3 col0" >2019-10-31</td>
+      <td id="T_743d1_row3_col1" class="data row3 col1" >2020-04-30</td>
+      <td id="T_743d1_row3_col2" class="data row3 col2" >2020-04-30</td>
+      <td id="T_743d1_row3_col3" class="data row3 col3" >300,000.00</td>
+      <td id="T_743d1_row3_col4" class="data row3 col4" >0.00</td>
+      <td id="T_743d1_row3_col5" class="data row3 col5" >True</td>
+      <td id="T_743d1_row3_col6" class="data row3 col6" >-3,401.28</td>
+      <td id="T_743d1_row3_col7" class="data row3 col7" >CLF</td>
+      <td id="T_743d1_row3_col8" class="data row3 col8" >18,786.13</td>
+      <td id="T_743d1_row3_col9" class="data row3 col9" >18,935.12</td>
+      <td id="T_743d1_row3_col10" class="data row3 col10" >28,080.26</td>
+      <td id="T_743d1_row3_col11" class="data row3 col11" >28,627.71</td>
+      <td id="T_743d1_row3_col12" class="data row3 col12" >-2.2426%</td>
+      <td id="T_743d1_row3_col13" class="data row3 col13" >-3,401.28</td>
+      <td id="T_743d1_row3_col14" class="data row3 col14" >0.0000%</td>
+      <td id="T_743d1_row3_col15" class="data row3 col15" >1.00</td>
+      <td id="T_743d1_row3_col16" class="data row3 col16" >LinAct360</td>
+      <td id="T_743d1_row3_col17" class="data row3 col17" >-97,370,764.00</td>
     </tr>
     <tr>
-      <th id="T_fbc87_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_fbc87_row4_col0" class="data row4 col0" >2020-04-30</td>
-      <td id="T_fbc87_row4_col1" class="data row4 col1" >2020-11-02</td>
-      <td id="T_fbc87_row4_col2" class="data row4 col2" >2020-11-02</td>
-      <td id="T_fbc87_row4_col3" class="data row4 col3" >300,000.00</td>
-      <td id="T_fbc87_row4_col4" class="data row4 col4" >0.00</td>
-      <td id="T_fbc87_row4_col5" class="data row4 col5" >True</td>
-      <td id="T_fbc87_row4_col6" class="data row4 col6" >-2,589.43</td>
-      <td id="T_fbc87_row4_col7" class="data row4 col7" >CLF</td>
-      <td id="T_fbc87_row4_col8" class="data row4 col8" >18,935.12</td>
-      <td id="T_fbc87_row4_col9" class="data row4 col9" >19,050.65</td>
-      <td id="T_fbc87_row4_col10" class="data row4 col10" >28,627.71</td>
-      <td id="T_fbc87_row4_col11" class="data row4 col11" >29,053.02</td>
-      <td id="T_fbc87_row4_col12" class="data row4 col12" >-1.6706%</td>
-      <td id="T_fbc87_row4_col13" class="data row4 col13" >-2,589.43</td>
-      <td id="T_fbc87_row4_col14" class="data row4 col14" >0.0000%</td>
-      <td id="T_fbc87_row4_col15" class="data row4 col15" >1.00</td>
-      <td id="T_fbc87_row4_col16" class="data row4 col16" >LinAct360</td>
-      <td id="T_fbc87_row4_col17" class="data row4 col17" >-75,230,762.00</td>
+      <th id="T_743d1_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_743d1_row4_col0" class="data row4 col0" >2020-04-30</td>
+      <td id="T_743d1_row4_col1" class="data row4 col1" >2020-11-02</td>
+      <td id="T_743d1_row4_col2" class="data row4 col2" >2020-11-02</td>
+      <td id="T_743d1_row4_col3" class="data row4 col3" >300,000.00</td>
+      <td id="T_743d1_row4_col4" class="data row4 col4" >0.00</td>
+      <td id="T_743d1_row4_col5" class="data row4 col5" >True</td>
+      <td id="T_743d1_row4_col6" class="data row4 col6" >-2,589.43</td>
+      <td id="T_743d1_row4_col7" class="data row4 col7" >CLF</td>
+      <td id="T_743d1_row4_col8" class="data row4 col8" >18,935.12</td>
+      <td id="T_743d1_row4_col9" class="data row4 col9" >19,050.65</td>
+      <td id="T_743d1_row4_col10" class="data row4 col10" >28,627.71</td>
+      <td id="T_743d1_row4_col11" class="data row4 col11" >29,053.02</td>
+      <td id="T_743d1_row4_col12" class="data row4 col12" >-1.6706%</td>
+      <td id="T_743d1_row4_col13" class="data row4 col13" >-2,589.43</td>
+      <td id="T_743d1_row4_col14" class="data row4 col14" >0.0000%</td>
+      <td id="T_743d1_row4_col15" class="data row4 col15" >1.00</td>
+      <td id="T_743d1_row4_col16" class="data row4 col16" >LinAct360</td>
+      <td id="T_743d1_row4_col17" class="data row4 col17" >-75,230,762.00</td>
     </tr>
     <tr>
-      <th id="T_fbc87_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_fbc87_row5_col0" class="data row5 col0" >2020-11-02</td>
-      <td id="T_fbc87_row5_col1" class="data row5 col1" >2021-04-30</td>
-      <td id="T_fbc87_row5_col2" class="data row5 col2" >2021-04-30</td>
-      <td id="T_fbc87_row5_col3" class="data row5 col3" >300,000.00</td>
-      <td id="T_fbc87_row5_col4" class="data row5 col4" >300,000.00</td>
-      <td id="T_fbc87_row5_col5" class="data row5 col5" >True</td>
-      <td id="T_fbc87_row5_col6" class="data row5 col6" >298,044.72</td>
-      <td id="T_fbc87_row5_col7" class="data row5 col7" >CLF</td>
-      <td id="T_fbc87_row5_col8" class="data row5 col8" >19,050.65</td>
-      <td id="T_fbc87_row5_col9" class="data row5 col9" >19,173.77</td>
-      <td id="T_fbc87_row5_col10" class="data row5 col10" >29,053.02</td>
-      <td id="T_fbc87_row5_col11" class="data row5 col11" >29,432.64</td>
-      <td id="T_fbc87_row5_col12" class="data row5 col12" >-1.3108%</td>
-      <td id="T_fbc87_row5_col13" class="data row5 col13" >-1,955.28</td>
-      <td id="T_fbc87_row5_col14" class="data row5 col14" >0.0000%</td>
-      <td id="T_fbc87_row5_col15" class="data row5 col15" >1.00</td>
-      <td id="T_fbc87_row5_col16" class="data row5 col16" >LinAct360</td>
-      <td id="T_fbc87_row5_col17" class="data row5 col17" >8,772,243,383.00</td>
+      <th id="T_743d1_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_743d1_row5_col0" class="data row5 col0" >2020-11-02</td>
+      <td id="T_743d1_row5_col1" class="data row5 col1" >2021-04-30</td>
+      <td id="T_743d1_row5_col2" class="data row5 col2" >2021-04-30</td>
+      <td id="T_743d1_row5_col3" class="data row5 col3" >300,000.00</td>
+      <td id="T_743d1_row5_col4" class="data row5 col4" >300,000.00</td>
+      <td id="T_743d1_row5_col5" class="data row5 col5" >True</td>
+      <td id="T_743d1_row5_col6" class="data row5 col6" >298,044.72</td>
+      <td id="T_743d1_row5_col7" class="data row5 col7" >CLF</td>
+      <td id="T_743d1_row5_col8" class="data row5 col8" >19,050.65</td>
+      <td id="T_743d1_row5_col9" class="data row5 col9" >19,173.77</td>
+      <td id="T_743d1_row5_col10" class="data row5 col10" >29,053.02</td>
+      <td id="T_743d1_row5_col11" class="data row5 col11" >29,432.64</td>
+      <td id="T_743d1_row5_col12" class="data row5 col12" >-1.3108%</td>
+      <td id="T_743d1_row5_col13" class="data row5 col13" >-1,955.28</td>
+      <td id="T_743d1_row5_col14" class="data row5 col14" >0.0000%</td>
+      <td id="T_743d1_row5_col15" class="data row5 col15" >1.00</td>
+      <td id="T_743d1_row5_col16" class="data row5 col16" >LinAct360</td>
+      <td id="T_743d1_row5_col17" class="data row5 col17" >8,772,243,383.00</td>
     </tr>
   </tbody>
 </table>
@@ -3243,60 +3243,60 @@ aux.leg_as_dataframe(cor_leg).style.format(format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_64435">
+<table id="T_92f34">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_64435_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_64435_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_64435_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
-      <th id="T_64435_level0_col3" class="col_heading level0 col3" >nocional</th>
-      <th id="T_64435_level0_col4" class="col_heading level0 col4" >amortizacion</th>
-      <th id="T_64435_level0_col5" class="col_heading level0 col5" >interes</th>
-      <th id="T_64435_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
-      <th id="T_64435_level0_col7" class="col_heading level0 col7" >flujo</th>
-      <th id="T_64435_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_64435_level0_col9" class="col_heading level0 col9" >codigo_indice_tasa</th>
-      <th id="T_64435_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
-      <th id="T_64435_level0_col11" class="col_heading level0 col11" >valor_tasa</th>
-      <th id="T_64435_level0_col12" class="col_heading level0 col12" >spread</th>
-      <th id="T_64435_level0_col13" class="col_heading level0 col13" >gearing</th>
+      <th id="T_92f34_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_92f34_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_92f34_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
+      <th id="T_92f34_level0_col3" class="col_heading level0 col3" >nocional</th>
+      <th id="T_92f34_level0_col4" class="col_heading level0 col4" >amortizacion</th>
+      <th id="T_92f34_level0_col5" class="col_heading level0 col5" >interes</th>
+      <th id="T_92f34_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
+      <th id="T_92f34_level0_col7" class="col_heading level0 col7" >flujo</th>
+      <th id="T_92f34_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_92f34_level0_col9" class="col_heading level0 col9" >codigo_indice_tasa</th>
+      <th id="T_92f34_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
+      <th id="T_92f34_level0_col11" class="col_heading level0 col11" >valor_tasa</th>
+      <th id="T_92f34_level0_col12" class="col_heading level0 col12" >spread</th>
+      <th id="T_92f34_level0_col13" class="col_heading level0 col13" >gearing</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_64435_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_64435_row0_col0" class="data row0 col0" >2024-06-13</td>
-      <td id="T_64435_row0_col1" class="data row0 col1" >2024-12-13</td>
-      <td id="T_64435_row0_col2" class="data row0 col2" >2024-12-13</td>
-      <td id="T_64435_row0_col3" class="data row0 col3" >-1,000,000.00</td>
-      <td id="T_64435_row0_col4" class="data row0 col4" >0.00</td>
-      <td id="T_64435_row0_col5" class="data row0 col5" >-27,002.51</td>
-      <td id="T_64435_row0_col6" class="data row0 col6" >True</td>
-      <td id="T_64435_row0_col7" class="data row0 col7" >-27,002.51</td>
-      <td id="T_64435_row0_col8" class="data row0 col8" >USD</td>
-      <td id="T_64435_row0_col9" class="data row0 col9" >OISTEST</td>
-      <td id="T_64435_row0_col10" class="data row0 col10" >LinAct360</td>
-      <td id="T_64435_row0_col11" class="data row0 col11" >5.3120%</td>
-      <td id="T_64435_row0_col12" class="data row0 col12" >0.0000%</td>
-      <td id="T_64435_row0_col13" class="data row0 col13" >1.00</td>
+      <th id="T_92f34_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_92f34_row0_col0" class="data row0 col0" >2024-06-13</td>
+      <td id="T_92f34_row0_col1" class="data row0 col1" >2024-12-13</td>
+      <td id="T_92f34_row0_col2" class="data row0 col2" >2024-12-13</td>
+      <td id="T_92f34_row0_col3" class="data row0 col3" >-1,000,000.00</td>
+      <td id="T_92f34_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_92f34_row0_col5" class="data row0 col5" >-27,002.51</td>
+      <td id="T_92f34_row0_col6" class="data row0 col6" >True</td>
+      <td id="T_92f34_row0_col7" class="data row0 col7" >-27,002.51</td>
+      <td id="T_92f34_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_92f34_row0_col9" class="data row0 col9" >OISTEST</td>
+      <td id="T_92f34_row0_col10" class="data row0 col10" >LinAct360</td>
+      <td id="T_92f34_row0_col11" class="data row0 col11" >5.3120%</td>
+      <td id="T_92f34_row0_col12" class="data row0 col12" >0.0000%</td>
+      <td id="T_92f34_row0_col13" class="data row0 col13" >1.00</td>
     </tr>
     <tr>
-      <th id="T_64435_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_64435_row1_col0" class="data row1 col0" >2024-12-13</td>
-      <td id="T_64435_row1_col1" class="data row1 col1" >2025-12-15</td>
-      <td id="T_64435_row1_col2" class="data row1 col2" >2025-12-15</td>
-      <td id="T_64435_row1_col3" class="data row1 col3" >-1,000,000.00</td>
-      <td id="T_64435_row1_col4" class="data row1 col4" >-1,000,000.00</td>
-      <td id="T_64435_row1_col5" class="data row1 col5" >-47,599.76</td>
-      <td id="T_64435_row1_col6" class="data row1 col6" >True</td>
-      <td id="T_64435_row1_col7" class="data row1 col7" >-1,047,599.76</td>
-      <td id="T_64435_row1_col8" class="data row1 col8" >USD</td>
-      <td id="T_64435_row1_col9" class="data row1 col9" >OISTEST</td>
-      <td id="T_64435_row1_col10" class="data row1 col10" >LinAct360</td>
-      <td id="T_64435_row1_col11" class="data row1 col11" >4.6692%</td>
-      <td id="T_64435_row1_col12" class="data row1 col12" >0.0000%</td>
-      <td id="T_64435_row1_col13" class="data row1 col13" >1.00</td>
+      <th id="T_92f34_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_92f34_row1_col0" class="data row1 col0" >2024-12-13</td>
+      <td id="T_92f34_row1_col1" class="data row1 col1" >2025-12-15</td>
+      <td id="T_92f34_row1_col2" class="data row1 col2" >2025-12-15</td>
+      <td id="T_92f34_row1_col3" class="data row1 col3" >-1,000,000.00</td>
+      <td id="T_92f34_row1_col4" class="data row1 col4" >-1,000,000.00</td>
+      <td id="T_92f34_row1_col5" class="data row1 col5" >-47,599.76</td>
+      <td id="T_92f34_row1_col6" class="data row1 col6" >True</td>
+      <td id="T_92f34_row1_col7" class="data row1 col7" >-1,047,599.76</td>
+      <td id="T_92f34_row1_col8" class="data row1 col8" >USD</td>
+      <td id="T_92f34_row1_col9" class="data row1 col9" >OISTEST</td>
+      <td id="T_92f34_row1_col10" class="data row1 col10" >LinAct360</td>
+      <td id="T_92f34_row1_col11" class="data row1 col11" >4.6692%</td>
+      <td id="T_92f34_row1_col12" class="data row1 col12" >0.0000%</td>
+      <td id="T_92f34_row1_col13" class="data row1 col13" >1.00</td>
     </tr>
   </tbody>
 </table>
