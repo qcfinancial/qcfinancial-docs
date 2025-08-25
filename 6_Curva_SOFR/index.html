@@ -1,0 +1,1714 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../5_SwapICPCLP/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Curva SOFR - Docs para qcfinancial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-YNEVN69SC3"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-YNEVN69SC3",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-YNEVN69SC3",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#curva-sofr" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Docs para qcfinancial" class="md-header__button md-logo" aria-label="Docs para qcfinancial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Docs para qcfinancial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Curva SOFR
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Docs para qcfinancial" class="md-nav__button md-logo" aria-label="Docs para qcfinancial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Docs para qcfinancial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_Objetos_Fundamentales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objetos Fundamentales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_Cashflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cashflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_Construccion_Operaciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Construcción de Operaciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_Valorizacion_Sensibilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Valorización y Sensibilidad
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_SwapICPCLP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Swap ICPCLP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Curva SOFR
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Curva SOFR
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curva-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curva Inicial
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bootstrapping
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curva-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curva Inicial
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bootstrapping
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="curva-sofr">Curva SOFR<a class="headerlink" href="#curva-sofr" title="Permanent link">&para;</a></h1>
+<p>Se construye la curva cupón cero asociada a los swaps de SOFR vs tasa fija:</p>
+<p>Se utiliza el procedimiento clásico que consiste en:</p>
+<ul>
+<li>Resolver el sistema de ecuaciones que iguala el valor presente de las patas fijas (en <code>start_date</code>) con el valor del nocional.</li>
+<li>Se considera como flujo el nocional al vencimiento.</li>
+<li>Es importante notar que para que estas ecuaciones sean válidas se debe suponer que el settlement lag es siempre igual a 0.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">qcfinancial</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qcf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">aux_functions</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">aux</span>
+</code></pre></div>
+<h2 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h2>
+<p>La data se obtiene del asiguiente archivo Excel. En él, además de las tasas de los swaps, se ha registrado las características principales de estos contratos.</p>
+<div class="highlight"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;./input/20240621_sofr_data.xlsx&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">data</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">({</span><span class="s1">&#39;rate&#39;</span><span class="p">:</span><span class="s1">&#39;</span><span class="si">{:.4%}</span><span class="s1">&#39;</span><span class="p">})</span>
+</code></pre></div>
+<style type="text/css">
+</style>
+<table id="T_b5ded">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_b5ded_level0_col0" class="col_heading level0 col0" >ticket</th>
+      <th id="T_b5ded_level0_col1" class="col_heading level0 col1" >start_date</th>
+      <th id="T_b5ded_level0_col2" class="col_heading level0 col2" >tenor</th>
+      <th id="T_b5ded_level0_col3" class="col_heading level0 col3" >stub_period</th>
+      <th id="T_b5ded_level0_col4" class="col_heading level0 col4" >pay_freq</th>
+      <th id="T_b5ded_level0_col5" class="col_heading level0 col5" >settlement_lag</th>
+      <th id="T_b5ded_level0_col6" class="col_heading level0 col6" >bus_adj_rule</th>
+      <th id="T_b5ded_level0_col7" class="col_heading level0 col7" >yf</th>
+      <th id="T_b5ded_level0_col8" class="col_heading level0 col8" >wf</th>
+      <th id="T_b5ded_level0_col9" class="col_heading level0 col9" >rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_b5ded_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_b5ded_row0_col0" class="data row0 col0" >USOSFR1Z BGN Curncy</td>
+      <td id="T_b5ded_row0_col1" class="data row0 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row0_col2" class="data row0 col2" >7D</td>
+      <td id="T_b5ded_row0_col3" class="data row0 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row0_col4" class="data row0 col4" >2Y</td>
+      <td id="T_b5ded_row0_col5" class="data row0 col5" >2</td>
+      <td id="T_b5ded_row0_col6" class="data row0 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row0_col7" class="data row0 col7" >Act360</td>
+      <td id="T_b5ded_row0_col8" class="data row0 col8" >Lin</td>
+      <td id="T_b5ded_row0_col9" class="data row0 col9" >5.3342%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_b5ded_row1_col0" class="data row1 col0" >USOSFR2Z BGN Curncy</td>
+      <td id="T_b5ded_row1_col1" class="data row1 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row1_col2" class="data row1 col2" >14D</td>
+      <td id="T_b5ded_row1_col3" class="data row1 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row1_col4" class="data row1 col4" >2Y</td>
+      <td id="T_b5ded_row1_col5" class="data row1 col5" >2</td>
+      <td id="T_b5ded_row1_col6" class="data row1 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row1_col7" class="data row1 col7" >Act360</td>
+      <td id="T_b5ded_row1_col8" class="data row1 col8" >Lin</td>
+      <td id="T_b5ded_row1_col9" class="data row1 col9" >5.3375%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_b5ded_row2_col0" class="data row2 col0" >USOSFR3Z BGN Curncy</td>
+      <td id="T_b5ded_row2_col1" class="data row2 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row2_col2" class="data row2 col2" >21D</td>
+      <td id="T_b5ded_row2_col3" class="data row2 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row2_col4" class="data row2 col4" >2Y</td>
+      <td id="T_b5ded_row2_col5" class="data row2 col5" >2</td>
+      <td id="T_b5ded_row2_col6" class="data row2 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row2_col7" class="data row2 col7" >Act360</td>
+      <td id="T_b5ded_row2_col8" class="data row2 col8" >Lin</td>
+      <td id="T_b5ded_row2_col9" class="data row2 col9" >5.3415%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_b5ded_row3_col0" class="data row3 col0" >USOSFRA BGN Curncy</td>
+      <td id="T_b5ded_row3_col1" class="data row3 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row3_col2" class="data row3 col2" >1M</td>
+      <td id="T_b5ded_row3_col3" class="data row3 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row3_col4" class="data row3 col4" >2Y</td>
+      <td id="T_b5ded_row3_col5" class="data row3 col5" >2</td>
+      <td id="T_b5ded_row3_col6" class="data row3 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row3_col7" class="data row3 col7" >Act360</td>
+      <td id="T_b5ded_row3_col8" class="data row3 col8" >Lin</td>
+      <td id="T_b5ded_row3_col9" class="data row3 col9" >5.3442%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_b5ded_row4_col0" class="data row4 col0" >USOSFRB BGN Curncy</td>
+      <td id="T_b5ded_row4_col1" class="data row4 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row4_col2" class="data row4 col2" >2M</td>
+      <td id="T_b5ded_row4_col3" class="data row4 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row4_col4" class="data row4 col4" >2Y</td>
+      <td id="T_b5ded_row4_col5" class="data row4 col5" >2</td>
+      <td id="T_b5ded_row4_col6" class="data row4 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row4_col7" class="data row4 col7" >Act360</td>
+      <td id="T_b5ded_row4_col8" class="data row4 col8" >Lin</td>
+      <td id="T_b5ded_row4_col9" class="data row4 col9" >5.3454%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_b5ded_row5_col0" class="data row5 col0" >USOSFRC BGN Curncy</td>
+      <td id="T_b5ded_row5_col1" class="data row5 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row5_col2" class="data row5 col2" >3M</td>
+      <td id="T_b5ded_row5_col3" class="data row5 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row5_col4" class="data row5 col4" >2Y</td>
+      <td id="T_b5ded_row5_col5" class="data row5 col5" >2</td>
+      <td id="T_b5ded_row5_col6" class="data row5 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row5_col7" class="data row5 col7" >Act360</td>
+      <td id="T_b5ded_row5_col8" class="data row5 col8" >Lin</td>
+      <td id="T_b5ded_row5_col9" class="data row5 col9" >5.3426%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_b5ded_row6_col0" class="data row6 col0" >USOSFRD BGN Curncy</td>
+      <td id="T_b5ded_row6_col1" class="data row6 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row6_col2" class="data row6 col2" >4M</td>
+      <td id="T_b5ded_row6_col3" class="data row6 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row6_col4" class="data row6 col4" >2Y</td>
+      <td id="T_b5ded_row6_col5" class="data row6 col5" >2</td>
+      <td id="T_b5ded_row6_col6" class="data row6 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row6_col7" class="data row6 col7" >Act360</td>
+      <td id="T_b5ded_row6_col8" class="data row6 col8" >Lin</td>
+      <td id="T_b5ded_row6_col9" class="data row6 col9" >5.3171%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_b5ded_row7_col0" class="data row7 col0" >USOSFRE BGN Curncy</td>
+      <td id="T_b5ded_row7_col1" class="data row7 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row7_col2" class="data row7 col2" >5M</td>
+      <td id="T_b5ded_row7_col3" class="data row7 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row7_col4" class="data row7 col4" >2Y</td>
+      <td id="T_b5ded_row7_col5" class="data row7 col5" >2</td>
+      <td id="T_b5ded_row7_col6" class="data row7 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row7_col7" class="data row7 col7" >Act360</td>
+      <td id="T_b5ded_row7_col8" class="data row7 col8" >Lin</td>
+      <td id="T_b5ded_row7_col9" class="data row7 col9" >5.2955%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_b5ded_row8_col0" class="data row8 col0" >USOSFRF BGN Curncy</td>
+      <td id="T_b5ded_row8_col1" class="data row8 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row8_col2" class="data row8 col2" >6M</td>
+      <td id="T_b5ded_row8_col3" class="data row8 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row8_col4" class="data row8 col4" >2Y</td>
+      <td id="T_b5ded_row8_col5" class="data row8 col5" >2</td>
+      <td id="T_b5ded_row8_col6" class="data row8 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row8_col7" class="data row8 col7" >Act360</td>
+      <td id="T_b5ded_row8_col8" class="data row8 col8" >Lin</td>
+      <td id="T_b5ded_row8_col9" class="data row8 col9" >5.2714%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_b5ded_row9_col0" class="data row9 col0" >USOSFRG BGN Curncy</td>
+      <td id="T_b5ded_row9_col1" class="data row9 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row9_col2" class="data row9 col2" >7M</td>
+      <td id="T_b5ded_row9_col3" class="data row9 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row9_col4" class="data row9 col4" >2Y</td>
+      <td id="T_b5ded_row9_col5" class="data row9 col5" >2</td>
+      <td id="T_b5ded_row9_col6" class="data row9 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row9_col7" class="data row9 col7" >Act360</td>
+      <td id="T_b5ded_row9_col8" class="data row9 col8" >Lin</td>
+      <td id="T_b5ded_row9_col9" class="data row9 col9" >5.2366%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_b5ded_row10_col0" class="data row10 col0" >USOSFRH BGN Curncy</td>
+      <td id="T_b5ded_row10_col1" class="data row10 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row10_col2" class="data row10 col2" >8M</td>
+      <td id="T_b5ded_row10_col3" class="data row10 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row10_col4" class="data row10 col4" >2Y</td>
+      <td id="T_b5ded_row10_col5" class="data row10 col5" >2</td>
+      <td id="T_b5ded_row10_col6" class="data row10 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row10_col7" class="data row10 col7" >Act360</td>
+      <td id="T_b5ded_row10_col8" class="data row10 col8" >Lin</td>
+      <td id="T_b5ded_row10_col9" class="data row10 col9" >5.1986%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_b5ded_row11_col0" class="data row11 col0" >USOSFRI BGN Curncy</td>
+      <td id="T_b5ded_row11_col1" class="data row11 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row11_col2" class="data row11 col2" >9M</td>
+      <td id="T_b5ded_row11_col3" class="data row11 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row11_col4" class="data row11 col4" >2Y</td>
+      <td id="T_b5ded_row11_col5" class="data row11 col5" >2</td>
+      <td id="T_b5ded_row11_col6" class="data row11 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row11_col7" class="data row11 col7" >Act360</td>
+      <td id="T_b5ded_row11_col8" class="data row11 col8" >Lin</td>
+      <td id="T_b5ded_row11_col9" class="data row11 col9" >5.1667%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_b5ded_row12_col0" class="data row12 col0" >USOSFRK BGN Curncy</td>
+      <td id="T_b5ded_row12_col1" class="data row12 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row12_col2" class="data row12 col2" >11M</td>
+      <td id="T_b5ded_row12_col3" class="data row12 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row12_col4" class="data row12 col4" >2Y</td>
+      <td id="T_b5ded_row12_col5" class="data row12 col5" >2</td>
+      <td id="T_b5ded_row12_col6" class="data row12 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row12_col7" class="data row12 col7" >Act360</td>
+      <td id="T_b5ded_row12_col8" class="data row12 col8" >Lin</td>
+      <td id="T_b5ded_row12_col9" class="data row12 col9" >5.0841%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_b5ded_row13_col0" class="data row13 col0" >USOSFR1 BGN Curncy</td>
+      <td id="T_b5ded_row13_col1" class="data row13 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row13_col2" class="data row13 col2" >12M</td>
+      <td id="T_b5ded_row13_col3" class="data row13 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row13_col4" class="data row13 col4" >2Y</td>
+      <td id="T_b5ded_row13_col5" class="data row13 col5" >2</td>
+      <td id="T_b5ded_row13_col6" class="data row13 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row13_col7" class="data row13 col7" >Act360</td>
+      <td id="T_b5ded_row13_col8" class="data row13 col8" >Lin</td>
+      <td id="T_b5ded_row13_col9" class="data row13 col9" >5.0477%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_b5ded_row14_col0" class="data row14 col0" >USOSFR1F BGN Curncy</td>
+      <td id="T_b5ded_row14_col1" class="data row14 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row14_col2" class="data row14 col2" >18M</td>
+      <td id="T_b5ded_row14_col3" class="data row14 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row14_col4" class="data row14 col4" >1Y</td>
+      <td id="T_b5ded_row14_col5" class="data row14 col5" >2</td>
+      <td id="T_b5ded_row14_col6" class="data row14 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row14_col7" class="data row14 col7" >Act360</td>
+      <td id="T_b5ded_row14_col8" class="data row14 col8" >Lin</td>
+      <td id="T_b5ded_row14_col9" class="data row14 col9" >4.7545%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_b5ded_row15_col0" class="data row15 col0" >USOSFR2 BGN Curncy</td>
+      <td id="T_b5ded_row15_col1" class="data row15 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row15_col2" class="data row15 col2" >2Y</td>
+      <td id="T_b5ded_row15_col3" class="data row15 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row15_col4" class="data row15 col4" >1Y</td>
+      <td id="T_b5ded_row15_col5" class="data row15 col5" >2</td>
+      <td id="T_b5ded_row15_col6" class="data row15 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row15_col7" class="data row15 col7" >Act360</td>
+      <td id="T_b5ded_row15_col8" class="data row15 col8" >Lin</td>
+      <td id="T_b5ded_row15_col9" class="data row15 col9" >4.5629%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_b5ded_row16_col0" class="data row16 col0" >USOSFR3 BGN Curncy</td>
+      <td id="T_b5ded_row16_col1" class="data row16 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row16_col2" class="data row16 col2" >3Y</td>
+      <td id="T_b5ded_row16_col3" class="data row16 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row16_col4" class="data row16 col4" >1Y</td>
+      <td id="T_b5ded_row16_col5" class="data row16 col5" >2</td>
+      <td id="T_b5ded_row16_col6" class="data row16 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row16_col7" class="data row16 col7" >Act360</td>
+      <td id="T_b5ded_row16_col8" class="data row16 col8" >Lin</td>
+      <td id="T_b5ded_row16_col9" class="data row16 col9" >4.2799%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_b5ded_row17_col0" class="data row17 col0" >USOSFR4 BGN Curncy</td>
+      <td id="T_b5ded_row17_col1" class="data row17 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row17_col2" class="data row17 col2" >4Y</td>
+      <td id="T_b5ded_row17_col3" class="data row17 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row17_col4" class="data row17 col4" >1Y</td>
+      <td id="T_b5ded_row17_col5" class="data row17 col5" >2</td>
+      <td id="T_b5ded_row17_col6" class="data row17 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row17_col7" class="data row17 col7" >Act360</td>
+      <td id="T_b5ded_row17_col8" class="data row17 col8" >Lin</td>
+      <td id="T_b5ded_row17_col9" class="data row17 col9" >4.1110%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_b5ded_row18_col0" class="data row18 col0" >USOSFR5 BGN Curncy</td>
+      <td id="T_b5ded_row18_col1" class="data row18 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row18_col2" class="data row18 col2" >5Y</td>
+      <td id="T_b5ded_row18_col3" class="data row18 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row18_col4" class="data row18 col4" >1Y</td>
+      <td id="T_b5ded_row18_col5" class="data row18 col5" >2</td>
+      <td id="T_b5ded_row18_col6" class="data row18 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row18_col7" class="data row18 col7" >Act360</td>
+      <td id="T_b5ded_row18_col8" class="data row18 col8" >Lin</td>
+      <td id="T_b5ded_row18_col9" class="data row18 col9" >4.0095%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row19" class="row_heading level0 row19" >19</th>
+      <td id="T_b5ded_row19_col0" class="data row19 col0" >USOSFR6 BGN Curncy</td>
+      <td id="T_b5ded_row19_col1" class="data row19 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row19_col2" class="data row19 col2" >6Y</td>
+      <td id="T_b5ded_row19_col3" class="data row19 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row19_col4" class="data row19 col4" >1Y</td>
+      <td id="T_b5ded_row19_col5" class="data row19 col5" >2</td>
+      <td id="T_b5ded_row19_col6" class="data row19 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row19_col7" class="data row19 col7" >Act360</td>
+      <td id="T_b5ded_row19_col8" class="data row19 col8" >Lin</td>
+      <td id="T_b5ded_row19_col9" class="data row19 col9" >3.9498%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row20" class="row_heading level0 row20" >20</th>
+      <td id="T_b5ded_row20_col0" class="data row20 col0" >USOSFR7 BGN Curncy</td>
+      <td id="T_b5ded_row20_col1" class="data row20 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row20_col2" class="data row20 col2" >7Y</td>
+      <td id="T_b5ded_row20_col3" class="data row20 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row20_col4" class="data row20 col4" >1Y</td>
+      <td id="T_b5ded_row20_col5" class="data row20 col5" >2</td>
+      <td id="T_b5ded_row20_col6" class="data row20 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row20_col7" class="data row20 col7" >Act360</td>
+      <td id="T_b5ded_row20_col8" class="data row20 col8" >Lin</td>
+      <td id="T_b5ded_row20_col9" class="data row20 col9" >3.9114%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row21" class="row_heading level0 row21" >21</th>
+      <td id="T_b5ded_row21_col0" class="data row21 col0" >USOSFR8 BGN Curncy</td>
+      <td id="T_b5ded_row21_col1" class="data row21 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row21_col2" class="data row21 col2" >8Y</td>
+      <td id="T_b5ded_row21_col3" class="data row21 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row21_col4" class="data row21 col4" >1Y</td>
+      <td id="T_b5ded_row21_col5" class="data row21 col5" >2</td>
+      <td id="T_b5ded_row21_col6" class="data row21 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row21_col7" class="data row21 col7" >Act360</td>
+      <td id="T_b5ded_row21_col8" class="data row21 col8" >Lin</td>
+      <td id="T_b5ded_row21_col9" class="data row21 col9" >3.8869%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row22" class="row_heading level0 row22" >22</th>
+      <td id="T_b5ded_row22_col0" class="data row22 col0" >USOSFR9 BGN Curncy</td>
+      <td id="T_b5ded_row22_col1" class="data row22 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row22_col2" class="data row22 col2" >9Y</td>
+      <td id="T_b5ded_row22_col3" class="data row22 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row22_col4" class="data row22 col4" >1Y</td>
+      <td id="T_b5ded_row22_col5" class="data row22 col5" >2</td>
+      <td id="T_b5ded_row22_col6" class="data row22 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row22_col7" class="data row22 col7" >Act360</td>
+      <td id="T_b5ded_row22_col8" class="data row22 col8" >Lin</td>
+      <td id="T_b5ded_row22_col9" class="data row22 col9" >3.8721%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row23" class="row_heading level0 row23" >23</th>
+      <td id="T_b5ded_row23_col0" class="data row23 col0" >USOSFR10 BGN Curncy</td>
+      <td id="T_b5ded_row23_col1" class="data row23 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row23_col2" class="data row23 col2" >10Y</td>
+      <td id="T_b5ded_row23_col3" class="data row23 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row23_col4" class="data row23 col4" >1Y</td>
+      <td id="T_b5ded_row23_col5" class="data row23 col5" >2</td>
+      <td id="T_b5ded_row23_col6" class="data row23 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row23_col7" class="data row23 col7" >Act360</td>
+      <td id="T_b5ded_row23_col8" class="data row23 col8" >Lin</td>
+      <td id="T_b5ded_row23_col9" class="data row23 col9" >3.8639%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row24" class="row_heading level0 row24" >24</th>
+      <td id="T_b5ded_row24_col0" class="data row24 col0" >USOSFR12 BGN Curncy</td>
+      <td id="T_b5ded_row24_col1" class="data row24 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row24_col2" class="data row24 col2" >12Y</td>
+      <td id="T_b5ded_row24_col3" class="data row24 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row24_col4" class="data row24 col4" >1Y</td>
+      <td id="T_b5ded_row24_col5" class="data row24 col5" >2</td>
+      <td id="T_b5ded_row24_col6" class="data row24 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row24_col7" class="data row24 col7" >Act360</td>
+      <td id="T_b5ded_row24_col8" class="data row24 col8" >Lin</td>
+      <td id="T_b5ded_row24_col9" class="data row24 col9" >3.8604%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row25" class="row_heading level0 row25" >25</th>
+      <td id="T_b5ded_row25_col0" class="data row25 col0" >USOSFR15 BGN Curncy</td>
+      <td id="T_b5ded_row25_col1" class="data row25 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row25_col2" class="data row25 col2" >15Y</td>
+      <td id="T_b5ded_row25_col3" class="data row25 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row25_col4" class="data row25 col4" >1Y</td>
+      <td id="T_b5ded_row25_col5" class="data row25 col5" >2</td>
+      <td id="T_b5ded_row25_col6" class="data row25 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row25_col7" class="data row25 col7" >Act360</td>
+      <td id="T_b5ded_row25_col8" class="data row25 col8" >Lin</td>
+      <td id="T_b5ded_row25_col9" class="data row25 col9" >3.8615%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row26" class="row_heading level0 row26" >26</th>
+      <td id="T_b5ded_row26_col0" class="data row26 col0" >USOSFR20 BGN Curncy</td>
+      <td id="T_b5ded_row26_col1" class="data row26 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row26_col2" class="data row26 col2" >20Y</td>
+      <td id="T_b5ded_row26_col3" class="data row26 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row26_col4" class="data row26 col4" >1Y</td>
+      <td id="T_b5ded_row26_col5" class="data row26 col5" >2</td>
+      <td id="T_b5ded_row26_col6" class="data row26 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row26_col7" class="data row26 col7" >Act360</td>
+      <td id="T_b5ded_row26_col8" class="data row26 col8" >Lin</td>
+      <td id="T_b5ded_row26_col9" class="data row26 col9" >3.8278%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row27" class="row_heading level0 row27" >27</th>
+      <td id="T_b5ded_row27_col0" class="data row27 col0" >USOSFR25 BGN Curncy</td>
+      <td id="T_b5ded_row27_col1" class="data row27 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row27_col2" class="data row27 col2" >25Y</td>
+      <td id="T_b5ded_row27_col3" class="data row27 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row27_col4" class="data row27 col4" >1Y</td>
+      <td id="T_b5ded_row27_col5" class="data row27 col5" >2</td>
+      <td id="T_b5ded_row27_col6" class="data row27 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row27_col7" class="data row27 col7" >Act360</td>
+      <td id="T_b5ded_row27_col8" class="data row27 col8" >Lin</td>
+      <td id="T_b5ded_row27_col9" class="data row27 col9" >3.7356%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row28" class="row_heading level0 row28" >28</th>
+      <td id="T_b5ded_row28_col0" class="data row28 col0" >USOSFR30 BGN Curncy</td>
+      <td id="T_b5ded_row28_col1" class="data row28 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row28_col2" class="data row28 col2" >30Y</td>
+      <td id="T_b5ded_row28_col3" class="data row28 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row28_col4" class="data row28 col4" >1Y</td>
+      <td id="T_b5ded_row28_col5" class="data row28 col5" >2</td>
+      <td id="T_b5ded_row28_col6" class="data row28 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row28_col7" class="data row28 col7" >Act360</td>
+      <td id="T_b5ded_row28_col8" class="data row28 col8" >Lin</td>
+      <td id="T_b5ded_row28_col9" class="data row28 col9" >3.6388%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row29" class="row_heading level0 row29" >29</th>
+      <td id="T_b5ded_row29_col0" class="data row29 col0" >USOSFR40 BGN Curncy</td>
+      <td id="T_b5ded_row29_col1" class="data row29 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row29_col2" class="data row29 col2" >40Y</td>
+      <td id="T_b5ded_row29_col3" class="data row29 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row29_col4" class="data row29 col4" >1Y</td>
+      <td id="T_b5ded_row29_col5" class="data row29 col5" >2</td>
+      <td id="T_b5ded_row29_col6" class="data row29 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row29_col7" class="data row29 col7" >Act360</td>
+      <td id="T_b5ded_row29_col8" class="data row29 col8" >Lin</td>
+      <td id="T_b5ded_row29_col9" class="data row29 col9" >3.4272%</td>
+    </tr>
+    <tr>
+      <th id="T_b5ded_level0_row30" class="row_heading level0 row30" >30</th>
+      <td id="T_b5ded_row30_col0" class="data row30 col0" >USOSFR50 BGN Curncy</td>
+      <td id="T_b5ded_row30_col1" class="data row30 col1" >2024-06-25 00:00:00</td>
+      <td id="T_b5ded_row30_col2" class="data row30 col2" >50Y</td>
+      <td id="T_b5ded_row30_col3" class="data row30 col3" >SHORT_FRONT</td>
+      <td id="T_b5ded_row30_col4" class="data row30 col4" >1Y</td>
+      <td id="T_b5ded_row30_col5" class="data row30 col5" >2</td>
+      <td id="T_b5ded_row30_col6" class="data row30 col6" >MOD_FOLLOW</td>
+      <td id="T_b5ded_row30_col7" class="data row30 col7" >Act360</td>
+      <td id="T_b5ded_row30_col8" class="data row30 col8" >Lin</td>
+      <td id="T_b5ded_row30_col9" class="data row30 col9" >3.2120%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="input">Input<a class="headerlink" href="#input" title="Permanent link">&para;</a></h2>
+<p>Se definen los inputs que son comunes a todas las operaciones. Notar que, contrariamente a lo que indican los datos, se establece que el settlement lag sea igual a 0. Esto para poder aplicar la condición que iguala el valor prersente de la pata fija en <code>start_date</code> al nocional.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Debe coincidir con la fecha de los datos</span>
+<span class="n">trade_date</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2024</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Convención de las tasas de las patas fijas</span>
+<span class="n">yf</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCAct360</span><span class="p">()</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCLinearWf</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Los parámetros se organizan en un dict.</span>
+<span class="n">common_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;rec_pay&quot;</span><span class="p">:</span> <span class="n">qcf</span><span class="o">.</span><span class="n">RecPay</span><span class="o">.</span><span class="n">RECEIVE</span><span class="p">,</span>
+    <span class="s2">&quot;start_date&quot;</span><span class="p">:</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2024</span><span class="p">),</span>
+    <span class="s2">&quot;bus_adj_rule&quot;</span><span class="p">:</span> <span class="n">qcf</span><span class="o">.</span><span class="n">BusyAdjRules</span><span class="o">.</span><span class="n">MODFOLLOW</span><span class="p">,</span>
+    <span class="s2">&quot;settlement_stub_period&quot;</span><span class="p">:</span> <span class="n">qcf</span><span class="o">.</span><span class="n">StubPeriod</span><span class="o">.</span><span class="n">SHORTFRONT</span><span class="p">,</span>
+    <span class="s2">&quot;settlement_calendar&quot;</span><span class="p">:</span> <span class="n">qcf</span><span class="o">.</span><span class="n">BusinessCalendar</span><span class="p">(</span><span class="n">trade_date</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="s2">&quot;settlement_lag&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># Se impone = 0</span>
+    <span class="s2">&quot;initial_notional&quot;</span><span class="p">:</span> <span class="mi">1_000_000</span><span class="p">,</span>
+    <span class="s2">&quot;amort_is_cashflow&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;notional_currency&quot;</span><span class="p">:</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCUSD</span><span class="p">(),</span>
+    <span class="s2">&quot;is_bond&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;sett_lag_behaviour&quot;</span><span class="p">:</span> <span class="n">qcf</span><span class="o">.</span><span class="n">SettLagBehaviour</span><span class="o">.</span><span class="n">DONT_MOVE</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>La siguiente celda es para facilitar la escritura del código que viene ya que nos recuerda cuáles son los argumentos de la función que construye patas fijas.</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">qcf</span><span class="o">.</span><span class="n">LegFactory</span><span class="o">.</span><span class="n">build_bullet_fixed_rate_leg</span><span class="o">.</span><span class="vm">__doc__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="nx">build_bullet_fixed_rate_leg</span><span class="p">(</span><span class="nx">rec_pay</span><span class="p">:</span><span class="w"> </span><span class="nx">qcfinancial</span><span class="p">.</span><span class="nx">RecPay</span>
+<span class="w"> </span><span class="nx">start_date</span><span class="p">:</span><span class="w"> </span><span class="nx">qcfinancial</span><span class="p">.</span><span class="nx">QCDate</span>
+<span class="w"> </span><span class="nx">end_date</span><span class="p">:</span><span class="w"> </span><span class="nx">qcfinancial</span><span class="p">.</span><span class="nx">QCDate</span>
+<span class="w"> </span><span class="nx">bus_adj_rule</span><span class="p">:</span><span class="w"> </span><span class="nx">qcfinancial</span><span class="p">.</span><span class="nx">BusyAdjRules</span>
+<span class="w"> </span><span class="nx">settlement_periodicity</span><span class="p">:</span><span class="w"> </span><span class="nx">qcfinancial</span><span class="p">.</span><span class="nx">Tenor</span>
+<span class="w"> </span><span class="nx">settlement_stub_period</span><span class="p">:</span><span class="w"> </span><span class="nx">qcfinancial</span><span class="p">.</span><span class="nx">StubPeriod</span>
+<span class="w"> </span><span class="nx">settlement_calendar</span><span class="p">:</span><span class="w"> </span><span class="nx">qcfinancial</span><span class="p">.</span><span class="nx">BusinessCalendar</span>
+<span class="w"> </span><span class="nx">settlement_lag</span><span class="p">:</span><span class="w"> </span><span class="nx">typing</span><span class="p">.</span><span class="nx">SupportsInt</span>
+<span class="w"> </span><span class="nx">initial_notional</span><span class="p">:</span><span class="w"> </span><span class="nx">typing</span><span class="p">.</span><span class="nx">SupportsFloat</span>
+<span class="w"> </span><span class="nx">amort_is_cashflow</span><span class="p">:</span><span class="w"> </span><span class="kt">bool</span>
+<span class="w"> </span><span class="nx">interest_rate</span><span class="p">:</span><span class="w"> </span><span class="nx">qcfinancial</span><span class="p">.</span><span class="nx">QCInterestRate</span>
+<span class="w"> </span><span class="nx">notional_currency</span><span class="p">:</span><span class="w"> </span><span class="nx">qcfinancial</span><span class="p">.</span><span class="nx">QCCurrency</span>
+<span class="w"> </span><span class="nx">is_bond</span><span class="p">:</span><span class="w"> </span><span class="kt">bool</span>
+<span class="w"> </span><span class="nx">sett_lag_behaviour</span><span class="p">:</span><span class="w"> </span><span class="nx">qcfinancial</span><span class="p">.</span><span class="nx">SettLagBehaviour</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">SettLagBehaviour</span><span class="p">.</span><span class="nx">DONT_MOVE</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">&gt;)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nx">qcfinancial</span><span class="p">.</span><span class="nx">Leg</span>
+
+<span class="nx">Builds</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">Leg</span><span class="w"> </span><span class="nx">containing</span><span class="w"> </span><span class="nx">only</span><span class="w"> </span><span class="nx">cashflows</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="nx">FixedRateCashflow</span><span class="p">.</span><span class="w"> </span><span class="nx">Amortization</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">BULLET</span>
+</code></pre></div>
+
+<p>En el siguiente loop, se construyen todas las patas fijas.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Aquí se almacenarán los resultados</span>
+<span class="n">fixed_rate_legs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Se recorre el DataFrame con la data</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+    <span class="c1"># Madurez del contrato</span>
+    <span class="n">tenor</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">Tenor</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">tenor</span><span class="p">)</span>
+
+    <span class="c1"># Se calcula el número de meses de la madurez</span>
+    <span class="n">months</span> <span class="o">=</span> <span class="n">tenor</span><span class="o">.</span><span class="n">get_months</span><span class="p">()</span> <span class="o">+</span> <span class="mi">12</span> <span class="o">*</span> <span class="n">tenor</span><span class="o">.</span><span class="n">get_years</span><span class="p">()</span>
+
+    <span class="c1"># Se calcula la fecha final del swap sin aplicar todavía ajustes de calendario</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">days</span><span class="o">:=</span><span class="n">tenor</span><span class="o">.</span><span class="n">get_days</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="n">common_params</span><span class="p">[</span><span class="s2">&quot;start_date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add_days</span><span class="p">(</span><span class="n">days</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="n">common_params</span><span class="p">[</span><span class="s2">&quot;start_date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add_months</span><span class="p">(</span><span class="n">months</span><span class="p">)</span>
+
+    <span class="c1"># Se define un dict con los parámetros propios de cada contrato</span>
+    <span class="n">other_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;end_date&quot;</span><span class="p">:</span> <span class="n">end_date</span><span class="p">,</span>
+        <span class="s2">&quot;settlement_periodicity&quot;</span><span class="p">:</span> <span class="n">qcf</span><span class="o">.</span><span class="n">Tenor</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">pay_freq</span><span class="p">),</span>
+        <span class="s2">&quot;interest_rate&quot;</span><span class="p">:</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCInterestRate</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">rate</span><span class="p">,</span> <span class="n">yf</span><span class="p">,</span> <span class="n">wf</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Se construye y almacena la pata fija correspondiente</span>
+    <span class="n">fixed_rate_legs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">qcf</span><span class="o">.</span><span class="n">LegFactory</span><span class="o">.</span><span class="n">build_bullet_fixed_rate_leg</span><span class="p">(</span>
+            <span class="o">**</span><span class="p">(</span><span class="n">common_params</span> <span class="o">|</span> <span class="n">other_params</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>Se muestra la estructura de un par de patas fijas.</p>
+<div class="highlight"><pre><span></span><code><span class="n">aux</span><span class="o">.</span><span class="n">leg_as_dataframe</span><span class="p">(</span><span class="n">fixed_rate_legs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">format_dict</span><span class="p">)</span>
+</code></pre></div>
+<style type="text/css">
+</style>
+<table id="T_cfcfd">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_cfcfd_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_cfcfd_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_cfcfd_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
+      <th id="T_cfcfd_level0_col3" class="col_heading level0 col3" >nocional</th>
+      <th id="T_cfcfd_level0_col4" class="col_heading level0 col4" >amortizacion</th>
+      <th id="T_cfcfd_level0_col5" class="col_heading level0 col5" >interes</th>
+      <th id="T_cfcfd_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
+      <th id="T_cfcfd_level0_col7" class="col_heading level0 col7" >flujo</th>
+      <th id="T_cfcfd_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_cfcfd_level0_col9" class="col_heading level0 col9" >valor_tasa</th>
+      <th id="T_cfcfd_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_cfcfd_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_cfcfd_row0_col0" class="data row0 col0" >2024-06-25</td>
+      <td id="T_cfcfd_row0_col1" class="data row0 col1" >2024-07-02</td>
+      <td id="T_cfcfd_row0_col2" class="data row0 col2" >2024-07-02</td>
+      <td id="T_cfcfd_row0_col3" class="data row0 col3" >1,000,000.00</td>
+      <td id="T_cfcfd_row0_col4" class="data row0 col4" >1,000,000.00</td>
+      <td id="T_cfcfd_row0_col5" class="data row0 col5" >1,037.21</td>
+      <td id="T_cfcfd_row0_col6" class="data row0 col6" >True</td>
+      <td id="T_cfcfd_row0_col7" class="data row0 col7" >1,001,037.21</td>
+      <td id="T_cfcfd_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_cfcfd_row0_col9" class="data row0 col9" >5.3342%</td>
+      <td id="T_cfcfd_row0_col10" class="data row0 col10" >LinAct360</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlight"><pre><span></span><code><span class="n">aux</span><span class="o">.</span><span class="n">leg_as_dataframe</span><span class="p">(</span><span class="n">fixed_rate_legs</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">format_dict</span><span class="p">)</span>
+</code></pre></div>
+<style type="text/css">
+</style>
+<table id="T_e7eb5">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_e7eb5_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_e7eb5_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_e7eb5_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
+      <th id="T_e7eb5_level0_col3" class="col_heading level0 col3" >nocional</th>
+      <th id="T_e7eb5_level0_col4" class="col_heading level0 col4" >amortizacion</th>
+      <th id="T_e7eb5_level0_col5" class="col_heading level0 col5" >interes</th>
+      <th id="T_e7eb5_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
+      <th id="T_e7eb5_level0_col7" class="col_heading level0 col7" >flujo</th>
+      <th id="T_e7eb5_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_e7eb5_level0_col9" class="col_heading level0 col9" >valor_tasa</th>
+      <th id="T_e7eb5_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_e7eb5_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_e7eb5_row0_col0" class="data row0 col0" >2024-06-25</td>
+      <td id="T_e7eb5_row0_col1" class="data row0 col1" >2024-12-25</td>
+      <td id="T_e7eb5_row0_col2" class="data row0 col2" >2024-12-25</td>
+      <td id="T_e7eb5_row0_col3" class="data row0 col3" >1,000,000.00</td>
+      <td id="T_e7eb5_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_e7eb5_row0_col5" class="data row0 col5" >24,168.71</td>
+      <td id="T_e7eb5_row0_col6" class="data row0 col6" >True</td>
+      <td id="T_e7eb5_row0_col7" class="data row0 col7" >24,168.71</td>
+      <td id="T_e7eb5_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_e7eb5_row0_col9" class="data row0 col9" >4.7545%</td>
+      <td id="T_e7eb5_row0_col10" class="data row0 col10" >LinAct360</td>
+    </tr>
+    <tr>
+      <th id="T_e7eb5_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_e7eb5_row1_col0" class="data row1 col0" >2024-12-25</td>
+      <td id="T_e7eb5_row1_col1" class="data row1 col1" >2025-12-25</td>
+      <td id="T_e7eb5_row1_col2" class="data row1 col2" >2025-12-25</td>
+      <td id="T_e7eb5_row1_col3" class="data row1 col3" >1,000,000.00</td>
+      <td id="T_e7eb5_row1_col4" class="data row1 col4" >1,000,000.00</td>
+      <td id="T_e7eb5_row1_col5" class="data row1 col5" >48,205.35</td>
+      <td id="T_e7eb5_row1_col6" class="data row1 col6" >True</td>
+      <td id="T_e7eb5_row1_col7" class="data row1 col7" >1,048,205.35</td>
+      <td id="T_e7eb5_row1_col8" class="data row1 col8" >USD</td>
+      <td id="T_e7eb5_row1_col9" class="data row1 col9" >4.7545%</td>
+      <td id="T_e7eb5_row1_col10" class="data row1 col10" >LinAct360</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="curva-inicial">Curva Inicial<a class="headerlink" href="#curva-inicial" title="Permanent link">&para;</a></h2>
+<p>La curva cero cupón se construye usando bootstrapping y el algoritmo de Newton-Raphson. En el siguiente loop se construye la curva inicial. Newton-Raphson comenzará sus iteraciones desde cada punto de esta curva.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Se define los vectores de plazos y tasas</span>
+<span class="n">plazos</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">long_vec</span><span class="p">()</span>
+<span class="n">tasas</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">double_vec</span><span class="p">()</span>
+
+<span class="c1"># Para rellenarlos se utiliza la información contenida </span>
+<span class="c1"># en las patas fijas.</span>
+<span class="k">for</span> <span class="n">leg</span> <span class="ow">in</span> <span class="n">fixed_rate_legs</span><span class="p">:</span>
+    <span class="c1"># Número de cupones de la pata</span>
+    <span class="n">num_cup</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+
+    <span class="c1"># Último cashflow de la pata</span>
+    <span class="n">cashflow</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">get_cashflow_at</span><span class="p">(</span><span class="n">num_cup</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Se calcula el número de días desde start_date </span>
+    <span class="c1"># hasta la última settlement_date</span>
+    <span class="n">plazo</span> <span class="o">=</span> <span class="n">common_params</span><span class="p">[</span><span class="s2">&quot;start_date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">day_diff</span><span class="p">(</span><span class="n">cashflow</span><span class="o">.</span><span class="n">get_settlement_date</span><span class="p">())</span>
+    <span class="n">plazos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plazo</span><span class="p">)</span>
+
+    <span class="c1"># Se obtiene el valor de la tasa fija</span>
+    <span class="n">tasa</span> <span class="o">=</span> <span class="n">cashflow</span><span class="o">.</span><span class="n">get_rate</span><span class="p">()</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span>
+    <span class="n">tasas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tasa</span><span class="p">)</span>
+
+<span class="c1"># Con la información anterior, se termina de construir la curva</span>
+<span class="n">curva</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCCurve</span><span class="p">(</span><span class="n">plazos</span><span class="p">,</span> <span class="n">tasas</span><span class="p">)</span>
+<span class="n">interpolator</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCLinearInterpolator</span><span class="p">(</span><span class="n">curva</span><span class="p">)</span>
+<span class="n">initial_zcc</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">ZeroCouponCurve</span><span class="p">(</span>
+    <span class="n">interpolator</span><span class="p">,</span> 
+    <span class="n">rate</span><span class="o">:=</span><span class="p">(</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCInterestRate</span><span class="p">(</span>
+        <span class="mf">0.0</span><span class="p">,</span> 
+        <span class="n">qcf</span><span class="o">.</span><span class="n">QCAct365</span><span class="p">(),</span> 
+        <span class="n">qcf</span><span class="o">.</span><span class="n">QCContinousWf</span><span class="p">()</span>
+    <span class="p">))</span>
+<span class="p">)</span>
+</code></pre></div>
+<h2 id="bootstrapping">Bootstrapping<a class="headerlink" href="#bootstrapping" title="Permanent link">&para;</a></h2>
+<p>Se procede ahora a aplicar el bootstrapping. Se comienza dando de alta el objeto <code>PresentValue</code> de <code>qcfinancial</code>que permite valorizar todo tipo de patas.</p>
+<div class="highlight"><pre><span></span><code><span class="n">pv</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">PresentValue</span><span class="p">()</span>
+</code></pre></div>
+<p>El siguiente loop ejecuta el bootstrapping.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Se resuelve la ecuación:</span>
+<span class="c1"># VP(pata_fija(i), z1,...,z(i),...,zN) - nocional = 0, para todo i</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">leg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fixed_rate_legs</span><span class="p">):</span>
+
+    <span class="c1"># Se define la función objetivo</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obj</span><span class="p">(</span><span class="n">zcc</span><span class="p">):</span>
+        <span class="c1"># VP - nocional</span>
+        <span class="k">return</span> <span class="n">pv</span><span class="o">.</span><span class="n">pv</span><span class="p">(</span><span class="n">common_params</span><span class="p">[</span><span class="s2">&quot;start_date&quot;</span><span class="p">],</span> <span class="n">leg</span><span class="p">,</span> <span class="n">zcc</span><span class="p">)</span> <span class="o">-</span> <span class="n">common_params</span><span class="p">[</span><span class="s2">&quot;initial_notional&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Aquí comienza la resolución</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="mi">1_000</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">.00001</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">initial_zcc</span><span class="o">.</span><span class="n">get_rate_at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># Valor inicial para Newton-Raphson</span>
+    <span class="n">new_zcc</span> <span class="o">=</span> <span class="n">initial_zcc</span>  <span class="c1"># En new_zcc se almacena el resultado</span>
+
+    <span class="c1"># Se aplica Newton-Raphson</span>
+    <span class="k">while</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="n">epsilon</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">obj</span><span class="p">(</span><span class="n">new_zcc</span><span class="p">)</span> <span class="o">/</span> <span class="n">pv</span><span class="o">.</span><span class="n">get_derivatives</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># La derivada del VP se calcula al momento de valorizar </span>
+        <span class="n">tasas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="c1"># Se reconstruye la curva con el valor de la iteración</span>
+        <span class="n">curva</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCCurve</span><span class="p">(</span><span class="n">plazos</span><span class="p">,</span> <span class="n">tasas</span><span class="p">)</span>
+        <span class="n">interpolator</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCLinearInterpolator</span><span class="p">(</span><span class="n">curva</span><span class="p">)</span>
+        <span class="n">new_zcc</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">ZeroCouponCurve</span><span class="p">(</span>
+            <span class="n">interpolator</span><span class="p">,</span> 
+            <span class="n">rate</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># Se calcula el nuevo error</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">obj</span><span class="p">(</span><span class="n">new_zcc</span><span class="p">))</span>
+</code></pre></div>
+<p>Una vez ejecutado el bootstrapping, verificamos que, para cada pata, se cumple la condición deseada.</p>
+<div class="highlight"><pre><span></span><code><span class="n">check</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">leg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fixed_rate_legs</span><span class="p">):</span>
+    <span class="n">check</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;leg_number&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> 
+        <span class="s2">&quot;present_value&quot;</span><span class="p">:</span> <span class="n">pv</span><span class="o">.</span><span class="n">pv</span><span class="p">(</span><span class="n">common_params</span><span class="p">[</span><span class="s1">&#39;start_date&#39;</span><span class="p">],</span> <span class="n">leg</span><span class="p">,</span> <span class="n">new_zcc</span><span class="p">),</span>
+    <span class="p">})</span>
+<span class="n">df_check</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">check</span><span class="p">)</span>
+<span class="n">df_check</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">({</span><span class="s2">&quot;present_value&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{:,.4f}</span><span class="s2">&quot;</span><span class="p">})</span>
+</code></pre></div>
+<style type="text/css">
+</style>
+<table id="T_c021b">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_c021b_level0_col0" class="col_heading level0 col0" >leg_number</th>
+      <th id="T_c021b_level0_col1" class="col_heading level0 col1" >present_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_c021b_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_c021b_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_c021b_row0_col1" class="data row0 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_c021b_row1_col0" class="data row1 col0" >1</td>
+      <td id="T_c021b_row1_col1" class="data row1 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_c021b_row2_col0" class="data row2 col0" >2</td>
+      <td id="T_c021b_row2_col1" class="data row2 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_c021b_row3_col0" class="data row3 col0" >3</td>
+      <td id="T_c021b_row3_col1" class="data row3 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_c021b_row4_col0" class="data row4 col0" >4</td>
+      <td id="T_c021b_row4_col1" class="data row4 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_c021b_row5_col0" class="data row5 col0" >5</td>
+      <td id="T_c021b_row5_col1" class="data row5 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_c021b_row6_col0" class="data row6 col0" >6</td>
+      <td id="T_c021b_row6_col1" class="data row6 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_c021b_row7_col0" class="data row7 col0" >7</td>
+      <td id="T_c021b_row7_col1" class="data row7 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_c021b_row8_col0" class="data row8 col0" >8</td>
+      <td id="T_c021b_row8_col1" class="data row8 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_c021b_row9_col0" class="data row9 col0" >9</td>
+      <td id="T_c021b_row9_col1" class="data row9 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_c021b_row10_col0" class="data row10 col0" >10</td>
+      <td id="T_c021b_row10_col1" class="data row10 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_c021b_row11_col0" class="data row11 col0" >11</td>
+      <td id="T_c021b_row11_col1" class="data row11 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_c021b_row12_col0" class="data row12 col0" >12</td>
+      <td id="T_c021b_row12_col1" class="data row12 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_c021b_row13_col0" class="data row13 col0" >13</td>
+      <td id="T_c021b_row13_col1" class="data row13 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_c021b_row14_col0" class="data row14 col0" >14</td>
+      <td id="T_c021b_row14_col1" class="data row14 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_c021b_row15_col0" class="data row15 col0" >15</td>
+      <td id="T_c021b_row15_col1" class="data row15 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_c021b_row16_col0" class="data row16 col0" >16</td>
+      <td id="T_c021b_row16_col1" class="data row16 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_c021b_row17_col0" class="data row17 col0" >17</td>
+      <td id="T_c021b_row17_col1" class="data row17 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_c021b_row18_col0" class="data row18 col0" >18</td>
+      <td id="T_c021b_row18_col1" class="data row18 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row19" class="row_heading level0 row19" >19</th>
+      <td id="T_c021b_row19_col0" class="data row19 col0" >19</td>
+      <td id="T_c021b_row19_col1" class="data row19 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row20" class="row_heading level0 row20" >20</th>
+      <td id="T_c021b_row20_col0" class="data row20 col0" >20</td>
+      <td id="T_c021b_row20_col1" class="data row20 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row21" class="row_heading level0 row21" >21</th>
+      <td id="T_c021b_row21_col0" class="data row21 col0" >21</td>
+      <td id="T_c021b_row21_col1" class="data row21 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row22" class="row_heading level0 row22" >22</th>
+      <td id="T_c021b_row22_col0" class="data row22 col0" >22</td>
+      <td id="T_c021b_row22_col1" class="data row22 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row23" class="row_heading level0 row23" >23</th>
+      <td id="T_c021b_row23_col0" class="data row23 col0" >23</td>
+      <td id="T_c021b_row23_col1" class="data row23 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row24" class="row_heading level0 row24" >24</th>
+      <td id="T_c021b_row24_col0" class="data row24 col0" >24</td>
+      <td id="T_c021b_row24_col1" class="data row24 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row25" class="row_heading level0 row25" >25</th>
+      <td id="T_c021b_row25_col0" class="data row25 col0" >25</td>
+      <td id="T_c021b_row25_col1" class="data row25 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row26" class="row_heading level0 row26" >26</th>
+      <td id="T_c021b_row26_col0" class="data row26 col0" >26</td>
+      <td id="T_c021b_row26_col1" class="data row26 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row27" class="row_heading level0 row27" >27</th>
+      <td id="T_c021b_row27_col0" class="data row27 col0" >27</td>
+      <td id="T_c021b_row27_col1" class="data row27 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row28" class="row_heading level0 row28" >28</th>
+      <td id="T_c021b_row28_col0" class="data row28 col0" >28</td>
+      <td id="T_c021b_row28_col1" class="data row28 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row29" class="row_heading level0 row29" >29</th>
+      <td id="T_c021b_row29_col0" class="data row29 col0" >29</td>
+      <td id="T_c021b_row29_col1" class="data row29 col1" >1,000,000.0000</td>
+    </tr>
+    <tr>
+      <th id="T_c021b_level0_row30" class="row_heading level0 row30" >30</th>
+      <td id="T_c021b_row30_col0" class="data row30 col0" >30</td>
+      <td id="T_c021b_row30_col1" class="data row30 col1" >1,000,000.0000</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Finalmente, se despliega los valores de la curva obtenida.</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_curva</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">plazos</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tasas</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_curva</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;plazo&#39;</span><span class="p">,</span> <span class="s1">&#39;tasa&#39;</span><span class="p">]</span>
+<span class="n">df_curva</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">({</span><span class="s1">&#39;tasa&#39;</span><span class="p">:</span><span class="s1">&#39;</span><span class="si">{:.4%}</span><span class="s1">&#39;</span><span class="p">})</span>
+</code></pre></div>
+<style type="text/css">
+</style>
+<table id="T_4b986">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_4b986_level0_col0" class="col_heading level0 col0" >plazo</th>
+      <th id="T_4b986_level0_col1" class="col_heading level0 col1" >tasa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_4b986_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_4b986_row0_col0" class="data row0 col0" >7</td>
+      <td id="T_4b986_row0_col1" class="data row0 col1" >5.4055%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_4b986_row1_col0" class="data row1 col0" >14</td>
+      <td id="T_4b986_row1_col1" class="data row1 col1" >5.4060%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_4b986_row2_col0" class="data row2 col0" >21</td>
+      <td id="T_4b986_row2_col1" class="data row2 col1" >5.4073%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_4b986_row3_col0" class="data row3 col0" >30</td>
+      <td id="T_4b986_row3_col1" class="data row3 col1" >5.4064%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_4b986_row4_col0" class="data row4 col0" >62</td>
+      <td id="T_4b986_row4_col1" class="data row4 col1" >5.3948%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_4b986_row5_col0" class="data row5 col0" >92</td>
+      <td id="T_4b986_row5_col1" class="data row5 col1" >5.3802%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_4b986_row6_col0" class="data row6 col0" >122</td>
+      <td id="T_4b986_row6_col1" class="data row6 col1" >5.3430%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_4b986_row7_col0" class="data row7 col0" >153</td>
+      <td id="T_4b986_row7_col1" class="data row7 col1" >5.3095%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_4b986_row8_col0" class="data row8 col0" >183</td>
+      <td id="T_4b986_row8_col1" class="data row8 col1" >5.2743%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_4b986_row9_col0" class="data row9 col0" >216</td>
+      <td id="T_4b986_row9_col1" class="data row9 col1" >5.2276%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_4b986_row10_col0" class="data row10 col0" >245</td>
+      <td id="T_4b986_row10_col1" class="data row10 col1" >5.1797%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_4b986_row11_col0" class="data row11 col0" >273</td>
+      <td id="T_4b986_row11_col1" class="data row11 col1" >5.1384%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_4b986_row12_col0" class="data row12 col0" >335</td>
+      <td id="T_4b986_row12_col1" class="data row12 col1" >5.0365%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_4b986_row13_col0" class="data row13 col0" >365</td>
+      <td id="T_4b986_row13_col1" class="data row13 col1" >4.9912%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_4b986_row14_col0" class="data row14 col0" >548</td>
+      <td id="T_4b986_row14_col1" class="data row14 col1" >4.7223%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_4b986_row15_col0" class="data row15 col0" >730</td>
+      <td id="T_4b986_row15_col1" class="data row15 col1" >4.5116%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_4b986_row16_col0" class="data row16 col0" >1095</td>
+      <td id="T_4b986_row16_col1" class="data row16 col1" >4.2290%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_4b986_row17_col0" class="data row17 col0" >1462</td>
+      <td id="T_4b986_row17_col1" class="data row17 col1" >4.0595%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_4b986_row18_col0" class="data row18 col0" >1826</td>
+      <td id="T_4b986_row18_col1" class="data row18 col1" >3.9577%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row19" class="row_heading level0 row19" >19</th>
+      <td id="T_4b986_row19_col0" class="data row19 col0" >2191</td>
+      <td id="T_4b986_row19_col1" class="data row19 col1" >3.8983%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row20" class="row_heading level0 row20" >20</th>
+      <td id="T_4b986_row20_col0" class="data row20 col0" >2556</td>
+      <td id="T_4b986_row20_col1" class="data row20 col1" >3.8604%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row21" class="row_heading level0 row21" >21</th>
+      <td id="T_4b986_row21_col0" class="data row21 col0" >2922</td>
+      <td id="T_4b986_row21_col1" class="data row21 col1" >3.8367%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row22" class="row_heading level0 row22" >22</th>
+      <td id="T_4b986_row22_col0" class="data row22 col0" >3289</td>
+      <td id="T_4b986_row22_col1" class="data row22 col1" >3.8231%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row23" class="row_heading level0 row23" >23</th>
+      <td id="T_4b986_row23_col0" class="data row23 col0" >3653</td>
+      <td id="T_4b986_row23_col1" class="data row23 col1" >3.8163%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row24" class="row_heading level0 row24" >24</th>
+      <td id="T_4b986_row24_col0" class="data row24 col0" >4383</td>
+      <td id="T_4b986_row24_col1" class="data row24 col1" >3.8166%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row25" class="row_heading level0 row25" >25</th>
+      <td id="T_4b986_row25_col0" class="data row25 col0" >5480</td>
+      <td id="T_4b986_row25_col1" class="data row25 col1" >3.8225%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row26" class="row_heading level0 row26" >26</th>
+      <td id="T_4b986_row26_col0" class="data row26 col0" >7307</td>
+      <td id="T_4b986_row26_col1" class="data row26 col1" >3.7822%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row27" class="row_heading level0 row27" >27</th>
+      <td id="T_4b986_row27_col0" class="data row27 col0" >9131</td>
+      <td id="T_4b986_row27_col1" class="data row27 col1" >3.6529%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row28" class="row_heading level0 row28" >28</th>
+      <td id="T_4b986_row28_col0" class="data row28 col0" >10957</td>
+      <td id="T_4b986_row28_col1" class="data row28 col1" >3.5115%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row29" class="row_heading level0 row29" >29</th>
+      <td id="T_4b986_row29_col0" class="data row29 col0" >14610</td>
+      <td id="T_4b986_row29_col1" class="data row29 col1" >3.1854%</td>
+    </tr>
+    <tr>
+      <th id="T_4b986_level0_row30" class="row_heading level0 row30" >30</th>
+      <td id="T_4b986_row30_col0" class="data row30 col0" >18262</td>
+      <td id="T_4b986_row30_col1" class="data row30 col1" >2.8431%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2017 - 2024 Alvaro Díaz Valenzuela
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/qcfinancial/qcfinancial" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/efaachile" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/alvaro-diaz-v-1bb95328/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://medium.com/@efaa-adiazv" target="_blank" rel="noopener" title="medium.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6v83.8c-1.9-.1-3.8-.2-5.7-.2h-.4c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1.7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4v20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4V110.6C0 67.2 35.2 32 78.6 32zM82.3 138.9l.3.1c13.2 3 19.8 7.4 19.8 23.4v187.2c0 16-6.7 20.4-19.9 23.4l-.3.1v2.8H135v-2.8l-.3-.1c-13.2-3-19.9-7.4-19.9-23.4V173.3l86.1 202.5h4.9l88.6-208.2v186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3.1v2.7h91.9v-2.7l-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8h.1c0-16 6.7-20.4 19.9-23.4l.3-.1v-2.7h-72.2l-67 157.4-67-157.4H82.3zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8h41.1v67.8zm-6.4-135.6c2.3 0 4.4.3 6.4.9V263h-40.2c1.5-33.6 13.6-57.9 33.8-58.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://qcfinancial.github.io/qcfinancial-docs/" target="_blank" rel="noopener" title="qcfinancial.github.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highlight", "content.tabs.link", "navigation.indexes", "content.tooltips", "navigation.path", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

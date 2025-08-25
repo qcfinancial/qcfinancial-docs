@@ -1,0 +1,2483 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../2_Cashflows/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Objetos Fundamentales - Docs para qcfinancial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-YNEVN69SC3"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-YNEVN69SC3",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-YNEVN69SC3",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#objetos-fundamentales" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Docs para qcfinancial" class="md-header__button md-logo" aria-label="Docs para qcfinancial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Docs para qcfinancial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Objetos Fundamentales
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Docs para qcfinancial" class="md-nav__button md-logo" aria-label="Docs para qcfinancial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Docs para qcfinancial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Objetos Fundamentales
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objetos Fundamentales
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#monedas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monedas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monedas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodos-get_name-get_iso_code-get_iso_number-get_decimal_places-y-amount" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos: get_name, get_iso_code, get_iso_number, get_decimal_places y amount.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fechas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fechas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fechas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-description-iso_code-y-__str__" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos description, iso_code y __str__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getters-y-setters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getters y Setters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-week_day" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método week_day
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-add_months" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método add_months
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-add_days" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método add_days
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-day_diff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método day_diff
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orden-en-qcdate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orden en QCDate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-objeto-qcdate-es-hashable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un objeto QCDate es hashable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-build_qcdate_from_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método build_qcdate_from_string
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calendarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calendarios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Calendarios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodo-add_holiday" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método add_holiday
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-next_busy_day" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método next_busy_day
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-mod_next_busy_day" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método mod_next_busy_day
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-prev_busy_day" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método prev_busy_day
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método shift
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integracion-con-holidays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integración con holidays
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fracciones-de-ano" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fracciones de Año
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fracciones de Año">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodos-yf-y-count_days" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos yf y count_days
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funciones-y-factores-de-capitalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funciones y Factores de Capitalización
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Funciones y Factores de Capitalización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodo-wf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método wf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método rate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasas-de-interes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tasas de Interés
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasas de Interés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodos-get_value-y-set_value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos get_value y set_value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-wf-y-dwf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos wf y dwf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-get_rate_from_wf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método get_rate_from_wf
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tenor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tenor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tenor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-get_string-get_days-get_months-y-get_years" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos get_string, get_days, get_months y get_years
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-set_tenor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método set_tenor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fx-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      FX Rate
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FX Rate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-usdclp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo: USDCLP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fx-rate-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      FX Rate Index
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FX Rate Index">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-fixing_date-y-value_date" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos fixing_date y value_date
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-convert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método convert
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qccurrencyconverter" class="md-nav__link">
+    <span class="md-ellipsis">
+      QCCurrencyConverter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QCCurrencyConverter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodo-convert_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método convert
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Método convert">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enum-para-monedas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enum para Monedas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-para-fxrates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enum para FXRates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time Series
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Time Series">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_Cashflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cashflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_Construccion_Operaciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Construcción de Operaciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_Valorizacion_Sensibilidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Valorización y Sensibilidad
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_SwapICPCLP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Swap ICPCLP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_Curva_SOFR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Curva SOFR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#monedas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monedas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monedas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodos-get_name-get_iso_code-get_iso_number-get_decimal_places-y-amount" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos: get_name, get_iso_code, get_iso_number, get_decimal_places y amount.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fechas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fechas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fechas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-description-iso_code-y-__str__" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos description, iso_code y __str__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getters-y-setters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getters y Setters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-week_day" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método week_day
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-add_months" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método add_months
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-add_days" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método add_days
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-day_diff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método day_diff
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orden-en-qcdate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orden en QCDate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-objeto-qcdate-es-hashable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un objeto QCDate es hashable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-build_qcdate_from_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método build_qcdate_from_string
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calendarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calendarios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Calendarios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodo-add_holiday" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método add_holiday
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-next_busy_day" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método next_busy_day
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-mod_next_busy_day" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método mod_next_busy_day
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-prev_busy_day" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método prev_busy_day
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método shift
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integracion-con-holidays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integración con holidays
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fracciones-de-ano" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fracciones de Año
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fracciones de Año">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodos-yf-y-count_days" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos yf y count_days
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funciones-y-factores-de-capitalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funciones y Factores de Capitalización
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Funciones y Factores de Capitalización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodo-wf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método wf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método rate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasas-de-interes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tasas de Interés
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasas de Interés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodos-get_value-y-set_value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos get_value y set_value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-wf-y-dwf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos wf y dwf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-get_rate_from_wf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método get_rate_from_wf
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tenor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tenor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tenor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-get_string-get_days-get_months-y-get_years" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos get_string, get_days, get_months y get_years
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-set_tenor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método set_tenor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fx-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      FX Rate
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FX Rate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-usdclp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo: USDCLP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fx-rate-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      FX Rate Index
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FX Rate Index">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-fixing_date-y-value_date" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos fixing_date y value_date
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-convert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método convert
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qccurrencyconverter" class="md-nav__link">
+    <span class="md-ellipsis">
+      QCCurrencyConverter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QCCurrencyConverter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodo-convert_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Método convert
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Método convert">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enum-para-monedas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enum para Monedas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-para-fxrates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enum para FXRates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time Series
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Time Series">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="objetos-fundamentales">Objetos Fundamentales<a class="headerlink" href="#objetos-fundamentales" title="Permanent link">&para;</a></h1>
+<p>Para ejecutar todos los ejemplos se debe importar la librería. Se sugiere utilizar siempre el alias <code>qcf</code>. </p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">qcfinancial</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qcf</span>
+</code></pre></div>
+<h2 id="monedas">Monedas<a class="headerlink" href="#monedas" title="Permanent link">&para;</a></h2>
+<p>Las divisas se representan con objetos de tipo <code>QCCurrency</code> y sus subclases. En estos momentos, de forma explícita, están implementadas las siguientes divisas:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">fx</span> <span class="ow">in</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCCurrencyEnum</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;__entries&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fx</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>AUD
+BRL
+CAD
+CHF
+CLF
+CL2
+CLP
+CNY
+COP
+DKK
+EUR
+GBP
+HKD
+JPY
+MXN
+NOK
+PEN
+SEK
+USD
+</code></pre></div>
+
+<p>Si se requiere otra, solicitarlo ingresando un <em>issue</em> en el <a href="https://github.com/qcfinancial/qcfinancial.git">git repo</a> del proyecto.</p>
+<p>Nota: La divisa <code>CL2</code> corresponde a CLF, pero usando solamente dos decimales.</p>
+<p>El constructor por default retorna USD.</p>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCCurrency</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ISO Code: </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">get_iso_code</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>ISO Code: USD
+</code></pre></div>
+
+<p>Alta de divisas CLP, USD y JPY (USD se puede instanciar también de forma explícita).</p>
+<div class="highlight"><pre><span></span><code><span class="n">monedas</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">clp</span><span class="o">:=</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCCLP</span><span class="p">(),</span>
+    <span class="n">usd</span><span class="o">:=</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCUSD</span><span class="p">(),</span>
+    <span class="n">jpy</span><span class="o">:=</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCJPY</span><span class="p">(),</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Sin usar las subclases se puede instanciar una divisa que no esté implementada, por ejemplo para el peso argentino ARS:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ars</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCCurrency</span><span class="p">(</span><span class="s1">&#39;Peso argentino&#39;</span><span class="p">,</span> <span class="s1">&#39;ARS&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">monedas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ars</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="metodos-get_name-get_iso_code-get_iso_number-get_decimal_places-y-amount">Métodos: <code>get_name</code>, <code>get_iso_code</code>, <code>get_iso_number</code>, <code>get_decimal_places</code> y <code>amount</code>.<a class="headerlink" href="#metodos-get_name-get_iso_code-get_iso_number-get_decimal_places-y-amount" title="Permanent link">&para;</a></h3>
+<p>El método <code>amount</code>debe utilizarse cuando se debe pagar o recibir un monto resultado de un cálculo. De esta forma, el monto se redondea al número correcto de decimales en la divisa (que se obtiene con <code>get_decimal_places</code>). Por ejemplo, en CLP, se redondea a 0 decimales ya que en esta divisa no se utilizan los centavos.</p>
+<div class="highlight"><pre><span></span><code><span class="n">cantidad</span> <span class="o">=</span> <span class="mf">100.123456</span>
+<span class="k">for</span> <span class="n">moneda</span> <span class="ow">in</span> <span class="n">monedas</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nombre: </span><span class="si">{</span><span class="nb">format</span><span class="p">(</span><span class="n">moneda</span><span class="o">.</span><span class="n">get_name</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Código ISO: </span><span class="si">{</span><span class="n">moneda</span><span class="o">.</span><span class="n">get_iso_code</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Número ISO: </span><span class="si">{</span><span class="n">moneda</span><span class="o">.</span><span class="n">get_iso_number</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Número de decimales: </span><span class="si">{</span><span class="n">moneda</span><span class="o">.</span><span class="n">get_decimal_places</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cantidad </span><span class="si">{</span><span class="n">cantidad</span><span class="si">}</span><span class="s2"> con el número correcto de decimales: </span><span class="si">{</span><span class="n">moneda</span><span class="o">.</span><span class="n">amount</span><span class="p">(</span><span class="n">cantidad</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">Nombre</span><span class="o">:</span><span class="w"> </span><span class="n">Chilean</span><span class="w"> </span><span class="n">Peso</span>
+<span class="n">Código</span><span class="w"> </span><span class="n">ISO</span><span class="o">:</span><span class="w"> </span><span class="n">CLP</span>
+<span class="n">Número</span><span class="w"> </span><span class="n">ISO</span><span class="o">:</span><span class="w"> </span><span class="mi">152</span>
+<span class="n">Número</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">decimales</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">Cantidad</span><span class="w"> </span><span class="mf">100.123456</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">número</span><span class="w"> </span><span class="n">correcto</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">decimales</span><span class="o">:</span><span class="w"> </span><span class="mf">100.0000</span>
+
+<span class="n">Nombre</span><span class="o">:</span><span class="w"> </span><span class="n">U</span><span class="o">.</span><span class="w"> </span><span class="n">S</span><span class="o">.</span><span class="w"> </span><span class="n">Dollar</span>
+<span class="n">Código</span><span class="w"> </span><span class="n">ISO</span><span class="o">:</span><span class="w"> </span><span class="n">USD</span>
+<span class="n">Número</span><span class="w"> </span><span class="n">ISO</span><span class="o">:</span><span class="w"> </span><span class="mi">840</span>
+<span class="n">Número</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">decimales</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="n">Cantidad</span><span class="w"> </span><span class="mf">100.123456</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">número</span><span class="w"> </span><span class="n">correcto</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">decimales</span><span class="o">:</span><span class="w"> </span><span class="mf">100.1200</span>
+
+<span class="n">Nombre</span><span class="o">:</span><span class="w"> </span><span class="n">Japanese</span><span class="w"> </span><span class="n">Yen</span>
+<span class="n">Código</span><span class="w"> </span><span class="n">ISO</span><span class="o">:</span><span class="w"> </span><span class="n">JPY</span>
+<span class="n">Número</span><span class="w"> </span><span class="n">ISO</span><span class="o">:</span><span class="w"> </span><span class="mi">392</span>
+<span class="n">Número</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">decimales</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="n">Cantidad</span><span class="w"> </span><span class="mf">100.123456</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">número</span><span class="w"> </span><span class="n">correcto</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">decimales</span><span class="o">:</span><span class="w"> </span><span class="mf">100.1200</span>
+
+<span class="n">Nombre</span><span class="o">:</span><span class="w"> </span><span class="n">Peso</span><span class="w"> </span><span class="n">argentino</span>
+<span class="n">Código</span><span class="w"> </span><span class="n">ISO</span><span class="o">:</span><span class="w"> </span><span class="n">ARS</span>
+<span class="n">Número</span><span class="w"> </span><span class="n">ISO</span><span class="o">:</span><span class="w"> </span><span class="mi">32</span>
+<span class="n">Número</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">decimales</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">Cantidad</span><span class="w"> </span><span class="mf">100.123456</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">número</span><span class="w"> </span><span class="n">correcto</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">decimales</span><span class="o">:</span><span class="w"> </span><span class="mf">100.0000</span>
+</code></pre></div>
+
+<p>Más adelante, cuando veamos el concepto de índice, veremos como disponer de un objeto moneda simplifica la conversión de montos de una moneda a otra.</p>
+<h2 id="fechas">Fechas<a class="headerlink" href="#fechas" title="Permanent link">&para;</a></h2>
+<p>Las fechas se representan con objetos de tipo <code>QCDate</code>. Para inicializar un <code>QCDate</code> se requiere el día, el mes y el año de la fecha. También se puede inicializar sin valor (default constructor) en cuyo caso se obtendrá el 12-01-1969.</p>
+<h3 id="constructores">Constructores<a class="headerlink" href="#constructores" title="Permanent link">&para;</a></h3>
+<p>Inicializar sin valor.</p>
+<div class="highlight"><pre><span></span><code><span class="n">fecha</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fecha: </span><span class="si">{</span><span class="n">fecha</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">Fecha</span><span class="o">:</span><span class="w"> </span><span class="mi">1969</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">12</span>
+</code></pre></div>
+
+<p>Inicializar con una fecha específica. En este caso, el contructor realiza una validación de los parámetros iniciales.</p>
+<div class="highlight"><pre><span></span><code><span class="n">fecha1</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2024</span><span class="p">)</span>  <span class="c1"># día, mes, año</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fecha: </span><span class="si">{</span><span class="n">fecha1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">Fecha</span><span class="o">:</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">14</span>
+</code></pre></div>
+
+<p>Error al tratar de construir una fecha inválida.</p>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">fecha0</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2024</span><span class="p">)</span>  <span class="c1"># ¡¡¡ 31 de febrero !!!</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="nv">Invalid</span><span class="w"> </span><span class="nv">day</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+</code></pre></div>
+
+<h3 id="metodos-description-iso_code-y-__str__">Métodos <code>description</code>, <code>iso_code</code> y <code>__str__</code><a class="headerlink" href="#metodos-description-iso_code-y-__str__" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;description(True): </span><span class="si">{</span><span class="n">fecha</span><span class="o">.</span><span class="n">description</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;description(False): </span><span class="si">{</span><span class="n">fecha</span><span class="o">.</span><span class="n">description</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;iso_code(): </span><span class="si">{</span><span class="n">fecha</span><span class="o">.</span><span class="n">iso_code</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;__str__: </span><span class="si">{</span><span class="n">fecha</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>description(True): 12-01-1969
+description(False): 1969-01-12
+iso_code(): 1969-01-12
+__str__: 1969-01-12
+</code></pre></div>
+
+<h3 id="getters-y-setters">Getters y Setters<a class="headerlink" href="#getters-y-setters" title="Permanent link">&para;</a></h3>
+<p>Métodos: <code>set_day</code>, <code>set_month</code> y <code>set_year</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">fecha1</span><span class="o">.</span><span class="n">set_day</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">fecha1</span><span class="o">.</span><span class="n">set_month</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">fecha1</span><span class="o">.</span><span class="n">set_year</span><span class="p">(</span><span class="mi">2024</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fecha: </span><span class="si">{</span><span class="n">fecha1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">Fecha</span><span class="o">:</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">17</span>
+</code></pre></div>
+
+<p>Métodos <code>day</code>, <code>month</code> y <code>year</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Día: </span><span class="si">{</span><span class="n">fecha1</span><span class="o">.</span><span class="n">day</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mes: </span><span class="si">{</span><span class="n">fecha1</span><span class="o">.</span><span class="n">month</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Año: </span><span class="si">{</span><span class="n">fecha1</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">Día</span><span class="o">:</span><span class="w"> </span><span class="mi">17</span>
+<span class="n">Mes</span><span class="o">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="n">Año</span><span class="o">:</span><span class="w"> </span><span class="mi">2024</span>
+</code></pre></div>
+
+<h3 id="metodo-week_day">Método <code>week_day</code><a class="headerlink" href="#metodo-week_day" title="Permanent link">&para;</a></h3>
+<p>Retorna una variable de tipo <code>enum QC_Financial.WeekDay</code> que representa el día de la semana al que corresponde a la fecha.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dia_semana</span> <span class="o">=</span> <span class="n">fecha1</span><span class="o">.</span><span class="n">week_day</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tipo del retorno: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">dia_semana</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Día de la semana: </span><span class="si">{</span><span class="n">dia_semana</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Tipo del retorno: &lt;class &#39;qcfinancial.WeekDay&#39;&gt;
+Día de la semana: WeekDay.THU
+</code></pre></div>
+
+<h3 id="metodo-add_months">Método <code>add_months</code><a class="headerlink" href="#metodo-add_months" title="Permanent link">&para;</a></h3>
+<p>Suma <strong>n meses</strong> a <code>fecha1</code> y retorna esa nueva fecha sin cambiar el valor de <code>fecha1</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">num_meses</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">fecha2</span> <span class="o">=</span> <span class="n">fecha1</span><span class="o">.</span><span class="n">add_months</span><span class="p">(</span><span class="n">num_meses</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha1: </span><span class="si">{</span><span class="n">fecha1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha2: </span><span class="si">{</span><span class="n">fecha2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">fecha1</span><span class="o">:</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">17</span>
+<span class="n">fecha2</span><span class="o">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">17</span>
+</code></pre></div>
+
+<h3 id="metodo-add_days">Método <code>add_days</code><a class="headerlink" href="#metodo-add_days" title="Permanent link">&para;</a></h3>
+<p>Suma <strong>n días</strong> a <code>fecha1</code> sin cambiar el valor de <code>fecha1</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">num_dias</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">fecha3</span> <span class="o">=</span> <span class="n">fecha1</span><span class="o">.</span><span class="n">add_days</span><span class="p">(</span><span class="n">num_dias</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha1: </span><span class="si">{</span><span class="n">fecha1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha3: </span><span class="si">{</span><span class="n">fecha3</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">fecha1</span><span class="o">:</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">17</span>
+<span class="n">fecha3</span><span class="o">:</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">16</span>
+</code></pre></div>
+
+<h3 id="metodo-day_diff">Método <code>day_diff</code><a class="headerlink" href="#metodo-day_diff" title="Permanent link">&para;</a></h3>
+<p>Calcula la diferencia en días con otra fecha. Si la otra fecha es mayor el resultado es positivo, si no, es negativo.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Dado que fecha3 &gt; fecha1 entonces el resultado es positivo</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha1.day_diff(fecha3): </span><span class="si">{</span><span class="n">fecha1</span><span class="o">.</span><span class="n">day_diff</span><span class="p">(</span><span class="n">fecha3</span><span class="p">)</span><span class="si">}</span><span class="s2"> (días)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Se invierten los roles y el resultado es negativo</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha3.day_diff(fecha1): </span><span class="si">{</span><span class="n">fecha3</span><span class="o">.</span><span class="n">day_diff</span><span class="p">(</span><span class="n">fecha1</span><span class="p">)</span><span class="si">}</span><span class="s2"> (días)&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>fecha1.day_diff(fecha3): 30 (días)
+fecha3.day_diff(fecha1): -30 (días)
+</code></pre></div>
+
+<h3 id="orden-en-qcdate">Orden en <code>QCDate</code><a class="headerlink" href="#orden-en-qcdate" title="Permanent link">&para;</a></h3>
+<p>El orden de <code>QCDate</code> permite que las fechas pueden compararse entre si.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha1: </span><span class="si">{</span><span class="n">fecha1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha2: </span><span class="si">{</span><span class="n">fecha2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha1 == fecha2: </span><span class="si">{</span><span class="n">fecha1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">fecha2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha1 != fecha2: </span><span class="si">{</span><span class="n">fecha1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">fecha2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha1 &lt; fecha2: </span><span class="si">{</span><span class="n">fecha1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">fecha2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha1 &lt;= fecha2: </span><span class="si">{</span><span class="n">fecha1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">fecha2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha1 &gt; fecha2: </span><span class="si">{</span><span class="n">fecha1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">fecha2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fecha1 &gt;= fecha2: </span><span class="si">{</span><span class="n">fecha1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">fecha2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">fecha1</span><span class="o">:</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">17</span>
+<span class="n">fecha2</span><span class="o">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">17</span>
+<span class="n">fecha1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">fecha2</span><span class="o">:</span><span class="w"> </span><span class="n">False</span>
+<span class="n">fecha1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">fecha2</span><span class="o">:</span><span class="w"> </span><span class="n">True</span>
+<span class="n">fecha1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">fecha2</span><span class="o">:</span><span class="w"> </span><span class="n">True</span>
+<span class="n">fecha1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">fecha2</span><span class="o">:</span><span class="w"> </span><span class="n">True</span>
+<span class="n">fecha1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">fecha2</span><span class="o">:</span><span class="w"> </span><span class="n">False</span>
+<span class="n">fecha1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">fecha2</span><span class="o">:</span><span class="w"> </span><span class="n">False</span>
+</code></pre></div>
+
+<h3 id="un-objeto-qcdate-es-hashable">Un objeto <code>QCDate</code> es <em>hashable</em><a class="headerlink" href="#un-objeto-qcdate-es-hashable" title="Permanent link">&para;</a></h3>
+<p>Esto permite que las fechas puedan usarse como <code>key</code> en un <code>dict</code>de Python. El hash que se utiliza coincide con la representación como entero de una fecha que se utiliza en Excel.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">fecha1</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">())</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="mf">45582</span>
+</code></pre></div>
+
+<p>Por ejemplo, una serie de tiempo:</p>
+<div class="highlight"><pre><span></span><code><span class="n">serie_de_tiempo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2024</span><span class="p">):</span> <span class="mf">100.01</span><span class="p">,</span>
+    <span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2024</span><span class="p">):</span> <span class="mf">100.02</span><span class="p">,</span>
+    <span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2024</span><span class="p">):</span> <span class="mf">100.03</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Valor al: </span><span class="si">{</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">2024</span><span class="p">)</span><span class="si">}</span><span class="s2"> es </span><span class="si">{</span><span class="n">serie_de_tiempo</span><span class="p">[</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">2024</span><span class="p">)]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Valor al: 2024-05-23 es 100.02
+</code></pre></div>
+
+<h3 id="metodo-build_qcdate_from_string">Método <code>build_qcdate_from_string</code><a class="headerlink" href="#metodo-build_qcdate_from_string" title="Permanent link">&para;</a></h3>
+<p>Se trata de un <em>factory method</em> que permite inicializar un objeto <code>QCDate</code> a partir de un <code>string</code>.
+El formato del <code>string</code> debe ser yyyy&amp;mm&amp;dd donde &amp; es un separador arbitrario.</p>
+<div class="highlight"><pre><span></span><code><span class="n">str1</span> <span class="o">=</span> <span class="s2">&quot;2020-01-01&quot;</span>
+<span class="n">str2</span> <span class="o">=</span> <span class="s2">&quot;2020/01/02&quot;</span>
+<span class="n">str3</span> <span class="o">=</span> <span class="s2">&quot;2020&amp;01&amp;03&quot;</span>
+
+<span class="n">fecha4</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">build_qcdate_from_string</span><span class="p">(</span><span class="n">str1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">str1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">fecha4</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fecha4</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">build_qcdate_from_string</span><span class="p">(</span><span class="n">str2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">str2</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">fecha4</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fecha4</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">build_qcdate_from_string</span><span class="p">(</span><span class="n">str3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">str3</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">fecha4</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="mf">2020</span><span class="o">-</span><span class="mf">01</span><span class="o">-</span><span class="mf">01</span><span class="p">:</span><span class="w"> </span><span class="mf">2020</span><span class="o">-</span><span class="mf">01</span><span class="o">-</span><span class="mf">01</span>
+<span class="mf">2020</span><span class="o">/</span><span class="mf">01</span><span class="o">/</span><span class="mf">02</span><span class="p">:</span><span class="w"> </span><span class="mf">2020</span><span class="o">-</span><span class="mf">01</span><span class="o">-</span><span class="mf">02</span>
+<span class="mf">2020</span><span class="err">&amp;</span><span class="mf">01</span><span class="err">&amp;</span><span class="mf">03</span><span class="p">:</span><span class="w"> </span><span class="mf">2020</span><span class="o">-</span><span class="mf">01</span><span class="o">-</span><span class="mf">03</span>
+</code></pre></div>
+
+<h2 id="calendarios">Calendarios<a class="headerlink" href="#calendarios" title="Permanent link">&para;</a></h2>
+<p>Para construir correctamente la tabla de desarrollo de un bono o de las patas de un swap, es necesario conocer los calendarios que se debe aplicar en cada caso. </p>
+<p>Sólo así es posible determinar qué fechas de pago, de inicio y fin de devengo y otras son admisibles.</p>
+<p>Los calendarios se representan con objetos de tipo <code>BusinesssCalendar</code> y son <strong>listas</strong> de fechas arbitrarias que representan días feriados en alguna ciudad, país, región o unión de las anteriores. </p>
+<p>Para dar de alta un calendario se requiere:</p>
+<ul>
+<li>una fecha inicial (<code>QCDate</code>)</li>
+<li>y un número entero positivo que representa el plazo inicial total del calendario en años.</li>
+</ul>
+<p>El objeto <code>BusinessCalendar</code> incluye explícitamente todos los días 1 de enero y considera siempre como feriado los días sábado y domingo (aunque no pertenecen de forma explícita a la <strong>lista</strong>).</p>
+<p>En el siguiente loop, por ejemplo, no se imprime nada.</p>
+<div class="highlight"><pre><span></span><code><span class="n">fecha_inicio_calendario</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2024</span><span class="p">)</span>
+<span class="n">scl</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">BusinessCalendar</span><span class="p">(</span><span class="n">fecha1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">holiday</span> <span class="ow">in</span> <span class="n">scl</span><span class="o">.</span><span class="n">get_holidays</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">holiday</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="metodo-add_holiday">Método <code>add_holiday</code><a class="headerlink" href="#metodo-add_holiday" title="Permanent link">&para;</a></h3>
+<p>Agrega una fecha a la lista.</p>
+<div class="highlight"><pre><span></span><code><span class="n">scl</span><span class="o">.</span><span class="n">add_holiday</span><span class="p">(</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2024</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">holiday</span> <span class="ow">in</span> <span class="n">scl</span><span class="o">.</span><span class="n">get_holidays</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">holiday</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="mf">2024</span><span class="o">-</span><span class="mf">09</span><span class="o">-</span><span class="mf">18</span>
+</code></pre></div>
+
+<h3 id="metodo-next_busy_day">Método <code>next_busy_day</code><a class="headerlink" href="#metodo-next_busy_day" title="Permanent link">&para;</a></h3>
+<p>Dada una fecha, si ésta es hábil retorna la misma fecha, si, por el contrario, la fecha es inhábil, devuelve la siguiente fecha hábil del calendario.</p>
+<p>Veamos qué ocurre si aplicamos este método al 18-09-2024, fecha que acabamos de incluir.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Next para el </span><span class="si">{</span><span class="p">(</span><span class="n">sept18</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">2024</span><span class="p">))</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">scl</span><span class="o">.</span><span class="n">next_busy_day</span><span class="p">(</span><span class="n">sept18</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="k">Next</span><span class="w"> </span><span class="nv">para</span><span class="w"> </span><span class="nv">el</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">18</span>:<span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">19</span>
+</code></pre></div>
+
+<p>Agregamos ahora el 19-09-2024 y vemos el nuevo resultado.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Se agrega el 19-9-2024 a la lista&quot;</span><span class="p">)</span>
+<span class="n">scl</span><span class="o">.</span><span class="n">add_holiday</span><span class="p">(</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2024</span><span class="p">))</span>
+<span class="nb">next</span> <span class="o">=</span> <span class="n">scl</span><span class="o">.</span><span class="n">next_busy_day</span><span class="p">(</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2024</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nuevo next para el </span><span class="si">{</span><span class="n">sept18</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">next</span><span class="o">.</span><span class="n">week_day</span><span class="p">()</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">next</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">Se</span><span class="w"> </span><span class="n">agrega</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="mh">19</span><span class="o">-</span><span class="mh">9</span><span class="o">-</span><span class="mh">2024</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">lista</span>
+<span class="n">Nuevo</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="n">para</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="mh">2024</span><span class="o">-</span><span class="mh">09</span><span class="o">-</span><span class="mh">18</span><span class="o">:</span><span class="w"> </span><span class="n">WeekDay</span><span class="p">.</span><span class="n">FRI</span><span class="p">,</span><span class="w"> </span><span class="mh">2024</span><span class="o">-</span><span class="mh">09</span><span class="o">-</span><span class="mh">20</span>
+</code></pre></div>
+
+<p>Pero el 2024, el 20 de septiembre también es feriado. Incluyámoslo y veamos el efecto.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Se agrega el 20-9-2024 a la lista&quot;</span><span class="p">)</span>
+<span class="n">scl</span><span class="o">.</span><span class="n">add_holiday</span><span class="p">(</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2024</span><span class="p">))</span>
+<span class="nb">next</span> <span class="o">=</span> <span class="n">scl</span><span class="o">.</span><span class="n">next_busy_day</span><span class="p">(</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2024</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nuevo next para el </span><span class="si">{</span><span class="n">sept18</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">next</span><span class="o">.</span><span class="n">week_day</span><span class="p">()</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">next</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">Se</span><span class="w"> </span><span class="n">agrega</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="mh">20</span><span class="o">-</span><span class="mh">9</span><span class="o">-</span><span class="mh">2024</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">lista</span>
+<span class="n">Nuevo</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="n">para</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="mh">2024</span><span class="o">-</span><span class="mh">09</span><span class="o">-</span><span class="mh">18</span><span class="o">:</span><span class="w"> </span><span class="n">WeekDay</span><span class="p">.</span><span class="n">MON</span><span class="p">,</span><span class="w"> </span><span class="mh">2024</span><span class="o">-</span><span class="mh">09</span><span class="o">-</span><span class="mh">23</span>
+</code></pre></div>
+
+<h3 id="metodo-mod_next_busy_day">Método <code>mod_next_busy_day</code><a class="headerlink" href="#metodo-mod_next_busy_day" title="Permanent link">&para;</a></h3>
+<p>Opera igual que la función anterior a menos que ésta retorne una fecha del mes siguiente, en ese caso retorna la fecha hábil anterior.</p>
+<p>Probemos el comportamiento usando el 30-04-2024.</p>
+<div class="highlight"><pre><span></span><code><span class="n">abril30</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2024</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Abril 30: </span><span class="si">{</span><span class="n">abril30</span><span class="o">.</span><span class="n">week_day</span><span class="p">()</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">abril30</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Abril 30: WeekDay.TUE, 2024-04-30
+</code></pre></div>
+
+<p>Vemos que es un martes y no es feriado, por lo tanto al aplicar <code>next_busy_day</code> no hay cambio de fecha:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Next para el </span><span class="si">{</span><span class="n">abril30</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">scl</span><span class="o">.</span><span class="n">next_busy_day</span><span class="p">(</span><span class="n">abril30</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="k">Next</span><span class="w"> </span><span class="nv">para</span><span class="w"> </span><span class="nv">el</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">30</span>:<span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">30</span>
+</code></pre></div>
+
+<p>Ahora, si lo agregamos al calendario, sí se produce el cambio de fecha.</p>
+<div class="highlight"><pre><span></span><code><span class="n">scl</span><span class="o">.</span><span class="n">add_holiday</span><span class="p">(</span><span class="n">abril30</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Next para el </span><span class="si">{</span><span class="n">abril30</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">scl</span><span class="o">.</span><span class="n">next_busy_day</span><span class="p">(</span><span class="n">abril30</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="k">Next</span><span class="w"> </span><span class="nv">para</span><span class="w"> </span><span class="nv">el</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">30</span>:<span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">01</span>
+</code></pre></div>
+
+<p>Y vemos además que nos cambiamos de mes, pero si aplicamos <code>mod_next_busy_day</code> vemos que el resultado es el día hábil anterior.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mod next para el </span><span class="si">{</span><span class="n">abril30</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">scl</span><span class="o">.</span><span class="n">mod_next_busy_day</span><span class="p">(</span><span class="n">abril30</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="nv">Mod</span><span class="w"> </span><span class="k">next</span><span class="w"> </span><span class="nv">para</span><span class="w"> </span><span class="nv">el</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">30</span>:<span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span>
+</code></pre></div>
+
+<h3 id="metodo-prev_busy_day">Método <code>prev_busy_day</code><a class="headerlink" href="#metodo-prev_busy_day" title="Permanent link">&para;</a></h3>
+<p>Opera de forma análoga a <code>busy_day</code>, pero retornando la fecha hábil anterior.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;prev:&quot;</span><span class="p">,</span> <span class="n">scl</span><span class="o">.</span><span class="n">prev_busy_day</span><span class="p">(</span><span class="n">abril30</span><span class="p">))</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">prev</span><span class="o">:</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span>
+</code></pre></div>
+
+<h3 id="metodo-shift">Método <code>shift</code><a class="headerlink" href="#metodo-shift" title="Permanent link">&para;</a></h3>
+<p>Suma un número <em>n</em> (positivo o negativo) de días hábiles a una fecha.</p>
+<p>Veamos algunos ejemplos.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fecha inicial: </span><span class="si">{</span><span class="n">abril30</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">shifted</span> <span class="o">=</span> <span class="n">scl</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">abril30</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n = 0, </span><span class="si">{</span><span class="n">shifted</span><span class="o">.</span><span class="n">week_day</span><span class="p">()</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">shifted</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">shifted</span> <span class="o">=</span> <span class="n">scl</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">abril30</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n = 1, </span><span class="si">{</span><span class="n">shifted</span><span class="o">.</span><span class="n">week_day</span><span class="p">()</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">shifted</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">shifted</span> <span class="o">=</span> <span class="n">scl</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">abril30</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n = 5, </span><span class="si">{</span><span class="n">shifted</span><span class="o">.</span><span class="n">week_day</span><span class="p">()</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">shifted</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Fecha inicial: 2024-04-30
+n = 0, WeekDay.TUE, 2024-04-30
+n = 1, WeekDay.WED, 2024-05-01
+n = 5, WeekDay.TUE, 2024-05-07
+</code></pre></div>
+
+<p>Veamos en particular qué ocurre cuando usamos un número negativo.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mayo2</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2024</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n = -1: </span><span class="si">{</span><span class="n">scl</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">mayo2</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>n = -1: 2024-05-01
+</code></pre></div>
+
+<p>Agreguemos el 2024-05-01 a los feriados de <code>scl</code> y veamos cómo cambia el primer resultado.</p>
+<div class="highlight"><pre><span></span><code><span class="n">scl</span><span class="o">.</span><span class="n">add_holiday</span><span class="p">(</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2024</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n = -1: </span><span class="si">{</span><span class="n">scl</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">mayo2</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>n = -1: 2024-04-29
+</code></pre></div>
+
+<p>Se va al 29 de abril porque también agregamos como feriado el 30 de abril.</p>
+<h3 id="integracion-con-holidays">Integración con <code>holidays</code><a class="headerlink" href="#integracion-con-holidays" title="Permanent link">&para;</a></h3>
+<p><code>holidays</code> es una muy buena librería en Python puro que provee los feriados de más de 100 países, ciudades y mercados. Cuando no se está conectado a una BBDD y se quiere dar de alta un calendario, integrar <code>holidays</code> con <code>qcf.BusinessCalendar</code> es una muy buena opción.</p>
+<p>En el siguiente ejemplo, se construye el calendario de Santiago.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">holidays</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hol</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">scl</span> <span class="o">=</span> <span class="n">us_holidays</span> <span class="o">=</span> <span class="n">hol</span><span class="o">.</span><span class="n">CL</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span> <span class="mi">2045</span><span class="p">))</span>
+</code></pre></div>
+<p>Vemos que <code>scl</code> es un objeto similar a un Python <code>dict</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scl</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="mf">2024</span><span class="o">-</span><span class="mf">01</span><span class="o">-</span><span class="mf">01</span><span class="w"> </span><span class="kr">New</span><span class="w"> </span><span class="n">Year</span><span class="err">&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">Day</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">03</span><span class="o">-</span><span class="mf">29</span><span class="w"> </span><span class="kr">Go</span><span class="n">od</span><span class="w"> </span><span class="n">Friday</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">03</span><span class="o">-</span><span class="mf">30</span><span class="w"> </span><span class="n">Holy</span><span class="w"> </span><span class="n">Saturday</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">05</span><span class="o">-</span><span class="mf">01</span><span class="w"> </span><span class="n">Labor</span><span class="w"> </span><span class="n">Day</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">05</span><span class="o">-</span><span class="mf">21</span><span class="w"> </span><span class="n">Navy</span><span class="w"> </span><span class="n">Day</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">06</span><span class="o">-</span><span class="mf">20</span><span class="w"> </span><span class="n">National</span><span class="w"> </span><span class="n">Day</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">Indigenous</span><span class="w"> </span><span class="n">Peoples</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">06</span><span class="o">-</span><span class="mf">29</span><span class="w"> </span><span class="n">Saint</span><span class="w"> </span><span class="n">Peter</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Saint</span><span class="w"> </span><span class="n">Paul</span><span class="err">&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">Day</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">07</span><span class="o">-</span><span class="mf">16</span><span class="w"> </span><span class="n">Our</span><span class="w"> </span><span class="n">Lady</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">Mount</span><span class="w"> </span><span class="n">Carmel</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">08</span><span class="o">-</span><span class="mf">15</span><span class="w"> </span><span class="n">Assumption</span><span class="w"> </span><span class="n">Day</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">09</span><span class="o">-</span><span class="mf">18</span><span class="w"> </span><span class="n">Independence</span><span class="w"> </span><span class="n">Day</span>
+</code></pre></div>
+
+<p>Damos de alta un objeto de tipo <code>qcf.BusinessCalendar</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">qcf_scl</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">BusinessCalendar</span><span class="p">(</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2024</span><span class="p">),</span> <span class="mi">20</span><span class="p">)</span>
+</code></pre></div>
+<p>Y luego lo poblamos con las fechas de <code>scl</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">scl</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">qcf_scl</span><span class="o">.</span><span class="n">add_holiday</span><span class="p">(</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()))</span>
+</code></pre></div>
+<p>Este procedimiento puede encapsularse fácilmente en una función, de hecho, la agregaremos al módulo <code>aux_functions</code> para seguir utilizándola más adelante.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_business_calendar</span><span class="p">(</span><span class="n">which_holidays</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">years</span><span class="p">:</span> <span class="nb">range</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">qcf</span><span class="o">.</span><span class="n">BusinessCalendar</span><span class="p">:</span>
+    <span class="n">py_cal</span> <span class="o">=</span> <span class="n">hol</span><span class="o">.</span><span class="n">country_holidays</span><span class="p">(</span><span class="n">which_holidays</span><span class="p">,</span> <span class="n">years</span><span class="o">=</span><span class="n">years</span><span class="p">)</span>
+    <span class="n">yrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">years</span><span class="p">]</span>
+    <span class="n">qcf_cal</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">BusinessCalendar</span><span class="p">(</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">yrs</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">yrs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">yrs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">py_cal</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">qcf_cal</span><span class="o">.</span><span class="n">add_holiday</span><span class="p">(</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCDate</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="n">qcf_cal</span>
+</code></pre></div>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ny</span> <span class="o">=</span> <span class="n">get_business_calendar</span><span class="p">(</span><span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span> <span class="mi">2045</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ny</span><span class="o">.</span><span class="n">get_holidays</span><span class="p">()):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="mf">2024</span><span class="o">-</span><span class="mf">01</span><span class="o">-</span><span class="mf">01</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">01</span><span class="o">-</span><span class="mf">15</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">02</span><span class="o">-</span><span class="mf">19</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">05</span><span class="o">-</span><span class="mf">27</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">06</span><span class="o">-</span><span class="mf">19</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">07</span><span class="o">-</span><span class="mf">04</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">09</span><span class="o">-</span><span class="mf">02</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">10</span><span class="o">-</span><span class="mf">14</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">11</span><span class="o">-</span><span class="mf">11</span>
+<span class="mf">2024</span><span class="o">-</span><span class="mf">11</span><span class="o">-</span><span class="mf">28</span>
+</code></pre></div>
+
+<h2 id="fracciones-de-ano">Fracciones de Año<a class="headerlink" href="#fracciones-de-ano" title="Permanent link">&para;</a></h2>
+<p>Las fracciones de año corresponden a las distintas formas de medir un intervalo de tiempo entre dos fechas que comúnmente se utiliza en los productos de tasa de interés.</p>
+<p>En <code>qcfinancial</code> están definidas las más utilizadas.</p>
+<div class="highlight"><pre><span></span><code><span class="n">yfs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">act360</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCAct360</span><span class="p">(),</span>
+    <span class="n">act365</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCAct365</span><span class="p">(),</span>
+    <span class="n">act30</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCAct30</span><span class="p">(),</span>
+    <span class="n">t30360</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QC30360</span><span class="p">(),</span>
+    <span class="n">t3030</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QC3030</span><span class="p">(),</span>
+
+    <span class="c1"># Corresponde a depósitos a plazo en CLP</span>
+    <span class="n">act30</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCAct30</span><span class="p">(),</span>
+
+    <span class="c1"># La utilizan los bonos del tesoro americano</span>
+    <span class="n">actact</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCActAct</span><span class="p">(),</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="metodos-yf-y-count_days">Métodos <code>yf</code> y <code>count_days</code><a class="headerlink" href="#metodos-yf-y-count_days" title="Permanent link">&para;</a></h3>
+<p>El método <code>yf</code>, que retorna el valor de la fracción de año, está sobrecargado, se puede calcular usando como argumentos un número de días o un par de fechas (<code>QCDate</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">fecha1: </span><span class="si">{</span><span class="n">fecha1</span><span class="si">}</span><span class="s2"> y fecha3: </span><span class="si">{</span><span class="n">fecha3</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------------------------------------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">yf</span> <span class="ow">in</span> <span class="n">yfs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">yf</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;yf(30): </span><span class="si">{</span><span class="n">yf</span><span class="o">.</span><span class="n">yf</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;yf.yf(fecha1, fecha3): </span><span class="si">{</span><span class="n">yf</span><span class="o">.</span><span class="n">yf</span><span class="p">(</span><span class="n">fecha1</span><span class="p">,</span><span class="w"> </span><span class="n">fecha3</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;yf.yf.count_days(fecha1, fecha3): </span><span class="si">{</span><span class="n">yf</span><span class="o">.</span><span class="n">count_days</span><span class="p">(</span><span class="n">fecha1</span><span class="p">,</span><span class="w"> </span><span class="n">fecha3</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="gh">fecha1: 2024-10-17 y fecha3: 2024-11-16</span>
+<span class="gh">---------------------------------------</span>
+
+<span class="nt">&lt;class &#39;qcfinancial.QCAct360&#39;&gt;</span>
+yf(30): 0.083333
+yf.yf(fecha1, fecha3): 0.083333
+yf.yf.count_days(fecha1, fecha3): 30
+
+<span class="nt">&lt;class &#39;qcfinancial.QCAct365&#39;&gt;</span>
+yf(30): 0.082192
+yf.yf(fecha1, fecha3): 0.082192
+yf.yf.count_days(fecha1, fecha3): 30
+
+<span class="nt">&lt;class &#39;qcfinancial.QCAct30&#39;&gt;</span>
+yf(30): 1.000000
+yf.yf(fecha1, fecha3): 1.000000
+yf.yf.count_days(fecha1, fecha3): 30
+
+<span class="nt">&lt;class &#39;qcfinancial.QC30360&#39;&gt;</span>
+yf(30): 0.083333
+yf.yf(fecha1, fecha3): 0.080556
+yf.yf.count_days(fecha1, fecha3): 29
+
+<span class="nt">&lt;class &#39;qcfinancial.QC3030&#39;&gt;</span>
+yf(30): 1.000000
+yf.yf(fecha1, fecha3): 0.966667
+yf.yf.count_days(fecha1, fecha3): 29
+
+<span class="nt">&lt;class &#39;qcfinancial.QCAct30&#39;&gt;</span>
+yf(30): 1.000000
+yf.yf(fecha1, fecha3): 1.000000
+yf.yf.count_days(fecha1, fecha3): 30
+
+<span class="nt">&lt;class &#39;qcfinancial.QCActAct&#39;&gt;</span>
+yf(30): 0.082192
+yf.yf(fecha1, fecha3): 0.082192
+yf.yf.count_days(fecha1, fecha3): 30
+</code></pre></div>
+
+<h2 id="funciones-y-factores-de-capitalizacion">Funciones y Factores de Capitalización<a class="headerlink" href="#funciones-y-factores-de-capitalizacion" title="Permanent link">&para;</a></h2>
+<p>Las funciones de capitalización representan las distintas formas en que se puede usar el valor de una tasa de interés para calcular o traer a valor presente un flujo de caja futuro. Al resultado de la función de capitalización lo llamamos <em>factor de capitalización</em>.</p>
+<p>Están disponibles los siguientes 3 tipos de funciones (donde <span class="arithmatex">\(yf\)</span> es la fracción de año asociada a la tasa de valor <span class="arithmatex">\(r\)</span>):</p>
+<ul>
+<li>
+<p>QCLinearWf:     <span class="arithmatex">\(\rightarrow 1 + r \cdot yf\)</span></p>
+</li>
+<li>
+<p>QCCompoundWf:    <span class="arithmatex">\(\rightarrow \left(1 + r \right)^{yf}\)</span></p>
+</li>
+<li>
+<p>QCContinousWf:  <span class="arithmatex">\(\rightarrow exp(r \cdot yf)\)</span></p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">wfs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">lin_wf</span><span class="o">:=</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCLinearWf</span><span class="p">(),</span>
+    <span class="n">com_wf</span><span class="o">:=</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCCompoundWf</span><span class="p">(),</span>
+    <span class="n">exp_wf</span><span class="o">:=</span><span class="n">qcf</span><span class="o">.</span><span class="n">QCContinousWf</span><span class="p">(),</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="metodo-wf">Método <code>wf</code><a class="headerlink" href="#metodo-wf" title="Permanent link">&para;</a></h3>
+<p>Este método permite calcular el factor de capitalización a partir del valor de una tasa y el valor de una fracción de año.</p>
+<div class="highlight"><pre><span></span><code><span class="n">r</span> <span class="o">=</span> <span class="mf">.1</span>   <span class="c1"># Valor de la tasa</span>
+<span class="n">yf</span> <span class="o">=</span> <span class="mf">.5</span>  <span class="c1"># Fracción de año</span>
+
+<span class="k">for</span> <span class="n">wf</span> <span class="ow">in</span> <span class="n">wfs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Función: </span><span class="si">{</span><span class="n">wf</span><span class="si">}</span><span class="s2">. Factor: </span><span class="si">{</span><span class="n">wf</span><span class="o">.</span><span class="n">wf</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">yf</span><span class="p">)</span><span class="si">:</span><span class="s2">6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">Función</span><span class="o">:</span><span class="w"> </span><span class="n">Lin</span><span class="o">.</span><span class="w"> </span><span class="n">Factor</span><span class="o">:</span><span class="w"> </span><span class="mf">1.050000</span>
+<span class="n">Función</span><span class="o">:</span><span class="w"> </span><span class="n">Com</span><span class="o">.</span><span class="w"> </span><span class="n">Factor</span><span class="o">:</span><span class="w"> </span><span class="mf">1.048809</span>
+<span class="n">Función</span><span class="o">:</span><span class="w"> </span><span class="n">Exp</span><span class="o">.</span><span class="w"> </span><span class="n">Factor</span><span class="o">:</span><span class="w"> </span><span class="mf">1.051271</span>
+</code></pre></div>
+
+<h3 id="metodo-rate">Método <code>rate</code><a class="headerlink" href="#metodo-rate" title="Permanent link">&para;</a></h3>
+<p>Dada una función de capitalización, permite obtener la tasa de interés correspondiente a un factor de capitalización y fracción de año.</p>
+<p>En este caso el factor de capitalización es 1.1, la fracción de año es 1.0 y la función de capitalización es Linear.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tasa equivalente: </span><span class="si">{</span><span class="n">wfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rate</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="si">:</span><span class="s2">.4%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Tasa equivalente: 10.0000%
+</code></pre></div>
+
+<h2 id="tasas-de-interes">Tasas de Interés<a class="headerlink" href="#tasas-de-interes" title="Permanent link">&para;</a></h2>
+<p>Utilizando un número real, una fracción de año y una función de capitalización, se puede dar de alta (instanciar) un objeto de tipo <code>QCInterestRate</code> que representa una tasa de interés (ver por ejemplo el video <a href="https://youtu.be/AdCMPKBFwgg?si=8v4wT1WER_poqEBg">Convenciones de Tasas</a>).</p>
+<div class="highlight"><pre><span></span><code><span class="n">r0</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">tasas</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">tasa_lin_act360</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCInterestRate</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">act360</span><span class="p">,</span> <span class="n">lin_wf</span><span class="p">),</span>
+    <span class="n">tasa_com_act365</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCInterestRate</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">act365</span><span class="p">,</span> <span class="n">com_wf</span><span class="p">),</span>
+    <span class="n">tasa_exp_act365</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCInterestRate</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">act365</span><span class="p">,</span> <span class="n">exp_wf</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="metodos-get_value-y-set_value">Métodos <code>get_value</code> y <code>set_value</code><a class="headerlink" href="#metodos-get_value-y-set_value" title="Permanent link">&para;</a></h3>
+<p>Permiten obtener y definir el valor de la tasa de interés.</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">tasa</span> <span class="ow">in</span> <span class="n">tasas</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Descripción: </span><span class="si">{</span><span class="n">tasa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Está definido el método __str__</span>
+
+    <span class="c1"># Se obtiene el valor de la tasa utilizando get_value</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Obtener valor:&quot;</span><span class="p">,</span> <span class="n">tasa</span><span class="o">.</span><span class="n">get_value</span><span class="p">())</span>
+
+    <span class="c1"># Se utiliza set_value para cambiar el valor de la tasa</span>
+    <span class="n">r1</span> <span class="o">=</span> <span class="mf">0.12</span>
+    <span class="n">tasa</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Obtener nuevo valor:&quot;</span><span class="p">,</span> <span class="n">tasa</span><span class="o">.</span><span class="n">get_value</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">()</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">Descripción</span><span class="o">:</span><span class="w"> </span><span class="mf">0.100000</span><span class="w"> </span><span class="n">Act360</span><span class="w"> </span><span class="n">Lin</span>
+<span class="n">Obtener</span><span class="w"> </span><span class="n">valor</span><span class="o">:</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="n">Obtener</span><span class="w"> </span><span class="n">nuevo</span><span class="w"> </span><span class="n">valor</span><span class="o">:</span><span class="w"> </span><span class="mf">0.12</span>
+
+<span class="n">Descripción</span><span class="o">:</span><span class="w"> </span><span class="mf">0.100000</span><span class="w"> </span><span class="n">Act365</span><span class="w"> </span><span class="n">Com</span>
+<span class="n">Obtener</span><span class="w"> </span><span class="n">valor</span><span class="o">:</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="n">Obtener</span><span class="w"> </span><span class="n">nuevo</span><span class="w"> </span><span class="n">valor</span><span class="o">:</span><span class="w"> </span><span class="mf">0.12</span>
+
+<span class="n">Descripción</span><span class="o">:</span><span class="w"> </span><span class="mf">0.100000</span><span class="w"> </span><span class="n">Act365</span><span class="w"> </span><span class="n">Exp</span>
+<span class="n">Obtener</span><span class="w"> </span><span class="n">valor</span><span class="o">:</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="n">Obtener</span><span class="w"> </span><span class="n">nuevo</span><span class="w"> </span><span class="n">valor</span><span class="o">:</span><span class="w"> </span><span class="mf">0.12</span>
+</code></pre></div>
+
+<h3 id="metodos-wf-y-dwf">Métodos <code>wf</code> y <code>dwf</code><a class="headerlink" href="#metodos-wf-y-dwf" title="Permanent link">&para;</a></h3>
+<p>Tanto <code>wf</code> como <code>dwf</code>son métodos sobrecargados. El primero permite calcular el valor del factor de capitalización de la tasa de interés utilizando un número de días o un par de fechas, mientras que el segundo calcula la derivada del factor de capitalización respecto a la tasa de interés. </p>
+<p>¿Cómo se realiza el cálculo de la derivada? Veamos un ejemplo:</p>
+<p>Consideremos una tasa de interés cuya función de capitalización es <span class="arithmatex">\(g\)</span>. De ese modo el factor de capitalización <span class="arithmatex">\(wf\)</span> para un valor de tasa <span class="arithmatex">\(r\)</span> y una fracción de año <span class="arithmatex">\(yf\)</span> está dado por:</p>
+<div class="arithmatex">\[wf = g\left(r,yf\right)\]</div>
+<p>En muchas situaciones nos interesará saber como cambia el factor de capitalización cuando el valor <span class="arithmatex">\(r\)</span> de la tasa cambia. Cuando el cambio de valor, es pequeño, digamos un punto básico, resulta conveniente calcular el cambio de valor en <span class="arithmatex">\(wf\)</span>, <span class="arithmatex">\(\Delta wf\)</span> usando la derivada de la función <span class="arithmatex">\(g\)</span> respecto a <span class="arithmatex">\(r\)</span>, más precisamente:</p>
+<div class="arithmatex">\[\Delta wf = \frac{dg\left(r,yf\right)}{dr}\left(r_0,yf\right)\cdot\delta\]</div>
+<p>Donde <span class="arithmatex">\(r_0\)</span> es el valor inicial de la tasa y <span class="arithmatex">\(\delta\)</span> es el cambio en su valor.</p>
+<p>Tenemos que:</p>
+<ul>
+<li>
+<p>Si <span class="arithmatex">\(g=1+r\cdot yf\)</span> entonces <span class="arithmatex">\(\Delta wf = yf\cdot\delta\)</span></p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(g=\left(1+r\right)^{yf}\)</span> entonces <span class="arithmatex">\(\Delta wf = yf\cdot\left(1+r_0\right)^{yf-1}\cdot\delta\)</span></p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(g=exp\left(r\cdot yf\right)\)</span> entonces <span class="arithmatex">\(\Delta wf = yf\cdot exp\left(r_0\cdot yf\right)\cdot\delta\)</span></p>
+</li>
+</ul>
+<p>Calculemos <code>wf</code> y <code>dwf</code> usando un par de fechas.</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tasa</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tasas</span><span class="p">):</span>
+    <span class="c1"># Retorna el factor de capitalización entre las fechas</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;wf(fecha1, fecha3): </span><span class="si">{</span><span class="n">tasa</span><span class="o">.</span><span class="n">wf</span><span class="p">(</span><span class="n">fecha1</span><span class="p">,</span><span class="w"> </span><span class="n">fecha3</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Retorna la derivada del factor de capitalización respecto al valor de la tasa entre las fechas</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dwf(fecha1, fecha3): </span><span class="si">{</span><span class="n">tasa</span><span class="o">.</span><span class="n">dwf</span><span class="p">(</span><span class="n">fecha1</span><span class="p">,</span><span class="w"> </span><span class="n">fecha3</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Para verificar se calcula &quot;a mano&quot; la derivada</span>
+    <span class="k">match</span> <span class="n">i</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Check: </span><span class="si">{</span><span class="n">tasa</span><span class="o">.</span><span class="n">yf</span><span class="p">(</span><span class="n">fecha1</span><span class="p">,</span><span class="w"> </span><span class="n">fecha3</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">yf_</span> <span class="o">=</span> <span class="n">tasa</span><span class="o">.</span><span class="n">yf</span><span class="p">(</span><span class="n">fecha1</span><span class="p">,</span> <span class="n">fecha3</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Check: </span><span class="si">{</span><span class="n">tasa</span><span class="o">.</span><span class="n">yf</span><span class="p">(</span><span class="n">fecha1</span><span class="p">,</span><span class="w"> </span><span class="n">fecha3</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">yf_</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Check: </span><span class="si">{</span><span class="n">tasa</span><span class="o">.</span><span class="n">yf</span><span class="p">(</span><span class="n">fecha1</span><span class="p">,</span><span class="w"> </span><span class="n">fecha3</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tasa</span><span class="o">.</span><span class="n">wf</span><span class="p">(</span><span class="n">fecha1</span><span class="p">,</span><span class="w"> </span><span class="n">fecha3</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">()</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>wf(fecha1, fecha3): 1.01000000
+dwf(fecha1, fecha3): 0.08333333
+Check: 0.08333333
+
+wf(fecha1, fecha3): 1.00935820
+dwf(fecha1, fecha3): 0.07407228
+Check: 0.07407228
+
+wf(fecha1, fecha3): 1.00991181
+dwf(fecha1, fecha3): 0.08300645
+Check: 0.08300645
+</code></pre></div>
+
+<p>Veamos ahora la sobrecarga y utilicemos un número de días.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dias</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tasa</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tasas</span><span class="p">):</span>
+    <span class="c1"># Retorna el factor de capitalización entre las fechas</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;wf(dias): </span><span class="si">{</span><span class="n">tasa</span><span class="o">.</span><span class="n">wf</span><span class="p">(</span><span class="n">dias</span><span class="p">)</span><span class="si">:</span><span class="s2">.8F</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Retorna la derivada del factor de capitalización respecto al valor de la tasa entre las fechas</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dwf(dias): </span><span class="si">{</span><span class="n">tasa</span><span class="o">.</span><span class="n">dwf</span><span class="p">(</span><span class="n">dias</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Para verificar se calcula &quot;a mano&quot; la derivada</span>
+    <span class="k">match</span> <span class="n">i</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Check: </span><span class="si">{</span><span class="n">dias</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">360</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">yf_</span> <span class="o">=</span> <span class="n">dias</span> <span class="o">/</span> <span class="mi">365</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Check: </span><span class="si">{</span><span class="n">yf_</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">yf_</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Check: </span><span class="si">{</span><span class="n">dias</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">365</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tasa</span><span class="o">.</span><span class="n">wf</span><span class="p">(</span><span class="n">dias</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">()</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>wf(dias): 1.13333333
+dwf(dias): 1.11111111
+Check: 1.11111111
+
+wf(dias): 1.13223756
+dwf(dias): 1.10786454
+Check: 1.10786454
+
+wf(dias): 1.14054572
+dwf(dias): 1.24991312
+Check: 1.24991312
+</code></pre></div>
+
+<h3 id="metodo-get_rate_from_wf">Método <code>get_rate_from_wf</code><a class="headerlink" href="#metodo-get_rate_from_wf" title="Permanent link">&para;</a></h3>
+<p>Este método permite calcular la tasa de interés correspondiente a un dado factor de capitalización, utilizando la función de capitalización y la fracción de año de la tasa. El intervalo de tiempo de la tasa se puede especificar con un par de fechas o con un número de días.</p>
+<p>Veamos un ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="n">factor</span> <span class="o">=</span> <span class="mf">1.0025</span>
+<span class="n">dias</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="k">for</span> <span class="n">tasa</span> <span class="ow">in</span> <span class="n">tasas</span><span class="p">:</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tasa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tasa: </span><span class="si">{</span><span class="n">aux</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;get_rate_from_wf(factor, fecha1, fecha3): </span><span class="si">{</span><span class="n">tasa</span><span class="o">.</span><span class="n">get_rate_from_wf</span><span class="p">(</span><span class="n">factor</span><span class="p">,</span><span class="w"> </span><span class="n">fecha1</span><span class="p">,</span><span class="w"> </span><span class="n">fecha3</span><span class="p">)</span><span class="si">:</span><span class="s2">.4%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;get_rate_from_wf(factor, dias): </span><span class="si">{</span><span class="n">tasa</span><span class="o">.</span><span class="n">get_rate_from_wf</span><span class="p">(</span><span class="n">factor</span><span class="p">,</span><span class="w"> </span><span class="n">dias</span><span class="p">)</span><span class="si">:</span><span class="s2">.4%</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">Tasa</span><span class="o">:</span><span class="w"> </span><span class="n">Act360</span><span class="w"> </span><span class="n">Lin</span>
+<span class="n">get_rate_from_wf</span><span class="o">(</span><span class="n">factor</span><span class="o">,</span><span class="w"> </span><span class="n">fecha1</span><span class="o">,</span><span class="w"> </span><span class="n">fecha3</span><span class="o">):</span><span class="w"> </span><span class="mf">3.0000</span><span class="o">%</span>
+<span class="n">get_rate_from_wf</span><span class="o">(</span><span class="n">factor</span><span class="o">,</span><span class="w"> </span><span class="n">dias</span><span class="o">):</span><span class="w"> </span><span class="mf">2.9032</span><span class="o">%</span>
+
+<span class="n">Tasa</span><span class="o">:</span><span class="w"> </span><span class="n">Act365</span><span class="w"> </span><span class="n">Com</span>
+<span class="n">get_rate_from_wf</span><span class="o">(</span><span class="n">factor</span><span class="o">,</span><span class="w"> </span><span class="n">fecha1</span><span class="o">,</span><span class="w"> </span><span class="n">fecha3</span><span class="o">):</span><span class="w"> </span><span class="mf">3.0845</span><span class="o">%</span>
+<span class="n">get_rate_from_wf</span><span class="o">(</span><span class="n">factor</span><span class="o">,</span><span class="w"> </span><span class="n">dias</span><span class="o">):</span><span class="w"> </span><span class="mf">2.9835</span><span class="o">%</span>
+
+<span class="n">Tasa</span><span class="o">:</span><span class="w"> </span><span class="n">Act365</span><span class="w"> </span><span class="n">Exp</span>
+<span class="n">get_rate_from_wf</span><span class="o">(</span><span class="n">factor</span><span class="o">,</span><span class="w"> </span><span class="n">fecha1</span><span class="o">,</span><span class="w"> </span><span class="n">fecha3</span><span class="o">):</span><span class="w"> </span><span class="mf">3.0379</span><span class="o">%</span>
+<span class="n">get_rate_from_wf</span><span class="o">(</span><span class="n">factor</span><span class="o">,</span><span class="w"> </span><span class="n">dias</span><span class="o">):</span><span class="w"> </span><span class="mf">2.9399</span><span class="o">%</span>
+</code></pre></div>
+
+<h2 id="tenor">Tenor<a class="headerlink" href="#tenor" title="Permanent link">&para;</a></h2>
+<p>Es una clase que representa el concepto de plazo estructurado o tenor (1D, 1M, 1Y ...).</p>
+<h3 id="ejemplos">Ejemplos<a class="headerlink" href="#ejemplos" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">tenors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">_1d</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">Tenor</span><span class="p">(</span><span class="s2">&quot;1d&quot;</span><span class="p">),</span>
+    <span class="n">_1m</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">Tenor</span><span class="p">(</span><span class="s2">&quot;1M&quot;</span><span class="p">),</span>
+    <span class="n">_1y</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">Tenor</span><span class="p">(</span><span class="s2">&quot;1y&quot;</span><span class="p">),</span>
+    <span class="n">_1d_1m_1y</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">Tenor</span><span class="p">(</span><span class="s2">&quot;1D1M1Y&quot;</span><span class="p">),</span>
+
+    <span class="c1"># Notar que, en este caso, el constructor es capaz de eliminar</span>
+    <span class="c1"># los espacios y la substr nyse</span>
+    <span class="n">_2y_3m</span> <span class="o">:=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">Tenor</span><span class="p">(</span><span class="s2">&quot;2y nyse 3m&quot;</span><span class="p">),</span>  
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="metodos-get_string-get_days-get_months-y-get_years">Métodos <code>get_string</code>, <code>get_days</code>, <code>get_months</code> y <code>get_years</code><a class="headerlink" href="#metodos-get_string-get_days-get_months-y-get_years" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">tenor</span> <span class="ow">in</span> <span class="n">tenors</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;string: </span><span class="si">{</span><span class="n">tenor</span><span class="o">.</span><span class="n">get_string</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dias: </span><span class="si">{</span><span class="n">tenor</span><span class="o">.</span><span class="n">get_days</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;meses: </span><span class="si">{</span><span class="n">tenor</span><span class="o">.</span><span class="n">get_months</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;años: </span><span class="si">{</span><span class="n">tenor</span><span class="o">.</span><span class="n">get_years</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">string</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="n">D</span>
+<span class="n">dias</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="n">meses</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">años</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span>
+
+<span class="n">string</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="n">M</span>
+<span class="n">dias</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">meses</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="n">años</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span>
+
+<span class="n">string</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="n">Y</span>
+<span class="n">dias</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">meses</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">años</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="n">string</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="n">Y1M1D</span>
+<span class="n">dias</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="n">meses</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="n">años</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="n">string</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="n">Y3M</span>
+<span class="n">dias</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">meses</span><span class="o">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="n">años</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span>
+</code></pre></div>
+
+<h3 id="metodo-set_tenor">Método <code>set_tenor</code><a class="headerlink" href="#metodo-set_tenor" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tenor</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tenors</span><span class="p">):</span>
+    <span class="n">tenor</span><span class="o">.</span><span class="n">set_tenor</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">d</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">m</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">y&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;string: </span><span class="si">{</span><span class="n">tenor</span><span class="o">.</span><span class="n">get_string</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">string</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="n">D</span>
+
+<span class="n">string</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="n">Y1M1D</span>
+
+<span class="n">string</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="n">Y2M2D</span>
+
+<span class="n">string</span><span class="o">:</span><span class="w"> </span><span class="mi">3</span><span class="n">Y3M3D</span>
+
+<span class="n">string</span><span class="o">:</span><span class="w"> </span><span class="mi">4</span><span class="n">Y4M4D</span>
+</code></pre></div>
+
+<h2 id="fx-rate">FX Rate<a class="headerlink" href="#fx-rate" title="Permanent link">&para;</a></h2>
+<p>Es una clase que representa el concepto de tipo de cambio entre dos monedas. Para dar de alta un FXRate se requiere:</p>
+<ul>
+<li>
+<p>QCCurrency: la moneda fuerte del par.</p>
+</li>
+<li>
+<p>QCCurrency: la moneda débl del par.</p>
+</li>
+</ul>
+<h3 id="ejemplo-usdclp">Ejemplo: USDCLP<a class="headerlink" href="#ejemplo-usdclp" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">usdclp</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">FXRate</span><span class="p">(</span><span class="n">usd</span><span class="p">,</span> <span class="n">clp</span><span class="p">)</span>
+</code></pre></div>
+<p>Utilizando el método <code>get_code</code> se puede obtener el código del par según la convención usual.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Código: </span><span class="si">{</span><span class="n">usdclp</span><span class="o">.</span><span class="n">get_code</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">Código</span><span class="o">:</span><span class="w"> </span><span class="n">USDCLP</span>
+</code></pre></div>
+
+<h2 id="fx-rate-index">FX Rate Index<a class="headerlink" href="#fx-rate-index" title="Permanent link">&para;</a></h2>
+<p>Esta clase representa un índice de tipo de cambio, por ejemplo, el dólar observado que publica el Banco Central de Chile.</p>
+<p>Para dar de alta un FXRateIndex se requiere:</p>
+<ul>
+<li><code>FXRate</code>: el FXRate correspondiente.</li>
+<li><code>str</code>: nombre del índice</li>
+<li><code>Tenor</code>: la regla de fixing, es 1D como el USD Observado o es 0D como un índice de cierre de día.</li>
+<li><code>Tenor</code>: la regla para la valuta. Es 1D como el USDCLP o 2D como el EURUSD.</li>
+<li><code>BusinessCalendar</code>: el calendario adecuado para aplicar las reglas de fixing y valuta.</li>
+</ul>
+<h3 id="ejemplo">Ejemplo<a class="headerlink" href="#ejemplo" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">_1d</span><span class="o">.</span><span class="n">set_tenor</span><span class="p">(</span><span class="s2">&quot;1d&quot;</span><span class="p">)</span>
+<span class="n">usdclp_obs</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">FXRateIndex</span><span class="p">(</span><span class="n">usdclp</span><span class="p">,</span> <span class="s2">&quot;USDOBS&quot;</span><span class="p">,</span> <span class="n">_1d</span><span class="p">,</span> <span class="n">_1d</span><span class="p">,</span> <span class="n">qcf_scl</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="metodos-fixing_date-y-value_date">Métodos <code>fixing_date</code> y <code>value_date</code><a class="headerlink" href="#metodos-fixing_date-y-value_date" title="Permanent link">&para;</a></h3>
+<p>El método <code>fixing_date</code> retorna la fecha de fixing del índice dada la fecha de publicación. Por su parte, <code>value_date</code> retorna la fecha de la valuta dada la fecha de publicación.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fecha de publicación: </span><span class="si">{</span><span class="n">fecha1</span><span class="o">.</span><span class="n">week_day</span><span class="p">()</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">fecha1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fecha de fixing: </span><span class="si">{</span><span class="n">usdclp_obs</span><span class="o">.</span><span class="n">fixing_date</span><span class="p">(</span><span class="n">fecha1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fecha de valuta: </span><span class="si">{</span><span class="n">usdclp_obs</span><span class="o">.</span><span class="n">value_date</span><span class="p">(</span><span class="n">fecha1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Fecha de publicación: WeekDay.THU, 2024-10-17
+Fecha de fixing: 2024-10-16
+Fecha de valuta: 2024-10-17
+</code></pre></div>
+
+<p>Notar que la fecha de fixing se calcula aplicando la regla de fixing a la fecha de publicación, mientras que la fecha de valuta se calcula aplicando la regla de valuta a la fecha de fixing.</p>
+<h3 id="metodo-convert">Método <code>convert</code><a class="headerlink" href="#metodo-convert" title="Permanent link">&para;</a></h3>
+<p>El método <code>convert</code> permite pasar rápidamente de una moneda a la otra (de las que forman el par del índice) usando un valor para el índice.</p>
+<p>Veamos un ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="n">monto_usd</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+<span class="n">monto_clp</span> <span class="o">=</span> <span class="mi">900_000_000</span>
+<span class="n">valor_usdclp_obs</span> <span class="o">=</span> <span class="mf">900.00</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">usdclp_obs</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">monto_usd</span><span class="p">,</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCUSD</span><span class="p">(),</span> <span class="n">valor_usdclp_obs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Monto en CLP es: </span><span class="si">{</span><span class="n">result</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">usdclp_obs</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">monto_clp</span><span class="p">,</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCCLP</span><span class="p">(),</span> <span class="n">valor_usdclp_obs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Monto en USD es: </span><span class="si">{</span><span class="n">result</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Monto en CLP es: 900,000,000
+Monto en USD es: 1,000,000
+</code></pre></div>
+
+<p>Esta función es cómoda porque evita tener que controlar en el propio código si la divisa del monto a convertir es la fuerte o la débil del par.</p>
+<h2 id="qccurrencyconverter">QCCurrencyConverter<a class="headerlink" href="#qccurrencyconverter" title="Permanent link">&para;</a></h2>
+<p>Este es un objeto que permite realizar conversiones de una moneda a otra con un poco más de generalidad que en el caso anterior.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ccy_converter</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">QCCurrencyConverter</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="metodo-convert_1">Método <code>convert</code><a class="headerlink" href="#metodo-convert_1" title="Permanent link">&para;</a></h3>
+<p>El método <code>convert</code> se puede utilizar con dos conjuntos distintos de argumentos:</p>
+<ul>
+<li><code>float</code>: que representa el monto en una divisa a convertir,</li>
+<li><code>QCCurrency</code>: que representa la divisa del monto anterior</li>
+<li><code>float</code>: que representa el valor del tipo de cambio a utilizar en la convención de mercado del par</li>
+<li><code>FXRateIndex</code>: que representa el par de monedas entre las cuales se realiza la conversión</li>
+</ul>
+<p>Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Monto en CLP: </span><span class="si">{</span><span class="n">ccy_converter</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">monto_usd</span><span class="p">,</span><span class="w"> </span><span class="n">usd</span><span class="p">,</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w"> </span><span class="n">usdclp_obs</span><span class="p">)</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Monto en USD: </span><span class="si">{</span><span class="n">ccy_converter</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">monto_clp</span><span class="p">,</span><span class="w"> </span><span class="n">clp</span><span class="p">,</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w"> </span><span class="n">usdclp_obs</span><span class="p">)</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Monto en CLP: 900,000,000
+Monto en USD: 1,000,000
+</code></pre></div>
+
+<p>Para el segundo método se introducen dos <code>enum</code> definidos en <code>QCCurrencyConverter</code>:</p>
+<h4 id="enum-para-monedas">Enum para Monedas<a class="headerlink" href="#enum-para-monedas" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">qcf</span><span class="o">.</span><span class="n">QCCurrencyEnum</span><span class="o">.</span><span class="n">CLP</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>&lt;QCCurrencyEnum.CLP: 6&gt;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">qcf</span><span class="o">.</span><span class="n">QCCurrencyEnum</span><span class="o">.</span><span class="n">USD</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>&lt;QCCurrencyEnum.USD: 18&gt;
+</code></pre></div>
+
+<h4 id="enum-para-fxrates">Enum para FXRates<a class="headerlink" href="#enum-para-fxrates" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">qcf</span><span class="o">.</span><span class="n">QCFxRateEnum</span><span class="o">.</span><span class="n">USDCLP</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>&lt;QCFxRateEnum.USDCLP: 15&gt;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">qcf</span><span class="o">.</span><span class="n">QCFxRateEnum</span><span class="o">.</span><span class="n">EURUSD</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>&lt;QCFxRateEnum.EURUSD: 31&gt;
+</code></pre></div>
+
+<p>Con estos <code>enum</code> el segundo conjunto de argumentos para el método <code>convert</code> es:</p>
+<ul>
+<li>float: que representa el monto en una divisa a convertir,</li>
+<li>QCCurrencyEnum: que representa la divisa del monto anterior</li>
+<li>float: que representa el valor del tipo de cambio a utilizar en la convención de mercado del par</li>
+<li>QCFxRateEnum: que representa el par de monedas entre las cuales se realiza la conversión</li>
+</ul>
+<p>Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Monto en USD: </span><span class="si">{</span><span class="n">ccy_converter</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">monto_clp</span><span class="p">,</span><span class="w"> </span><span class="n">qcf</span><span class="o">.</span><span class="n">QCCurrencyEnum</span><span class="o">.</span><span class="n">CLP</span><span class="p">,</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w"> </span><span class="n">qcf</span><span class="o">.</span><span class="n">QCFxRateEnum</span><span class="o">.</span><span class="n">USDCLP</span><span class="p">)</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Monto en CLP: </span><span class="si">{</span><span class="n">ccy_converter</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">monto_usd</span><span class="p">,</span><span class="w"> </span><span class="n">qcf</span><span class="o">.</span><span class="n">QCCurrencyEnum</span><span class="o">.</span><span class="n">USD</span><span class="p">,</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w"> </span><span class="n">qcf</span><span class="o">.</span><span class="n">QCFxRateEnum</span><span class="o">.</span><span class="n">USDCLP</span><span class="p">)</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>Monto en USD: 1,000,000
+Monto en CLP: 900,000,000
+</code></pre></div>
+
+<p>Las divisas disponibles en <code>QCCurrencyEnum</code> son las mismas que en <code>QCCurrency</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">qcf</span><span class="o">.</span><span class="n">QCCurrencyEnum</span><span class="o">.</span><span class="n">AUD</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>&lt;QCCurrencyEnum.AUD: 0&gt;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">qcf</span><span class="o">.</span><span class="n">QCCurrencyEnum</span><span class="o">.</span><span class="n">BRL</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>&lt;QCCurrencyEnum.BRL: 1&gt;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">qcf</span><span class="o">.</span><span class="n">QCCurrencyEnum</span><span class="o">.</span><span class="n">PEN</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>&lt;QCCurrencyEnum.PEN: 16&gt;
+</code></pre></div>
+
+<p>Los pares de divisas en <code>QCFxRateEnum</code> son los pares de las divisas versus el USD (en su convención de mercado) y las divisas versus CLP, que aunque no son pares líquidos, son útiles cuando se quiere expresar montos en cualquier divisa en CLP.</p>
+<div class="highlight"><pre><span></span><code><span class="n">qcf</span><span class="o">.</span><span class="n">QCFxRateEnum</span><span class="o">.</span><span class="n">USDCLP</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>&lt;QCFxRateEnum.USDCLP: 15&gt;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">qcf</span><span class="o">.</span><span class="n">QCFxRateEnum</span><span class="o">.</span><span class="n">EURUSD</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>&lt;QCFxRateEnum.EURUSD: 31&gt;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">qcf</span><span class="o">.</span><span class="n">QCFxRateEnum</span><span class="o">.</span><span class="n">EURCLP</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>&lt;QCFxRateEnum.EURCLP: 32&gt;
+</code></pre></div>
+
+<h2 id="time-series">Time Series<a class="headerlink" href="#time-series" title="Permanent link">&para;</a></h2>
+<p>Este es un objeto que permite almacenar series de tiempo financieras y se utilizarán más adelante en el fixing y valorización de flujos de caja de tasa de interés. Su estructura interna es muy similar a la de un objeto <code>dict[datetime.date, float]</code> en Python, sólo se debe reemplazar la <code>key</code> del <code>dict</code> por un objeto de tipo <code>QCCDate</code>.</p>
+<h3 id="ejemplo_1">Ejemplo<a class="headerlink" href="#ejemplo_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="o">=</span> <span class="n">qcf</span><span class="o">.</span><span class="n">time_series</span><span class="p">()</span>
+<span class="n">ts</span><span class="p">[</span><span class="n">fecha1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">type</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code>qcfinancial.time_series
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">ts</span><span class="p">[</span><span class="n">fecha1</span><span class="p">]</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="mf">10.0</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="mf">2024</span><span class="o">-</span><span class="mf">10</span><span class="o">-</span><span class="mf">17</span><span class="w"> </span><span class="mf">10.0</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2017 - 2024 Alvaro Díaz Valenzuela
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/qcfinancial/qcfinancial" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/efaachile" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/alvaro-diaz-v-1bb95328/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://medium.com/@efaa-adiazv" target="_blank" rel="noopener" title="medium.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6v83.8c-1.9-.1-3.8-.2-5.7-.2h-.4c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1.7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4v20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4V110.6C0 67.2 35.2 32 78.6 32zM82.3 138.9l.3.1c13.2 3 19.8 7.4 19.8 23.4v187.2c0 16-6.7 20.4-19.9 23.4l-.3.1v2.8H135v-2.8l-.3-.1c-13.2-3-19.9-7.4-19.9-23.4V173.3l86.1 202.5h4.9l88.6-208.2v186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3.1v2.7h91.9v-2.7l-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8h.1c0-16 6.7-20.4 19.9-23.4l.3-.1v-2.7h-72.2l-67 157.4-67-157.4H82.3zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8h41.1v67.8zm-6.4-135.6c2.3 0 4.4.3 6.4.9V263h-40.2c1.5-33.6 13.6-57.9 33.8-58.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://qcfinancial.github.io/qcfinancial-docs/" target="_blank" rel="noopener" title="qcfinancial.github.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highlight", "content.tabs.link", "navigation.indexes", "content.tooltips", "navigation.path", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
