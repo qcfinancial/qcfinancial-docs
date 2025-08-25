@@ -26,6 +26,7 @@ format_dict = {
     'valor_indice_fx': '{0:,.2f}'
 }
 
+
 def leg_as_dataframe(leg: qcf.Leg):
     """
     Envuelve un objeto qcf.Leg en un pd.DataFrame
