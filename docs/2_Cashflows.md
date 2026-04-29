@@ -17,7 +17,7 @@ qcf.id()
 
 
 
-    'version: 1.6.1, build: 2025-06-06 09:09'
+    'version: 1.10.0, build: 2026-04-29 10:00'
 
 
 
@@ -165,25 +165,49 @@ df.style.format({'monto':'{:,.0f}'})
 
 <style type="text/css">
 </style>
-<table id="T_19176">
+<table id="T_60aea">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_19176_level0_col0" class="col_heading level0 col0" >fecha_pago</th>
-      <th id="T_19176_level0_col1" class="col_heading level0 col1" >monto</th>
-      <th id="T_19176_level0_col2" class="col_heading level0 col2" >moneda</th>
+      <th id="T_60aea_level0_col0" class="col_heading level0 col0" >fecha_pago</th>
+      <th id="T_60aea_level0_col1" class="col_heading level0 col1" >monto</th>
+      <th id="T_60aea_level0_col2" class="col_heading level0 col2" >moneda</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_19176_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_19176_row0_col0" class="data row0 col0" >2024-08-24</td>
-      <td id="T_19176_row0_col1" class="data row0 col1" >1,000,000</td>
-      <td id="T_19176_row0_col2" class="data row0 col2" >CLP</td>
+      <th id="T_60aea_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_60aea_row0_col0" class="data row0 col0" >2024-08-24</td>
+      <td id="T_60aea_row0_col1" class="data row0 col1" >1,000,000</td>
+      <td id="T_60aea_row0_col2" class="data row0 col2" >CLP</td>
     </tr>
   </tbody>
 </table>
 
+
+
+
+### Método `record`
+
+Retorna un `dict` con los datos del flujo de caja. Si éste ha sido valorizado, retorna también el valor presente y el factor de descuento utilizado.
+
+
+```python
+simple_cashflow.record()
+```
+
+
+
+
+    {'amort_is_cashflow': True,
+     'amortization': 1000000.0,
+     'cashflow': 1000000.0,
+     'discount_factor': 0.0,
+     'end_date': '2024-08-24',
+     'notional': 1000000.0,
+     'notional_currency': 'CLP',
+     'present_value': 0.0,
+     'type_of_cashflow': 'simple'}
 
 
 
@@ -404,35 +428,63 @@ df.style.format({
 
 <style type="text/css">
 </style>
-<table id="T_ba9b4">
+<table id="T_c948c">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_ba9b4_level0_col0" class="col_heading level0 col0" >fecha_pago</th>
-      <th id="T_ba9b4_level0_col1" class="col_heading level0 col1" >monto_nominal</th>
-      <th id="T_ba9b4_level0_col2" class="col_heading level0 col2" >moneda_nominal</th>
-      <th id="T_ba9b4_level0_col3" class="col_heading level0 col3" >fecha_fixing_fx</th>
-      <th id="T_ba9b4_level0_col4" class="col_heading level0 col4" >moneda_pago</th>
-      <th id="T_ba9b4_level0_col5" class="col_heading level0 col5" >codigo_indice_fx</th>
-      <th id="T_ba9b4_level0_col6" class="col_heading level0 col6" >valor_indice_fx</th>
-      <th id="T_ba9b4_level0_col7" class="col_heading level0 col7" >monto_moneda_pago</th>
+      <th id="T_c948c_level0_col0" class="col_heading level0 col0" >fecha_pago</th>
+      <th id="T_c948c_level0_col1" class="col_heading level0 col1" >monto_nominal</th>
+      <th id="T_c948c_level0_col2" class="col_heading level0 col2" >moneda_nominal</th>
+      <th id="T_c948c_level0_col3" class="col_heading level0 col3" >fecha_fixing_fx</th>
+      <th id="T_c948c_level0_col4" class="col_heading level0 col4" >moneda_pago</th>
+      <th id="T_c948c_level0_col5" class="col_heading level0 col5" >codigo_indice_fx</th>
+      <th id="T_c948c_level0_col6" class="col_heading level0 col6" >valor_indice_fx</th>
+      <th id="T_c948c_level0_col7" class="col_heading level0 col7" >monto_moneda_pago</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_ba9b4_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_ba9b4_row0_col0" class="data row0 col0" >2024-08-24</td>
-      <td id="T_ba9b4_row0_col1" class="data row0 col1" >1,000,000</td>
-      <td id="T_ba9b4_row0_col2" class="data row0 col2" >USD</td>
-      <td id="T_ba9b4_row0_col3" class="data row0 col3" >2024-08-24</td>
-      <td id="T_ba9b4_row0_col4" class="data row0 col4" >CLP</td>
-      <td id="T_ba9b4_row0_col5" class="data row0 col5" >USDOBS</td>
-      <td id="T_ba9b4_row0_col6" class="data row0 col6" >900.00</td>
-      <td id="T_ba9b4_row0_col7" class="data row0 col7" >900,000,000</td>
+      <th id="T_c948c_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_c948c_row0_col0" class="data row0 col0" >2024-08-24</td>
+      <td id="T_c948c_row0_col1" class="data row0 col1" >1,000,000</td>
+      <td id="T_c948c_row0_col2" class="data row0 col2" >USD</td>
+      <td id="T_c948c_row0_col3" class="data row0 col3" >2024-08-24</td>
+      <td id="T_c948c_row0_col4" class="data row0 col4" >CLP</td>
+      <td id="T_c948c_row0_col5" class="data row0 col5" >USDOBS</td>
+      <td id="T_c948c_row0_col6" class="data row0 col6" >900.00</td>
+      <td id="T_c948c_row0_col7" class="data row0 col7" >900,000,000</td>
     </tr>
   </tbody>
 </table>
 
+
+
+
+### Método `record`
+
+Retorna un `dict` con los datos del flujo de caja. Si éste ha sido valorizado, retorna también el valor presente y el factor de descuento utilizado.
+
+
+```python
+simple_mccy_cashflow.record()
+```
+
+
+
+
+    {'amort_is_cashflow': True,
+     'amortization': 1000000.0,
+     'cashflow': 1000000.0,
+     'discount_factor': 0.0,
+     'end_date': '2024-08-24',
+     'fx_fixing_date': '24-08-2024',
+     'fx_rate_index': 'USDOBS',
+     'fx_rate_index_value': 900.0,
+     'notional': 1000000.0,
+     'notional_currency': 'USD',
+     'present_value': 0.0,
+     'settlement_currency': 'CLP',
+     'type_of_cashflow': 'simple_multi_currency'}
 
 
 
@@ -674,41 +726,70 @@ df.style.format({
 
 <style type="text/css">
 </style>
-<table id="T_fc01b">
+<table id="T_f3289">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_fc01b_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_fc01b_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_fc01b_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
-      <th id="T_fc01b_level0_col3" class="col_heading level0 col3" >nocional</th>
-      <th id="T_fc01b_level0_col4" class="col_heading level0 col4" >amortizacion</th>
-      <th id="T_fc01b_level0_col5" class="col_heading level0 col5" >interes</th>
-      <th id="T_fc01b_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
-      <th id="T_fc01b_level0_col7" class="col_heading level0 col7" >flujo</th>
-      <th id="T_fc01b_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_fc01b_level0_col9" class="col_heading level0 col9" >valor_tasa</th>
-      <th id="T_fc01b_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
+      <th id="T_f3289_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_f3289_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_f3289_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
+      <th id="T_f3289_level0_col3" class="col_heading level0 col3" >nocional</th>
+      <th id="T_f3289_level0_col4" class="col_heading level0 col4" >amortizacion</th>
+      <th id="T_f3289_level0_col5" class="col_heading level0 col5" >interes</th>
+      <th id="T_f3289_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
+      <th id="T_f3289_level0_col7" class="col_heading level0 col7" >flujo</th>
+      <th id="T_f3289_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_f3289_level0_col9" class="col_heading level0 col9" >valor_tasa</th>
+      <th id="T_f3289_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_fc01b_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_fc01b_row0_col0" class="data row0 col0" >2024-05-20</td>
-      <td id="T_fc01b_row0_col1" class="data row0 col1" >2025-05-20</td>
-      <td id="T_fc01b_row0_col2" class="data row0 col2" >2025-05-22</td>
-      <td id="T_fc01b_row0_col3" class="data row0 col3" >2000000000.000000</td>
-      <td id="T_fc01b_row0_col4" class="data row0 col4" >200,000,000</td>
-      <td id="T_fc01b_row0_col5" class="data row0 col5" >202,777,778</td>
-      <td id="T_fc01b_row0_col6" class="data row0 col6" >False</td>
-      <td id="T_fc01b_row0_col7" class="data row0 col7" >202,777,778</td>
-      <td id="T_fc01b_row0_col8" class="data row0 col8" >CLP</td>
-      <td id="T_fc01b_row0_col9" class="data row0 col9" >10.00%</td>
-      <td id="T_fc01b_row0_col10" class="data row0 col10" >LinAct360</td>
+      <th id="T_f3289_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_f3289_row0_col0" class="data row0 col0" >2024-05-20</td>
+      <td id="T_f3289_row0_col1" class="data row0 col1" >2025-05-20</td>
+      <td id="T_f3289_row0_col2" class="data row0 col2" >2025-05-22</td>
+      <td id="T_f3289_row0_col3" class="data row0 col3" >2000000000.000000</td>
+      <td id="T_f3289_row0_col4" class="data row0 col4" >200,000,000</td>
+      <td id="T_f3289_row0_col5" class="data row0 col5" >202,777,778</td>
+      <td id="T_f3289_row0_col6" class="data row0 col6" >False</td>
+      <td id="T_f3289_row0_col7" class="data row0 col7" >202,777,778</td>
+      <td id="T_f3289_row0_col8" class="data row0 col8" >CLP</td>
+      <td id="T_f3289_row0_col9" class="data row0 col9" >10.00%</td>
+      <td id="T_f3289_row0_col10" class="data row0 col10" >LinAct360</td>
     </tr>
   </tbody>
 </table>
 
+
+
+
+### Método `record`
+
+Retorna un `dict` con los datos del flujo de caja. Si éste ha sido valorizado, retorna también el valor presente y el factor de descuento utilizado.
+
+
+```python
+fixed_rate_cashflow.record()
+```
+
+
+
+
+    {'amort_is_cashflow': False,
+     'amortization': 200000000.0,
+     'cashflow': 202777777.77777794,
+     'discount_factor': 0.0,
+     'end_date': '2025-05-20',
+     'interest': 202777777.77777794,
+     'notional': 2000000000.0,
+     'notional_currency': 'CLP',
+     'present_value': 0.0,
+     'rate_value': 0.1,
+     'settlement_date': '2025-05-22',
+     'start_date': '2024-05-20',
+     'type_of_cashflow': 'fixed_rate',
+     'type_of_rate': '0.100000 Act360 Lin'}
 
 
 
@@ -906,7 +987,7 @@ df.style.format({
     'amortizacion':'{:,.2f}', 
     'amortizacion_moneda_pago':'{:,.0f}', 
     'interes':'{:,.2f}', 
-    'interes_moneda_pago':'{:,.0f}', 
+    'interes_moneda_pago':'{:,.0f}',
     'flujo':'{:,.2f}',
     'valor_tasa':'{:.2%}',
     'valor_indice_fx':'{:.2f}'
@@ -918,53 +999,88 @@ df.style.format({
 
 <style type="text/css">
 </style>
-<table id="T_8e4fd">
+<table id="T_63f43">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_8e4fd_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_8e4fd_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_8e4fd_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
-      <th id="T_8e4fd_level0_col3" class="col_heading level0 col3" >nocional</th>
-      <th id="T_8e4fd_level0_col4" class="col_heading level0 col4" >amortizacion</th>
-      <th id="T_8e4fd_level0_col5" class="col_heading level0 col5" >interes</th>
-      <th id="T_8e4fd_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
-      <th id="T_8e4fd_level0_col7" class="col_heading level0 col7" >flujo</th>
-      <th id="T_8e4fd_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_8e4fd_level0_col9" class="col_heading level0 col9" >valor_tasa</th>
-      <th id="T_8e4fd_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
-      <th id="T_8e4fd_level0_col11" class="col_heading level0 col11" >fecha_fixing_fx</th>
-      <th id="T_8e4fd_level0_col12" class="col_heading level0 col12" >moneda_pago</th>
-      <th id="T_8e4fd_level0_col13" class="col_heading level0 col13" >indice_fx</th>
-      <th id="T_8e4fd_level0_col14" class="col_heading level0 col14" >valor_indice_fx</th>
-      <th id="T_8e4fd_level0_col15" class="col_heading level0 col15" >amortizacion_moneda_pago</th>
-      <th id="T_8e4fd_level0_col16" class="col_heading level0 col16" >interes_moneda_pago</th>
+      <th id="T_63f43_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_63f43_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_63f43_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
+      <th id="T_63f43_level0_col3" class="col_heading level0 col3" >nocional</th>
+      <th id="T_63f43_level0_col4" class="col_heading level0 col4" >amortizacion</th>
+      <th id="T_63f43_level0_col5" class="col_heading level0 col5" >interes</th>
+      <th id="T_63f43_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
+      <th id="T_63f43_level0_col7" class="col_heading level0 col7" >flujo</th>
+      <th id="T_63f43_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_63f43_level0_col9" class="col_heading level0 col9" >valor_tasa</th>
+      <th id="T_63f43_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
+      <th id="T_63f43_level0_col11" class="col_heading level0 col11" >fecha_fixing_fx</th>
+      <th id="T_63f43_level0_col12" class="col_heading level0 col12" >moneda_pago</th>
+      <th id="T_63f43_level0_col13" class="col_heading level0 col13" >indice_fx</th>
+      <th id="T_63f43_level0_col14" class="col_heading level0 col14" >valor_indice_fx</th>
+      <th id="T_63f43_level0_col15" class="col_heading level0 col15" >amortizacion_moneda_pago</th>
+      <th id="T_63f43_level0_col16" class="col_heading level0 col16" >interes_moneda_pago</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_8e4fd_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_8e4fd_row0_col0" class="data row0 col0" >2024-05-20</td>
-      <td id="T_8e4fd_row0_col1" class="data row0 col1" >2025-05-20</td>
-      <td id="T_8e4fd_row0_col2" class="data row0 col2" >2025-05-22</td>
-      <td id="T_8e4fd_row0_col3" class="data row0 col3" >1000000.000000</td>
-      <td id="T_8e4fd_row0_col4" class="data row0 col4" >100,000.00</td>
-      <td id="T_8e4fd_row0_col5" class="data row0 col5" >101,388.89</td>
-      <td id="T_8e4fd_row0_col6" class="data row0 col6" >True</td>
-      <td id="T_8e4fd_row0_col7" class="data row0 col7" >201,388.89</td>
-      <td id="T_8e4fd_row0_col8" class="data row0 col8" >USD</td>
-      <td id="T_8e4fd_row0_col9" class="data row0 col9" >10.00%</td>
-      <td id="T_8e4fd_row0_col10" class="data row0 col10" >LinAct360</td>
-      <td id="T_8e4fd_row0_col11" class="data row0 col11" >2025-05-20</td>
-      <td id="T_8e4fd_row0_col12" class="data row0 col12" >CLP</td>
-      <td id="T_8e4fd_row0_col13" class="data row0 col13" >USDOBS</td>
-      <td id="T_8e4fd_row0_col14" class="data row0 col14" >900.00</td>
-      <td id="T_8e4fd_row0_col15" class="data row0 col15" >90,000,000</td>
-      <td id="T_8e4fd_row0_col16" class="data row0 col16" >91,250,000</td>
+      <th id="T_63f43_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_63f43_row0_col0" class="data row0 col0" >2024-05-20</td>
+      <td id="T_63f43_row0_col1" class="data row0 col1" >2025-05-20</td>
+      <td id="T_63f43_row0_col2" class="data row0 col2" >2025-05-22</td>
+      <td id="T_63f43_row0_col3" class="data row0 col3" >1000000.000000</td>
+      <td id="T_63f43_row0_col4" class="data row0 col4" >100,000.00</td>
+      <td id="T_63f43_row0_col5" class="data row0 col5" >101,388.89</td>
+      <td id="T_63f43_row0_col6" class="data row0 col6" >True</td>
+      <td id="T_63f43_row0_col7" class="data row0 col7" >201,388.89</td>
+      <td id="T_63f43_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_63f43_row0_col9" class="data row0 col9" >10.00%</td>
+      <td id="T_63f43_row0_col10" class="data row0 col10" >LinAct360</td>
+      <td id="T_63f43_row0_col11" class="data row0 col11" >2025-05-20</td>
+      <td id="T_63f43_row0_col12" class="data row0 col12" >CLP</td>
+      <td id="T_63f43_row0_col13" class="data row0 col13" >USDOBS</td>
+      <td id="T_63f43_row0_col14" class="data row0 col14" >900.00</td>
+      <td id="T_63f43_row0_col15" class="data row0 col15" >90,000,000</td>
+      <td id="T_63f43_row0_col16" class="data row0 col16" >91,250,000</td>
     </tr>
   </tbody>
 </table>
 
+
+
+
+### Método `record`
+
+Retorna un `dict` con los datos del flujo de caja. Si éste ha sido valorizado, retorna también el valor presente y el factor de descuento utilizado.
+
+
+```python
+fixed_rate_mccy_cashflow.record()
+```
+
+
+
+
+    {'amort_is_cashflow': True,
+     'amort_sett_currency': 90000000.0,
+     'amortization': 100000.0,
+     'cashflow': 201388.888888889,
+     'discount_factor': 0.0,
+     'end_date': '2025-05-20',
+     'fx_fixing_date': '20-05-2025',
+     'fx_rate_index': 'USDOBS',
+     'fx_rate_index_value': 900.0,
+     'interest': 101388.88888888898,
+     'interest_sett_currency': 91250000.00000007,
+     'notional': 1000000.0,
+     'notional_currency': 'USD',
+     'present_value': 0.0,
+     'rate_value': 0.1,
+     'settlement_currency': 'CLP',
+     'settlement_date': '2025-05-22',
+     'start_date': '2024-05-20',
+     'type_of_cashflow': 'fixed_rate_multi_currency',
+     'type_of_rate': '0.100000 Act360 Lin'}
 
 
 
@@ -1228,49 +1344,82 @@ df.style.format({
 
 <style type="text/css">
 </style>
-<table id="T_3c5d9">
+<table id="T_88778">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_3c5d9_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_3c5d9_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_3c5d9_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
-      <th id="T_3c5d9_level0_col3" class="col_heading level0 col3" >fecha_pago</th>
-      <th id="T_3c5d9_level0_col4" class="col_heading level0 col4" >nocional</th>
-      <th id="T_3c5d9_level0_col5" class="col_heading level0 col5" >amortizacion</th>
-      <th id="T_3c5d9_level0_col6" class="col_heading level0 col6" >interes</th>
-      <th id="T_3c5d9_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_3c5d9_level0_col8" class="col_heading level0 col8" >flujo</th>
-      <th id="T_3c5d9_level0_col9" class="col_heading level0 col9" >moneda_nocional</th>
-      <th id="T_3c5d9_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
-      <th id="T_3c5d9_level0_col11" class="col_heading level0 col11" >valor_tasa</th>
-      <th id="T_3c5d9_level0_col12" class="col_heading level0 col12" >spread</th>
-      <th id="T_3c5d9_level0_col13" class="col_heading level0 col13" >gearing</th>
-      <th id="T_3c5d9_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
+      <th id="T_88778_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_88778_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_88778_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
+      <th id="T_88778_level0_col3" class="col_heading level0 col3" >fecha_pago</th>
+      <th id="T_88778_level0_col4" class="col_heading level0 col4" >nocional</th>
+      <th id="T_88778_level0_col5" class="col_heading level0 col5" >amortizacion</th>
+      <th id="T_88778_level0_col6" class="col_heading level0 col6" >interes</th>
+      <th id="T_88778_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_88778_level0_col8" class="col_heading level0 col8" >flujo</th>
+      <th id="T_88778_level0_col9" class="col_heading level0 col9" >moneda_nocional</th>
+      <th id="T_88778_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
+      <th id="T_88778_level0_col11" class="col_heading level0 col11" >valor_tasa</th>
+      <th id="T_88778_level0_col12" class="col_heading level0 col12" >spread</th>
+      <th id="T_88778_level0_col13" class="col_heading level0 col13" >gearing</th>
+      <th id="T_88778_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_3c5d9_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_3c5d9_row0_col0" class="data row0 col0" >2018-09-20</td>
-      <td id="T_3c5d9_row0_col1" class="data row0 col1" >2019-09-20</td>
-      <td id="T_3c5d9_row0_col2" class="data row0 col2" >2018-09-18</td>
-      <td id="T_3c5d9_row0_col3" class="data row0 col3" >2019-09-23</td>
-      <td id="T_3c5d9_row0_col4" class="data row0 col4" >2000000.000000</td>
-      <td id="T_3c5d9_row0_col5" class="data row0 col5" >200,000.00</td>
-      <td id="T_3c5d9_row0_col6" class="data row0 col6" >40,555.56</td>
-      <td id="T_3c5d9_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_3c5d9_row0_col8" class="data row0 col8" >268,944.44</td>
-      <td id="T_3c5d9_row0_col9" class="data row0 col9" >USD</td>
-      <td id="T_3c5d9_row0_col10" class="data row0 col10" >TERMSOFR6M</td>
-      <td id="T_3c5d9_row0_col11" class="data row0 col11" >2.00%</td>
-      <td id="T_3c5d9_row0_col12" class="data row0 col12" >1.00%</td>
-      <td id="T_3c5d9_row0_col13" class="data row0 col13" >1.20</td>
-      <td id="T_3c5d9_row0_col14" class="data row0 col14" >LinAct360</td>
+      <th id="T_88778_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_88778_row0_col0" class="data row0 col0" >2018-09-20</td>
+      <td id="T_88778_row0_col1" class="data row0 col1" >2019-09-20</td>
+      <td id="T_88778_row0_col2" class="data row0 col2" >2018-09-18</td>
+      <td id="T_88778_row0_col3" class="data row0 col3" >2019-09-23</td>
+      <td id="T_88778_row0_col4" class="data row0 col4" >2000000.000000</td>
+      <td id="T_88778_row0_col5" class="data row0 col5" >200,000.00</td>
+      <td id="T_88778_row0_col6" class="data row0 col6" >40,555.56</td>
+      <td id="T_88778_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_88778_row0_col8" class="data row0 col8" >268,944.44</td>
+      <td id="T_88778_row0_col9" class="data row0 col9" >USD</td>
+      <td id="T_88778_row0_col10" class="data row0 col10" >TERMSOFR6M</td>
+      <td id="T_88778_row0_col11" class="data row0 col11" >2.00%</td>
+      <td id="T_88778_row0_col12" class="data row0 col12" >1.00%</td>
+      <td id="T_88778_row0_col13" class="data row0 col13" >1.20</td>
+      <td id="T_88778_row0_col14" class="data row0 col14" >LinAct360</td>
     </tr>
   </tbody>
 </table>
 
+
+
+
+### Método `record`
+
+Retorna un `dict` con los datos del flujo de caja. Si éste ha sido valorizado, retorna también el valor presente y el factor de descuento utilizado.
+
+
+```python
+ibor_cashflow.record()
+```
+
+
+
+
+    {'amort_is_cashflow': True,
+     'amortization': 200000.0,
+     'cashflow': 240555.55555555568,
+     'discount_factor': 0.0,
+     'end_date': '2019-09-20',
+     'fixing_date': '2018-09-18',
+     'gearing': 1.2,
+     'interest': 40555.55555555568,
+     'interest_rate_index': 'TERMSOFR6M',
+     'notional': 2000000.0,
+     'notional_currency': 'USD',
+     'present_value': 0.0,
+     'rate_value': 0.02,
+     'settlement_date': '2019-09-23',
+     'spread': 0.01,
+     'start_date': '2018-09-20',
+     'type_of_cashflow': 'ibor',
+     'type_of_rate': '0.020000 Act360 Lin'}
 
 
 
@@ -1500,63 +1649,102 @@ df.style.format({
 
 <style type="text/css">
 </style>
-<table id="T_f8c69">
+<table id="T_2cfd4">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_f8c69_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_f8c69_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_f8c69_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
-      <th id="T_f8c69_level0_col3" class="col_heading level0 col3" >fecha_pago</th>
-      <th id="T_f8c69_level0_col4" class="col_heading level0 col4" >nocional</th>
-      <th id="T_f8c69_level0_col5" class="col_heading level0 col5" >amortizacion</th>
-      <th id="T_f8c69_level0_col6" class="col_heading level0 col6" >interes</th>
-      <th id="T_f8c69_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_f8c69_level0_col8" class="col_heading level0 col8" >flujo</th>
-      <th id="T_f8c69_level0_col9" class="col_heading level0 col9" >moneda_nocional</th>
-      <th id="T_f8c69_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
-      <th id="T_f8c69_level0_col11" class="col_heading level0 col11" >spread</th>
-      <th id="T_f8c69_level0_col12" class="col_heading level0 col12" >gearing</th>
-      <th id="T_f8c69_level0_col13" class="col_heading level0 col13" >valor_tasa</th>
-      <th id="T_f8c69_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
-      <th id="T_f8c69_level0_col15" class="col_heading level0 col15" >fecha_fixing_fx</th>
-      <th id="T_f8c69_level0_col16" class="col_heading level0 col16" >moneda_pago</th>
-      <th id="T_f8c69_level0_col17" class="col_heading level0 col17" >codigo_indice_fx</th>
-      <th id="T_f8c69_level0_col18" class="col_heading level0 col18" >valor_indice_fx</th>
-      <th id="T_f8c69_level0_col19" class="col_heading level0 col19" >amortizacion_moneda_pago</th>
-      <th id="T_f8c69_level0_col20" class="col_heading level0 col20" >interes_moneda_pago</th>
-      <th id="T_f8c69_level0_col21" class="col_heading level0 col21" >flujo_moneda_pago</th>
+      <th id="T_2cfd4_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_2cfd4_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_2cfd4_level0_col2" class="col_heading level0 col2" >fecha_fixing</th>
+      <th id="T_2cfd4_level0_col3" class="col_heading level0 col3" >fecha_pago</th>
+      <th id="T_2cfd4_level0_col4" class="col_heading level0 col4" >nocional</th>
+      <th id="T_2cfd4_level0_col5" class="col_heading level0 col5" >amortizacion</th>
+      <th id="T_2cfd4_level0_col6" class="col_heading level0 col6" >interes</th>
+      <th id="T_2cfd4_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_2cfd4_level0_col8" class="col_heading level0 col8" >flujo</th>
+      <th id="T_2cfd4_level0_col9" class="col_heading level0 col9" >moneda_nocional</th>
+      <th id="T_2cfd4_level0_col10" class="col_heading level0 col10" >codigo_indice_tasa</th>
+      <th id="T_2cfd4_level0_col11" class="col_heading level0 col11" >spread</th>
+      <th id="T_2cfd4_level0_col12" class="col_heading level0 col12" >gearing</th>
+      <th id="T_2cfd4_level0_col13" class="col_heading level0 col13" >valor_tasa</th>
+      <th id="T_2cfd4_level0_col14" class="col_heading level0 col14" >tipo_tasa</th>
+      <th id="T_2cfd4_level0_col15" class="col_heading level0 col15" >fecha_fixing_fx</th>
+      <th id="T_2cfd4_level0_col16" class="col_heading level0 col16" >moneda_pago</th>
+      <th id="T_2cfd4_level0_col17" class="col_heading level0 col17" >codigo_indice_fx</th>
+      <th id="T_2cfd4_level0_col18" class="col_heading level0 col18" >valor_indice_fx</th>
+      <th id="T_2cfd4_level0_col19" class="col_heading level0 col19" >amortizacion_moneda_pago</th>
+      <th id="T_2cfd4_level0_col20" class="col_heading level0 col20" >interes_moneda_pago</th>
+      <th id="T_2cfd4_level0_col21" class="col_heading level0 col21" >flujo_moneda_pago</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_f8c69_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_f8c69_row0_col0" class="data row0 col0" >2018-09-20</td>
-      <td id="T_f8c69_row0_col1" class="data row0 col1" >2019-09-20</td>
-      <td id="T_f8c69_row0_col2" class="data row0 col2" >2018-09-18</td>
-      <td id="T_f8c69_row0_col3" class="data row0 col3" >2019-09-23</td>
-      <td id="T_f8c69_row0_col4" class="data row0 col4" >2,000,000.00</td>
-      <td id="T_f8c69_row0_col5" class="data row0 col5" >200,000.00</td>
-      <td id="T_f8c69_row0_col6" class="data row0 col6" >40,555.56</td>
-      <td id="T_f8c69_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_f8c69_row0_col8" class="data row0 col8" >240,555.56</td>
-      <td id="T_f8c69_row0_col9" class="data row0 col9" >USD</td>
-      <td id="T_f8c69_row0_col10" class="data row0 col10" >TERMSOFR6M</td>
-      <td id="T_f8c69_row0_col11" class="data row0 col11" >0.00%</td>
-      <td id="T_f8c69_row0_col12" class="data row0 col12" >1.000000</td>
-      <td id="T_f8c69_row0_col13" class="data row0 col13" >2.00%</td>
-      <td id="T_f8c69_row0_col14" class="data row0 col14" >LinAct360</td>
-      <td id="T_f8c69_row0_col15" class="data row0 col15" >2019-09-20</td>
-      <td id="T_f8c69_row0_col16" class="data row0 col16" >CLP</td>
-      <td id="T_f8c69_row0_col17" class="data row0 col17" >USDOBS</td>
-      <td id="T_f8c69_row0_col18" class="data row0 col18" >950.00</td>
-      <td id="T_f8c69_row0_col19" class="data row0 col19" >190,000,000.00</td>
-      <td id="T_f8c69_row0_col20" class="data row0 col20" >38,527,777.78</td>
-      <td id="T_f8c69_row0_col21" class="data row0 col21" >228,527,777.78</td>
+      <th id="T_2cfd4_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_2cfd4_row0_col0" class="data row0 col0" >2018-09-20</td>
+      <td id="T_2cfd4_row0_col1" class="data row0 col1" >2019-09-20</td>
+      <td id="T_2cfd4_row0_col2" class="data row0 col2" >2018-09-18</td>
+      <td id="T_2cfd4_row0_col3" class="data row0 col3" >2019-09-23</td>
+      <td id="T_2cfd4_row0_col4" class="data row0 col4" >2,000,000.00</td>
+      <td id="T_2cfd4_row0_col5" class="data row0 col5" >200,000.00</td>
+      <td id="T_2cfd4_row0_col6" class="data row0 col6" >40,555.56</td>
+      <td id="T_2cfd4_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_2cfd4_row0_col8" class="data row0 col8" >240,555.56</td>
+      <td id="T_2cfd4_row0_col9" class="data row0 col9" >USD</td>
+      <td id="T_2cfd4_row0_col10" class="data row0 col10" >TERMSOFR6M</td>
+      <td id="T_2cfd4_row0_col11" class="data row0 col11" >0.00%</td>
+      <td id="T_2cfd4_row0_col12" class="data row0 col12" >1.000000</td>
+      <td id="T_2cfd4_row0_col13" class="data row0 col13" >2.00%</td>
+      <td id="T_2cfd4_row0_col14" class="data row0 col14" >LinAct360</td>
+      <td id="T_2cfd4_row0_col15" class="data row0 col15" >2019-09-20</td>
+      <td id="T_2cfd4_row0_col16" class="data row0 col16" >CLP</td>
+      <td id="T_2cfd4_row0_col17" class="data row0 col17" >USDOBS</td>
+      <td id="T_2cfd4_row0_col18" class="data row0 col18" >950.00</td>
+      <td id="T_2cfd4_row0_col19" class="data row0 col19" >190,000,000.00</td>
+      <td id="T_2cfd4_row0_col20" class="data row0 col20" >38,527,777.78</td>
+      <td id="T_2cfd4_row0_col21" class="data row0 col21" >228,527,777.78</td>
     </tr>
   </tbody>
 </table>
 
+
+
+
+### Método `record`
+
+Retorna un `dict` con los datos del flujo de caja. Si éste ha sido valorizado, retorna también el valor presente y el factor de descuento utilizado.
+
+
+```python
+ibor_mccy_cashflow.record()
+```
+
+
+
+
+    {'amort_is_cashflow': True,
+     'amort_sett_currency': 190000000.0,
+     'amortization': 200000.0,
+     'cashflow': 240555.55555555568,
+     'discount_factor': 0.0,
+     'end_date': '2019-09-20',
+     'fixing_date': '2018-09-18',
+     'fx_fixing_date': '20-09-2019',
+     'fx_rate_index': 'USDOBS',
+     'fx_rate_index_value': 950.0,
+     'gearing': 1.0,
+     'interest': 40555.55555555568,
+     'interest_rate_index': 'TERMSOFR6M',
+     'interest_sett_currency': 38527777.777777895,
+     'notional': 2000000.0,
+     'notional_currency': 'USD',
+     'present_value': 0.0,
+     'rate_value': 0.02,
+     'settlement_currency': 'CLP',
+     'settlement_date': '2019-09-23',
+     'spread': 0.0,
+     'start_date': '2018-09-20',
+     'type_of_cashflow': 'ibor_multi_currency',
+     'type_of_rate': '0.020000 Act360 Lin'}
 
 
 
@@ -1587,32 +1775,32 @@ Alta de parámetros iniciales.
 
 ```python
 # Fecha inicio de devengo es un domingo
-fecha_inicio_devengo = qcf.QCDate(12, 11, 2023)
+fecha_inicio_devengo = qcf.QCDate(20, 6, 2025)
 
 # Fecha final de devengo es sábado
-fecha_final_devengo = qcf.QCDate(18, 11, 2023)
+fecha_final_devengo = qcf.QCDate(20, 12, 2025)
 
 # Estas fechas deben corresponder a días hábiles
 # En ambos casos vamos a la fecha hábil siguiente
-fecha_inicio_indice = qcf.QCDate(13, 11, 2023)
-fecha_final_indice = qcf.QCDate(20, 11, 2023)
+fecha_inicio_indice = qcf.QCDate(23, 6, 2025)
+fecha_final_indice = qcf.QCDate(22, 12, 2025)
 
 # La fecha de pago es el lunes siguiente
-fecha_pago = qcf.QCDate(20, 11, 2023)
+fecha_pago = qcf.QCDate(22, 12, 2025)
 
 # Se usan las fechas de inicio y fin de devengo para
 # el cálculo de la tasa equivalente
 dates_for_eq_rate = qcf.DatesForEquivalentRate.ACCRUAL
 
 moneda_nocional = qcf.QCUSD()
-nocional = 1_000_000_000.0
-amort = 100_000_000.0
+nocional = 4_933_575_383
+amort = 191_378_608
 amort_es_flujo = True
 spread = 0.0
 gearing = 1.0
 tasa = qcf.QCInterestRate(0.0, qcf.QCAct360(), qcf.QCLinearWf())
 nombre_indice = 'INDICE'
-num_decimales = 8 # decimales como número <-> 6 decimales como porcentaje
+num_decimales = 4 # decimales como número <-> 6 decimales como porcentaje
 ```
 
 Se da de alta el objeto.
@@ -1658,13 +1846,13 @@ print(f"Moneda:\t\t\t\t{overnight_index_cashflow.ccy()}")
 ```
 
     Tipo Cashflow:			OvernightIndexCashflow
-    Nominal:			1,000,000,000
-    Amortización:			100,000,000
-    Fecha Inicio Devengo:		2023-11-12
-    Fecha Final Devengo:		2023-11-18
-    Fecha Inicio Índice:		2023-11-13
-    Fecha Final Índice:		2023-11-20
-    Fecha Pago:			2023-11-20
+    Nominal:			4,933,575,383
+    Amortización:			191,378,608
+    Fecha Inicio Devengo:		2025-06-20
+    Fecha Final Devengo:		2025-12-20
+    Fecha Inicio Índice:		2025-06-23
+    Fecha Final Índice:		2025-12-22
+    Fecha Pago:			2025-12-22
     Valor Índice Fecha Inicio:	1.00000000
     Valor Índice Fecha Final:	1.00000000
     Valor Tasa Eq:			0.0000%
@@ -1678,22 +1866,22 @@ Se fijan los valores inicial y final del índice.
 
 
 ```python
-valor_indice_inicio = 10_000.0
+valor_indice_inicio = 25_387.13
 overnight_index_cashflow.set_start_date_index(valor_indice_inicio)
 print(f"Valor Índice Fecha Inicio: {overnight_index_cashflow.get_start_date_index():,.2f}")
 ```
 
-    Valor Índice Fecha Inicio: 10,000.00
+    Valor Índice Fecha Inicio: 25,387.13
 
 
 
 ```python
-valor_indice_final = valor_indice_inicio * (1 + .051234 * 7 / 360.0)
+valor_indice_final = 26_009.81   # valor_indice_inicio * (1 + .051234 * 7 / 360.0)
 overnight_index_cashflow.set_end_date_index(valor_indice_final)
-print(f"Valor Índice Fecha Final: {overnight_index_cashflow.get_end_date_index():,.8f}")
+print(f"Valor Índice Fecha Final: {overnight_index_cashflow.get_end_date_index():,.2f}")
 ```
 
-    Valor Índice Fecha Final: 10,009.96216667
+    Valor Índice Fecha Final: 26,009.81
 
 
 Decimales para el cálculo de la tasa equivalente.
@@ -1705,7 +1893,7 @@ overnight_index_cashflow.set_eq_rate_decimal_places(decimales_para_tasa_eq)
 print(f"Nueva Tasa Eq: {overnight_index_cashflow.get_rate_value():.4%}")
 ```
 
-    Nueva Tasa Eq: 5.9800%
+    Nueva Tasa Eq: 4.8300%
 
 
 
@@ -1715,7 +1903,7 @@ overnight_index_cashflow.set_eq_rate_decimal_places(decimales_para_tasa_eq)
 print(f"Nueva Tasa Eq: {overnight_index_cashflow.get_rate_value():.4%}")
 ```
 
-    Nueva Tasa Eq: 5.9773%
+    Nueva Tasa Eq: 4.8251%
 
 
 Nuevo nocional.
@@ -1748,6 +1936,8 @@ Tasa equivalente del período.
 
 
 ```python
+decimales_para_tasa_eq = 4
+overnight_index_cashflow.set_eq_rate_decimal_places(decimales_para_tasa_eq)
 print(f"Valor Tasa Equivalente Todo el Período: {overnight_index_cashflow.get_rate_value():.4%}")
 check = round((
     valor_indice_final / valor_indice_inicio - 1
@@ -1755,8 +1945,8 @@ check = round((
 print(f"Check: {check:.4%}")
 ```
 
-    Valor Tasa Equivalente Todo el Período: 5.9773%
-    Check: 5.9773%
+    Valor Tasa Equivalente Todo el Período: 4.8300%
+    Check: 4.8300%
 
 
 Se cambian las fechas utilizadas para el cálculo de la tasa equivalente.
@@ -1771,8 +1961,8 @@ check = round((
 print(f"Check: {check:.4%}")
 ```
 
-    Valor Tasa Equivalente Todo el Período: 5.1234%
-    Check: 5.1234%
+    Valor Tasa Equivalente Todo el Período: 4.8500%
+    Check: 4.8500%
 
 
 Método `accrued_interest`. Este método tiene dos sobrecargas. En la primera, el valor del índice se entrega explícitamente. En el ejemplo se utilizan las dos opciones para el parámetro `dates_for_eq_rate`.
@@ -1800,23 +1990,35 @@ tasa = round((
 print(f"Check: {nocional * fecha_inicio_devengo.day_diff(fecha_devengo) * tasa / 360.0:,.4f}\n")
 ```
 
-    Interés devengado (dates_for_eq_rate = ACCRUAL):  569,263.8889
-    Check: 569,263.8889
+    Interés devengado (dates_for_eq_rate = ACCRUAL):  0.0000
+    Check: -2,989,025,831.9170
     
 
 
 
 ```python
 overnight_index_cashflow.set_dates_for_eq_rate(qcf.DatesForEquivalentRate.INDEX)
-print(f"Interés devengado (dates_for_eq_rate = INDEX): {overnight_index_cashflow.accrued_interest(fecha_devengo, valor_indice_devengo): ,.4f}")
+print(f"Interés devengado (dates_for_eq_rate = INDEX): {overnight_index_cashflow.accrued_interest(fecha_final_devengo,fecha_final_indice, valor_indice_final): ,.4f}")
 tasa = round((
-    valor_indice_devengo / valor_indice_inicio - 1
-) * 360.0 / fecha_inicio_indice.day_diff(fecha_devengo), decimales_para_tasa_eq)
-print(f"Check: {nocional * fecha_inicio_devengo.day_diff(fecha_devengo) * tasa / 360.0:,.4f}")
+    valor_indice_final / valor_indice_inicio - 1
+) * 360.0 / fecha_inicio_indice.day_diff(fecha_final_indice), decimales_para_tasa_eq)
+print(f"Check: {nocional * fecha_inicio_devengo.day_diff(fecha_final_devengo) * tasa / 360.0:,.4f}")
 ```
 
-    Interés devengado (dates_for_eq_rate = INDEX):  711,583.3333
-    Check: 711,583.3333
+    Interés devengado (dates_for_eq_rate = INDEX):  121,633,189.7550
+    Check: 121,633,189.7550
+
+
+
+```python
+overnight_index_cashflow.settlement_amount()
+```
+
+
+
+
+    313011797.76
+
 
 
 La segunda sobrecarga de `accrued_interest` permite empaquetar el valor del índice a fecha de devengo en un objeto de tipo `time_series`.
@@ -1824,7 +2026,8 @@ La segunda sobrecarga de `accrued_interest` permite empaquetar el valor del índ
 
 ```python
 data = qcf.time_series()
-data[fecha_devengo] = valor_indice_devengo
+data[fecha_inicio_indice] = valor_indice_inicio
+data[fecha_final_indice] = valor_indice_final
 
 overnight_index_cashflow.set_dates_for_eq_rate(qcf.DatesForEquivalentRate.ACCRUAL)
 ```
@@ -1832,7 +2035,7 @@ overnight_index_cashflow.set_dates_for_eq_rate(qcf.DatesForEquivalentRate.ACCRUA
 
 ```python
 # El segundo parámetro de accrued_interest es ahora data
-print(f"Interés devengado (dates_for_eq_rate = ACCRUAL): {overnight_index_cashflow.accrued_interest(fecha_devengo, data): ,.4f}")
+print(f"Interés devengado (dates_for_eq_rate = ACCRUAL): {overnight_index_cashflow.accrued_interest(fecha_final_indice, data): ,.4f}")
 
 # En este caso, en los dias para el cálculo de la tasa equivalente
 # coinciden con los días de devengo, aunque cualquiera de las dos
@@ -1847,28 +2050,38 @@ print(f"Check: {nocional * tasa * dias_devengo / 360.0:,.4f}\n")
 overnight_index_cashflow.set_dates_for_eq_rate(qcf.DatesForEquivalentRate.INDEX)
 ```
 
-    Interés devengado (dates_for_eq_rate = ACCRUAL):  569,263.8889
-    Check: 569,263.8889
+    Interés devengado (dates_for_eq_rate = ACCRUAL):  120,934,266.5758
+    Check: -2,989,025,831.9170
     
 
 
 
 ```python
 # El segundo parámetro de accrued_interest es ahora data
-print(f"Interés devengado (dates_for_eq_rate = INDEX): {overnight_index_cashflow.accrued_interest(fecha_devengo, data): ,.4f}")
+print(f"Interés devengado (dates_for_eq_rate = INDEX): {
+overnight_index_cashflow.accrued_interest(
+    fecha_final_devengo,
+    fecha_final_indice,
+    valor_indice_final,
+): ,.4f}")
 
 # En este caso, en los días para el cálculo de la tasa equivalente 
 # se utiliza las fecha de inicio del índice.
-dias_calculo_tasa_eq = fecha_inicio_indice.day_diff(fecha_devengo)
-tasa = (valor_indice_devengo / valor_indice_inicio - 1) * 360.0 / dias_calculo_tasa_eq
+dias_calculo_tasa_eq = fecha_inicio_indice.day_diff(fecha_final_indice)
+print(f"Días cálculo tasa equivalente: {dias_calculo_tasa_eq}")
+tasa = (valor_indice_final / valor_indice_inicio - 1) * 360.0 / dias_calculo_tasa_eq
 tasa = round(tasa, decimales_para_tasa_eq)
+print(f"Valor tasa: {tasa:.4%}")
 
 # Para el devengo siempre se utiliza, los días de devengo
+dias_devengo = fecha_final_devengo.day_diff(fecha_inicio_devengo)
 print(f"Check: {nocional * tasa * dias_devengo / 360.0:,.4f}\n")
 ```
 
-    Interés devengado (dates_for_eq_rate = INDEX):  711,583.3333
-    Check: 711,583.3333
+    Interés devengado (dates_for_eq_rate = INDEX):  121,633,189.7550
+    Días cálculo tasa equivalente: 182
+    Valor tasa: 4.8500%
+    Check: -121,633,189.7550
     
 
 
@@ -1884,8 +2097,8 @@ dias_devengo = dias_calculo_tasa_eq
 print(f"Check: {nocional * (1 + tasa * dias_devengo / 360.0):,.4f}\n")
 ```
 
-    Amount (ACCRUAL): 100,996,216.6667
-    Check: 1,000,996,216.6667
+    Amount (ACCRUAL): 312,386,328.0332
+    Check: 5,054,583,103.0332
     
 
 
@@ -1898,8 +2111,8 @@ tasa = (valor_indice_final / valor_indice_inicio - 1) * 360.0 / dias_calculo_tas
 print(f"Check: {nocional * (1 + tasa * dias_devengo / 360.0):,.4f}\n")
 ```
 
-    Amount (INDEX): 100,853,900.0000
-    Check: 1,000,853,900.0000
+    Amount (INDEX): 313,051,205.6158
+    Check: 5,055,247,980.6158
     
 
 
@@ -1933,55 +2146,91 @@ df.style.format({
 
 <style type="text/css">
 </style>
-<table id="T_2605d">
+<table id="T_b1eac">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_2605d_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_2605d_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_2605d_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
-      <th id="T_2605d_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
-      <th id="T_2605d_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
-      <th id="T_2605d_level0_col5" class="col_heading level0 col5" >nocional</th>
-      <th id="T_2605d_level0_col6" class="col_heading level0 col6" >amortizacion</th>
-      <th id="T_2605d_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_2605d_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_2605d_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
-      <th id="T_2605d_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
-      <th id="T_2605d_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
-      <th id="T_2605d_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
-      <th id="T_2605d_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
-      <th id="T_2605d_level0_col14" class="col_heading level0 col14" >interes</th>
-      <th id="T_2605d_level0_col15" class="col_heading level0 col15" >flujo</th>
-      <th id="T_2605d_level0_col16" class="col_heading level0 col16" >spread</th>
-      <th id="T_2605d_level0_col17" class="col_heading level0 col17" >gearing</th>
+      <th id="T_b1eac_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_b1eac_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_b1eac_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
+      <th id="T_b1eac_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
+      <th id="T_b1eac_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
+      <th id="T_b1eac_level0_col5" class="col_heading level0 col5" >nocional</th>
+      <th id="T_b1eac_level0_col6" class="col_heading level0 col6" >amortizacion</th>
+      <th id="T_b1eac_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_b1eac_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_b1eac_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
+      <th id="T_b1eac_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
+      <th id="T_b1eac_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
+      <th id="T_b1eac_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
+      <th id="T_b1eac_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
+      <th id="T_b1eac_level0_col14" class="col_heading level0 col14" >interes</th>
+      <th id="T_b1eac_level0_col15" class="col_heading level0 col15" >flujo</th>
+      <th id="T_b1eac_level0_col16" class="col_heading level0 col16" >spread</th>
+      <th id="T_b1eac_level0_col17" class="col_heading level0 col17" >gearing</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_2605d_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_2605d_row0_col0" class="data row0 col0" >2023-11-12</td>
-      <td id="T_2605d_row0_col1" class="data row0 col1" >2023-11-18</td>
-      <td id="T_2605d_row0_col2" class="data row0 col2" >2023-11-13</td>
-      <td id="T_2605d_row0_col3" class="data row0 col3" >2023-11-20</td>
-      <td id="T_2605d_row0_col4" class="data row0 col4" >2023-11-20</td>
-      <td id="T_2605d_row0_col5" class="data row0 col5" >1,000,000,000.00</td>
-      <td id="T_2605d_row0_col6" class="data row0 col6" >100,000,000.00</td>
-      <td id="T_2605d_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_2605d_row0_col8" class="data row0 col8" >USD</td>
-      <td id="T_2605d_row0_col9" class="data row0 col9" >INDICE</td>
-      <td id="T_2605d_row0_col10" class="data row0 col10" >10,000.00</td>
-      <td id="T_2605d_row0_col11" class="data row0 col11" >10,009.96</td>
-      <td id="T_2605d_row0_col12" class="data row0 col12" >0.051234</td>
-      <td id="T_2605d_row0_col13" class="data row0 col13" >LinAct360</td>
-      <td id="T_2605d_row0_col14" class="data row0 col14" >1,195,466.67</td>
-      <td id="T_2605d_row0_col15" class="data row0 col15" >101,195,466.67</td>
-      <td id="T_2605d_row0_col16" class="data row0 col16" >0.00%</td>
-      <td id="T_2605d_row0_col17" class="data row0 col17" >1.000000</td>
+      <th id="T_b1eac_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_b1eac_row0_col0" class="data row0 col0" >2025-06-20</td>
+      <td id="T_b1eac_row0_col1" class="data row0 col1" >2025-12-20</td>
+      <td id="T_b1eac_row0_col2" class="data row0 col2" >2025-06-23</td>
+      <td id="T_b1eac_row0_col3" class="data row0 col3" >2025-12-22</td>
+      <td id="T_b1eac_row0_col4" class="data row0 col4" >2025-12-22</td>
+      <td id="T_b1eac_row0_col5" class="data row0 col5" >4,933,575,383.00</td>
+      <td id="T_b1eac_row0_col6" class="data row0 col6" >191,378,608.00</td>
+      <td id="T_b1eac_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_b1eac_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_b1eac_row0_col9" class="data row0 col9" >INDICE</td>
+      <td id="T_b1eac_row0_col10" class="data row0 col10" >25,387.13</td>
+      <td id="T_b1eac_row0_col11" class="data row0 col11" >26,009.81</td>
+      <td id="T_b1eac_row0_col12" class="data row0 col12" >0.048500</td>
+      <td id="T_b1eac_row0_col13" class="data row0 col13" >LinAct360</td>
+      <td id="T_b1eac_row0_col14" class="data row0 col14" >121,633,189.76</td>
+      <td id="T_b1eac_row0_col15" class="data row0 col15" >313,011,797.76</td>
+      <td id="T_b1eac_row0_col16" class="data row0 col16" >0.00%</td>
+      <td id="T_b1eac_row0_col17" class="data row0 col17" >1.000000</td>
     </tr>
   </tbody>
 </table>
 
+
+
+
+### Método `record`
+
+Retorna un `dict` con los datos del flujo de caja. Si éste ha sido valorizado, retorna también el valor presente y el factor de descuento utilizado.
+
+
+```python
+overnight_index_cashflow.record()
+```
+
+
+
+
+    {'amort_is_cashflow': True,
+     'amortization': 191378608.0,
+     'cashflow': 314516538.24686074,
+     'discount_factor': 0.0,
+     'end_date': '2025-12-20',
+     'end_date_index': 26009.81,
+     'gearing': 1.0,
+     'index_end_date': '2025-12-22',
+     'index_start_date': '2025-06-23',
+     'interest': 123137930.24686071,
+     'interest_rate_index': 'INDICE',
+     'notional': 4933575383.0,
+     'notional_currency': 'USD',
+     'present_value': 0.0,
+     'rate_value': 0.0485,
+     'settlement_date': '2025-12-22',
+     'spread': 0.0,
+     'start_date': '2025-06-20',
+     'start_date_index': 25387.13,
+     'type_of_cashflow': 'overnight_index',
+     'type_of_rate': 'LinAct360'}
 
 
 
@@ -2092,7 +2341,7 @@ overnight_index_mccy_cashflow.get_fx_rate_index()
 
 
 
-    <qcfinancial.FXRateIndex at 0x115c6bdf0>
+    <qcfinancial.FXRateIndex at 0x10c2fab70>
 
 
 
@@ -2170,69 +2419,111 @@ df.style.format(aux.format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_7278d">
+<table id="T_2afaf">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_7278d_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_7278d_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_7278d_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
-      <th id="T_7278d_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
-      <th id="T_7278d_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
-      <th id="T_7278d_level0_col5" class="col_heading level0 col5" >nocional</th>
-      <th id="T_7278d_level0_col6" class="col_heading level0 col6" >amortizacion</th>
-      <th id="T_7278d_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_7278d_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_7278d_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
-      <th id="T_7278d_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
-      <th id="T_7278d_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
-      <th id="T_7278d_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
-      <th id="T_7278d_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
-      <th id="T_7278d_level0_col14" class="col_heading level0 col14" >interes</th>
-      <th id="T_7278d_level0_col15" class="col_heading level0 col15" >flujo</th>
-      <th id="T_7278d_level0_col16" class="col_heading level0 col16" >spread</th>
-      <th id="T_7278d_level0_col17" class="col_heading level0 col17" >gearing</th>
-      <th id="T_7278d_level0_col18" class="col_heading level0 col18" >moneda_pago</th>
-      <th id="T_7278d_level0_col19" class="col_heading level0 col19" >indice_fx</th>
-      <th id="T_7278d_level0_col20" class="col_heading level0 col20" >fecha_fixing_fx</th>
-      <th id="T_7278d_level0_col21" class="col_heading level0 col21" >valor_indice_fx</th>
-      <th id="T_7278d_level0_col22" class="col_heading level0 col22" >interes_moneda_pago</th>
-      <th id="T_7278d_level0_col23" class="col_heading level0 col23" >amortizacion_moneda_pago</th>
-      <th id="T_7278d_level0_col24" class="col_heading level0 col24" >flujo_moneda_pago</th>
+      <th id="T_2afaf_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_2afaf_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_2afaf_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
+      <th id="T_2afaf_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
+      <th id="T_2afaf_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
+      <th id="T_2afaf_level0_col5" class="col_heading level0 col5" >nocional</th>
+      <th id="T_2afaf_level0_col6" class="col_heading level0 col6" >amortizacion</th>
+      <th id="T_2afaf_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_2afaf_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_2afaf_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
+      <th id="T_2afaf_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
+      <th id="T_2afaf_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
+      <th id="T_2afaf_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
+      <th id="T_2afaf_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
+      <th id="T_2afaf_level0_col14" class="col_heading level0 col14" >interes</th>
+      <th id="T_2afaf_level0_col15" class="col_heading level0 col15" >flujo</th>
+      <th id="T_2afaf_level0_col16" class="col_heading level0 col16" >spread</th>
+      <th id="T_2afaf_level0_col17" class="col_heading level0 col17" >gearing</th>
+      <th id="T_2afaf_level0_col18" class="col_heading level0 col18" >moneda_pago</th>
+      <th id="T_2afaf_level0_col19" class="col_heading level0 col19" >indice_fx</th>
+      <th id="T_2afaf_level0_col20" class="col_heading level0 col20" >fecha_fixing_fx</th>
+      <th id="T_2afaf_level0_col21" class="col_heading level0 col21" >valor_indice_fx</th>
+      <th id="T_2afaf_level0_col22" class="col_heading level0 col22" >interes_moneda_pago</th>
+      <th id="T_2afaf_level0_col23" class="col_heading level0 col23" >amortizacion_moneda_pago</th>
+      <th id="T_2afaf_level0_col24" class="col_heading level0 col24" >flujo_moneda_pago</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_7278d_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_7278d_row0_col0" class="data row0 col0" >2023-11-13</td>
-      <td id="T_7278d_row0_col1" class="data row0 col1" >2023-11-18</td>
-      <td id="T_7278d_row0_col2" class="data row0 col2" >2023-11-13</td>
-      <td id="T_7278d_row0_col3" class="data row0 col3" >2023-11-17</td>
-      <td id="T_7278d_row0_col4" class="data row0 col4" >2023-11-20</td>
-      <td id="T_7278d_row0_col5" class="data row0 col5" >10,000,000.00</td>
-      <td id="T_7278d_row0_col6" class="data row0 col6" >1,000,000.00</td>
-      <td id="T_7278d_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_7278d_row0_col8" class="data row0 col8" >USD</td>
-      <td id="T_7278d_row0_col9" class="data row0 col9" >INDICE</td>
-      <td id="T_7278d_row0_col10" class="data row0 col10" >1.000000</td>
-      <td id="T_7278d_row0_col11" class="data row0 col11" >1.001371</td>
-      <td id="T_7278d_row0_col12" class="data row0 col12" >9.8720%</td>
-      <td id="T_7278d_row0_col13" class="data row0 col13" >LinAct360</td>
-      <td id="T_7278d_row0_col14" class="data row0 col14" >13,711.00</td>
-      <td id="T_7278d_row0_col15" class="data row0 col15" >1,013,711.00</td>
-      <td id="T_7278d_row0_col16" class="data row0 col16" >0.0000%</td>
-      <td id="T_7278d_row0_col17" class="data row0 col17" >1.00</td>
-      <td id="T_7278d_row0_col18" class="data row0 col18" >CLP</td>
-      <td id="T_7278d_row0_col19" class="data row0 col19" >USDOBS</td>
-      <td id="T_7278d_row0_col20" class="data row0 col20" >2023-11-18</td>
-      <td id="T_7278d_row0_col21" class="data row0 col21" >1.00</td>
-      <td id="T_7278d_row0_col22" class="data row0 col22" >13,711.00</td>
-      <td id="T_7278d_row0_col23" class="data row0 col23" >1,000,000.00</td>
-      <td id="T_7278d_row0_col24" class="data row0 col24" >1,013,711.00</td>
+      <th id="T_2afaf_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_2afaf_row0_col0" class="data row0 col0" >2023-11-13</td>
+      <td id="T_2afaf_row0_col1" class="data row0 col1" >2023-11-18</td>
+      <td id="T_2afaf_row0_col2" class="data row0 col2" >2023-11-13</td>
+      <td id="T_2afaf_row0_col3" class="data row0 col3" >2023-11-17</td>
+      <td id="T_2afaf_row0_col4" class="data row0 col4" >2023-11-20</td>
+      <td id="T_2afaf_row0_col5" class="data row0 col5" >10,000,000.00</td>
+      <td id="T_2afaf_row0_col6" class="data row0 col6" >1,000,000.00</td>
+      <td id="T_2afaf_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_2afaf_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_2afaf_row0_col9" class="data row0 col9" >INDICE</td>
+      <td id="T_2afaf_row0_col10" class="data row0 col10" >1.000000</td>
+      <td id="T_2afaf_row0_col11" class="data row0 col11" >1.001371</td>
+      <td id="T_2afaf_row0_col12" class="data row0 col12" >9.8720%</td>
+      <td id="T_2afaf_row0_col13" class="data row0 col13" >LinAct360</td>
+      <td id="T_2afaf_row0_col14" class="data row0 col14" >13,711.00</td>
+      <td id="T_2afaf_row0_col15" class="data row0 col15" >1,013,711.00</td>
+      <td id="T_2afaf_row0_col16" class="data row0 col16" >0.0000%</td>
+      <td id="T_2afaf_row0_col17" class="data row0 col17" >1.00</td>
+      <td id="T_2afaf_row0_col18" class="data row0 col18" >CLP</td>
+      <td id="T_2afaf_row0_col19" class="data row0 col19" >USDOBS</td>
+      <td id="T_2afaf_row0_col20" class="data row0 col20" >2023-11-18</td>
+      <td id="T_2afaf_row0_col21" class="data row0 col21" >1.00</td>
+      <td id="T_2afaf_row0_col22" class="data row0 col22" >13,711.00</td>
+      <td id="T_2afaf_row0_col23" class="data row0 col23" >1,000,000.00</td>
+      <td id="T_2afaf_row0_col24" class="data row0 col24" >1,013,711.00</td>
     </tr>
   </tbody>
 </table>
 
+
+
+
+### Método `record`
+
+Retorna un `dict` con los datos del flujo de caja. Si éste ha sido valorizado, retorna también el valor presente y el factor de descuento utilizado.
+
+
+```python
+overnight_index_mccy_cashflow.record()
+```
+
+
+
+
+    {'amort_is_cashflow': True,
+     'amort_sett_currency': 1000000.0,
+     'amortization': 1000000.0,
+     'cashflow': 1013711.1111111122,
+     'discount_factor': 0.0,
+     'end_date': '2023-11-18',
+     'end_date_index': 1.0013711111111112,
+     'fx_fixing_date': '18-11-2023',
+     'fx_rate_index': 'USDOBS',
+     'fx_rate_index_value': 1.0,
+     'gearing': 1.0,
+     'index_end_date': '2023-11-17',
+     'index_start_date': '2023-11-13',
+     'interest': 13711.111111112117,
+     'interest_rate_index': 'INDICE',
+     'interest_sett_currency': 13711.0,
+     'notional': 10000000.0,
+     'notional_currency': 'USD',
+     'present_value': 0.0,
+     'rate_value': 0.09872,
+     'settlement_currency': 'CLP',
+     'settlement_date': '2023-11-20',
+     'spread': 0.0,
+     'start_date': '2023-11-13',
+     'start_date_index': 1.0,
+     'type_of_cashflow': 'overnight_index_multi_currency',
+     'type_of_rate': 'LinAct360'}
 
 
 
@@ -2260,65 +2551,65 @@ pd.DataFrame(
 
 <style type="text/css">
 </style>
-<table id="T_63a49">
+<table id="T_f94f6">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_63a49_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_63a49_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_63a49_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
-      <th id="T_63a49_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
-      <th id="T_63a49_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
-      <th id="T_63a49_level0_col5" class="col_heading level0 col5" >nocional</th>
-      <th id="T_63a49_level0_col6" class="col_heading level0 col6" >amortizacion</th>
-      <th id="T_63a49_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
-      <th id="T_63a49_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_63a49_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
-      <th id="T_63a49_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
-      <th id="T_63a49_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
-      <th id="T_63a49_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
-      <th id="T_63a49_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
-      <th id="T_63a49_level0_col14" class="col_heading level0 col14" >interes</th>
-      <th id="T_63a49_level0_col15" class="col_heading level0 col15" >flujo</th>
-      <th id="T_63a49_level0_col16" class="col_heading level0 col16" >spread</th>
-      <th id="T_63a49_level0_col17" class="col_heading level0 col17" >gearing</th>
-      <th id="T_63a49_level0_col18" class="col_heading level0 col18" >moneda_pago</th>
-      <th id="T_63a49_level0_col19" class="col_heading level0 col19" >indice_fx</th>
-      <th id="T_63a49_level0_col20" class="col_heading level0 col20" >fecha_fixing_fx</th>
-      <th id="T_63a49_level0_col21" class="col_heading level0 col21" >valor_indice_fx</th>
-      <th id="T_63a49_level0_col22" class="col_heading level0 col22" >interes_moneda_pago</th>
-      <th id="T_63a49_level0_col23" class="col_heading level0 col23" >amortizacion_moneda_pago</th>
-      <th id="T_63a49_level0_col24" class="col_heading level0 col24" >flujo_moneda_pago</th>
+      <th id="T_f94f6_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_f94f6_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_f94f6_level0_col2" class="col_heading level0 col2" >fecha_inicial_indice</th>
+      <th id="T_f94f6_level0_col3" class="col_heading level0 col3" >fecha_final_indice</th>
+      <th id="T_f94f6_level0_col4" class="col_heading level0 col4" >fecha_pago</th>
+      <th id="T_f94f6_level0_col5" class="col_heading level0 col5" >nocional</th>
+      <th id="T_f94f6_level0_col6" class="col_heading level0 col6" >amortizacion</th>
+      <th id="T_f94f6_level0_col7" class="col_heading level0 col7" >amort_es_flujo</th>
+      <th id="T_f94f6_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_f94f6_level0_col9" class="col_heading level0 col9" >nombre_indice</th>
+      <th id="T_f94f6_level0_col10" class="col_heading level0 col10" >valor_indice_inicial</th>
+      <th id="T_f94f6_level0_col11" class="col_heading level0 col11" >valor_indice_final</th>
+      <th id="T_f94f6_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
+      <th id="T_f94f6_level0_col13" class="col_heading level0 col13" >tipo_tasa</th>
+      <th id="T_f94f6_level0_col14" class="col_heading level0 col14" >interes</th>
+      <th id="T_f94f6_level0_col15" class="col_heading level0 col15" >flujo</th>
+      <th id="T_f94f6_level0_col16" class="col_heading level0 col16" >spread</th>
+      <th id="T_f94f6_level0_col17" class="col_heading level0 col17" >gearing</th>
+      <th id="T_f94f6_level0_col18" class="col_heading level0 col18" >moneda_pago</th>
+      <th id="T_f94f6_level0_col19" class="col_heading level0 col19" >indice_fx</th>
+      <th id="T_f94f6_level0_col20" class="col_heading level0 col20" >fecha_fixing_fx</th>
+      <th id="T_f94f6_level0_col21" class="col_heading level0 col21" >valor_indice_fx</th>
+      <th id="T_f94f6_level0_col22" class="col_heading level0 col22" >interes_moneda_pago</th>
+      <th id="T_f94f6_level0_col23" class="col_heading level0 col23" >amortizacion_moneda_pago</th>
+      <th id="T_f94f6_level0_col24" class="col_heading level0 col24" >flujo_moneda_pago</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_63a49_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_63a49_row0_col0" class="data row0 col0" >2023-11-13</td>
-      <td id="T_63a49_row0_col1" class="data row0 col1" >2023-11-18</td>
-      <td id="T_63a49_row0_col2" class="data row0 col2" >2023-11-13</td>
-      <td id="T_63a49_row0_col3" class="data row0 col3" >2023-11-17</td>
-      <td id="T_63a49_row0_col4" class="data row0 col4" >2023-11-20</td>
-      <td id="T_63a49_row0_col5" class="data row0 col5" >10,000,000.00</td>
-      <td id="T_63a49_row0_col6" class="data row0 col6" >1,000,000.00</td>
-      <td id="T_63a49_row0_col7" class="data row0 col7" >True</td>
-      <td id="T_63a49_row0_col8" class="data row0 col8" >USD</td>
-      <td id="T_63a49_row0_col9" class="data row0 col9" >INDICE</td>
-      <td id="T_63a49_row0_col10" class="data row0 col10" >1.000000</td>
-      <td id="T_63a49_row0_col11" class="data row0 col11" >1.001371</td>
-      <td id="T_63a49_row0_col12" class="data row0 col12" >9.8720%</td>
-      <td id="T_63a49_row0_col13" class="data row0 col13" >LinAct360</td>
-      <td id="T_63a49_row0_col14" class="data row0 col14" >911,339,999.00</td>
-      <td id="T_63a49_row0_col15" class="data row0 col15" >912,339,999.00</td>
-      <td id="T_63a49_row0_col16" class="data row0 col16" >0.0000%</td>
-      <td id="T_63a49_row0_col17" class="data row0 col17" >1.00</td>
-      <td id="T_63a49_row0_col18" class="data row0 col18" >CLP</td>
-      <td id="T_63a49_row0_col19" class="data row0 col19" >USDOBS</td>
-      <td id="T_63a49_row0_col20" class="data row0 col20" >2023-11-18</td>
-      <td id="T_63a49_row0_col21" class="data row0 col21" >900.00</td>
-      <td id="T_63a49_row0_col22" class="data row0 col22" >12,339,999.00</td>
-      <td id="T_63a49_row0_col23" class="data row0 col23" >900,000,000.00</td>
-      <td id="T_63a49_row0_col24" class="data row0 col24" >912,339,999.00</td>
+      <th id="T_f94f6_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_f94f6_row0_col0" class="data row0 col0" >2023-11-13</td>
+      <td id="T_f94f6_row0_col1" class="data row0 col1" >2023-11-18</td>
+      <td id="T_f94f6_row0_col2" class="data row0 col2" >2023-11-13</td>
+      <td id="T_f94f6_row0_col3" class="data row0 col3" >2023-11-17</td>
+      <td id="T_f94f6_row0_col4" class="data row0 col4" >2023-11-20</td>
+      <td id="T_f94f6_row0_col5" class="data row0 col5" >10,000,000.00</td>
+      <td id="T_f94f6_row0_col6" class="data row0 col6" >1,000,000.00</td>
+      <td id="T_f94f6_row0_col7" class="data row0 col7" >True</td>
+      <td id="T_f94f6_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_f94f6_row0_col9" class="data row0 col9" >INDICE</td>
+      <td id="T_f94f6_row0_col10" class="data row0 col10" >1.000000</td>
+      <td id="T_f94f6_row0_col11" class="data row0 col11" >1.001371</td>
+      <td id="T_f94f6_row0_col12" class="data row0 col12" >9.8720%</td>
+      <td id="T_f94f6_row0_col13" class="data row0 col13" >LinAct360</td>
+      <td id="T_f94f6_row0_col14" class="data row0 col14" >911,339,999.00</td>
+      <td id="T_f94f6_row0_col15" class="data row0 col15" >912,339,999.00</td>
+      <td id="T_f94f6_row0_col16" class="data row0 col16" >0.0000%</td>
+      <td id="T_f94f6_row0_col17" class="data row0 col17" >1.00</td>
+      <td id="T_f94f6_row0_col18" class="data row0 col18" >CLP</td>
+      <td id="T_f94f6_row0_col19" class="data row0 col19" >USDOBS</td>
+      <td id="T_f94f6_row0_col20" class="data row0 col20" >2023-11-18</td>
+      <td id="T_f94f6_row0_col21" class="data row0 col21" >900.00</td>
+      <td id="T_f94f6_row0_col22" class="data row0 col22" >12,339,999.00</td>
+      <td id="T_f94f6_row0_col23" class="data row0 col23" >900,000,000.00</td>
+      <td id="T_f94f6_row0_col24" class="data row0 col24" >912,339,999.00</td>
     </tr>
   </tbody>
 </table>
@@ -2616,47 +2907,79 @@ df.style.format(aux.format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_6223c">
+<table id="T_efd13">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_6223c_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_6223c_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_6223c_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
-      <th id="T_6223c_level0_col3" class="col_heading level0 col3" >nocional</th>
-      <th id="T_6223c_level0_col4" class="col_heading level0 col4" >amortizacion</th>
-      <th id="T_6223c_level0_col5" class="col_heading level0 col5" >interes</th>
-      <th id="T_6223c_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
-      <th id="T_6223c_level0_col7" class="col_heading level0 col7" >flujo</th>
-      <th id="T_6223c_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_6223c_level0_col9" class="col_heading level0 col9" >codigo_indice_tasa</th>
-      <th id="T_6223c_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
-      <th id="T_6223c_level0_col11" class="col_heading level0 col11" >valor_tasa</th>
-      <th id="T_6223c_level0_col12" class="col_heading level0 col12" >spread</th>
-      <th id="T_6223c_level0_col13" class="col_heading level0 col13" >gearing</th>
+      <th id="T_efd13_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_efd13_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_efd13_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
+      <th id="T_efd13_level0_col3" class="col_heading level0 col3" >nocional</th>
+      <th id="T_efd13_level0_col4" class="col_heading level0 col4" >amortizacion</th>
+      <th id="T_efd13_level0_col5" class="col_heading level0 col5" >interes</th>
+      <th id="T_efd13_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
+      <th id="T_efd13_level0_col7" class="col_heading level0 col7" >flujo</th>
+      <th id="T_efd13_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_efd13_level0_col9" class="col_heading level0 col9" >codigo_indice_tasa</th>
+      <th id="T_efd13_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
+      <th id="T_efd13_level0_col11" class="col_heading level0 col11" >valor_tasa</th>
+      <th id="T_efd13_level0_col12" class="col_heading level0 col12" >spread</th>
+      <th id="T_efd13_level0_col13" class="col_heading level0 col13" >gearing</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_6223c_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_6223c_row0_col0" class="data row0 col0" >2021-12-27</td>
-      <td id="T_6223c_row0_col1" class="data row0 col1" >2021-12-31</td>
-      <td id="T_6223c_row0_col2" class="data row0 col2" >2022-01-02</td>
-      <td id="T_6223c_row0_col3" class="data row0 col3" >10,000,000.00</td>
-      <td id="T_6223c_row0_col4" class="data row0 col4" >100,000.00</td>
-      <td id="T_6223c_row0_col5" class="data row0 col5" >4,278.18</td>
-      <td id="T_6223c_row0_col6" class="data row0 col6" >True</td>
-      <td id="T_6223c_row0_col7" class="data row0 col7" >104,278.18</td>
-      <td id="T_6223c_row0_col8" class="data row0 col8" >USD</td>
-      <td id="T_6223c_row0_col9" class="data row0 col9" >OITEST</td>
-      <td id="T_6223c_row0_col10" class="data row0 col10" >LinAct360</td>
-      <td id="T_6223c_row0_col11" class="data row0 col11" >2.5002%</td>
-      <td id="T_6223c_row0_col12" class="data row0 col12" >0.1000%</td>
-      <td id="T_6223c_row0_col13" class="data row0 col13" >1.50</td>
+      <th id="T_efd13_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_efd13_row0_col0" class="data row0 col0" >2021-12-27</td>
+      <td id="T_efd13_row0_col1" class="data row0 col1" >2021-12-31</td>
+      <td id="T_efd13_row0_col2" class="data row0 col2" >2022-01-02</td>
+      <td id="T_efd13_row0_col3" class="data row0 col3" >10,000,000.00</td>
+      <td id="T_efd13_row0_col4" class="data row0 col4" >100,000.00</td>
+      <td id="T_efd13_row0_col5" class="data row0 col5" >4,278.18</td>
+      <td id="T_efd13_row0_col6" class="data row0 col6" >True</td>
+      <td id="T_efd13_row0_col7" class="data row0 col7" >104,278.18</td>
+      <td id="T_efd13_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_efd13_row0_col9" class="data row0 col9" >OITEST</td>
+      <td id="T_efd13_row0_col10" class="data row0 col10" >LinAct360</td>
+      <td id="T_efd13_row0_col11" class="data row0 col11" >2.5002%</td>
+      <td id="T_efd13_row0_col12" class="data row0 col12" >0.1000%</td>
+      <td id="T_efd13_row0_col13" class="data row0 col13" >1.50</td>
     </tr>
   </tbody>
 </table>
 
+
+
+
+### Método `record`
+
+Retorna un `dict` con los datos del flujo de caja. Si éste ha sido valorizado, retorna también el valor presente y el factor de descuento utilizado.
+
+
+```python
+cor_cashflow_2.record()
+```
+
+
+
+
+    {'amort_is_cashflow': True,
+     'amortization': 100000.0,
+     'cashflow': 104278.18288644576,
+     'discount_factor': 0.0,
+     'end_date': '2021-12-31',
+     'gearing': 1.5,
+     'interest': 4278.182886445769,
+     'interest_rate_index': 'OITEST',
+     'notional': 10000000.0,
+     'notional_currency': 'USD',
+     'present_value': 0.0,
+     'rate_value': 0.025002430652003582,
+     'settlement_date': '2022-01-02',
+     'spread': 0.001,
+     'start_date': '2021-12-27',
+     'type_of_cashflow': 'overnight_index',
+     'type_of_rate': 'LinAct360'}
 
 
 
@@ -2782,7 +3105,7 @@ print(f"Fx Rate Index Code: {cor_cashflow_mccy_2.get_fx_rate_index_code()}")
 print(f"Fx Rate Index Fxing Date: {cor_cashflow_mccy_2.get_fx_rate_index_fixing_date()}")
 ```
 
-    Fx Rate Index: <qcfinancial.FXRateIndex object at 0x115c6bdf0>
+    Fx Rate Index: <qcfinancial.FXRateIndex object at 0x10c2fab70>
     Fx Rate Index Value: 1.0
     Fx Rate Index Code: USDOBS
     Fx Rate Index Fxing Date: 2022-01-02
@@ -2833,61 +3156,99 @@ df.style.format(aux.format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_c0f5b">
+<table id="T_fccb0">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_c0f5b_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_c0f5b_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_c0f5b_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
-      <th id="T_c0f5b_level0_col3" class="col_heading level0 col3" >nocional</th>
-      <th id="T_c0f5b_level0_col4" class="col_heading level0 col4" >amortizacion</th>
-      <th id="T_c0f5b_level0_col5" class="col_heading level0 col5" >interes</th>
-      <th id="T_c0f5b_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
-      <th id="T_c0f5b_level0_col7" class="col_heading level0 col7" >flujo</th>
-      <th id="T_c0f5b_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
-      <th id="T_c0f5b_level0_col9" class="col_heading level0 col9" >codigo_indice_tasa</th>
-      <th id="T_c0f5b_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
-      <th id="T_c0f5b_level0_col11" class="col_heading level0 col11" >spread</th>
-      <th id="T_c0f5b_level0_col12" class="col_heading level0 col12" >gearing</th>
-      <th id="T_c0f5b_level0_col13" class="col_heading level0 col13" >valor_tasa</th>
-      <th id="T_c0f5b_level0_col14" class="col_heading level0 col14" >moneda_pago</th>
-      <th id="T_c0f5b_level0_col15" class="col_heading level0 col15" >fx_rate_index</th>
-      <th id="T_c0f5b_level0_col16" class="col_heading level0 col16" >fecha_fixing_fx</th>
-      <th id="T_c0f5b_level0_col17" class="col_heading level0 col17" >valor_indice_fx</th>
-      <th id="T_c0f5b_level0_col18" class="col_heading level0 col18" >interes_moneda_pago</th>
-      <th id="T_c0f5b_level0_col19" class="col_heading level0 col19" >amortizacion_moneda_pago</th>
-      <th id="T_c0f5b_level0_col20" class="col_heading level0 col20" >flujo_moneda_pago</th>
+      <th id="T_fccb0_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_fccb0_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_fccb0_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
+      <th id="T_fccb0_level0_col3" class="col_heading level0 col3" >nocional</th>
+      <th id="T_fccb0_level0_col4" class="col_heading level0 col4" >amortizacion</th>
+      <th id="T_fccb0_level0_col5" class="col_heading level0 col5" >interes</th>
+      <th id="T_fccb0_level0_col6" class="col_heading level0 col6" >amort_es_flujo</th>
+      <th id="T_fccb0_level0_col7" class="col_heading level0 col7" >flujo</th>
+      <th id="T_fccb0_level0_col8" class="col_heading level0 col8" >moneda_nocional</th>
+      <th id="T_fccb0_level0_col9" class="col_heading level0 col9" >codigo_indice_tasa</th>
+      <th id="T_fccb0_level0_col10" class="col_heading level0 col10" >tipo_tasa</th>
+      <th id="T_fccb0_level0_col11" class="col_heading level0 col11" >spread</th>
+      <th id="T_fccb0_level0_col12" class="col_heading level0 col12" >gearing</th>
+      <th id="T_fccb0_level0_col13" class="col_heading level0 col13" >valor_tasa</th>
+      <th id="T_fccb0_level0_col14" class="col_heading level0 col14" >moneda_pago</th>
+      <th id="T_fccb0_level0_col15" class="col_heading level0 col15" >fx_rate_index</th>
+      <th id="T_fccb0_level0_col16" class="col_heading level0 col16" >fecha_fixing_fx</th>
+      <th id="T_fccb0_level0_col17" class="col_heading level0 col17" >valor_indice_fx</th>
+      <th id="T_fccb0_level0_col18" class="col_heading level0 col18" >interes_moneda_pago</th>
+      <th id="T_fccb0_level0_col19" class="col_heading level0 col19" >amortizacion_moneda_pago</th>
+      <th id="T_fccb0_level0_col20" class="col_heading level0 col20" >flujo_moneda_pago</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_c0f5b_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_c0f5b_row0_col0" class="data row0 col0" >2021-12-27</td>
-      <td id="T_c0f5b_row0_col1" class="data row0 col1" >2021-12-31</td>
-      <td id="T_c0f5b_row0_col2" class="data row0 col2" >2022-01-02</td>
-      <td id="T_c0f5b_row0_col3" class="data row0 col3" >10,000,000.00</td>
-      <td id="T_c0f5b_row0_col4" class="data row0 col4" >100,000.00</td>
-      <td id="T_c0f5b_row0_col5" class="data row0 col5" >4,278.18</td>
-      <td id="T_c0f5b_row0_col6" class="data row0 col6" >True</td>
-      <td id="T_c0f5b_row0_col7" class="data row0 col7" >104,278.18</td>
-      <td id="T_c0f5b_row0_col8" class="data row0 col8" >USD</td>
-      <td id="T_c0f5b_row0_col9" class="data row0 col9" >OITEST</td>
-      <td id="T_c0f5b_row0_col10" class="data row0 col10" >LinAct360</td>
-      <td id="T_c0f5b_row0_col11" class="data row0 col11" >0.1000%</td>
-      <td id="T_c0f5b_row0_col12" class="data row0 col12" >1.50</td>
-      <td id="T_c0f5b_row0_col13" class="data row0 col13" >2.5002%</td>
-      <td id="T_c0f5b_row0_col14" class="data row0 col14" >CLP</td>
-      <td id="T_c0f5b_row0_col15" class="data row0 col15" >USDOBS</td>
-      <td id="T_c0f5b_row0_col16" class="data row0 col16" >2022-01-02</td>
-      <td id="T_c0f5b_row0_col17" class="data row0 col17" >900.00</td>
-      <td id="T_c0f5b_row0_col18" class="data row0 col18" >3,850,364.60</td>
-      <td id="T_c0f5b_row0_col19" class="data row0 col19" >90,000,000.00</td>
-      <td id="T_c0f5b_row0_col20" class="data row0 col20" >93,850,364.50</td>
+      <th id="T_fccb0_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_fccb0_row0_col0" class="data row0 col0" >2021-12-27</td>
+      <td id="T_fccb0_row0_col1" class="data row0 col1" >2021-12-31</td>
+      <td id="T_fccb0_row0_col2" class="data row0 col2" >2022-01-02</td>
+      <td id="T_fccb0_row0_col3" class="data row0 col3" >10,000,000.00</td>
+      <td id="T_fccb0_row0_col4" class="data row0 col4" >100,000.00</td>
+      <td id="T_fccb0_row0_col5" class="data row0 col5" >4,278.18</td>
+      <td id="T_fccb0_row0_col6" class="data row0 col6" >True</td>
+      <td id="T_fccb0_row0_col7" class="data row0 col7" >104,278.18</td>
+      <td id="T_fccb0_row0_col8" class="data row0 col8" >USD</td>
+      <td id="T_fccb0_row0_col9" class="data row0 col9" >OITEST</td>
+      <td id="T_fccb0_row0_col10" class="data row0 col10" >LinAct360</td>
+      <td id="T_fccb0_row0_col11" class="data row0 col11" >0.1000%</td>
+      <td id="T_fccb0_row0_col12" class="data row0 col12" >1.50</td>
+      <td id="T_fccb0_row0_col13" class="data row0 col13" >2.5002%</td>
+      <td id="T_fccb0_row0_col14" class="data row0 col14" >CLP</td>
+      <td id="T_fccb0_row0_col15" class="data row0 col15" >USDOBS</td>
+      <td id="T_fccb0_row0_col16" class="data row0 col16" >2022-01-02</td>
+      <td id="T_fccb0_row0_col17" class="data row0 col17" >900.00</td>
+      <td id="T_fccb0_row0_col18" class="data row0 col18" >3,850,364.60</td>
+      <td id="T_fccb0_row0_col19" class="data row0 col19" >90,000,000.00</td>
+      <td id="T_fccb0_row0_col20" class="data row0 col20" >93,850,364.50</td>
     </tr>
   </tbody>
 </table>
 
+
+
+
+### Método `record`
+
+Retorna un `dict` con los datos del flujo de caja. Si éste ha sido valorizado, retorna también el valor presente y el factor de descuento utilizado.
+
+
+```python
+cor_cashflow_mccy_2.record()
+```
+
+
+
+
+    {'amort_is_cashflow': True,
+     'amort_sett_currency': 90000000.0,
+     'amortization': 100000.0,
+     'cashflow': 104278.18288644576,
+     'discount_factor': 0.0,
+     'end_date': '2021-12-31',
+     'fx_fixing_date': '02-01-2022',
+     'fx_rate_index': 'USDOBS',
+     'fx_rate_index_value': 900.0,
+     'gearing': 1.5,
+     'interest': 4278.182886445769,
+     'interest_rate_index': 'OITEST',
+     'interest_sett_currency': 3850364.597801192,
+     'notional': 10000000.0,
+     'notional_currency': 'USD',
+     'present_value': 0.0,
+     'rate_value': 0.025002430652003582,
+     'settlement_currency': 'CLP',
+     'settlement_date': '2022-01-02',
+     'spread': 0.001,
+     'start_date': '2021-12-27',
+     'type_of_cashflow': 'overnight_index_multi_currency',
+     'type_of_rate': 'LinAct360'}
 
 
 
@@ -3033,51 +3394,51 @@ df.style.format(aux.format_dict)
 
 <style type="text/css">
 </style>
-<table id="T_a528d">
+<table id="T_73d50">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_a528d_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
-      <th id="T_a528d_level0_col1" class="col_heading level0 col1" >fecha_final</th>
-      <th id="T_a528d_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
-      <th id="T_a528d_level0_col3" class="col_heading level0 col3" >nocional</th>
-      <th id="T_a528d_level0_col4" class="col_heading level0 col4" >amortizacion</th>
-      <th id="T_a528d_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
-      <th id="T_a528d_level0_col6" class="col_heading level0 col6" >flujo</th>
-      <th id="T_a528d_level0_col7" class="col_heading level0 col7" >moneda_nocional</th>
-      <th id="T_a528d_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
-      <th id="T_a528d_level0_col9" class="col_heading level0 col9" >icp_final</th>
-      <th id="T_a528d_level0_col10" class="col_heading level0 col10" >uf_inicial</th>
-      <th id="T_a528d_level0_col11" class="col_heading level0 col11" >uf_final</th>
-      <th id="T_a528d_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
-      <th id="T_a528d_level0_col13" class="col_heading level0 col13" >interes</th>
-      <th id="T_a528d_level0_col14" class="col_heading level0 col14" >spread</th>
-      <th id="T_a528d_level0_col15" class="col_heading level0 col15" >gearing</th>
-      <th id="T_a528d_level0_col16" class="col_heading level0 col16" >tipo_tasa</th>
-      <th id="T_a528d_level0_col17" class="col_heading level0 col17" >flujo_en_clp</th>
+      <th id="T_73d50_level0_col0" class="col_heading level0 col0" >fecha_inicial</th>
+      <th id="T_73d50_level0_col1" class="col_heading level0 col1" >fecha_final</th>
+      <th id="T_73d50_level0_col2" class="col_heading level0 col2" >fecha_pago</th>
+      <th id="T_73d50_level0_col3" class="col_heading level0 col3" >nocional</th>
+      <th id="T_73d50_level0_col4" class="col_heading level0 col4" >amortizacion</th>
+      <th id="T_73d50_level0_col5" class="col_heading level0 col5" >amort_es_flujo</th>
+      <th id="T_73d50_level0_col6" class="col_heading level0 col6" >flujo</th>
+      <th id="T_73d50_level0_col7" class="col_heading level0 col7" >moneda_nocional</th>
+      <th id="T_73d50_level0_col8" class="col_heading level0 col8" >icp_inicial</th>
+      <th id="T_73d50_level0_col9" class="col_heading level0 col9" >icp_final</th>
+      <th id="T_73d50_level0_col10" class="col_heading level0 col10" >uf_inicial</th>
+      <th id="T_73d50_level0_col11" class="col_heading level0 col11" >uf_final</th>
+      <th id="T_73d50_level0_col12" class="col_heading level0 col12" >valor_tasa</th>
+      <th id="T_73d50_level0_col13" class="col_heading level0 col13" >interes</th>
+      <th id="T_73d50_level0_col14" class="col_heading level0 col14" >spread</th>
+      <th id="T_73d50_level0_col15" class="col_heading level0 col15" >gearing</th>
+      <th id="T_73d50_level0_col16" class="col_heading level0 col16" >tipo_tasa</th>
+      <th id="T_73d50_level0_col17" class="col_heading level0 col17" >flujo_en_clp</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_a528d_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_a528d_row0_col0" class="data row0 col0" >2018-09-20</td>
-      <td id="T_a528d_row0_col1" class="data row0 col1" >2019-09-20</td>
-      <td id="T_a528d_row0_col2" class="data row0 col2" >2019-09-23</td>
-      <td id="T_a528d_row0_col3" class="data row0 col3" >100,000.00</td>
-      <td id="T_a528d_row0_col4" class="data row0 col4" >10,000.00</td>
-      <td id="T_a528d_row0_col5" class="data row0 col5" >True</td>
-      <td id="T_a528d_row0_col6" class="data row0 col6" >11,060.58</td>
-      <td id="T_a528d_row0_col7" class="data row0 col7" >CLF</td>
-      <td id="T_a528d_row0_col8" class="data row0 col8" >20,000.00</td>
-      <td id="T_a528d_row0_col9" class="data row0 col9" >20,500.00</td>
-      <td id="T_a528d_row0_col10" class="data row0 col10" >35,000.00</td>
-      <td id="T_a528d_row0_col11" class="data row0 col11" >35,500.00</td>
-      <td id="T_a528d_row0_col12" class="data row0 col12" >1.0461%</td>
-      <td id="T_a528d_row0_col13" class="data row0 col13" >1,060.58</td>
-      <td id="T_a528d_row0_col14" class="data row0 col14" >0.0000%</td>
-      <td id="T_a528d_row0_col15" class="data row0 col15" >1.00</td>
-      <td id="T_a528d_row0_col16" class="data row0 col16" >LinAct360</td>
-      <td id="T_a528d_row0_col17" class="data row0 col17" >392,650,680.00</td>
+      <th id="T_73d50_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_73d50_row0_col0" class="data row0 col0" >2018-09-20</td>
+      <td id="T_73d50_row0_col1" class="data row0 col1" >2019-09-20</td>
+      <td id="T_73d50_row0_col2" class="data row0 col2" >2019-09-23</td>
+      <td id="T_73d50_row0_col3" class="data row0 col3" >100,000.00</td>
+      <td id="T_73d50_row0_col4" class="data row0 col4" >10,000.00</td>
+      <td id="T_73d50_row0_col5" class="data row0 col5" >True</td>
+      <td id="T_73d50_row0_col6" class="data row0 col6" >11,060.58</td>
+      <td id="T_73d50_row0_col7" class="data row0 col7" >CLF</td>
+      <td id="T_73d50_row0_col8" class="data row0 col8" >20,000.00</td>
+      <td id="T_73d50_row0_col9" class="data row0 col9" >20,500.00</td>
+      <td id="T_73d50_row0_col10" class="data row0 col10" >35,000.00</td>
+      <td id="T_73d50_row0_col11" class="data row0 col11" >35,500.00</td>
+      <td id="T_73d50_row0_col12" class="data row0 col12" >1.0461%</td>
+      <td id="T_73d50_row0_col13" class="data row0 col13" >1,060.58</td>
+      <td id="T_73d50_row0_col14" class="data row0 col14" >0.0000%</td>
+      <td id="T_73d50_row0_col15" class="data row0 col15" >1.00</td>
+      <td id="T_73d50_row0_col16" class="data row0 col16" >LinAct360</td>
+      <td id="T_73d50_row0_col17" class="data row0 col17" >392,650,680.00</td>
     </tr>
   </tbody>
 </table>

@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 
 site_name: Docs para qcfinancial
+docs_dir: docs
 
 theme:
   name: material
@@ -31,7 +32,7 @@ theme:
   - content.code.select
   language: es
 
-copyright: Copyright &copy; 2017 - 2024 Alvaro Díaz Valenzuela
+copyright: Copyright &copy; 2017 - 2026 Alvaro Díaz Valenzuela
 
 nav:
   - Home: index.md

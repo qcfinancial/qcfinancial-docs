@@ -5,42 +5,27 @@ Para ejecutar todos los ejemplos se debe importar la librería. Se sugiere utili
 
 ```python
 import qcfinancial as qcf
+print(f"Versión qcf en uso: {qcf.id()}")
 ```
+
+    Versión qcf en uso: version: 1.10.0, build: 2026-04-29 10:00
+
 
 ## Monedas
 
 Las divisas se representan con objetos de tipo `QCCurrency` y sus subclases. En estos momentos, de forma explícita, están implementadas las siguientes divisas:
 
 
-```python
-for fx in qcf.QCCurrencyEnum.__dict__['__entries']:
-    print(fx)
-```
-
-    AUD
-    BRL
-    CAD
-    CHF
-    CLF
-    CL2
-    CLP
-    CNY
-    COP
-    DKK
-    EUR
-    GBP
-    HKD
-    JPY
-    MXN
-    NOK
-    PEN
-    SEK
-    USD
-
+|  Lista | de  | Divisas  |
+|---|---|---|
+| AUD  | CNY  | JPY   |
+| BRL  | COP  | MXN  |
+| CAD   | DKK   | NOK   |
+| CHF  | EUR   | PEN  |
+| CLF  | GBP   | SEK  |
+| CLP  | HKD   | USD  |
 
 Si se requiere otra, solicitarlo ingresando un *issue* en el [git repo](https://github.com/qcfinancial/qcfinancial.git) del proyecto.
-
-Nota: La divisa `CL2` corresponde a CLF, pero usando solamente dos decimales.
 
 El constructor por default retorna USD.
 
@@ -554,28 +539,28 @@ import holidays as hol
 
 
 ```python
-scl = us_holidays = hol.CL(years=range(2024, 2045))
+hol_scl = us_holidays = hol.CL(years=range(2024, 2045))
 ```
 
 Vemos que `scl` es un objeto similar a un Python `dict`.
 
 
 ```python
-for i, d in enumerate(scl.items()):
+for i, d in enumerate(hol_scl.items()):
     if i < 10:
         print(d[0], d[1])
 ```
 
-    2024-01-01 New Year's Day
-    2024-03-29 Good Friday
-    2024-03-30 Holy Saturday
-    2024-05-01 Labor Day
-    2024-05-21 Navy Day
-    2024-06-20 National Day of Indigenous Peoples
-    2024-06-29 Saint Peter and Saint Paul's Day
-    2024-07-16 Our Lady of Mount Carmel
-    2024-08-15 Assumption Day
-    2024-09-18 Independence Day
+    2024-01-01 Año Nuevo
+    2024-03-29 Viernes Santo
+    2024-03-30 Sábado Santo
+    2024-05-01 Día Nacional del Trabajo
+    2024-05-21 Día de las Glorias Navales
+    2024-06-20 Día Nacional de los Pueblos Indígenas
+    2024-06-29 San Pedro y San Pablo
+    2024-07-16 Virgen del Carmen
+    2024-08-15 Asunción de la Virgen
+    2024-09-18 Día de la Independencia
 
 
 Damos de alta un objeto de tipo `qcf.BusinessCalendar`.
@@ -589,7 +574,7 @@ Y luego lo poblamos con las fechas de `scl`.
 
 
 ```python
-for d in scl.keys():
+for d in hol_scl.keys():
     qcf_scl.add_holiday(qcf.QCDate(d.isoformat()))
 ```
 
@@ -601,8 +586,8 @@ def get_business_calendar(which_holidays: str, years: range) -> qcf.BusinessCale
     py_cal = hol.country_holidays(which_holidays, years=years)
     yrs = [y for y in years]
     qcf_cal = qcf.BusinessCalendar(qcf.QCDate(1, 1, yrs[0]), yrs[-1] - yrs[0])
-    for d in py_cal.keys():
-        qcf_cal.add_holiday(qcf.QCDate(d.isoformat()))
+    for day in py_cal.keys():
+        qcf_cal.add_holiday(qcf.QCDate(day.isoformat()))
     return qcf_cal
 ```
 
@@ -853,7 +838,7 @@ for i, tasa in enumerate(tasas):
             print(f"Check: {tasa.yf(fecha1, fecha3):.8f}")
         case 1:
             yf_ = tasa.yf(fecha1, fecha3)
-            print(f"Check: {tasa.yf(fecha1, fecha3) * (1 + r1)**(yf_ - 1):.8f}")
+            print(f"Check: {tasa.yf(fecha1, fecha3) * (1 + tasa.get_value())**(yf_ - 1):.8f}")
         case 2:
             print(f"Check: {tasa.yf(fecha1, fecha3) * tasa.wf(fecha1, fecha3):.8f}")
     
@@ -892,7 +877,7 @@ for i, tasa in enumerate(tasas):
             print(f"Check: {dias / 360:.8f}")
         case 1:
             yf_ = dias / 365
-            print(f"Check: {yf_ * (1 + r1)**(yf_ - 1):.8f}")
+            print(f"Check: {yf_ * (1 + tasa.get_value())**(yf_ - 1):.8f}")
         case 2:
             print(f"Check: {dias / 365 * tasa.wf(dias):.8f}")
     
@@ -1066,7 +1051,7 @@ Para dar de alta un FXRateIndex se requiere:
 
 ```python
 _1d.set_tenor("1d")
-usdclp_obs = qcf.FXRateIndex(usdclp, "USDOBS", _1d, _1d, qcf_scl)
+usdclp_obs = qcf.FXRateIndex(usdclp, "USDOBS", _1d, _1d, scl)
 ```
 
 ### Métodos `fixing_date` y `value_date`
