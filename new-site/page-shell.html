@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>qcfinancial · docs · page shell</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/stix-two-math@5/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/stix-two-text@5/500-italic.css">
+
+  <!-- The theme contract -->
+  <link rel="stylesheet" href="qcf-docs.css">
+
+  <!-- MathJax (only if a page contains $...$ / $$...$$) -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+
+<!--
+  ============================================================================
+  PAGE SHELL — the static chrome the converter wraps around each notebook.
+  Everything marked  {{ … }}  is a placeholder the generator fills:
+    {{ nav }}        sidebar chapter list (one .qcf-nav__item per page; mark the
+                     current page .is-active)
+    {{ chTitle }}    current page title (the notebook's first H1)
+    {{ content }}    the converted notebook body — sequence of .nb-* blocks.
+                     See TRANSFORM_SPEC.md + transform.reference.js for exactly
+                     what markup each notebook construct becomes.
+    {{ toc }}        right rail: one .qcf-toc__item per H2/H3 in the body
+    {{ pager }}      prev / next links
+  The converter emits ONLY semantic HTML + qcf-docs.css classes. No inline styles.
+  ============================================================================
+-->
+
+<body>
+  <div class="qcf-doc">
+
+    <!-- TOP BAR -->
+    <header class="qcf-topbar">
+      <div class="qcf-topbar__inner">
+        <a class="qcf-logo" href="../index.html">
+          <span class="qcf-logo__badge"><span class="qcf-logo__glyph">&#8474;&#8450;</span></span>
+          <span class="qcf-logo__word">financial</span>
+          <span class="qcf-tag">docs</span>
+        </a>
+        <div class="qcf-topbar__spacer"></div>
+
+        <div class="qcf-search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4-4"></path></svg>
+          <span>Buscar en la documentación&hellip;</span>
+          <span class="qcf-search__kbd">&#8984;K</span>
+        </div>
+
+        <div class="qcf-lang">
+          <button class="qcf-lang__btn is-active" type="button">ES</button>
+          <button class="qcf-lang__btn" type="button">EN</button>
+        </div>
+
+        <a class="qcf-iconbtn" href="https://github.com/qcfinancial/qcfinancial-docs" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- 3-COLUMN GRID -->
+    <div class="qcf-grid">
+
+      <!-- LEFT: chapter nav -->
+      <aside class="qcf-sidebar qcf-scroll">
+        <div class="qcf-eyebrow" style="padding:0 12px 12px;">Guía</div>
+
+        <!-- {{ nav }} — generated. Example of one active + one idle item: -->
+        <nav class="qcf-nav">
+          <a class="qcf-nav__item is-active" href="1_objetos_fundamentales.html"><span class="qcf-nav__num">01</span>Objetos Fundamentales</a>
+          <a class="qcf-nav__item" href="2_cashflows.html"><span class="qcf-nav__num">02</span>Cashflows</a>
+          <a class="qcf-nav__item" href="3_construccion_operaciones.html"><span class="qcf-nav__num">03</span>Construcción de Operaciones</a>
+          <a class="qcf-nav__item" href="4_valorizacion_sensibilidad.html"><span class="qcf-nav__num">04</span>Valorización y Sensibilidad</a>
+        </nav>
+
+        <div class="qcf-callout">
+          <div class="qcf-callout__title">Generado desde notebooks</div>
+          <p class="qcf-callout__body">Esta página se renderiza directamente desde el .ipynb ejecutable. Córrelo tú mismo.</p>
+          <a class="qcf-callout__link" href="#" target="_blank" rel="noopener">.ipynb &darr;</a>
+        </div>
+      </aside>
+
+      <!-- CENTER: notebook body -->
+      <main class="qcf-main">
+        <div class="qcf-breadcrumb"><span>Guía</span><span>/</span><span class="qcf-breadcrumb__here">{{ chTitle }}</span></div>
+        <div class="qcf-titlerow">
+          <h1 class="qcf-h1">{{ chTitle }}</h1>
+          <a class="qcf-demo-btn" href="https://qcf-demo-app.streamlit.app" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
+            Abrir en la demo
+          </a>
+        </div>
+        <hr class="qcf-rule">
+
+        <!-- ================= {{ content }} ================= -->
+        <!-- Sequence of converted .nb-* blocks. One worked example of each
+             block type is shown below; delete and replace with generated output. -->
+
+        <!-- H2 -->
+        <h2 class="nb-h2" id="valor-presente">Valor presente</h2>
+
+        <!-- paragraph with inline code + bold + link -->
+        <p class="nb-p">Entrega el instrumento y las curvas a <code class="nb-inline-code">present_value</code>. El core en <strong>C++</strong> descuenta cada cashflow. Ver el <a class="nb-link" href="https://github.com/qcfinancial/qcfinancial" target="_blank" rel="noopener">repositorio</a>.</p>
+
+        <!-- CODE CELL (In[n]) — collapsible. Toggle .is-collapsed on .nb-in via JS. -->
+        <div class="nb-cell nb-cell--code">
+          <div class="nb-prompt nb-prompt--in">In&nbsp;[2]:</div>
+          <div class="nb-in">
+            <div class="nb-in__bar" role="button" tabindex="0">
+              <span class="nb-in__barleft">
+                <svg class="nb-in__chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#8593aa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+                <span class="nb-in__lang">python</span>
+                <!-- when collapsed, also render: <span class="nb-in__hidden">&middot;&middot;&middot;</span> -->
+              </span>
+              <span class="nb-in__copy">copy</span>
+            </div>
+            <pre class="nb-in__code"><code><span class="tok-comment"># discount all cashflows</span>
+<span class="tok-keyword">import</span> qcfinancial <span class="tok-keyword">as</span> qcf
+pv <span>=</span> qcf<span>.</span><span class="tok-call">present_value</span>(swap, curves<span>=</span>market)
+<span class="tok-call">print</span>(<span class="tok-string">f"PV = {pv:,.0f} CLP"</span>)</code></pre>
+          </div>
+        </div>
+
+        <!-- TEXT OUTPUT (Out[n]) -->
+        <div class="nb-cell nb-cell--out">
+          <div class="nb-prompt nb-prompt--out">Out[2]:</div>
+          <div class="nb-out"><pre class="nb-out__pre"><code>PV = 1,284,930 CLP</code></pre></div>
+        </div>
+
+        <!-- DATAFRAME OUTPUT (Out[n]) — pandas Styler HTML injected verbatim into .nb-df -->
+        <div class="nb-cell nb-cell--out">
+          <div class="nb-prompt nb-prompt--out">Out[3]:</div>
+          <div class="nb-df">
+            <!-- raw <style>…</style><table id="T_…">…</table> from the notebook output goes here unmodified -->
+            <table>
+              <thead><tr><th class="blank">&nbsp;</th><th>fecha_pago</th><th>monto</th><th>moneda</th></tr></thead>
+              <tbody>
+                <tr><th class="row_heading">0</th><td>2024-08-24</td><td>1,000,000</td><td>CLP</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- DISPLAY MATH -->
+        <div class="nb-math">$$\Delta wf = \frac{dg\left(r,yf\right)}{dr}\left(r_0,yf\right)\cdot\delta$$</div>
+
+        <!-- MARKDOWN (pipe) TABLE -->
+        <div class="nb-table">
+          <table>
+            <thead><tr><th>Lista</th><th>de</th><th>Divisas</th></tr></thead>
+            <tbody>
+              <tr><td>AUD</td><td>CNY</td><td>JPY</td></tr>
+              <tr><td>CLP</td><td>EUR</td><td>USD</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ADMONITION (mkdocs !!! note) — not present in ch1–4 but supported -->
+        <div class="nb-admonition">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0e8f8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+          <div>
+            <div class="nb-admonition__title">Reproducible por diseño</div>
+            <p class="nb-admonition__body">Cada figura es el output real de ejecutar la celda.</p>
+          </div>
+        </div>
+        <!-- ================ end {{ content }} ================ -->
+
+        <!-- {{ pager }} -->
+        <nav class="qcf-pager">
+          <a class="qcf-pager__link" href="2_cashflows.html">
+            <div class="qcf-pager__eyebrow">&larr; Anterior</div>
+            <div class="qcf-pager__title">Cashflows</div>
+          </a>
+          <a class="qcf-pager__link qcf-pager__link--next" href="4_valorizacion_sensibilidad.html">
+            <div class="qcf-pager__eyebrow">Siguiente &rarr;</div>
+            <div class="qcf-pager__title">Valorización y Sensibilidad</div>
+          </a>
+        </nav>
+      </main>
+
+      <!-- RIGHT: on-this-page -->
+      <aside class="qcf-toc qcf-scroll">
+        <div class="qcf-eyebrow">En esta página</div>
+        <!-- {{ toc }} — one item per H2 (.is-active for current) / H3 (.lvl-3) -->
+        <nav class="qcf-toc__list">
+          <a class="qcf-toc__item is-active" href="#valor-presente">Valor presente</a>
+          <a class="qcf-toc__item lvl-3" href="#detalle">Detalle</a>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Minimal behavior the static page needs (the React prototype does this in its logic class):
+       1. collapse code cells; 2. typeset math; 3. (optional) scroll-spy the TOC. -->
+  <script>
+    // 1. collapsible code cells
+    document.querySelectorAll('.nb-in__bar').forEach(function (bar) {
+      bar.addEventListener('click', function () {
+        var cell = bar.closest('.nb-in');
+        cell.classList.toggle('is-collapsed');
+        var left = bar.querySelector('.nb-in__barleft');
+        var hid = left.querySelector('.nb-in__hidden');
+        if (cell.classList.contains('is-collapsed')) {
+          if (!hid) { hid = document.createElement('span'); hid.className = 'nb-in__hidden'; hid.textContent = '\u00b7\u00b7\u00b7'; left.appendChild(hid); }
+        } else if (hid) { hid.remove(); }
+      });
+    });
+    // 2. math
+    if (window.MathJax && window.MathJax.typesetPromise) { window.MathJax.typesetPromise(); }
+  </script>
+</body>
+</html>

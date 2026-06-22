@@ -4,22 +4,36 @@ on:
     branches:
       - master
       - main
+
+# Deploy the generated site to GitHub Pages (Settings -> Pages -> Source: GitHub Actions).
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      # The site converter is pure stdlib and reads the committed docs/*.md, so
+      # the docs toolchain (--dev) and qcfinancial are not needed to build.
+      - run: uv run --no-dev qcf-docs build
+      - uses: actions/upload-pages-artifact@v3
         with:
-          python-version: 3.12
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
-      - uses: actions/cache@v3
-        with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
-          restore-keys: |
-            mkdocs-material-
-      - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy --force
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

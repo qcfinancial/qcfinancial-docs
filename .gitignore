@@ -1,6 +1,18 @@
 .ipynb_checkpoints/
 .DS_Store
 .idea/
-qcfinancial.cpython-311-darwin.so
+
+# Vendored qcfinancial compiled module (no PyPI wheel for macOS Intel; see pyproject.toml)
+qcfinancial.cpython-*.so
+
+# Python / uv
 *.pyc
+__pycache__/
+.venv/
+
+# Build output
+site/
+.cache/
+
+# Scratch
 commit_message.md

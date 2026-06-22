@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/stix-two-math@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/stix-two-text@5/500-italic.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #0b1b34; background: #ffffff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: #cdeeeb; }
+  .qc-scroll::-webkit-scrollbar { width: 8px; }
+  .qc-scroll::-webkit-scrollbar-thumb { background: #d7deea; border-radius: 8px; }
+  .nb-df table { width: 100%; border-collapse: collapse; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; }
+  .nb-df thead th { text-align: right; padding: 8px 14px; color: #8593aa; font-weight: 600; background: #f7f9fc; border-bottom: 1px solid #e7ecf4; white-space: nowrap; }
+  .nb-df thead th.blank, .nb-df th.row_heading { text-align: left; color: #aab4c6; }
+  .nb-df tbody th { text-align: left; padding: 7px 14px; color: #aab4c6; font-weight: 500; border-bottom: 1px solid #f0f3f8; background: #fcfdfe; white-space: nowrap; }
+  .nb-df tbody td { text-align: right; padding: 7px 14px; color: #34425e; border-bottom: 1px solid #f0f3f8; white-space: nowrap; }
+  .nb-df tbody tr:last-child td, .nb-df tbody tr:last-child th { border-bottom: none; }
+  .nb-df tbody tr:hover td { background: #f7fafc; }
+  mjx-container { overflow-x: auto; overflow-y: hidden; }
+</style>
+<script>
+  window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<script src="./nbsources.js"></script>
+</helmet>
+
+<div style="min-height: 100vh; background: #ffffff; overflow-x: clip;">
+
+  <header style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.9); backdrop-filter: saturate(160%) blur(12px); border-bottom: 1px solid #e7ecf4;">
+    <div style="display: flex; align-items: center; gap: 18px; padding: 12px 28px;">
+      <a href="QcFinancial Landing.dc.html" style="display: flex; align-items: center; gap: 11px; line-height: 1;">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; background: #0b1d42;"><span style="font-family: 'STIX Two Math', 'STIX Two Text', serif; font-size: 19px; color: #f5f1e6; letter-spacing: 0.02em; line-height: 1; white-space: nowrap;">ℚℂ</span></span>
+        <span style="font-family: 'STIX Two Text', serif; font-style: italic; font-weight: 500; font-size: 21px; color: #0b1d42; line-height: 1; white-space: nowrap;">financial</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; color: #0e8f8a; background: #e9f7f5; border: 1px solid #c9ece8; padding: 2px 7px; border-radius: 6px;">docs</span>
+      </a>
+      <div style="flex: 1;"></div>
+      <div style="display: flex; align-items: center; gap: 10px; background: #f4f6fb; border: 1px solid #e3e8f2; border-radius: 9px; padding: 8px 13px; width: 280px; color: #93a0b6;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4-4"></path></svg>
+        <span style="font-size: 13.5px;">{{ t.search }}</span>
+        <span style="margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: #fff; border: 1px solid #e3e8f2; border-radius: 5px; padding: 1px 6px; color: #8593aa;">⌘K</span>
+      </div>
+      <div style="display: flex; border: 1px solid #d7deea; border-radius: 8px; overflow: hidden;">
+        <button onClick="{{ toEn }}" style="{{ enBtnStyle }}">EN</button>
+        <button onClick="{{ toEs }}" style="{{ esBtnStyle }}">ES</button>
+      </div>
+      <a href="https://github.com/qcfinancial/qcfinancial-docs" target="_blank" style="display: inline-flex; align-items: center; gap: 7px; color: #44567a; font-size: 14px; font-weight: 500; padding: 8px 12px; border-radius: 8px; border: 1px solid #e3e8f2;" style-hover="border-color: #0c2a66; color: #0c2a66;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+      </a>
+    </div>
+  </header>
+
+  <div style="display: grid; grid-template-columns: 268px minmax(0, 1fr) 232px; max-width: 1480px; margin: 0 auto;">
+
+    <aside class="qc-scroll" style="position: sticky; top: 59px; align-self: start; height: calc(100vh - 59px); overflow-y: auto; border-right: 1px solid #eef1f7; padding: 28px 18px 40px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1px; color: #93a0b6; text-transform: uppercase; padding: 0 12px 12px;">{{ t.navGuide }}</div>
+      {{ navNode }}
+      <div style="margin: 26px 12px 0; padding: 16px; background: #f7f9fc; border: 1px solid #eef1f7; border-radius: 12px;">
+        <div style="font-size: 12.5px; font-weight: 600; color: #0b1b34;">{{ t.calloutTitle }}</div>
+        <p style="font-size: 12.5px; line-height: 1.5; color: #67768f; margin: 7px 0 12px;">{{ t.calloutBody }}</p>
+        <a href="https://github.com/qcfinancial/qcfinancial-docs" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: #0c2a66;" style-hover="color: #0e8f8a;">.ipynb ↓</a>
+      </div>
+    </aside>
+
+    <main style="padding: 40px 56px 80px; min-width: 0;">
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #8593aa; font-family: 'IBM Plex Mono', monospace;">
+        <span>{{ t.navGuide }}</span><span>/</span><span style="color: #0c2a66;">{{ chTitle }}</span>
+      </div>
+      <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-top: 14px;">
+        <h1 style="font-size: 38px; line-height: 1.12; letter-spacing: -1.1px; font-weight: 600; color: #0b1b34; margin: 0;">{{ chTitle }}</h1>
+        <a href="https://qcf-demo-app.streamlit.app" target="_blank" style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 500; color: #0c2a66; border: 1px solid #d7deea; border-radius: 9px; padding: 9px 14px; margin-top: 6px;" style-hover="border-color: #0c2a66; background: #f7f9fc;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
+          {{ t.runDemo }}
+        </a>
+      </div>
+      <div style="height: 1px; background: #eef1f7; margin: 26px 0 4px;"></div>
+      {{ body }}
+      {{ pagerNode }}
+    </main>
+
+    <aside class="qc-scroll" style="position: sticky; top: 59px; align-self: start; height: calc(100vh - 59px); overflow-y: auto; padding: 40px 24px 40px 8px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1px; color: #93a0b6; text-transform: uppercase;">{{ t.onPage }}</div>
+      {{ tocNode }}
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1480, &quot;height&quot;: 1400}, &quot;defaultChapter&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;], &quot;default&quot;: &quot;1&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;defaultLang&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;es&quot;, &quot;en&quot;], &quot;default&quot;: &quot;es&quot;, &quot;tsType&quot;: &quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { chapter: '1', lang: 'es', loaded: false, loadError: null };
+
+  componentDidMount() {
+    const d = this.props.defaultChapter;
+    if (d && d !== this.state.chapter) this.state.chapter = String(d);
+    const dl = this.props.defaultLang;
+    if (dl && dl !== this.state.lang) this.state.lang = String(dl);
+    this._cache = {};
+    let tries = 0;
+    const grab = () => {
+      if (window.QCF_NB) { this.sources = window.QCF_NB; this.setState({ loaded: true }, () => this.typeset()); }
+      else if (tries++ < 60) { setTimeout(grab, 100); }
+      else { this.setState({ loadError: 'nbsources.js no disponible' }); }
+    };
+    grab();
+  }
+
+  componentDidUpdate() { this.typeset(); }
+
+  typeset() {
+    if (this._mjPending) return;
+    this._mjPending = true;
+    const f = (n) => {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetClear && window.MathJax.typesetClear();
+        window.MathJax.typesetPromise().catch(() => {}).then(() => { this._mjPending = false; });
+      } else if (n < 40) { setTimeout(() => f(n + 1), 200); }
+      else { this._mjPending = false; }
+    };
+    f(0);
+  }
+
+  goChapter(ch) {
+    if (ch === this.state.chapter) return;
+    this.setState({ chapter: ch }, () => { try { window.scrollTo(0, 0); } catch (e) {} });
+  }
+
+  // ---- syntax highlighter (Python) ----
+  hlPython(code) {
+    const h = React.createElement;
+    const KW = new Set(['import','from','as','def','class','return','for','in','if','else','elif','while','try','except','finally','with','lambda','None','True','False','and','or','not','is','pass','break','continue','global','nonlocal','yield','raise','assert','del','async','await']);
+    const out = []; let i = 0; const n = code.length; let key = 0;
+    const push = (txt, color) => { if (txt === '') return; out.push(color ? h('span', { key: key++, style: { color } }, txt) : txt); };
+    while (i < n) {
+      const c = code[i];
+      if (c === '#') { let j = i; while (j < n && code[j] !== '\n') j++; push(code.slice(i, j), '#8a93a3'); i = j; continue; }
+      if (c === '"' || c === "'") {
+        const q = c; let j = i + 1; let triple = false;
+        if (code[i + 1] === q && code[i + 2] === q) { triple = true; j = i + 3; }
+        if (triple) { while (j < n && !(code[j] === q && code[j + 1] === q && code[j + 2] === q)) j++; j = Math.min(n, j + 3); }
+        else { while (j < n && code[j] !== q && code[j] !== '\n') { if (code[j] === '\\') j++; j++; } j = Math.min(n, j + 1); }
+        push(code.slice(i, j), '#0e7c77'); i = j; continue;
+      }
+      const prev = code[i - 1] || '';
+      if (c >= '0' && c <= '9' && !/[A-Za-z_]/.test(prev)) {
+        let j = i; while (j < n && /[0-9_.eExXa-fA-F]/.test(code[j])) j++; push(code.slice(i, j), '#b35900'); i = j; continue;
+      }
+      if (/[A-Za-z_]/.test(c)) {
+        let j = i; while (j < n && /[A-Za-z0-9_]/.test(code[j])) j++;
+        const word = code.slice(i, j);
+        let k = j; while (k < n && code[k] === ' ') k++;
+        const isCall = code[k] === '(';
+        let p = i - 1; while (p >= 0 && code[p] === ' ') p--;
+        const prevNS = code[p];
+        if (KW.has(word)) push(word, '#8250df');
+        else if (isCall) push(word, '#0c5fd6');
+        else if (prevNS === '.') push(word, '#0b1b34');
+        else push(word, null);
+        i = j; continue;
+      }
+      push(c, null); i++;
+    }
+    return out;
+  }
+
+  // ---- inline markdown ----
+  inline(text) {
+    const h = React.createElement; const out = []; let key = 0;
+    const re = /(`[^`]+`)|(\*\*[^*]+\*\*)|(\[[^\]]+\]\([^)]+\))|(\*[^*\s][^*]*\*)/g;
+    let last = 0; let m;
+    while ((m = re.exec(text))) {
+      if (m.index > last) out.push(text.slice(last, m.index));
+      const tok = m[0];
+      if (tok[0] === '`') out.push(h('code', { key: key++, style: { fontFamily: "'IBM Plex Mono', monospace", background: '#eef2f8', color: '#0c2a66', padding: '1px 6px', borderRadius: '5px', fontSize: '0.86em' } }, tok.slice(1, -1)));
+      else if (tok.slice(0, 2) === '**') out.push(h('strong', { key: key++, style: { fontWeight: 600, color: '#0b1b34' } }, tok.slice(2, -2)));
+      else if (tok[0] === '[') { const mm = tok.match(/\[([^\]]+)\]\(([^)]+)\)/); out.push(h('a', { key: key++, href: mm[2], target: '_blank', style: { color: '#0c5fd6' } }, mm[1])); }
+      else out.push(h('em', { key: key++ }, tok.slice(1, -1)));
+      last = re.lastIndex;
+    }
+    if (last < text.length) out.push(text.slice(last));
+    return out;
+  }
+
+  slug(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''); }
+
+  // ---- cell renderers ----
+  makeCodeCell() {
+    if (this._CC) return this._CC;
+    const R = React;
+    class CC extends R.Component {
+      constructor(p) { super(p); this.state = { open: true }; }
+      render() {
+        const h = R.createElement;
+        const open = this.state.open;
+        const toggle = (e) => { if (e) e.stopPropagation(); this.setState(s => ({ open: !s.open })); };
+        const chevron = h('svg', { width: 11, height: 11, viewBox: '0 0 24 24', fill: 'none', stroke: '#8593aa', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round', style: { transform: open ? 'rotate(0deg)' : 'rotate(-90deg)', transition: 'transform .15s', flexShrink: 0 } }, h('path', { d: 'M6 9l6 6 6-6' }));
+        return h('div', { style: { display: 'flex', gap: '14px', marginTop: '24px', alignItems: 'flex-start' } },
+          h('div', { style: { flexShrink: 0, fontFamily: "'IBM Plex Mono', monospace", fontSize: '12px', color: '#11a89f', paddingTop: '16px', width: '58px', textAlign: 'right' } }, 'In [' + this.props.exec + ']:'),
+          h('div', { style: { flex: 1, minWidth: 0, background: '#fbfcfe', border: '1px solid #e7ecf4', borderLeft: '3px solid #0c2a66', borderRadius: '10px', overflow: 'hidden' } },
+            h('div', { onClick: toggle, title: open ? 'Ocultar código' : 'Mostrar código', style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 14px', borderBottom: open ? '1px solid #eef1f7' : 'none', background: '#f7f9fc', cursor: 'pointer', userSelect: 'none' } },
+              h('div', { style: { display: 'flex', alignItems: 'center', gap: '8px' } },
+                chevron,
+                h('span', { style: { fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', color: '#8593aa', letterSpacing: '0.4px' } }, this.props.lang),
+                open ? null : h('span', { style: { fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', color: '#b9c2d2' } }, '···')
+              ),
+              h('span', { style: { fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', color: '#b3bccd' } }, 'copy')
+            ),
+            open ? h('pre', { style: { margin: 0, padding: '16px', overflowX: 'auto', fontFamily: "'IBM Plex Mono', monospace", fontSize: '13px', lineHeight: 1.7 } }, h('code', null, this.props.tokens)) : null
+          )
+        );
+      }
+    }
+    this._CC = CC;
+    return this._CC;
+  }
+
+  codeCell(exec, lang, code, key) {
+    return React.createElement(this.makeCodeCell(), { key, exec, lang, tokens: this.hlPython(code) });
+  }
+
+  outCell(exec, text, key) {
+    const h = React.createElement;
+    return h('div', { key, style: { display: 'flex', gap: '14px', marginTop: '10px', alignItems: 'flex-start' } },
+      h('div', { style: { flexShrink: 0, fontFamily: "'IBM Plex Mono', monospace", fontSize: '12px', color: '#b85c00', paddingTop: '2px', width: '58px', textAlign: 'right' } }, 'Out[' + exec + ']:'),
+      h('div', { style: { flex: 1, minWidth: 0 } },
+        h('pre', { style: { margin: 0, fontFamily: "'IBM Plex Mono', monospace", fontSize: '13px', lineHeight: 1.6, color: '#516183', whiteSpace: 'pre-wrap', wordBreak: 'break-word' } }, h('code', null, text))
+      )
+    );
+  }
+
+  dfCell(exec, html, key) {
+    const h = React.createElement;
+    return h('div', { key, style: { display: 'flex', gap: '14px', marginTop: '10px', alignItems: 'flex-start' } },
+      h('div', { style: { flexShrink: 0, fontFamily: "'IBM Plex Mono', monospace", fontSize: '12px', color: '#b85c00', paddingTop: '2px', width: '58px', textAlign: 'right' } }, 'Out[' + exec + ']:'),
+      h('div', { className: 'nb-df', style: { flex: 1, minWidth: 0, overflowX: 'auto', border: '1px solid #e7ecf4', borderRadius: '10px' }, dangerouslySetInnerHTML: { __html: html } })
+    );
+  }
+
+  heading(level, text, id, key) {
+    const h = React.createElement;
+    if (level === 2) return h('h2', { key, id, style: { fontSize: '23px', fontWeight: 600, letterSpacing: '-0.4px', color: '#0b1b34', margin: '46px 0 0', scrollMarginTop: '80px' } }, text);
+    if (level === 3) return h('h3', { key, id, style: { fontSize: '18px', fontWeight: 600, color: '#0b1b34', margin: '32px 0 0', scrollMarginTop: '80px' } }, text);
+    return h('h4', { key, id, style: { fontSize: '15px', fontWeight: 600, color: '#33405b', margin: '22px 0 0', scrollMarginTop: '80px' } }, text);
+  }
+
+  mdTable(rows, key) {
+    const h = React.createElement;
+    const cells = r => r.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(s => s.trim());
+    const header = cells(rows[0]);
+    const body = rows.slice(2).map(cells);
+    return h('div', { key, style: { margin: '18px 0 0', maxWidth: '760px', overflowX: 'auto', border: '1px solid #e7ecf4', borderRadius: '10px' } },
+      h('table', { style: { width: '100%', borderCollapse: 'collapse', fontFamily: "'IBM Plex Mono', monospace", fontSize: '13px' } },
+        h('thead', null, h('tr', { style: { background: '#f7f9fc', borderBottom: '1px solid #e7ecf4' } }, header.map((c, ci) => h('th', { key: ci, style: { textAlign: 'left', padding: '9px 16px', color: '#8593aa', fontWeight: 600 } }, this.inline(c))))),
+        h('tbody', null, body.map((r, ri) => h('tr', { key: ri, style: { borderBottom: ri === body.length - 1 ? 'none' : '1px solid #f0f3f8' } }, r.map((c, ci) => h('td', { key: ci, style: { padding: '8px 16px', color: '#3c4a64' } }, this.inline(c))))))
+      )
+    );
+  }
+
+  mathBlock(tex, key) {
+    const h = React.createElement;
+    return h('div', { key, style: { margin: '20px 0 4px', overflowX: 'auto', color: '#0b1b34', fontSize: '15px' } }, tex);
+  }
+
+  // ---- the transform: notebook-markdown -> styled cells ----
+  parse(md) {
+    const h = React.createElement;
+    const lines = md.replace(/\r\n/g, '\n').split('\n');
+    const nodes = []; const toc = [];
+    let i = 0; const n = lines.length; let exec = 0; let key = 0; let pageTitle = null;
+    const isBlank = l => l.trim() === '';
+    const isIndent = l => /^ {4}/.test(l) || /^\t/.test(l);
+    const isHtml = l => /^\s*<(style|table|div)\b/.test(l);
+
+    while (i < n) {
+      const line = lines[i];
+      if (isBlank(line)) { i++; continue; }
+
+      if (/^```/.test(line)) {
+        const lang = line.replace(/^```/, '').trim() || 'text';
+        const code = []; i++;
+        while (i < n && !/^```/.test(lines[i])) { code.push(lines[i]); i++; }
+        i++;
+        exec++;
+        nodes.push(this.codeCell(exec, lang, code.join('\n'), key++));
+        let j = i; while (j < n && isBlank(lines[j])) j++;
+        if (j < n && (isIndent(lines[j]) || isHtml(lines[j]))) {
+          if (isHtml(lines[j])) {
+            const html = []; let k = j; let closed = false;
+            while (k < n) { if (isBlank(lines[k]) && closed) break; html.push(lines[k]); if (/<\/(table|div)>/.test(lines[k])) closed = true; k++; }
+            nodes.push(this.dfCell(exec, html.join('\n'), key++)); i = k;
+          } else {
+            const out = []; let k = j;
+            while (k < n) {
+              if (isIndent(lines[k])) { out.push(lines[k].replace(/^ {4}/, '')); k++; }
+              else if (isBlank(lines[k])) { let p = k; while (p < n && isBlank(lines[p])) p++; if (p < n && isIndent(lines[p])) { out.push(''); k++; } else break; }
+              else break;
+            }
+            nodes.push(this.outCell(exec, out.join('\n').replace(/\n+$/, ''), key++)); i = k;
+          }
+        }
+        continue;
+      }
+
+      const hm = line.match(/^(#{1,6})\s+(.*)$/);
+      if (hm) {
+        const level = hm[1].length;
+        const text = hm[2].replace(/\s*#+\s*$/, '').trim();
+        if (level === 1 && pageTitle === null) { pageTitle = text; i++; continue; }
+        const id = this.slug(text) + '-' + key;
+        if (level === 2 || level === 3) toc.push({ id, text, level });
+        nodes.push(this.heading(level, text, id, key++)); i++; continue;
+      }
+
+      if (/^\$\$/.test(line.trim())) {
+        const buf = [line];
+        if (!/\$\$[\s\S]*\$\$/.test(line.trim()) || line.trim() === '$$') {
+          i++; while (i < n && !/\$\$\s*$/.test(lines[i])) { buf.push(lines[i]); i++; } if (i < n) buf.push(lines[i]);
+        }
+        i++; nodes.push(this.mathBlock(buf.join('\n'), key++)); continue;
+      }
+
+      if (/^\s*\|/.test(line)) {
+        const tbl = []; while (i < n && /^\s*\|/.test(lines[i])) { tbl.push(lines[i]); i++; }
+        if (tbl.length >= 2) nodes.push(this.mdTable(tbl, key++));
+        continue;
+      }
+
+      const para = [line]; i++;
+      while (i < n && !isBlank(lines[i]) && !/^```/.test(lines[i]) && !/^#{1,6}\s/.test(lines[i]) && !/^\s*\|/.test(lines[i]) && !/^\$\$/.test(lines[i].trim())) { para.push(lines[i]); i++; }
+      nodes.push(h('p', { key: key++, style: { fontSize: '16px', lineHeight: 1.7, color: '#3c4a64', margin: '14px 0 0', maxWidth: '760px', textWrap: 'pretty' } }, this.inline(para.join(' '))));
+    }
+    return { nodes, toc };
+  }
+
+  renderVals() {
+    const h = React.createElement;
+    const ch = this.state.chapter;
+    const lang = this.state.lang;
+    const STR = {
+      es: { search: 'Buscar en la documentación…', navGuide: 'Guía', calloutTitle: 'Generado desde notebooks', calloutBody: 'Esta página se renderiza directamente desde el .ipynb ejecutable. Córrelo tú mismo.', runDemo: 'Abrir en la demo', onPage: 'En esta página', loading: 'Renderizando notebook…', prev: 'Anterior', next: 'Siguiente' },
+      en: { search: 'Search the docs…', navGuide: 'Guide', calloutTitle: 'Generated from notebooks', calloutBody: 'This page is rendered straight from the executable .ipynb. Run it yourself.', runDemo: 'Open in demo', onPage: 'On this page', loading: 'Rendering notebook…', prev: 'Previous', next: 'Next' },
+    };
+    const t = STR[lang];
+    const titles = {
+      es: { '1': 'Objetos Fundamentales', '2': 'Cashflows', '3': 'Construcción de Operaciones', '4': 'Valorización y Sensibilidad' },
+      en: { '1': 'Fundamental Objects', '2': 'Cashflows', '3': 'Building Operations', '4': 'Valuation & Sensitivity' },
+    };
+    const nums = { '1': '01', '2': '02', '3': '03', '4': '04' };
+    const meta = {};
+    ['1', '2', '3', '4'].forEach(k => { meta[k] = { t: titles[lang][k], num: nums[k] }; });
+    const order = ['1', '2', '3', '4'];
+
+    // sidebar nav
+    const navNode = h('div', { style: { display: 'flex', flexDirection: 'column', gap: '2px' } },
+      order.map(k => {
+        const active = k === ch;
+        return h('a', {
+          key: k, href: '#', onClick: (e) => { e.preventDefault(); this.goChapter(k); },
+          style: {
+            display: 'flex', alignItems: 'center', gap: '9px', fontSize: '14.5px', padding: '8px 12px', borderRadius: '8px',
+            color: active ? '#fff' : '#516183', background: active ? '#0c2a66' : 'transparent', fontWeight: active ? 500 : 400,
+          },
+        },
+          h('span', { style: { fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', color: active ? '#8fb0ec' : '#aab4c6' } }, meta[k].num),
+          meta[k].t
+        );
+      })
+    );
+
+    let body, toc = [];
+    if (this.state.loadError) {
+      body = h('div', { style: { marginTop: '32px', padding: '18px 20px', background: '#fef3f2', border: '1px solid #fadcd7', borderRadius: '12px', color: '#9a3a2c', fontSize: '14px' } }, 'No se pudo cargar el notebook: ' + this.state.loadError);
+    } else if (!this.state.loaded || !this.sources || !this.sources[ch]) {
+      body = h('div', { style: { marginTop: '40px', display: 'flex', alignItems: 'center', gap: '12px', color: '#93a0b6', fontFamily: "'IBM Plex Mono', monospace", fontSize: '13px' } },
+        h('span', { style: { width: '10px', height: '10px', borderRadius: '50%', background: '#11a89f', display: 'inline-block', animation: 'none' } }), t.loading);
+    } else {
+      this._cache = this._cache || {};
+      if (!this._cache[ch]) this._cache[ch] = this.parse(this.sources[ch]);
+      const parsed = this._cache[ch];
+      body = h('div', { key: 'ch' + ch }, parsed.nodes);
+      toc = parsed.toc;
+    }
+
+    // TOC
+    const tocNode = h('div', { style: { display: 'flex', flexDirection: 'column', gap: '1px', marginTop: '14px', borderLeft: '1px solid #eef1f7' } },
+      toc.length ? toc.map((it, idx) => h('a', {
+        key: idx, href: '#' + it.id,
+        style: { fontSize: '13px', color: '#67768f', padding: '5px 0 5px ' + (it.level === 3 ? '26px' : '14px'), marginLeft: '-1px', lineHeight: 1.35 },
+        'style-hover': 'color: #0c2a66;',
+      }, it.text)) : h('span', { style: { fontSize: '12.5px', color: '#aab4c6', marginTop: '14px', display: 'block' } }, '—')
+    );
+
+    // pager
+    const idx = order.indexOf(ch);
+    const prev = order[idx - 1]; const next = order[idx + 1];
+    const pagerNode = h('div', { style: { display: 'flex', justifyContent: 'space-between', gap: '16px', marginTop: '56px', paddingTop: '28px', borderTop: '1px solid #eef1f7' } },
+      prev ? h('a', { href: '#', onClick: (e) => { e.preventDefault(); this.goChapter(prev); }, style: { flex: 1, border: '1px solid #e7ecf4', borderRadius: '12px', padding: '16px 20px' }, 'style-hover': 'border-color: #0c2a66; background: #f7f9fc;' },
+        h('div', { style: { fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', color: '#93a0b6' } }, '← ' + t.prev),
+        h('div', { style: { fontSize: '15px', fontWeight: 500, color: '#0c2a66', marginTop: '4px' } }, meta[prev].t)
+      ) : h('span', { style: { flex: 1 } }),
+      next ? h('a', { href: '#', onClick: (e) => { e.preventDefault(); this.goChapter(next); }, style: { flex: 1, border: '1px solid #e7ecf4', borderRadius: '12px', padding: '16px 20px', textAlign: 'right' }, 'style-hover': 'border-color: #0c2a66; background: #f7f9fc;' },
+        h('div', { style: { fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', color: '#93a0b6' } }, t.next + ' →'),
+        h('div', { style: { fontSize: '15px', fontWeight: 500, color: '#0c2a66', marginTop: '4px' } }, meta[next].t)
+      ) : h('span', { style: { flex: 1 } })
+    );
+
+    const segActive = { background: '#0c2a66', color: '#fff', border: 'none', padding: '6px 11px', cursor: 'pointer', fontFamily: "'IBM Plex Mono', monospace", fontSize: '12px', fontWeight: 600 };
+    const segInactive = { background: '#fff', color: '#7585a0', border: 'none', padding: '6px 11px', cursor: 'pointer', fontFamily: "'IBM Plex Mono', monospace", fontSize: '12px', fontWeight: 600 };
+
+    return {
+      t, chTitle: meta[ch].t, navNode, body, tocNode, pagerNode,
+      enBtnStyle: lang === 'en' ? segActive : segInactive,
+      esBtnStyle: lang === 'es' ? segActive : segInactive,
+      toEn: () => this.setState({ lang: 'en' }),
+      toEs: () => this.setState({ lang: 'es' }),
+    };
+  }
+}
+</script>
+</body>
+</html>
