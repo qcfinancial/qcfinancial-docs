@@ -68,6 +68,10 @@ git diff --stat -- docs/ qcfdocs/chapters.py
 Sanity-check that the `docs/*.md` churn matches the notebook(s) the user touched
 (and nothing unrelated). `site/` is gitignored and never committed.
 
+**If there is no diff at all**, the committed docs already match the notebooks —
+there is nothing to publish. Report that and stop (this is normal if the
+notebook's saved outputs didn't actually change). Do not create an empty commit.
+
 ## 5. Commit and push
 
 Stage **only** the relevant files: the notebook(s) that changed, their
