@@ -79,6 +79,26 @@ def _pager_html(current: Chapter) -> str:
     return f'        <nav class="qcf-pager">\n{left}\n{right}\n        </nav>'
 
 
+def _callout_html(ch: Chapter) -> str:
+    """Sidebar callout linking to the source notebook (omitted for hand-written pages)."""
+    if not ch.notebook:
+        return ""
+    return (
+        '        <div class="qcf-callout">\n'
+        '          <div class="qcf-callout__title">Generado desde notebooks</div>\n'
+        '          <p class="qcf-callout__body">Esta página se renderiza directamente '
+        'desde el .ipynb ejecutable. Córrelo tú mismo.</p>\n'
+        f'          <a class="qcf-callout__link" href="{GITHUB_NB_BASE}/{ch.ipynb_name}" '
+        'target="_blank" rel="noopener">.ipynb &darr;</a>\n'
+        '        </div>'
+    )
+
+
+def _plain_title(text: str) -> str:
+    """Strip markdown code/emphasis markers for use in text contexts (title, h1)."""
+    return text.replace("`", "")
+
+
 def _fill(template: str, mapping: dict[str, str]) -> str:
     out = template
     for key, value in mapping.items():
@@ -102,9 +122,9 @@ def build(docs_dir: Path = DOCS_DIR, site_dir: Path = SITE_DIR) -> list[Path]:
             )
         rendered = convert.render_notebook(md_path.read_text(encoding="utf-8"))
         page = _fill(template, {
-            "CHTITLE": rendered.title or ch.title,
+            "CHTITLE": _plain_title(rendered.title or ch.title),
             "CSS": "qcf-docs.css",
-            "IPYNB": f"{GITHUB_NB_BASE}/{ch.ipynb_name}",
+            "CALLOUT": _callout_html(ch),
             "NAV": _nav_html(ch),
             "CONTENT": rendered.html,
             "TOC": _toc_html(rendered.toc),
@@ -114,16 +134,6 @@ def build(docs_dir: Path = DOCS_DIR, site_dir: Path = SITE_DIR) -> list[Path]:
         out_path.write_text(page, encoding="utf-8")
         written.append(out_path)
 
-    # index.html -> first chapter
-    first = CHAPTERS[0]
-    (site_dir / "index.html").write_text(
-        '<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">'
-        f'<meta http-equiv="refresh" content="0; url={first.html_name}">'
-        f'<link rel="canonical" href="{first.html_name}">'
-        f'<title>qcfinancial · docs</title></head>'
-        f'<body><a href="{first.html_name}">Ir a la documentación</a></body></html>',
-        encoding="utf-8",
-    )
     return written
 
 

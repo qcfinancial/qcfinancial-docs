@@ -27,7 +27,7 @@ Two stages, both exposed via the `qcf-docs` CLI (`qcfdocs/cli.py`):
 
 So: **editing a notebook does not change the site until you run `qcf-docs notebooks` (regenerating `docs/*.md`) and commit.** The committed `docs/*.md` are the source of truth the site is built from.
 
-**Scope:** only chapters **1–4** are wired into the site (see `qcfdocs/chapters.py`). Notebooks 5–7, `90_*`, `98_*`, `99_*`, `Ejemplos_*` are extra/test/WIP and not built — add chapters 5–6 by extending the manifest.
+**Scope:** the site builds **chapter 0** (the hand-written landing page `docs/0_index.md` → `index.html`, no notebook) plus **chapters 1–6** from their notebooks (see `qcfdocs/chapters.py`). Notebooks `7_*`, `90_*`, `98_*`, `99_*`, `Ejemplos_*`, `Forum`, `ejemplo_swap_spread` are extra/test/WIP and not built — add a chapter by extending the `CHAPTERS` manifest (set `notebook=None` for a hand-written page).
 
 **Publish:** CI (`.github/workflows/ci.yml`) runs `uv run --no-dev qcf-docs build` on push to `master`/`main` and deploys `site/` to GitHub Pages via `actions/deploy-pages`. This **requires** Pages source set to "GitHub Actions" in repo Settings. The site converter needs neither the dev toolchain nor qcfinancial at deploy time.
 

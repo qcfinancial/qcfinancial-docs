@@ -40,6 +40,8 @@ def regenerate(docs_dir: Path = DOCS_DIR) -> list[Path]:
     env = _isolated_env()
     written: list[Path] = []
     for ch in CHAPTERS:
+        if not ch.notebook:
+            continue  # hand-written page (e.g. the home), nothing to convert
         ipynb = REPO_ROOT / ch.ipynb_name
         if not ipynb.exists():
             raise FileNotFoundError(f"Notebook not found: {ipynb}")

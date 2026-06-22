@@ -72,8 +72,9 @@ CSS classes there rather than inline styles in the generator.
 
 ## Scope
 
-Only chapters **1–4** are wired into the site (`qcfdocs/chapters.py`). To publish
-a new chapter (5, 6, …), add an entry to the `CHAPTERS` manifest, then run the
-notebook workflow above.
+The site builds chapter **0** (the hand-written home, `docs/0_index.md`) plus
+notebook chapters **1–6** (`qcfdocs/chapters.py`). To publish a new chapter, add
+an entry to the `CHAPTERS` manifest (use `notebook=None` for a hand-written
+page), then run the notebook workflow above.
 
 See `CLAUDE.md` for the architecture and module-level details.
