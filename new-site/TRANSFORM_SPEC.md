@@ -34,7 +34,8 @@ but the shell + CSS support admonitions (`.nb-admonition`) for later chapters.
 | 2 | `^#{1,6}\s` heading | `heading()` | first `#` (H1) = page title (NOT emitted in body); H2/H3 also pushed to TOC |
 | 3 | `^\$\$` | `mathBlock()` → `.nb-math`, raw `$$…$$` | single- or multi-line; MathJax typesets client-side |
 | 4 | `^\s*\|` | `mdTable()` → `.nb-table` | row 0 = header, row 1 = `---` separator (skipped), rest = body |
-| 5 | anything else | paragraph `.nb-p` | greedily consume until blank line or the start of blocks 1–4 |
+| 5 | `^\s*([-*+]\|\d+\.)\s+` | `listBlock()` → `.nb-ul` / `.nb-ol` | flat list; first item's marker sets ordered vs unordered; each line = one `<li>` (inline markdown rendered, `$…$` left for MathJax) |
+| 6 | anything else | paragraph `.nb-p` | greedily consume until blank line or the start of blocks 1–5 |
 
 Output text and code are **HTML-escaped**; pandas DataFrame HTML and math are
 passed through **unescaped** (they are trusted generator output). Inline markdown
@@ -51,6 +52,7 @@ table cells; `$…$` is left untouched for MathJax.
 | H2 / H3 / H4 | `h2.nb-h2` / `h3.nb-h3` / `h4.nb-h4` with `id=slug(text)` |
 | Paragraph | `p.nb-p` |
 | Pipe table | `.nb-table > table` |
+| List | `ul.nb-ul` / `ol.nb-ol` > `li` |
 | Display math | `.nb-math` (raw `$$…$$`) |
 | Admonition | `.nb-admonition` (icon + title + body) |
 

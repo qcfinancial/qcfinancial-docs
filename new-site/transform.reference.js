@@ -181,6 +181,13 @@ function mathBlock(tex) {
   return '<div class="nb-math">' + tex + '</div>'; // raw — MathJax typesets on the client
 }
 
+function listBlock(items, ordered) {
+  var tag = ordered ? 'ol' : 'ul';
+  var cls = ordered ? 'nb-ol' : 'nb-ul';
+  var lis = items.map(function (t) { return '<li>' + renderInline(t) + '</li>'; }).join('');
+  return '<' + tag + ' class="' + cls + '">' + lis + '</' + tag + '>';
+}
+
 /* ---- the transform -------------------------------------------------------- */
 
 function parse(md) {
@@ -257,9 +264,18 @@ function parse(md) {
       continue;
     }
 
-    /* (5) paragraph ------------------------------------------------------ */
+    /* (5) list (unordered / ordered) — flat; first item sets the kind ---- */
+    if (/^\s*([-*+]|\d+\.)\s+/.test(line)) {
+      var ordered = /^\s*\d+\.\s+/.test(line);
+      var items = [];
+      while (i < n && /^\s*([-*+]|\d+\.)\s+/.test(lines[i])) { items.push(lines[i].replace(/^\s*([-*+]|\d+\.)\s+/, '')); i++; }
+      html += listBlock(items, ordered);
+      continue;
+    }
+
+    /* (6) paragraph ------------------------------------------------------ */
     var para = [line]; i++;
-    while (i < n && !isBlank(lines[i]) && !/^```/.test(lines[i]) && !/^#{1,6}\s/.test(lines[i]) && !/^\s*\|/.test(lines[i]) && !/^\$\$/.test(lines[i].trim())) { para.push(lines[i]); i++; }
+    while (i < n && !isBlank(lines[i]) && !/^```/.test(lines[i]) && !/^#{1,6}\s/.test(lines[i]) && !/^\s*\|/.test(lines[i]) && !/^\s*([-*+]|\d+\.)\s+/.test(lines[i]) && !/^\$\$/.test(lines[i].trim())) { para.push(lines[i]); i++; }
     html += '<p class="nb-p">' + renderInline(para.join(' ')) + '</p>';
   }
 

@@ -250,12 +250,21 @@ def _math_block(tex: str) -> str:
     return f'<div class="nb-math">{tex}</div>'  # raw -- MathJax typesets on the client
 
 
+def _list_block(items: list[str], ordered: bool) -> str:
+    tag = "ol" if ordered else "ul"
+    cls = "nb-ol" if ordered else "nb-ul"
+    lis = "".join(f"<li>{render_inline(t)}</li>" for t in items)
+    return f'<{tag} class="{cls}">{lis}</{tag}>'
+
+
 # ---- the transform ---------------------------------------------------------
 
 _FENCE = re.compile(r"^```")
 _HEADING = re.compile(r"^(#{1,6})\s+(.*)$")
 _HEADING_START = re.compile(r"^#{1,6}\s")
 _PIPE = re.compile(r"^\s*\|")
+_LIST = re.compile(r"^\s*([-*+]|\d+\.)\s+")        # unordered (- * +) or ordered (1.)
+_OLIST = re.compile(r"^\s*\d+\.\s+")
 _HTML_OUT = re.compile(r"^\s*<(style|table|div)\b")
 _CLOSE_TAG = re.compile(r"</(table|div)>")
 
@@ -380,7 +389,17 @@ def parse(md: str) -> Rendered:
                 html.append(_md_table(tbl))
             continue
 
-        # (5) paragraph
+        # (5) list (unordered / ordered) -- flat; first item sets the kind
+        if _LIST.match(line):
+            ordered = bool(_OLIST.match(line))
+            items: list[str] = []
+            while i < n and _LIST.match(lines[i]):
+                items.append(_LIST.sub("", lines[i], count=1))
+                i += 1
+            html.append(_list_block(items, ordered))
+            continue
+
+        # (6) paragraph
         para = [line]
         i += 1
         while (
@@ -389,6 +408,7 @@ def parse(md: str) -> Rendered:
             and not _FENCE.match(lines[i])
             and not _HEADING_START.match(lines[i])
             and not _PIPE.match(lines[i])
+            and not _LIST.match(lines[i])
             and not re.match(r"^\$\$", lines[i].strip())
         ):
             para.append(lines[i])

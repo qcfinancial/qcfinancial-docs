@@ -185,6 +185,11 @@
 .qcf-main h3.nb-h3 { font-size: 18px; font-weight: 600; color: var(--qcf-ink); margin: 32px 0 0; scroll-margin-top: 80px; }
 .qcf-main h4.nb-h4 { font-size: 15px; font-weight: 600; color: #33405b; margin: 22px 0 0; scroll-margin-top: 80px; }
 .nb-p { font-size: 16px; line-height: 1.7; color: var(--qcf-body); margin: 14px 0 0; max-width: var(--qcf-maxw-prose); text-wrap: pretty; }
+.nb-ul, .nb-ol { font-size: 16px; line-height: 1.7; color: var(--qcf-body); margin: 14px 0 0; padding-left: 26px; max-width: var(--qcf-maxw-prose); }
+.nb-ul { list-style: disc; }
+.nb-ol { list-style: decimal; }
+.nb-ul li, .nb-ol li { margin: 4px 0; padding-left: 4px; }
+.nb-ul li::marker, .nb-ol li::marker { color: var(--qcf-faint); }
 .nb-inline-code {
   font-family: 'IBM Plex Mono', monospace; background: var(--qcf-inline-bg); color: var(--qcf-navy);
   padding: 1px 6px; border-radius: 5px; font-size: 0.86em;
