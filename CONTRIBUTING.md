@@ -33,11 +33,16 @@ works anywhere, including CI.
 
 ## Workflow: you edited a notebook
 
+**The easy path — let the skill do it.** In Claude Code, after you've run the
+notebook and saved it, run `/publish-docs`. It regenerates `docs/*.md`, builds,
+tests, then commits and pushes (CI deploys). See
+`.claude/skills/publish-docs/SKILL.md`. The manual steps below are what it does.
+
 ```bash
 # 1. Run the notebook so its saved outputs are fresh
 uv run jupyter lab            # run cells, save the .ipynb
 
-# 2. Regenerate the markdown the site is built from (chapters 1-4)
+# 2. Regenerate the markdown the site is built from
 uv run qcf-docs notebooks
 
 # 3. (optional) preview locally
