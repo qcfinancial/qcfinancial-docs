@@ -80,9 +80,7 @@ regenerated `docs/*.md`, and `qcfdocs/chapters.py` if a chapter was added.
 ```bash
 git add <changed_notebook>.ipynb docs/<changed_chapter>.md   # repeat per chapter
 # git add qcfdocs/chapters.py                                 # only if a chapter was added
-git commit -m "<concise summary of the doc change>
-
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
+git commit -m "<concise summary of the doc change>"
 git push
 ```
 
