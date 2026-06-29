@@ -8,7 +8,7 @@ import qcfinancial as qcf
 print(f"Versión qcf en uso: {qcf.id()}")
 ```
 
-    Versión qcf en uso: version: 1.10.0, build: 2026-04-29 10:00
+    Versión qcf en uso: version: 1.11.3, build: 2026-06-29 16:00
 
 
 ## Monedas
@@ -526,9 +526,45 @@ print(f"n = -1: {scl.shift(mayo2, -1)}")
 
 Se va al 29 de abril porque también agregamos como feriado el 30 de abril.
 
+### Objeto `CalendarFactory`
+
+El objeto `CalendarFactory` es una clase que permite construir objetos de tipo `qcf.BusinessCalendar` a partir de una fecha inicial, un número de días hábiles y una lista de calendarios. Los calendarios se identifican por un código único representado por `enum`.
+
+
+```python
+for cid in list(qcf.BusinessCalendarId.__members__.values()):
+    print(f"{cid}: {qcf.calendar_description(cid)}")
+```
+
+    BusinessCalendarId.CLSA: Santiago, Chile - public holidays
+    BusinessCalendarId.CLBA: Chile - banking calendar (CLSA + December 31)
+    BusinessCalendarId.USNY: United States - New York banking (SIFMA settlement)
+    BusinessCalendarId.USGS: United States - government securities (SIFMA bond market)
+    BusinessCalendarId.EUTA: Eurozone - TARGET payment system
+
+
+Por ejemplo, para construir el calendario de Santiago de Chile, se puede utilizar el siguiente código:
+
+
+```python
+clsa = qcf.CalendarFactory.build(qcf.QCDate("2026-01-01"), 10, [qcf.BusinessCalendarId.CLSA,])
+```
+
+
+```python
+clsa.get_holidays()
+```
+
+
+
+
+    DateList[1-1-2026, 3-4-2026, 4-4-2026, 1-5-2026, 21-5-2026, 21-6-2026, 29-6-2026, 16-7-2026, 15-8-2026, 18-9-2026, 19-9-2026, 12-10-2026, 31-10-2026, 1-11-2026, 8-12-2026, 25-12-2026, 1-1-2027, 26-3-2027, 27-3-2027, 1-5-2027, 21-5-2027, 21-6-2027, 28-6-2027, 16-7-2027, 15-8-2027, 17-9-2027, 18-9-2027, 19-9-2027, 11-10-2027, 31-10-2027, 1-11-2027, 8-12-2027, 25-12-2027, 1-1-2028, 14-4-2028, 15-4-2028, 1-5-2028, 21-5-2028, 20-6-2028, 26-6-2028, 16-7-2028, 15-8-2028, 18-9-2028, 19-9-2028, 9-10-2028, 27-10-2028, 1-11-2028, 8-12-2028, 25-12-2028, 1-1-2029, 30-3-2029, 31-3-2029, 1-5-2029, 21-5-2029, 20-6-2029, 2-7-2029, 16-7-2029, 15-8-2029, 17-9-2029, 18-9-2029, 19-9-2029, 15-10-2029, 1-11-2029, 2-11-2029, 8-12-2029, 25-12-2029, 1-1-2030, 19-4-2030, 20-4-2030, 1-5-2030, 21-5-2030, 21-6-2030, 29-6-2030, 16-7-2030, 15-8-2030, 18-9-2030, 19-9-2030, 20-9-2030, 12-10-2030, 31-10-2030, 1-11-2030, 8-12-2030, 25-12-2030, 1-1-2031, 11-4-2031, 12-4-2031, 1-5-2031, 21-5-2031, 21-6-2031, 29-6-2031, 16-7-2031, 15-8-2031, 18-9-2031, 19-9-2031, 12-10-2031, 31-10-2031, 1-11-2031, 8-12-2031, 25-12-2031, 1-1-2032, 26-3-2032, 27-3-2032, 1-5-2032, 21-5-2032, 20-6-2032, 28-6-2032, 16-7-2032, 15-8-2032, 17-9-2032, 18-9-2032, 19-9-2032, 11-10-2032, 31-10-2032, 1-11-2032, 8-12-2032, 25-12-2032, 1-1-2033, 15-4-2033, 16-4-2033, 1-5-2033, 21-5-2033, 20-6-2033, 27-6-2033, 16-7-2033, 15-8-2033, 18-9-2033, 19-9-2033, 10-10-2033, 31-10-2033, 1-11-2033, 8-12-2033, 25-12-2033, 1-1-2034, 2-1-2034, 7-4-2034, 8-4-2034, 1-5-2034, 21-5-2034, 21-6-2034, 26-6-2034, 16-7-2034, 15-8-2034, 18-9-2034, 19-9-2034, 9-10-2034, 27-10-2034, 1-11-2034, 8-12-2034, 25-12-2034, 1-1-2035, 23-3-2035, 24-3-2035, 1-5-2035, 21-5-2035, 21-6-2035, 2-7-2035, 16-7-2035, 15-8-2035, 17-9-2035, 18-9-2035, 19-9-2035, 15-10-2035, 1-11-2035, 2-11-2035, 8-12-2035, 25-12-2035, 1-1-2036, 11-4-2036, 12-4-2036, 1-5-2036, 21-5-2036, 20-6-2036, 29-6-2036, 16-7-2036, 15-8-2036, 18-9-2036, 19-9-2036, 12-10-2036, 31-10-2036, 1-11-2036, 8-12-2036, 25-12-2036]
+
+
+
 ### Integración con `holidays`
 
-`holidays` es una muy buena librería en Python puro que provee los feriados de más de 100 países, ciudades y mercados. Cuando no se está conectado a una BBDD y se quiere dar de alta un calendario, integrar `holidays` con `qcf.BusinessCalendar` es una muy buena opción.
+`holidays` es una muy buena librería en Python puro que provee los feriados de más de 100 países, ciudades y mercados. Cuando no se está conectado a una BBDD, o `qcfinancia` no disponga del calendario que se requiere, integrar `holidays` con `qcf.BusinessCalendar` es una muy buena opción.
 
 En el siguiente ejemplo, se construye el calendario de Santiago.
 
@@ -560,7 +596,7 @@ for i, d in enumerate(hol_scl.items()):
     2024-06-29 San Pedro y San Pablo
     2024-07-16 Virgen del Carmen
     2024-08-15 Asunción de la Virgen
-    2024-09-18 Día de la Independencia
+    2024-09-20 Fiestas Patrias
 
 
 Damos de alta un objeto de tipo `qcf.BusinessCalendar`.
