@@ -1444,9 +1444,17 @@ wheels = [
 [[package]]
 name = "qcfinancial"
 version = "1.11.3"
-source = { registry = "https://test.pypi.org/simple/" }
+source = { registry = "https://pypi.org/simple" }
 wheels = [
-    { url = "https://test-files.pythonhosted.org/packages/94/ba/c20a616821b118b030f315928eb10e325286f9ffa7e09c0a9e40d565ee94/qcfinancial-1.11.3-cp312-cp312-macosx_15_0_x86_64.whl", hash = "sha256:1b0edafa262cfd654999852f7ca4f3bc949c925cea4994c6d21672e4d18b426c", size = 662529, upload-time = "2026-06-29T15:44:19.404Z" },
+    { url = "https://files.pythonhosted.org/packages/7a/9d/b89a7932d0ed1d04467798bd2c247fbfba265c53d7dc9e7baf6a9c233bc5/qcfinancial-1.11.3-cp312-cp312-macosx_15_0_x86_64.whl", hash = "sha256:48f77fd99ad4c06fbcf2a60e8eab3f0d0c479c6e56183146ebe57da022ca7723", size = 662529, upload-time = "2026-06-29T19:52:13.234Z" },
+    { url = "https://files.pythonhosted.org/packages/c4/34/59cf73c145084eac2367a50ebf6ed6bf8dbff71271e0557a9050aeba93ae/qcfinancial-1.11.3-cp312-cp312-macosx_26_0_arm64.whl", hash = "sha256:192b1fd1690768b6313777b26073475f4ed5afc38481d1791dc039e04bbf2a09", size = 634737, upload-time = "2026-06-29T20:43:09Z" },
+    { url = "https://files.pythonhosted.org/packages/05/04/91cf5ef102ab4336fb29633c5d7bec9daba353cba6a2cfb63fcb90772b60/qcfinancial-1.11.3-cp312-cp312-win_amd64.whl", hash = "sha256:542c1824e0744cc1bcc9dfdf07d543f0d769e85278a2134b7ac2c3916229f89f", size = 561597, upload-time = "2026-06-29T20:23:16.469Z" },
+    { url = "https://files.pythonhosted.org/packages/88/d7/bcee84964aed7b7e25acdc528644073525399f2e283f037c3e75b669a93b/qcfinancial-1.11.3-cp313-cp313-macosx_15_0_x86_64.whl", hash = "sha256:d9a795aacc689f1842ad1efa061086f30872976707382b0090af7daf27737522", size = 662516, upload-time = "2026-06-29T19:52:15.604Z" },
+    { url = "https://files.pythonhosted.org/packages/de/ba/afcd020d8aee939082b2faf6fa9cfae0a40518b7f8112e0f38385c2181eb/qcfinancial-1.11.3-cp313-cp313-macosx_26_0_arm64.whl", hash = "sha256:b5673147152f33c876b6c8aea61f9cc9b4bf04676b4406ac1f65a9638ffbb204", size = 634724, upload-time = "2026-06-29T20:43:10.827Z" },
+    { url = "https://files.pythonhosted.org/packages/4a/db/3105035b76332226cb21e0cf3ded0c73651b65cf02c6d2c04a99239ee54e/qcfinancial-1.11.3-cp313-cp313-win_amd64.whl", hash = "sha256:801cc4ff2343cdf787ffc453c74e7caf7755f8f73c8354db1da0272af88aba1f", size = 561623, upload-time = "2026-06-29T20:23:18.74Z" },
+    { url = "https://files.pythonhosted.org/packages/39/47/0e1d938dd5c0d98c34b1dc5fefa2f2b097588e292196ed30df81b2042225/qcfinancial-1.11.3-cp314-cp314-macosx_15_0_x86_64.whl", hash = "sha256:059799d4f6874e12ffb95fe70315aacb3e5071ccb44c1951568f13e9d04dfa1b", size = 662504, upload-time = "2026-06-29T19:52:17.101Z" },
+    { url = "https://files.pythonhosted.org/packages/b7/da/0c9f72c57efaff3b84b6acf7b74d924527338e870c006ef92f4e615aeeef/qcfinancial-1.11.3-cp314-cp314-macosx_26_0_arm64.whl", hash = "sha256:7b88e5c336e08f46feeff26d42600cddc90b7b2092e403a45a27ad6a2f0d1073", size = 635558, upload-time = "2026-06-29T20:43:13.434Z" },
+    { url = "https://files.pythonhosted.org/packages/25/a1/b7f440af371d884917b167a742dc883074e6e40616b3c9205df75307dfc9/qcfinancial-1.11.3-cp314-cp314-win_amd64.whl", hash = "sha256:338199d42ba6b89c9f9cece01acc1684c1c1d489a69dab3a0419e85fbaa62c87", size = 579580, upload-time = "2026-06-29T20:23:20.332Z" },
 ]
 
 [[package]]
@@ -1479,7 +1487,7 @@ requires-dist = [
     { name = "openpyxl", marker = "extra == 'notebooks'" },
     { name = "pandas", marker = "extra == 'notebooks'" },
     { name = "pydantic", marker = "extra == 'notebooks'" },
-    { name = "qcfinancial", marker = "extra == 'notebooks'", specifier = "==1.11.3", index = "https://test.pypi.org/simple/" },
+    { name = "qcfinancial", marker = "extra == 'notebooks'", specifier = "==1.11.3" },
 ]
 provides-extras = ["notebooks"]
 

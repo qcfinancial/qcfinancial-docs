@@ -16,9 +16,10 @@ qcf-docs = "qcfdocs.cli:main"
 [project.optional-dependencies]
 # The notebook *execution* surface -- only needed to RE-RUN the chapter notebooks
 # in Jupyter. Install on demand: `uv sync --extra notebooks`.
-# NOTE: qcfinancial publishes wheels only for macOS arm64 and Linux x86_64. On
-# macOS Intel there is no wheel; provide the compiled module out-of-band (the
-# vendored qcfinancial.cpython-3xx-darwin.so, kept out of git via .gitignore).
+# NOTE: qcfinancial is on PyPI with wheels for macOS (Intel + arm64) and Windows
+# x86_64 -- there is no Linux wheel, so `uv sync --extra notebooks` cannot install
+# it on Linux. The core build (`uv sync` without this extra) never needs it, so
+# Linux CI is unaffected.
 notebooks = [
     "qcfinancial==1.11.3",
     "pandas",
@@ -37,19 +38,6 @@ dev = [
     "ipykernel",
     "pytest",
 ]
-
-# qcfinancial is published to TestPyPI. Mark the index `explicit` so it is ONLY
-# consulted for packages bound to it in [tool.uv.sources] below -- everything
-# else (numpy, pandas, ...) resolves from normal PyPI. Without `explicit`, the
-# resolver can wander onto TestPyPI and pick broken stub versions (e.g. numpy
-# 1.9.3 that fails to build).
-[[tool.uv.index]]
-name = "testpypi"
-url = "https://test.pypi.org/simple/"
-explicit = true
-
-[tool.uv.sources]
-qcfinancial = { index = "testpypi" }
 
 [build-system]
 requires = ["hatchling"]
