@@ -6,7 +6,13 @@ readme = "README.md"
 requires-python = ">=3.12"
 # The docs toolchain (CLI + converter) is pure standard library, so the project
 # itself has no install-time runtime dependencies. See dependency-groups below.
-dependencies = []
+dependencies = [
+    "holidays>=0.99",
+    "openpyxl>=3.1.5",
+    "pandas>=3.0.3",
+    "pydantic>=2.13.4",
+    "qcfinancial==1.11.3",
+]
 
 [project.scripts]
 # `uv run qcf-docs notebooks`  -> regenerate docs/*.md from the .ipynb
@@ -28,15 +34,28 @@ notebooks = [
     "pydantic",   # used by qcf_wrappers.py
 ]
 
-[tool.uv]
+[dependency-groups]
 # The docs build toolchain, installed by default by `uv sync`. nbconvert reads
 # the .ipynb JSON as-is, so none of this needs qcfinancial.
-dev-dependencies = [
+dev = [
     "nbconvert",
     "jupyterlab",
     "ipykernel",
     "pytest",
 ]
+
+# qcfinancial is published to TestPyPI. Mark the index `explicit` so it is ONLY
+# consulted for packages bound to it in [tool.uv.sources] below -- everything
+# else (numpy, pandas, ...) resolves from normal PyPI. Without `explicit`, the
+# resolver can wander onto TestPyPI and pick broken stub versions (e.g. numpy
+# 1.9.3 that fails to build).
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+explicit = true
+
+[tool.uv.sources]
+qcfinancial = { index = "testpypi" }
 
 [build-system]
 requires = ["hatchling"]
