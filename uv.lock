@@ -1453,13 +1453,6 @@ wheels = [
 name = "qcfinancial-docs"
 version = "0.1.0"
 source = { editable = "." }
-dependencies = [
-    { name = "holidays" },
-    { name = "openpyxl" },
-    { name = "pandas" },
-    { name = "pydantic" },
-    { name = "qcfinancial" },
-]
 
 [package.optional-dependencies]
 notebooks = [
@@ -1481,17 +1474,12 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "holidays", specifier = ">=0.99" },
     { name = "holidays", marker = "extra == 'notebooks'" },
     { name = "numpy", marker = "extra == 'notebooks'" },
-    { name = "openpyxl", specifier = ">=3.1.5" },
     { name = "openpyxl", marker = "extra == 'notebooks'" },
-    { name = "pandas", specifier = ">=3.0.3" },
     { name = "pandas", marker = "extra == 'notebooks'" },
-    { name = "pydantic", specifier = ">=2.13.4" },
     { name = "pydantic", marker = "extra == 'notebooks'" },
-    { name = "qcfinancial", specifier = "==1.11.3", index = "https://test.pypi.org/simple/" },
-    { name = "qcfinancial", marker = "extra == 'notebooks'", index = "https://test.pypi.org/simple/" },
+    { name = "qcfinancial", marker = "extra == 'notebooks'", specifier = "==1.11.3", index = "https://test.pypi.org/simple/" },
 ]
 provides-extras = ["notebooks"]
 

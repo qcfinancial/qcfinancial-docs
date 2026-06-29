@@ -6,13 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 # The docs toolchain (CLI + converter) is pure standard library, so the project
 # itself has no install-time runtime dependencies. See dependency-groups below.
-dependencies = [
-    "holidays>=0.99",
-    "openpyxl>=3.1.5",
-    "pandas>=3.0.3",
-    "pydantic>=2.13.4",
-    "qcfinancial==1.11.3",
-]
+dependencies = []
 
 [project.scripts]
 # `uv run qcf-docs notebooks`  -> regenerate docs/*.md from the .ipynb
@@ -26,7 +20,7 @@ qcf-docs = "qcfdocs.cli:main"
 # macOS Intel there is no wheel; provide the compiled module out-of-band (the
 # vendored qcfinancial.cpython-3xx-darwin.so, kept out of git via .gitignore).
 notebooks = [
-    "qcfinancial",
+    "qcfinancial==1.11.3",
     "pandas",
     "numpy",
     "holidays",
