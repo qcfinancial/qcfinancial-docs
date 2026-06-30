@@ -224,10 +224,10 @@ def _df_cell(exec_n: int, html: str) -> str:
 
 def _heading(level: int, text: str, hid: str) -> str:
     if level == 2:
-        return f'<h2 class="nb-h2" id="{hid}">{escape_html(text)}</h2>'
+        return f'<h2 class="nb-h2" id="{hid}">{render_inline(text)}</h2>'
     if level == 3:
-        return f'<h3 class="nb-h3" id="{hid}">{escape_html(text)}</h3>'
-    return f'<h4 class="nb-h4" id="{hid}">{escape_html(text)}</h4>'
+        return f'<h3 class="nb-h3" id="{hid}">{render_inline(text)}</h3>'
+    return f'<h4 class="nb-h4" id="{hid}">{render_inline(text)}</h4>'
 
 
 def _md_table(rows: list[str]) -> str:

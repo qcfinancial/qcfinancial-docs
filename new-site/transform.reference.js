@@ -163,9 +163,9 @@ function dfCell(exec, html) {
 }
 
 function heading(level, text, id) {
-  if (level === 2) return '<h2 class="nb-h2" id="' + id + '">' + escapeHtml(text) + '</h2>';
-  if (level === 3) return '<h3 class="nb-h3" id="' + id + '">' + escapeHtml(text) + '</h3>';
-  return '<h4 class="nb-h4" id="' + id + '">' + escapeHtml(text) + '</h4>';
+  if (level === 2) return '<h2 class="nb-h2" id="' + id + '">' + renderInline(text) + '</h2>';
+  if (level === 3) return '<h3 class="nb-h3" id="' + id + '">' + renderInline(text) + '</h3>';
+  return '<h4 class="nb-h4" id="' + id + '">' + renderInline(text) + '</h4>';
 }
 
 function mdTable(rows) {

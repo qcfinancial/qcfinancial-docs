@@ -47,7 +47,7 @@ def _toc_html(toc: list[dict]) -> str:
             cls += " lvl-3"
         if idx == 0:
             cls += " is-active"
-        items.append(f'          <a class="{cls}" href="#{h["id"]}">{h["text"]}</a>')
+        items.append(f'          <a class="{cls}" href="#{h["id"]}">{convert.render_inline(h["text"])}</a>')
     return "\n".join(items)
 
 
