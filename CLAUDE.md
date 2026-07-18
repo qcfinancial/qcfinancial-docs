@@ -6,14 +6,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is the **documentation** repo for `qcfinancial` — a C++/Python library (imported as `import qcfinancial as qcf`) for pricing interest-rate and FX derivatives. This repo contains **no library source code**; it is a set of executable Jupyter notebooks that teach the library by example, plus a custom static-site generator (`qcfdocs/`) that publishes them. Content and most prose are in **Spanish** — match that language when editing notebooks or docs.
 
-`qcfinancial` is a compiled extension published on **PyPI** (version pinned to `1.11.3`). It ships wheels for **macOS (Intel x86_64 + arm64) and Windows x86_64** — there is **no Linux wheel**, so it cannot be `pip`/`uv`-installed on Linux (provide the compiled `qcfinancial.cpython-*.so` out-of-band, gitignored, if you must run notebooks there). You cannot read its source here; learn its API from the notebooks and from `qcf_wrappers.py`.
+`qcfinancial` is a compiled extension. You cannot read its source here; learn its API from the notebooks and from `qcf_wrappers.py`.
+
+> **TEMPORARY — pre-release under test.** The pin is currently `1.12.0a1` from **TestPyPI**, not the stable `1.11.3` from PyPI, while that version is being evaluated. `1.12.0a1` ships **macOS x86_64 wheels only** — no arm64, no Windows, no Linux — so `uv sync --extra notebooks` only works on Intel macOS right now. Revert to `qcfinancial==1.11.3` (and drop the `[tool.uv.index]`/`[tool.uv.sources]`/`prerelease` blocks in `pyproject.toml`) when the test is done. The stable line on PyPI ships wheels for **macOS (Intel x86_64 + arm64) and Windows x86_64**, and has **no Linux wheel** either — on Linux, provide the compiled `qcfinancial.cpython-*.so` out-of-band (gitignored) if you must run notebooks there.
 
 ## Environment (uv)
 
 The project is managed with **uv** (`pyproject.toml`, `uv.lock`, Python pinned to 3.12 via `.python-version`).
 
 - `uv sync` — create `.venv` and install the **docs build toolchain** (`[dependency-groups] dev`: nbconvert, jupyterlab, ipykernel, pytest). This is all you need to build the site.
-- `uv sync --extra notebooks` — additionally install the **notebook execution surface** (`[project.optional-dependencies] notebooks`: qcfinancial, pandas, numpy, holidays, openpyxl, pydantic). Needed only to *re-run* the notebooks. Works on macOS (Intel + arm64) and Windows; **fails on Linux** (no qcfinancial wheel) — use the vendored `.so` there.
+- `uv sync --extra notebooks` — additionally install the **notebook execution surface** (`[project.optional-dependencies] notebooks`: qcfinancial, pandas, numpy, holidays, openpyxl, pydantic). Needed only to *re-run* the notebooks. **While the temporary `1.12.0a1` pin is in place this works on Intel macOS only** (see above); with the stable pin it works on macOS (Intel + arm64) and Windows. **Fails on Linux** either way (no qcfinancial wheel) — use the vendored `.so` there.
 - `uv run jupyter lab` — run the notebooks.
 
 The project itself (`qcfinancial-docs`) has **no install-time runtime deps**: core `[project] dependencies` is **empty** and the site converter is pure standard library. **Keep it empty** — qcfinancial and the other notebook-runtime packages must live only in the `notebooks` extra, never in core deps. If qcfinancial is added to core deps, `uv run --no-dev qcf-docs build` on Linux CI fails trying to install a package with no Linux wheel.
