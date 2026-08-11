@@ -1446,12 +1446,12 @@ wheels = [
 
 [[package]]
 name = "qcfinancial"
-version = "1.12.0a1"
+version = "1.13.0a1"
 source = { registry = "https://test.pypi.org/simple/" }
 wheels = [
-    { url = "https://test-files.pythonhosted.org/packages/94/c1/e4bceafdf4a8f4bb731c7d7699bf1d82491f4311d1640d8ab3f245f1efb5/qcfinancial-1.12.0a1-cp312-cp312-macosx_15_0_x86_64.whl", hash = "sha256:9bc7b7107d5c9ea16a1f156afc52cf934745979beaa05b87a19aea9d84bc2121", size = 689054, upload-time = "2026-07-18T12:46:51.763Z" },
-    { url = "https://test-files.pythonhosted.org/packages/14/5e/6c82cc9eb925f6faa787378d0eaf93ddfc2fc6bb05a7df6f621acd1b62d1/qcfinancial-1.12.0a1-cp313-cp313-macosx_15_0_x86_64.whl", hash = "sha256:886cd01a033173cdfb901cde28a3915bf52eb5a47ef3dd883a40c1b61f5dea61", size = 689054, upload-time = "2026-07-18T12:46:53.821Z" },
-    { url = "https://test-files.pythonhosted.org/packages/b1/ff/519ce493e9a6a4d831ca8d587890c3a93d0d99aefc4f83c5521eedf4d424/qcfinancial-1.12.0a1-cp314-cp314-macosx_15_0_x86_64.whl", hash = "sha256:82a24d5ba58a6af6a3ecf92a4f5d3966f463e3efba3cb48184636082c12c8bc1", size = 688927, upload-time = "2026-07-18T12:46:54.901Z" },
+    { url = "https://test-files.pythonhosted.org/packages/93/c4/10425c0daf31d22235c543a608e5548c2d3b3d56eb010c63648ad527fb9a/qcfinancial-1.13.0a1-cp312-cp312-macosx_26_0_arm64.whl", hash = "sha256:f44f1ac5c2fcb642c0918840a70e71e8953c1c23896bf9adf0b903a80b6dd3ae", size = 652716, upload-time = "2026-07-22T19:25:57.178Z" },
+    { url = "https://test-files.pythonhosted.org/packages/af/73/897780c090179a6ccf62c074efddec18dda48e364c6f49122e3d5f09e73e/qcfinancial-1.13.0a1-cp313-cp313-macosx_26_0_arm64.whl", hash = "sha256:6446652f6be185d1625a5a62b9098130eec730dd90ba02fea34c753241d5ad80", size = 652705, upload-time = "2026-07-22T19:25:59.13Z" },
+    { url = "https://test-files.pythonhosted.org/packages/66/b1/489b4d32fbd365e92b6bc58191d206b93d179dfa158726bef93173b4caf1/qcfinancial-1.13.0a1-cp314-cp314-macosx_26_0_arm64.whl", hash = "sha256:6c6667311f956c4587f910e1093a1fe82e9f1781be3410dd5d3de943e7fd8031", size = 654571, upload-time = "2026-07-22T19:26:00.28Z" },
 ]
 
 [[package]]
@@ -1484,7 +1484,7 @@ requires-dist = [
     { name = "openpyxl", marker = "extra == 'notebooks'" },
     { name = "pandas", marker = "extra == 'notebooks'" },
     { name = "pydantic", marker = "extra == 'notebooks'" },
-    { name = "qcfinancial", marker = "extra == 'notebooks'", specifier = "==1.12.0a1", index = "https://test.pypi.org/simple/" },
+    { name = "qcfinancial", marker = "extra == 'notebooks'", specifier = "==1.13.0a1", index = "https://test.pypi.org/simple/" },
 ]
 provides-extras = ["notebooks"]
 

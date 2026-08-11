@@ -16,13 +16,13 @@ qcf-docs = "qcfdocs.cli:main"
 [project.optional-dependencies]
 # The notebook *execution* surface -- only needed to RE-RUN the chapter notebooks
 # in Jupyter. Install on demand: `uv sync --extra notebooks`.
-# NOTE: qcfinancial 1.12.0a1 is a pre-release published only on TestPyPI (see
+# NOTE: qcfinancial 1.13.0a1 is a pre-release published only on TestPyPI (see
 # [tool.uv.sources] below), and it ships wheels for macOS x86_64 ONLY -- no arm64,
 # no Windows, no Linux. So `uv sync --extra notebooks` only works on Intel macOS.
 # The core build (`uv sync` without this extra) never needs it, so Linux CI is
 # unaffected.
 notebooks = [
-    "qcfinancial==1.12.0a1",
+    "qcfinancial==1.13.0a1",
     "pandas",
     "numpy",
     "holidays",
@@ -41,7 +41,7 @@ dev = [
 ]
 
 [tool.uv]
-# qcfinancial 1.12.0a1 is a pre-release; allow it without loosening anything else.
+# qcfinancial 1.13.0a1 is a pre-release; allow it without loosening anything else.
 prerelease = "explicit"
 
 [[tool.uv.index]]
